@@ -1,2 +1,2 @@
 # AgriGasy
-Facilitation de communication entre les vendeurs et les collecteurs
+Facilitation de la communication entre les vendeurs et les collecteurs
