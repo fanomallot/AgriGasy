@@ -11,7 +11,8 @@ require 'faker'
 
 10.times do
 	region =Region.create(place: Faker::Address.country) 
-end 
+end
+puts "Region done"
 
 #creation table user
 10.times do
@@ -25,22 +26,22 @@ end
 	else
 		user.update(is_admin:false)
 	end
-end 
+end
+puts "User done"
 
 #creation produit fake
 10.times do
 	prod =Produit.create(name: Faker::Food.fruits)
 end
+puts "Produit done"
 
 # creation achat fake
 10.times do 
-	
 	achat = Achat.create(nom: Faker::Food.fruits, date: Faker::Date.forward(days: rand(10..19)),
 	description: Faker::Food.description,quantite: rand(100..500),prix: rand(1000..3000),
-	lieu: Faker::Address.city, user_id: rand(1..10),region_id:rand(1..10), produit_id:rand(1..10))
-	i+=1
-	puts i 
-end 
+	lieu: Faker::Address.city, user_id: rand(1..10),region_id:rand(1..10), produit_id:rand(1..10)) 
+end
+puts "Achat done"
 
 # creation vente fake
 10.times do 
@@ -48,4 +49,4 @@ end
 	description: Faker::Food.description,quantite: rand(100..500),prix: rand(1000..3000), lieu: Faker::Address.city, user_id: rand(1..10),
 	region_id:rand(1..10), produit_id:rand(1..10))
 end 
-
+puts "Vente done"

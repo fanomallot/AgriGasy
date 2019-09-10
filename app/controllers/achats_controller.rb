@@ -5,6 +5,7 @@ class AchatsController < ApplicationController
   end
 
   def show
+    @achat = Achat.find(params[:id])
   end
 
   def new
