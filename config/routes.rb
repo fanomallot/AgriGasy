@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'accueils/accueil'
   get 'achats/index'
   get 'achats/show'
