@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ListeAchats</title>
+</head>
+<body>
+
+	<h1>Voici les listes de tous les Ventes disponibles :</h1>
+	<p>
+		<% @vente.each do |vente| %>
+			<strong>Nom : </strong> <%= vente.nom %><br/>
+			<strong>Lieu : </strong> <%= vente.lieu %><br/><br/>
+		<% end %>
+	</p>
+	
+	<h1>Voici les listes de tous les achats disponibles :</h1>
+	<p>
+		<% @achat.each do |achat| %>
+			<strong>Nom : </strong> <%= achat.nom %><br/>
+			<strong>Lieu : </strong> <%= achat.lieu %><br/><br/>
+		<% end %>
+	</p>
+
+</body>
+</html>
