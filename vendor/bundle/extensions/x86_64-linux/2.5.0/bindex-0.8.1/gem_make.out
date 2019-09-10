@@ -1,0 +1,15 @@
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+/home/dev/.rvm/rubies/ruby-2.5.1/bin/ruby -I /home/dev/.rvm/rubies/ruby-2.5.1/lib/ruby/site_ruby/2.5.0 -r ./siteconf20190910-30693-1ku8itr.rb extconf.rb
+creating Makefile
+
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -m 0755 cruby.so ./.gem.20190910-30693-1hi6irh/skiptrace/internal

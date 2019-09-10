@@ -1,0 +1,15 @@
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+/home/dev/.rvm/rubies/ruby-2.5.1/bin/ruby -I /home/dev/.rvm/rubies/ruby-2.5.1/lib/ruby/site_ruby/2.5.0 -r ./siteconf20190910-30693-17zmfel.rb extconf.rb
+creating Makefile
+
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/dev/Bureau/fax/projet final/AgriGasy/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -m 0755 websocket_mask.so ./.gem.20190910-30693-1toaany
