@@ -7,24 +7,23 @@
 <p>
 	<%= form_tag url_for(action: 'update'), method: "put" do %>
 
-  	<%= label_tag 'Nom de produit' %><br/>
-  	<%= text_field_tag 'nom', @vente.produit.name %><br/> 
+  	Nom de produit<br/>
+    <input type="text" name="nom" value="<%=@vente.produit.name %>">*<br/> 
 
-  	<%= label_tag "Description" %><br/>
-  	<%= text_area_tag 'description', @vente.description %><br/> 
+    Description<br/>
+    <input type="text" name="description" value="<%=@vente.description %>">*<br/> 
 
-    <%= label_tag "Quantité disponible" %><br/>
-    <%= text_area_tag 'quantite', @vente.quantite %><br/> 
+    Quantité disponible<br/>
+    <input type="text" name="quantite" value="<%=@vente.quantite%>">*</br>
 
-    <%= label_tag "Prix" %><br/>
-    <%= text_area_tag 'prix', @vente.prix %><br/>
-
-    <%= label_tag "Date de disponibilité" %><br/>
-    <%= text_area_tag 'date', @vente.date %><br/> 
-
-    <%= label_tag "Lieu" %><br/>
-    <%= text_area_tag 'lieu', @vente.lieu %><br/>
-    
+    Prix en ariary/unité<br/>
+    <input type="text" name="prix" value="<%=@vente.prix%>">*<br/>
+    Date de disponibilité<br/>
+    <input type="date" name="date" value="<%=@vente.date.to_date%>" min= <%=Time.now%>>*<br/>
+    Region<br>
+    <input type="text" name="place" value="<%=@vente.region.place%>">*<br/>
+    Lieu<br/>
+    <input type="text" name="lieu" value="<%=@vente.lieu%>">*<br/>
     <%= submit_tag "Update post" %>
 
   <% end %>
