@@ -3,7 +3,7 @@
 <%= form_tag url_for(action: 'create'), method: "post" do %>
 
     <%= label_tag 'Region' %><br/>
-    <%= text_field_tag 'place', @region.place, placeholder: "Region" %><br/><br/>
+    <input type='text' name='place' placeholder="Region"> <br/><br/>
 
   <div>      
         <table class="table table-bordered">
@@ -20,7 +20,7 @@
               <th><input type="string" name="nom"></th>
               <th><input type="text" name="description"></th>
               <th><input type="string" name="quantite"></th>
-              <th><input type="string" name="prix"></th>
+              <th><input type="string" name="prix"> <input type="text" name="unite">  </th>
               <th><input type="datetimes" name="date"></th>
               <th><input type="string" name="lieu"></th>
             </tr>
