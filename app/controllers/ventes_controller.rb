@@ -82,9 +82,11 @@ class VentesController < ApplicationController
 
   def update
     @vente = Vente.find(params[:id])
-    if @vente.update(nom: params[:nom], description: params[:description],
+    @produit = Produit.find(params[:id])
+    @produit.save(name: params[:nom])
+    if @vente.update(description: params[:description],
       quantite: params[:quantite], prix: params[:prix], date: params[:date],
-      lieu: params[:lieu])
+      lieu: params[:lieu], produit_id: @produit.id)
       redirect_to vente_path(@vente.id)
     else
       render "edit"
@@ -92,6 +94,11 @@ class VentesController < ApplicationController
   end
 
   def destroy
+    @vente = Vente.find(params[:id])
+    @signall = Signall.where(vente_id: @vente.id)
+    @signall.destroy_all
+    @vente.destroy
+    redirect_to root_path
   end
   
 end

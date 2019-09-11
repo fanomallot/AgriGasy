@@ -1,10 +1,8 @@
 <h1>Créer une publication de votre besoin</h1>
 
 <%= form_tag url_for(action: 'create'), method: "post" do %>
-
     <%= label_tag 'Region' %><br/>
     <input type='text' name='place' placeholder="Region"> <br/><br/>
-
   <div>      
         <table class="table table-bordered">
           <tbody>
@@ -28,6 +26,5 @@
         </table>
       </div>
       <br/>
-
   <%= submit_tag "Create Publication" %>
 <% end %>
