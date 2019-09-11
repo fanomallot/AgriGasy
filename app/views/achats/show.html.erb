@@ -1,11 +1,12 @@
 <h1>Voici le besoin de cette personne</h1>
 <p>
-	<strong>Nom : </strong> <%= @achat.nom %><br/>
+	<strong>Nom : </strong> <%= @achat.produit.name %><br/>
 	<strong>Description : </strong> <%= @achat.description %><br/>
 	<strong>Quantite : </strong> <%= @achat.quantite %><br/>
 	<strong>Prix : </strong> <%= @achat.prix %><br/>
 	<strong>Lieu : </strong> <%= @achat.lieu %><br/>
 </p>
 <p>
-	<%= link_to "Edit post", edit_achat_path(@achat.id) %>
+	<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
+	<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %>
 </p>

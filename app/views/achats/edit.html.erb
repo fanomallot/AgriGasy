@@ -4,7 +4,7 @@
 	<%= form_tag url_for(action: 'update'), method: "put" do %>
 
   	<%= label_tag 'Nom de produit' %><br/>
-  	<%= text_field_tag 'nom', @achat.nom %><br/> 
+  	<%= text_field_tag 'nom', @achat.produit.name %><br/> 
 
   	<%= label_tag "Description" %><br/>
   	<%= text_area_tag 'description', @achat.description %><br/> 
@@ -13,7 +13,10 @@
     <%= text_area_tag 'quantite', @achat.quantite %><br/> 
 
     <%= label_tag "Prix" %><br/>
-    <%= text_area_tag 'prix', @achat.prix %><br/> 
+    <%= text_area_tag 'prix', @achat.prix %><br/>
+
+    <%= label_tag "Date de disponibilité" %><br/>
+    <%= text_area_tag 'date', @achat.date %><br/>
 
     <%= label_tag "Lieu" %><br/>
     <%= text_area_tag 'lieu', @achat.lieu %><br/>

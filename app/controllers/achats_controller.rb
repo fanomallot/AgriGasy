@@ -21,7 +21,7 @@ class AchatsController < ApplicationController
     # else
     #   @region = Region.find_by(place: params[:place])
     # end
-    @achat = achat.new(nom: params[:nom], description: params[:description],
+    @achat = achat.new(description: params[:description],
       quantite: params[:quantite], prix: params[:prix], date: params[:date],
       lieu: params[:lieu], user: current_user, region_id: @region.id, produit_id: @produit.id)
     if @achat.save
@@ -37,9 +37,11 @@ class AchatsController < ApplicationController
 
   def update
     @achat = Achat.find(params[:id])
-    if @achat.update(nom: params[:nom], description: params[:description],
+    @produit = Produit.find(params[:id])
+    @produit.save(name: params[:nom])
+    if @achat.update(description: params[:description],
       quantite: params[:quantite], prix: params[:prix], date: params[:date],
-      lieu: params[:lieu])
+      lieu: params[:lieu], produit_id: @produit.id)
       redirect_to achat_path(@achat.id)
     else
       render "edit"
@@ -47,6 +49,11 @@ class AchatsController < ApplicationController
   end
 
   def destroy
+    @achat = Achat.find(params[:id])
+    @signall = Signall.where(achat_id: @achat.id)
+    @signall.destroy_all
+    @achat.destroy
+    redirect_to root_path
   end
   
 end

@@ -1,11 +1,12 @@
 <h1>Voici le contenu de cet article</h1>
 <p>
-	<strong>Nom : </strong> <%= @vente.nom %><br/>
+	<strong>Nom : </strong> <%= @vente.produit.name %><br/>
 	<strong>Description : </strong> <%= @vente.description %><br/>
 	<strong>Quantite : </strong> <%= @vente.quantite %><br/>
 	<strong>Prix : </strong> <%= @vente.prix %><br/>
 	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
 </p>
 <p>
-	<%= link_to "Edit post", edit_vente_path(@vente.id) %>
+	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br/>
+	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %>
 </p>
