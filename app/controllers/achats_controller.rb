@@ -9,7 +9,7 @@ class AchatsController < ApplicationController
   end
 
   def new
-    
+    @achat = Achat.new
   end
 
   def create
@@ -18,7 +18,7 @@ class AchatsController < ApplicationController
       quantite: params[:quantite], user: current_user)
   # test des autre sans validation dans le cas ou ils existent
     if params[:prix] != nil
-      @achat.prix = params[:prix]
+      @achat.prix = params[:prix] + params[:unite]
     end
     if params[:date] != nil
       @achat.date = params[:date]

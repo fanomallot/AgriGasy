@@ -10,7 +10,7 @@
 	<p>
 		<% @vente.each do |vente| %>
 			<strong>Nom : </strong> <%= vente.produit.name %><br/>
-			<strong>Lieu : </strong> <%= vente.lieu %><br/>
+			<strong>Lieu : </strong> <%= vente.region.place %><br/>
 			<%= link_to "See more", vente_path(vente.id) %><br/><br/>
 		<% end %>
 	</p>
@@ -19,7 +19,7 @@
 	<p>
 		<% @achat.each do |achat| %>
 			<strong>Nom : </strong> <%= achat.produit.name %><br/>
-			<strong>Lieu : </strong> <%= achat.lieu %><br/>
+			<strong>Lieu : </strong> <%= achat.region.place %><br/>
 			<%= link_to "See more", achat_path(achat.id) %><br/><br/>
 		<% end %>
 	</p>
