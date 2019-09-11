@@ -4,9 +4,9 @@ class Vente < ApplicationRecord
   belongs_to :produit
 
   validates :description,
-  presence: true
-  , length: {in: 2..30}
-  validates :quatite,
+  presence: true,
+  length: {in: 2..30}
+  validates :quantite,
   presence: true
   validates :date,
   presence: true

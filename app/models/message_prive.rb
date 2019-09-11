@@ -3,7 +3,7 @@ class MessagePrive < ApplicationRecord
 	belongs_to :recipient, class_name: "User"
 
 	validates :title,
-	, presence: true,
+	presence: true,
 	length: {in: 2..30}
 	validates :content, 
 	presence: true,
