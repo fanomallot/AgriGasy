@@ -7,9 +7,11 @@
 	<%if @achat.prix != "" %>
 	<strong>Prix : </strong> <%= @achat.prix %><br/>
 	<%end%>
+	<strong>Region : </strong> <%= @achat.region.place %><br/>
 	<%if @achat.lieu != "" %>
 	<strong>Lieu : </strong> <%= @achat.lieu %><br/>
 	<%end%>
+
 	<%if @achat.date != nil %>
 	<strong>Date : </strong> <%= @achat.date.to_date %><br/>
 	<%end%>
