@@ -9,6 +9,7 @@ class VentesController < ApplicationController
   end
 
   def new
+    @vente = Vente.new
   end
 
   def create
