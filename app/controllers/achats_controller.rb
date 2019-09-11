@@ -21,7 +21,7 @@ class AchatsController < ApplicationController
     # else
     #   @region = Region.find_by(place: params[:place])
     # end
-    @achat = achat.new(nom: params[:nom], description: params[:description],
+    @achat = achat.new(description: params[:description],
       quantite: params[:quantite], prix: params[:prix], date: params[:date],
       lieu: params[:lieu], user: current_user, region_id: @region.id, produit_id: @produit.id)
     if @achat.save
