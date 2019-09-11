@@ -1,5 +1,4 @@
 class VentesController < ApplicationController
-
   def index
     @vente = Vente.all
   end

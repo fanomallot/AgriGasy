@@ -1,4 +1,5 @@
 class Vente < ApplicationRecord
+  after_create :signal_send
   belongs_to :user
   belongs_to :region
   belongs_to :produit
@@ -14,4 +15,8 @@ class Vente < ApplicationRecord
   presence: true
   validates :prix,
   presence: true
+
+  def signal_send
+    AdminMailer.vente_created_email(self).deliver_now
+  end
 end
