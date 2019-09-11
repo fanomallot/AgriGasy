@@ -1,14 +1,22 @@
 <h1>Mon profil est changer</h1>
-first_name :<%= current_user.first_name%><br> last_name :<%= current_user.last_name%><br>
+first_name :<br>
+<%= current_user.first_name%><br> 
+last_name :<br>
+<%= current_user.last_name%><br>
 <%if params[:age] != "" %>
-  Age :<%=current_user.age%>ans<br>
+  Age :<br>
+  <%=current_user.age%>ans<br>
  <%end%>
 <%if params[:ville] != "" %>
-  Ville : <%= current_user.ville%><br>
+  Ville :<br>
+  <%= current_user.ville%><br>
 <%end%>
 <%if params[:contact] != nil %>
-	contact :<%=current_user.contact%><br>
+	contact :<br>
+	<%=current_user.contact%><br>
 <%end%>
-description : <%= current_user.description%><br>
-Votre e-mail : <%=current_user.email%><br>
+description :<br>
+<%= current_user.description%><br>
+Votre e-mail :<br>
+<%=current_user.email%><br>
 <%=link_to 'editer mon profil', edit_user_path(current_user.id)%>
