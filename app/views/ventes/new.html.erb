@@ -1,0 +1,33 @@
+<h1>Créer une publication vente</h1>
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+    <%= label_tag 'Region' %><br/>
+    <%= text_field_tag 'place', @region.place, placeholder: "Region" %><br/><br/>
+
+  <div>      
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Nom du produit</th>
+              <th>Description</th>
+              <th>Quantité</th>
+              <th>Prix</th>
+              <th>Date de disponibilité</th>
+              <th>Lieu</th>
+            </tr>
+            <tr>
+              <th><input type="string" name="nom"></th>
+              <th><input type="text" name="description"></th>
+              <th><input type="string" name="quantite"></th>
+              <th><input type="string" name="prix"></th>
+              <th><input type="datetimes" name="date"></th>
+              <th><input type="string" name="lieu"></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br/>
+
+  <%= submit_tag "Create Vente" %>
+<% end %>

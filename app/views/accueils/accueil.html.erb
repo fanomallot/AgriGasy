@@ -4,7 +4,8 @@
 	<title>ListeAchats</title>
 </head>
 <body>
-
+	<%= link_to "Créer une publication vente", new_vente_path %><br/>
+	<%= link_to "Créer une publication achat", new_achat_path %>
 	<h1>Voici les listes de tous les Ventes disponibles :</h1>
 	<p>
 		<% @vente.each do |vente| %>
