@@ -1,3 +1,13 @@
+
+<% if @vente.errors.any? %>
+    <p>Nous n'avons pas réussi à créer l'Event pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @vente.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
 <h1>Créer une publication vente</h1>
 
 <%= form_tag url_for(action: 'create'), method: "post" do %>
