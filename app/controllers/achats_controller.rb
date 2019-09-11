@@ -32,9 +32,18 @@ class AchatsController < ApplicationController
   end
 
   def edit
+    @achat = Achat.find(params[:id])
   end
 
   def update
+    @achat = Achat.find(params[:id])
+    if @achat.update(nom: params[:nom], description: params[:description],
+      quantite: params[:quantite], prix: params[:prix], date: params[:date],
+      lieu: params[:lieu])
+      redirect_to achat_path(@achat.id)
+    else
+      render "edit"
+    end
   end
 
   def destroy

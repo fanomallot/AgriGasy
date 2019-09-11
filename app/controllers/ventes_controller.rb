@@ -32,9 +32,18 @@ class VentesController < ApplicationController
   end
 
   def edit
+    @vente = Vente.find(params[:id])
   end
 
   def update
+    @vente = Vente.find(params[:id])
+    if @vente.update(nom: params[:nom], description: params[:description],
+      quantite: params[:quantite], prix: params[:prix], date: params[:date],
+      lieu: params[:lieu])
+      redirect_to vente_path(@vente.id)
+    else
+      render "edit"
+    end
   end
 
   def destroy

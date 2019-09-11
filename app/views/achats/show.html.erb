@@ -6,3 +6,6 @@
 	<strong>Prix : </strong> <%= @achat.prix %><br/>
 	<strong>Lieu : </strong> <%= @achat.lieu %><br/>
 </p>
+<p>
+	<%= link_to "Edit post", edit_achat_path(@achat.id) %>
+</p>
