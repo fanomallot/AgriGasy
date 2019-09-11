@@ -18,11 +18,11 @@
   Description<br/>
   <textarea type="text" name="description" placeholder="donné un détail du demande"></textarea>*<br/>
   Quantité<br/>
-  <input type="string" name="quantite" placeholder="quantité du produit rechercher">*<br/>
+  <input type="text" name="quantite" placeholder="quantité du produit rechercher">*<br/>
   Prix en Ariary / Unité <br/>
-  <input type="string" name="prix" placeholder="3562.1"> <input type="text" name="unite" placeholder="ex : Ar/t(Ariary/tonne)">  <br/>
+  <input type="number" name="prix" placeholder="3562.1" min="0" > <input type="text" name="unite" placeholder="ex : Ar/t(Ariary/tonne)">  <br/>
   Date de disponibilité<br/> 
-  <input type="datetimes" name="date" placeholder="01-01-2001"><br/>
+  <input type="date" name="date" value="<%=Time.now%>" min= <%=Time.now%>><br/>
   Lieu<br/>
   <input type="text" name="lieu" placeholder="city"><br/>
   </div>
