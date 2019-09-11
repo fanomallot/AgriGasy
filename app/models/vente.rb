@@ -5,7 +5,7 @@ class Vente < ApplicationRecord
 
   validates :description,
   presence: true,
-  length: {in: 2..30}
+  length: {in: 12..3000}
   validates :quantite,
   presence: true
   validates :date,
