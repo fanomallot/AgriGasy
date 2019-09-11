@@ -21,7 +21,7 @@ class VentesController < ApplicationController
     # else
     #   @region = Region.find_by(place: params[:place])
     # end
-    @vente = Vente.new(nom: params[:nom], description: params[:description],
+    @vente = Vente.new(description: params[:description],
       quantite: params[:quantite], prix: params[:prix], date: params[:date],
       lieu: params[:lieu], user: current_user, region_id: @region.id, produit_id: @produit.id)
     if @vente.save

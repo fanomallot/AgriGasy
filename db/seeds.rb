@@ -9,31 +9,31 @@
 require 'faker'
 # creation table region
 
-# 10.times do
-# 	region =Region.create(place: Faker::Address.country) 
-# end
-# puts "Region done"
+10.times do
+	region =Region.create(place: Faker::Address.country) 
+end
+puts "Region done"
 
-# #creation table user
-# 10.times do
-# 	mail = Faker::Name.first_name + Faker::Name.last_name + '@gmail.com'
-# 	user = User.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name,
-# 	age: rand(18..67) , ville: Faker::Address.city , contact: Faker::PhoneNumber.phone_number,
-# 	 description: Faker::Books::Lovecraft.paragraph , email: mail,
-#     password:'password', region_id: rand(1..10)) 
-# 	if (user.id == 1)
-# 		user.update(is_admin: true)
-# 	else
-# 		user.update(is_admin:false)
-# 	end
-# end
-# puts "User done"
+#creation table user
+10.times do
+	mail = Faker::Name.first_name + Faker::Name.last_name + '@gmail.com'
+	user = User.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name,
+	age: rand(18..67) , ville: Faker::Address.city , contact: Faker::PhoneNumber.phone_number,
+	 description: Faker::Books::Lovecraft.paragraph , email: mail,
+    password:'password', region_id: rand(1..10)) 
+	if (user.id == 1)
+		user.update(is_admin: true)
+	else
+		user.update(is_admin:false)
+	end
+end
+puts "User done"
 
-# #creation produit fake
-# 10.times do
-# 	prod =Produit.create(name: Faker::Food.fruits)
-# end
-# puts "Produit done"
+#creation produit fake
+10.times do
+	prod =Produit.create(name: Faker::Food.fruits)
+end
+puts "Produit done"
 
 # creation achat fake
 10.times do 

@@ -4,7 +4,7 @@
 	<%= form_tag url_for(action: 'update'), method: "put" do %>
 
   	<%= label_tag 'Nom de produit' %><br/>
-  	<%= text_field_tag 'nom', @vente.nom %><br/> 
+  	<%= text_field_tag 'nom', @vente.produit.name %><br/> 
 
   	<%= label_tag "Description" %><br/>
   	<%= text_area_tag 'description', @vente.description %><br/> 
