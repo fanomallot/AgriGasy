@@ -9,7 +9,7 @@ class VentesController < ApplicationController
   end
 
   def new
-    @vente = Vente.new
+    @vente=Vente.new
   end
 
   def create
@@ -17,7 +17,7 @@ class VentesController < ApplicationController
     @vente = Vente.new(
       description: params[:description],
       quantite: params[:quantite],
-      prix: params[:prix],
+      prix: params[:prix] + params[:unite],
       date: params[:date],
       lieu: params[:lieu],
       user: current_user)

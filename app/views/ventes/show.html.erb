@@ -5,6 +5,7 @@
 	<strong>Quantite : </strong> <%= @vente.quantite %><br/>
 	<strong>Prix : </strong> <%= @vente.prix %><br/>
 	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
+	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br/>
 </p>
 <p>
 	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br/>
