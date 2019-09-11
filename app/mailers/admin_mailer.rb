@@ -14,7 +14,7 @@ class AdminMailer < ApplicationMailer
     mail(to: @admin.email, subject: 'un utilisateur nomé #{user.first_name}vient d etre creéé') 
   end
 
-  def vent_created_email(vente)
+  def vente_created_email(vente)
   	@vente = vente
   	 @admin = User.find(1)
 
