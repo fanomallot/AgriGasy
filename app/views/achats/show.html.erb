@@ -11,7 +11,7 @@
 	<strong>Lieu : </strong> <%= @achat.lieu %><br/>
 	<%end%>
 	<%if @achat.date != "" %>
-	<strong>Date : </strong> <%= @achat.date %><br/>
+	<strong>Date : </strong> <%= @achat.date.to_date %><br/>
 	<%end%>
 </p>
 <p>
