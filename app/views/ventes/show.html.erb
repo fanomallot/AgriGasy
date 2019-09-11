@@ -7,5 +7,6 @@
 	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
 </p>
 <p>
-	<%= link_to "Edit post", edit_vente_path(@vente.id) %>
+	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br/>
+	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %>
 </p>
