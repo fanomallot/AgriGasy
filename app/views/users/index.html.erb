@@ -1,0 +1,9 @@
+<%User.all.each do |user| %>
+   first_name :<%= user.first_name%><br>
+   last_name :<%= user.last_name %><br>
+   age :<%= user.age%><br>
+   ville : <%= user.ville%><br>
+   contact:<%= user.contact%><br>
+   description : <%= user.description%><br>
+   <a href="users/<%= user.id %>/edit">Edit</a>
+<%end%>
