@@ -4,8 +4,15 @@
 	<strong>Nom : </strong> <%= @achat.produit.name %><br/>
 	<strong>Description : </strong> <%= @achat.description %><br/>
 	<strong>Quantite : </strong> <%= @achat.quantite %><br/>
+	<%if @achat.prix != "" %>
 	<strong>Prix : </strong> <%= @achat.prix %><br/>
+	<%end%>
+	<%if @achat.lieu != "" %>
 	<strong>Lieu : </strong> <%= @achat.lieu %><br/>
+	<%end%>
+	<%if @achat.date != "" %>
+	<strong>Date : </strong> <%= @achat.date %><br/>
+	<%end%>
 </p>
 <p>
 	<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
