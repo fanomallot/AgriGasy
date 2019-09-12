@@ -1,3 +1,4 @@
+
 <h1>Mon profil est changer</h1>
 first_name :<br>
 <%= @user.first_name%><br> 
@@ -20,6 +21,7 @@ description :<br>
 Votre e-mail :<br>
 <%=@user.email%><br>
 <%=link_to 'editer mon profil', edit_user_path(@user.id)%><br>
+<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
 <%if @user.ventes.length != 0%>
 	<h1>voici mon liste de publication de vente</h1>
 	<%@user.ventes.each do |vente|%>
@@ -39,3 +41,4 @@ Votre e-mail :<br>
 	<%end%>
 <%end%>
 <%= link_to "Créer une publication achat", new_achat_path %><br>
+
