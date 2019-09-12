@@ -8,6 +8,10 @@ class RegionsController < ApplicationController
 
 	def destroy
 		@region = Region.find(params[:id])
+		@vente = Vente.where(region: @region)
+	  	@vente.destroy_all
+	  	@achat = Achat.where(region: @region)
+	  	@achat.destroy_all
 		@region.destroy
 		flash[:success] = "Region supprimer!"
 		redirect_to regions_path

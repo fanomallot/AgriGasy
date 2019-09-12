@@ -1,15 +1,17 @@
 <h1>Voici le contenu de cet article</h1>
 <p>
-	<strong>Nom : </strong> <%= @vente.produit.name %><br/>
-	<strong>Description : </strong> <%= @vente.description %><br/>
+	<strong>Nom : </strong> <%= @vente.produit.name %><br>
+	<strong>Description : </strong> <%= @vente.description %><br>
 
-	<strong>Quantite : </strong> <%= @vente.quantite %><br/>
-	<strong>Prix : </strong> <%= @vente.prix %><br/>
-	<strong>Region : </strong> <%= @vente.region.place %><br/>
+	<strong>Quantite : </strong> <%= @vente.quantite %><br>
+	<strong>Prix : </strong> <%= @vente.prix %><br>
+	<strong>Region : </strong> <%= @vente.region.place %><br>
 	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
-	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br/>
+	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br>
 </p>
 <p>
-	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br/>
-	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %>
+	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
+	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
+	<%= link_to "Envoyer message", user_message_prives_path(@vente.user.id) %>
+
 </p>

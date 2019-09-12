@@ -5,6 +5,7 @@ ruby '2.5.1'
 gem 'table_print'
 gem 'faker'
 gem 'devise'
+gem "haml"
 gem 'letter_opener'
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
