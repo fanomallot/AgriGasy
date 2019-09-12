@@ -14,7 +14,16 @@ class MessagePrivesController < ApplicationController
 	  	render create
 	  end
 	end
-	def show
-		@message_prive = MessagePrive.find(params[:id])
+	def edit
+		@messagePrive = MessagePrive.find(params[:id])
+	end
+	def update
+		puts "*"*90
+		@messagePrive = MessagePrive.find(params[:id])
+		@messagePrive.update(content: params[:content])
+		 redirect_to user_message_prives_path(@messagePrive.sender.id)
+		#  else 
+		#  	render 'edit'	
+		# end
 	end
 end
