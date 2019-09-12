@@ -19,4 +19,14 @@ class UsersController < ApplicationController
 			render edit
 		end
 	end
-end
+	def destroy
+		@user = User.find(params[:id])
+		vente = @user.ventes.all
+		vente.destroy_all
+		achat = @user.achats.all
+		achat.destroy_all
+		@user.destroy
+		redirect_to root_path
+	end
+
+  end
