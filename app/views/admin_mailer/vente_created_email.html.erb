@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Salut <%= @admin.first_name %> !</h1>
+
+<body>
+    <h1>Salut les admins <%@admin.each do |admin|%> '<%= admin.first_name %>' <%end%>!</h1>
     <p>
-      Un utilisateur nommé <%=@vente.user.first_name%> et ayant le mail <%= @vente.user.email %> vient de créer une publication de vente sur ton site.
+      Un utilisateur nommé '<%=@vente.user.first_name%>' et ayant le mail '<%= @vente.user.email %>' vient de créer une publication de vente sur ton site.
     </p>    
-  </body>
-</html>
+</body>

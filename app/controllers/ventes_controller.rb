@@ -22,7 +22,7 @@ class VentesController < ApplicationController
       user: current_user)
     # test si le produit exist déjà dans la table produit
     @produit = Produit.all 
-    if @produit.length == nil
+    if @produit.length == 0
       prodnew = Produit.create(name: params[:nom])
       @vente.produit = prodnew
     else
@@ -42,7 +42,7 @@ class VentesController < ApplicationController
     end
     # test si la region exist déjà dans la table region
     @region = Region.all 
-    if @region.length == nil
+    if @region.length == 0
       regionnew = Region.create(place: params[:place])
       @vente.region = regionnew
     else
@@ -78,7 +78,7 @@ class VentesController < ApplicationController
     @vente = Vente.find(params[:id])
      # test si le produit exist déjà dans la table produit
     @produit = Produit.all 
-    if @produit.length == nil
+    if @produit.length == 0
       prodnew = Produit.create(name: params[:nom])
       @vente_produit = prodnew
     else
@@ -101,7 +101,7 @@ class VentesController < ApplicationController
     end
     # test si la region exist déjà dans la table region
     @region = Region.all 
-    if @region.length == nil
+    if @region.length == 0
       regionnew = Region.create(place: params[:place])
       @vente_region = regionnew
     else
