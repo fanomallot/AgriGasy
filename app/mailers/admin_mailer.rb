@@ -27,7 +27,7 @@ class AdminMailer < ApplicationMailer
   	@achat = achat
     @admin = User.where(is_admin: true)
     @admin.each do |admin|
-  	 mail(to: @admin.email,subject:"Une publication de achat vient d'être creer par #{@achat.user.first_name}")
+  	 mail(to: admin.email,subject:"Une publication de achat vient d'être creer par #{@achat.user.first_name}")
     end
   end
 end
