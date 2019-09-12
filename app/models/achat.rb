@@ -1,5 +1,5 @@
 class Achat < ApplicationRecord
-  after_create :signal_send
+  after_create :signal_send_to_admin, :signal_send_to_user
   belongs_to :user
   belongs_to :region
   belongs_to :produit
@@ -10,7 +10,11 @@ class Achat < ApplicationRecord
   validates :quantite,
   presence: true
 
-  def signal_send
+  def signal_send_to_admin
    	AdminMailer.achat_created_email(self).deliver_now
+  end
+
+  def signal_send_to_user
+    UserMailer.achat_created_email_to_user(self).deliver_now
   end
 end

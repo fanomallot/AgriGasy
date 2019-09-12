@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	after_create :welcome_send
+	after_create :welcome_send_to_admin, :welcome_send_to_user
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,7 +19,11 @@ class User < ApplicationRecord
 
 
 
-  def welcome_send
+  def welcome_send_to_admin
     AdminMailer.user_created_email(self).deliver_now
+  end
+
+  def welcome_send_to_user
+  	UserMailer.user_created_email_to_user(self).deliver_now
   end
 end
