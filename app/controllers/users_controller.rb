@@ -4,8 +4,7 @@ class UsersController < ApplicationController
 		@user = User.all
 	end
 	def show
-		@user = current_user
-		current_user = User.find(params[:id])
+		@user = User.find(params[:id])
 	end
     
     def edit
@@ -24,4 +23,14 @@ class UsersController < ApplicationController
 			render edit
 		end
 	end
-end
+	def destroy
+		@user = User.find(params[:id])
+		vente = @user.ventes.all
+		vente.destroy_all
+		achat = @user.achats.all
+		achat.destroy_all
+		@user.destroy
+		redirect_to root_path
+	end
+
+  end

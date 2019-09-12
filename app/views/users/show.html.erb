@@ -1,9 +1,11 @@
-<h1>Mon profil est changer</h1>
-          first_name :<%= current_user.first_name%><br>
-          last_name :<%= current_user.last_name%><br>
-          Age :<%=current_user.age%><br>
-          Ville : <%= current_user.ville%><br>
-          contact :<%=current_user.contact%><br>
-          description : <%= current_user.description%><br>
-          Votre e-mail : <%=current_user.email%><br>
-<%=link_to 'editer mon profil', edit_user_path(current_user.id)%>
+<h1>Mon profil </h1>
+          first_name :<%= @user.first_name%><br>
+          last_name :<%= @user.last_name%><br>
+          Age :<%=@user.age%><br>
+          Ville : <%= @user.ville%><br>
+          contact :<%=@user.contact%><br>
+          description : <%= @user.description%><br>
+          Votre e-mail : <%=@user.email%><br>
+<%=link_to 'editer mon profil', edit_user_path(@user.id)%>
+<%=link_to 'destroy',users_path(@user.id),methode:'delete',data: {confirm:'are you sure?'}%>
+
