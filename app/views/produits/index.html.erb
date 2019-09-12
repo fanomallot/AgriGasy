@@ -1,6 +1,6 @@
 <h1>Liste de tous les produits</h1>
 <p>
 	<% @produit.each do |produit| %>
-		<strong>Nom : </strong> <%= produit.name %> <%= link_to "(details)", produit_path(produit.id) %><br/>
+		<strong>Nom : </strong> <%= produit.name %> <%= link_to "(details)", produit_path(produit.id) %>|<%= link_to "supprimer", produit_path(produit.id), method: 'delete', data: {confirm: 'supprimer?'} %><br/>
 	<% end %>
 </p>
