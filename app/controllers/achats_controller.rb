@@ -15,26 +15,20 @@ class AchatsController < ApplicationController
   def create
   # ajout de tous ce qui sont obligatoire dans la table
     @achat = Achat.new(description: params[:description],
-      quantite: params[:quantite], user: current_user)
-  # test des autre sans validation dans le cas ou ils existent
-    if params[:prix] != nil
-      @achat.prix = params[:prix] + params[:unite]
-    end
-    if params[:date] != nil
-      @achat.date = params[:date]
-    end
-    if params[:lieu]
-      @achat.lieu = params[:lieu]
-    end
+      prix: params[:prix] + params[:unite] ,
+      date: params[:date],
+      lieu: params[:lieu],
+      quantite: params[:quantite], 
+      user: current_user)
   # test si le produit exist déjà dans la table produit
     @produit = Produit.all 
-    if @produit.length == nil
+    if @produit.length == 0
       prodnew = Produit.create(name: params[:nom])
       @achat.produit = prodnew
     else
       check = 0
       @produit.each do |produit|
-        if produit == params[:nom]
+        if produit.name == params[:nom]
           check = 1
           break
         else
@@ -51,13 +45,13 @@ class AchatsController < ApplicationController
     end
   # test si la region exist déjà dans la table region
     @region = Region.all 
-    if @region.length == nil
+    if @region.length == 0
       regionnew = Region.create(place: params[:place])
       @achat.region = regionnew
     else
       check = 0
       @region.each do |region|
-        if region == params[:place]
+        if region.place == params[:place]
           check = 1
           break
         else
@@ -86,11 +80,62 @@ class AchatsController < ApplicationController
 
   def update
     @achat = Achat.find(params[:id])
-    @produit = Produit.find(params[:id])
-    @produit.save(name: params[:nom])
+  # test si le produit exist déjà dans la table produit
+    @produit = Produit.all 
+    if @produit.length == 0
+      prodnew = Produit.create(name: params[:nom])
+      @achat_produit = prodnew
+    else
+      check = 0
+      @produit.each do |produit|
+        if produit.name == params[:nom]
+          check = 1
+          break
+        else
+          check = 0
+        end
+      end
+      if check == 1 
+        prodancien = Produit.find_by(name: params[:nom])
+        @achat_produit = prodancien
+      else
+        prodnew = Produit.create(name: params[:nom])
+        @achat_produit = prodnew
+      end
+    end
+    # test si la region exist déjà dans la table region
+    @region = Region.all 
+    if @region.length == 0
+      regionnew = Region.create(place: params[:place])
+      @achat_region = regionnew
+    else
+      check = 0
+      @region.each do |region|
+        if region.place == params[:place]
+          check = 1
+          break
+        else
+          check = 0
+        end
+      end
+      if check == 1 
+        regionancien = Region.find_by(place: params[:place])
+        @achat_region = regionancien
+      else
+        regionnew = Region.create(place: params[:place])
+        @achat_region = regionnew
+      end
+    end
+
+
+
     if @achat.update(description: params[:description],
-      quantite: params[:quantite], prix: params[:prix], date: params[:date],
-      lieu: params[:lieu], produit_id: @produit.id)
+      quantite: params[:quantite],
+      prix: params[:prix],
+      date: params[:date],
+      lieu: params[:lieu], 
+      produit: @achat_produit,
+      region: @achat_region)
       redirect_to achat_path(@achat.id)
     else
       render "edit"

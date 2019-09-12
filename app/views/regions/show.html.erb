@@ -1,0 +1,22 @@
+<h1><%=@region.place%></h1>
+ </br>
+ <%if @ventes.length == 0%>
+ 	<h4>Aucune publication de vente dans cette region </h4>
+ 	</br>
+ <%else%>
+ <h4>Liste des ventes dans cette region :</h4>
+ 	<%@ventes.each do |vente|%>
+ 	  <%=link_to vente.produit.name, vente_path(vente.id)%> 
+ 	  </br>
+ 	<%end%>
+ <%end%>
+ <%if @achats.length == 0%>
+ 	<h4>Aucune publication d'achat dans cette region </h4>
+ 	</br>
+ <%else%>
+ <h4>Liste des achats dans cette region :</h4>
+  	<%@ventes.each do |vente|%>
+ 	  <%=link_to vente.produit.name, vente_path(vente.id)%>
+ 	  </br>
+ 	<%end%>
+ <%end%>

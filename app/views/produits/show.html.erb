@@ -1,0 +1,14 @@
+<h2>Voici les liste détails du produits <%=@produit.name%></h2>
+<p>vente</p>
+<%@produit.ventes.each do |vente|%>
+	<%=vente.region.place%><br>
+	<%=vente.quantite%>
+	<%= link_to "See more", vente_path(vente.id) %><br/><br/>
+<%end%>
+<p>achat</p>
+<%@produit.achats.each do |achat|%>
+	<%=achat.region.place%><br>
+	<%=achat.quantite%>
+	<%= link_to "See more", achat_path(achat.id) %><br/><br/>
+<%end%>
+

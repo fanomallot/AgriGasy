@@ -1,11 +1,44 @@
-<h1>Mon profil </h1>
-          first_name :<%= @user.first_name%><br>
-          last_name :<%= @user.last_name%><br>
-          Age :<%=@user.age%><br>
-          Ville : <%= @user.ville%><br>
-          contact :<%=@user.contact%><br>
-          description : <%= @user.description%><br>
-          Votre e-mail : <%=@user.email%><br>
-<%=link_to 'editer mon profil', edit_user_path(@user.id)%>
+
+<h1>Mon profil est changer</h1>
+first_name :<br>
+<%= @user.first_name%><br> 
+last_name :<br>
+<%= @user.last_name%><br>
+<%if params[:age] != "" %>
+  Age :<br>
+  <%=@user.age%>ans<br>
+ <%end%>
+<%if params[:ville] != "" %>
+  Ville :<br>
+  <%= @user.ville%><br>
+<%end%>
+<%if params[:contact] != nil %>
+	contact :<br>
+	<%=@user.contact%><br>
+<%end%>
+description :<br>
+<%= @user.description%><br>
+Votre e-mail :<br>
+<%=@user.email%><br>
+<%if @user.ventes.length != 0%>
+	<h1>voici mon liste de publication de vente</h1>
+	<%@user.ventes.each do |vente|%>
+		<%=vente.produit.name%><br>
+		<%=vente.region.place%><br>
+		<%= link_to "See more", vente_path(vente.id) %><br>
+	<%end%>
+	<br>
+<%end%>
+<%= link_to "Créer une publication vente", new_vente_path %><br>
+<%if @user.achats.length != 0%>
+	<h1>voici mon liste de publication d'achat</h1>
+	<%@user.achats.each do |achat|%>
+		<%=achat.produit.name%><br>
+		<%=achat.region.place%><br>
+		<%= link_to "See more", achat_path(achat.id) %><br>
+	<%end%>
+<%end%>
+<%= link_to "Créer une publication achat", new_achat_path %><br>
+<%=link_to 'editer mon profil', edit_user_path(@user.id)%><br>
 <%=link_to 'destroy',users_path(@user.id),methode:'delete',data: {confirm:'are you sure?'}%>
 

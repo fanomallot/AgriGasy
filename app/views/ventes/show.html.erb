@@ -2,8 +2,10 @@
 <p>
 	<strong>Nom : </strong> <%= @vente.produit.name %><br/>
 	<strong>Description : </strong> <%= @vente.description %><br/>
+
 	<strong>Quantite : </strong> <%= @vente.quantite %><br/>
 	<strong>Prix : </strong> <%= @vente.prix %><br/>
+	<strong>Region : </strong> <%= @vente.region.place %><br/>
 	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
 	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br/>
 </p>
