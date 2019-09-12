@@ -1,33 +1,32 @@
+
+<% if @vente.errors.any? %>
+  <p>Nous n'avons pas réussi à créer l'Event pour la (ou les) raison(s) suivante(s) :</p>
+  <ul>
+    <% @vente.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1>Créer une publication vente</h1>
 
 <%= form_tag url_for(action: 'create'), method: "post" do %>
-
-    <%= label_tag 'Region' %><br/>
-    <%= text_field_tag 'place', @region.place, placeholder: "Region" %><br/><br/>
-
+    Nom du produit</br>
+  <input type="text" name="nom" placeholder="name product">*<br/>
+  Region <br/>
+  <input type='text' name='place' placeholder="Region">*<br/><br/>
   <div>      
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <th>Nom du produit</th>
-              <th>Description</th>
-              <th>Quantité</th>
-              <th>Prix</th>
-              <th>Date de disponibilité</th>
-              <th>Lieu</th>
-            </tr>
-            <tr>
-              <th><input type="string" name="nom"></th>
-              <th><input type="text" name="description"></th>
-              <th><input type="string" name="quantite"></th>
-              <th><input type="string" name="prix"></th>
-              <th><input type="datetimes" name="date"></th>
-              <th><input type="string" name="lieu"></th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <br/>
-
+  Description<br/>
+  <textarea type="text" name="description" placeholder="donné un détail du demande"></textarea>*<br/>
+  Quantité<br/>
+  <input type="text" name="quantite" placeholder="quantité du produit rechercher">*<br/>
+  Prix en Ariary / Unité <br/>
+  <input type="number" name="prix" placeholder="3562.1">* <input type="text" name="unite" placeholder="ex : Ar/t(Ariary/tonne)">*<br/>
+  Date de disponibilité<br/> 
+  <input type="date" name="date" value="<%=Time.now%>" min= <%=Time.now%>>*<br/>
+  Lieu<br/>
+  <input type="text" name="lieu" placeholder="city">*<br/>
+  </div>
+  <br/>
   <%= submit_tag "Create Vente" %>
 <% end %>

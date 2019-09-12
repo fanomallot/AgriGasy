@@ -1,0 +1,10 @@
+Fils de discussion<br>
+<%@message_prive.each do |mp|%>
+<%=mp.sender.first_name%><br>
+
+<%=mp.content%><br>
+<%end%>
+<%=form_tag url_for(action:'create'),method:'post' do%>
+<textarea type="text" name="content"></textarea><br>
+<input type="submit" value="Envoyer"><br>
+<%end%>

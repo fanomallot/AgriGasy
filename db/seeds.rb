@@ -37,7 +37,7 @@ puts "Produit done"
 
 # creation achat fake
 10.times do 
-	achat = Achat.create(nom: Faker::Food.fruits, date: Faker::Date.forward(days: rand(10..19)),
+	achat = Achat.create(date: Faker::Date.forward(days: rand(10..19)),
 	description: Faker::Food.description,quantite: rand(100..500),prix: rand(1000..3000),
 	lieu: Faker::Address.city, user_id: rand(1..10),region_id:rand(1..10), produit_id:rand(1..10)) 
 end
@@ -45,7 +45,7 @@ puts "Achat done"
 
 # creation vente fake
 10.times do 
-	vente = Vente.create(nom: Faker::Food.fruits, date: Faker::Date.forward(days: rand(10..19)),
+	vente = Vente.create(date: Faker::Date.forward(days: rand(10..19)),
 	description: Faker::Food.description,quantite: rand(100..500),prix: rand(1000..3000), lieu: Faker::Address.city, user_id: rand(1..10),
 	region_id:rand(1..10), produit_id:rand(1..10))
 end 

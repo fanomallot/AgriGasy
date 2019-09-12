@@ -1,15 +1,14 @@
-
 <head>
 	<title>ListeAchats</title>
 </head>
 <body>
-	<%= link_to "Créer une publication vente", new_vente_path %><br/>
+	<%= link_to "Créer une publication vente", new_vente_path %><br>
 	<%= link_to "Créer une publication achat", new_achat_path %>
 	<h1>Voici les listes de tous les Ventes disponibles :</h1>
 	<p>
 		<% @vente.each do |vente| %>
-			<strong>Nom : </strong> <%= vente.nom %><br/>
-			<strong>Lieu : </strong> <%= vente.lieu %><br/>
+			<strong>Nom : </strong> <%= vente.produit.name %><br/>
+			<strong>Lieu : </strong> <%= vente.region.place %><br/>
 			<%= link_to "See more", vente_path(vente.id) %><br/><br/>
 		<% end %>
 	</p>
@@ -17,10 +16,9 @@
 	<h1>Voici les listes de tous les achats disponibles :</h1>
 	<p>
 		<% @achat.each do |achat| %>
-			<strong>Nom : </strong> <%= achat.nom %><br/>
-			<strong>Lieu : </strong> <%= achat.lieu %><br/>
+			<strong>Nom : </strong> <%= achat.produit.name %><br/>
+			<strong>Lieu : </strong> <%= achat.region.place %><br/>
 			<%= link_to "See more", achat_path(achat.id) %><br/><br/>
 		<% end %>
 	</p>
 </body>
-
