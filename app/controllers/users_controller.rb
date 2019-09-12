@@ -21,12 +21,15 @@ class UsersController < ApplicationController
 	end
 	def destroy
 		@user = User.find(params[:id])
-		vente = @user.ventes.all
+		vente = Vente.where(user: @user)
 		vente.destroy_all
-		achat = @user.achats.all
+		achat = Achat.where(user: @user)
 		achat.destroy_all
+		mp = MessagePrive.where(user: @user)
+		mp.destroy_all
+		signal = Signal.where(user: @user)
+		signal.destroy_all
 		@user.destroy
 		redirect_to root_path
 	end
-
-  end
+end
