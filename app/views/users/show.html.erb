@@ -1,24 +1,42 @@
 
 <h1>Mon profil est changer</h1>
-first_name :<br>
+
+<h3>Profil actuel</h3>
+<%if @user.profil.attached?%>
+  <%= image_tag @user.profil, alt: 'profil_picture' %>
+  <h3>Changer la photo de profil ?</h3>
+	<%= form_tag user_profils_path(@user), multipart: true do %>
+	  <%= file_field_tag :profil %>
+	  <%= submit_tag "mettre à jour" %>
+	<%end%>
+<%else%>
+  <p>=== Vous n'avez pas encore une photo de profil ===</p>
+  <h3>Ajouter une photo de profil ?</h3>
+	<%= form_tag user_profils_path(@user), multipart: true do %>
+	  <%= file_field_tag :profil %>
+	  <%= submit_tag "mettre à jour" %>
+	<% end %>
+<%end%>
+<br>
+<i>first_name :</i><br>
 <%= @user.first_name%><br> 
-last_name :<br>
+<i>last_name :</i><br>
 <%= @user.last_name%><br>
 <%if params[:age] != "" %>
-  Age :<br>
+  <i>Age :</i><br>
   <%=@user.age%>ans<br>
  <%end%>
 <%if params[:ville] != "" %>
-  Ville :<br>
+  <i>Ville :</i><br>
   <%= @user.ville%><br>
 <%end%>
 <%if params[:contact] != nil %>
-	contact :<br>
+	<i>contact :</i><br>
 	<%=@user.contact%><br>
 <%end%>
-description :<br>
+<i>description :</i><br>
 <%= @user.description%><br>
-Votre e-mail :<br>
+<i>Votre e-mail :</i><br>
 <%=@user.email%><br>
 <%=link_to 'editer mon profil', edit_user_path(@user.id)%><br>
 <%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
