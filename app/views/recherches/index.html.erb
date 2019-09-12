@@ -1,0 +1,21 @@
+vente<br>
+<%if @vente.length != 0 %>
+	<%@vente.each do |vente|%>
+		<%if vente != nil%>
+			<%=vente.produit.name%><br>
+		<%end%>
+	<%end%>
+<%else%>
+	Pas de resultat sur <%=@params%><br>	
+<%end%>
+
+achat<br>
+<%if @achat.length != 0 %>
+	<%@achat.each do |achat|%>
+		<%if achat != nil%>
+			<%=achat.produit.name%><br>
+		<%end%>
+	<%end%>
+<%else%>
+	Pas de resultat sur <%=@params%><br>
+<%end%>
