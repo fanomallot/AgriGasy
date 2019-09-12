@@ -4,6 +4,8 @@ class Vente < ApplicationRecord
   belongs_to :region
   belongs_to :produit
 
+  has_one_attached :avatarvente
+
   validates :description,
   presence: true,
   length: {in: 12..3000}

@@ -1,4 +1,17 @@
 <h1>Voici le contenu de cet article</h1>
+
+<h3>Photo du produit à vendre</h3>
+<%if @vente.avatarvente.attached?%>
+  <%= image_tag @vente.avatarvente, alt: 'photo_vente' %>
+<%else%>
+  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+  <h3>Changer de photo ?</h3>
+	<%= form_tag vente_avatarventes_path(@vente), multipart: true do %>
+	  <%= file_field_tag :avatarvente %>
+	  <%= submit_tag "mettre à jour" %>
+	<% end %>
+<%end%>
+
 <p>
 	<strong>Nom : </strong> <%= @vente.produit.name %><br>
 	<strong>Description : </strong> <%= @vente.description %><br>
