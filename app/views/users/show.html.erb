@@ -4,15 +4,15 @@ first_name :<br>
 <%= @user.first_name%><br> 
 last_name :<br>
 <%= @user.last_name%><br>
-<%if params[:age] != "" %>
+<%if @user.age != "" %>
   Age :<br>
   <%=@user.age%>ans<br>
  <%end%>
-<%if params[:ville] != "" %>
+<%if @user.ville != "" %>
   Ville :<br>
   <%= @user.ville%><br>
 <%end%>
-<%if params[:contact] != nil %>
+<%if @user.contact != nil %>
 	contact :<br>
 	<%=@user.contact%><br>
 <%end%>
