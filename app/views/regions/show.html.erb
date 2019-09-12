@@ -1,5 +1,5 @@
 <h1><%=@region.place%></h1>
- </br>
+ 
  <%if @ventes.length == 0%>
  	<h4>Aucune publication de vente dans cette region </h4>
  	</br>
@@ -20,3 +20,8 @@
  	  </br>
  	<%end%>
  <%end%>
+<h1><%=form_tag url_for(action: 'destroy'), method: 'delete' do%>
+	<%=submit_tag "Supprimer cette region",  data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}%>
+	<%end%>
+</h1>
+ 
