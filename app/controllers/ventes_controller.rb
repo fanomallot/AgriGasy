@@ -1,4 +1,5 @@
 class VentesController < ApplicationController
+  before_action :authenticate_user!,except: [:index]
   def index
     @vente = Vente.all
   end
