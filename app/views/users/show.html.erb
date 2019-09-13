@@ -39,7 +39,17 @@
 <i>Votre e-mail :</i><br>
 <%=@user.email%><br>
 <%=link_to 'editer mon profil', edit_user_path(@user.id)%><br>
-<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+
+<% if current_user.is_admin %>
+	<% if @user.is_admin %>
+		<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+		<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
+	<% else %>
+		<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+		<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
+	<% end %>
+<% end %>
+
 <%if @user.ventes.length != 0%>
 	<h1>voici mon liste de publication de vente</h1>
 	<%@user.ventes.each do |vente|%>

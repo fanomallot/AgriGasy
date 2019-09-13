@@ -1,0 +1,16 @@
+<div class="container">
+	<h1>BIENVENUE DANS NOTRE SITE</h1>
+
+	<p>
+		<h3>Vous êtes l'administrateur de notre site <strong><i>AgriGasy</i></strong>.<br/></h3>
+	</p>
+
+	<h3>Liste de tout(s) le(s) administrateur(s)</h3>
+	<% @admin.each do |admin| %>
+		<i>Nom : </i><%= link_to admin.first_name, user_path(admin.id) %><br>
+	<% end %>
+
+	<br>
+	<p>Essayer de bien gérer notre page</p>
+	
+</div>

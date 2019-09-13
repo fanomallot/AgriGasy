@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :message_prives
   end
   resources :regions
+  resources :admins
 end
 
