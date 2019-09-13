@@ -4,8 +4,8 @@
 	<%if @vente.length != 0 %>
 		<%@vente.each do |vente|%>
 			<%if vente != nil%>
-				<%=vente.produit.name%><br>
-				<%=vente.region.place%><br>
+				<%=link_to vente.produit.name, vente_path(vente.id)%><br>
+				<%=link_to vente.region.place, region_path(vente.region.id)%><br>
 			<%end%>
 		<%end%>
 	<%else%>
@@ -17,8 +17,8 @@
 	<%if @achat.length != 0 %>
 		<%@achat.each do |achat|%>
 			<%if achat != nil%>
-				<%=achat.produit.name%><br>
-				<%=achat.region.place%><br>
+				<%= link_to achat.produit.name,achat_path(achat.id)%><br>
+				<%=link_to achat.region.place,region_path(achat.region.id)%><br>
 			<%end%>
 		<%end%>
 	<%else%>
@@ -31,8 +31,8 @@
 	<%if @vente2.length != 0 %>
 		<%@vente2.each do |vente|%>
 			<%if vente != nil%>
-				<%=vente.produit.name%><br>
-				<%=vente.region.place%><br>
+				<%=link_to vente.produit.name, vente_path(vente.id)%><br>
+				<%=link_to vente.region.place, region_path(vente.region.id)%>
 			<%end%>
 		<%end%>
 	<%else%>
@@ -44,8 +44,8 @@
 	<%if @achat2.length != 0 %>
 		<%@achat2.each do |achat|%>
 			<%if achat != nil%>
-				<%=achat.produit.name%><br>
-				<%=achat.region.place%><br>
+				<%=link_to achat.produit.name,achat_path(achat.id)%><br>
+				<%=link_to achat.region.place, region_path(achat.region.id)%><br>
 			<%end%>
 		<%end%>
 	<%else%>

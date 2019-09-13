@@ -14,6 +14,11 @@ class UsersController < ApplicationController
 			ville: params[:ville],
 			contact: params[:contact],
 			description: params[:description])
+	        if current_user == User.first
+	        	@user.is_admin = true
+	        else
+	        	@user.is_admin = false
+	        end
 			redirect_to user_path(@user.id)
 		else
 			render edit
