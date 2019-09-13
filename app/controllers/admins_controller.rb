@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :is_admis
+	before_action :is_admins
 	def index
 		@admin = User.where(is_admin: true)
 	end

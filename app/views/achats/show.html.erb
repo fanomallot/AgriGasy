@@ -2,18 +2,18 @@
 
 <h3>Photo du produit qu'on a besoin</h3>
 <%if @achat.avatarachat.attached?%>
-  <%= image_tag @achat.avatarachat, alt: 'photo_achat' %>
+  <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:200px; width: 240px;" %>
 <%else%>
   <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+  <%if current_user == @achat.user || current_user.is_admin%>
   <h3>Changer de photo ?</h3>
 	<%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
 	  <%= file_field_tag :avatarachat %>
 	  <%= submit_tag "mettre à jour" %>
 	<% end %>
+	<%end%>
 <%end%>
-
 <p>
-
 	<strong>Nom : </strong> <%= @achat.produit.name %><br/>
 	<strong>Description : </strong> <%= @achat.description %><br/>
 	<strong>Quantite : </strong> <%= @achat.quantite %><br/>
@@ -29,7 +29,10 @@
 	<strong>Date : </strong> <%= @achat.date.to_date %><br/>
 	<%end%>
 </p>
-<p>
-	<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
-	<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %>
-</p>
+<%if @achat.user == current_user || current_user.is_admin%>
+	<p>
+		<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
+		<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %>
+	</p>
+<%end%>
+<%= link_to "Envoyer message", user_message_prives_path(@achat.user.id) %>

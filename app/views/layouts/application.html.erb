@@ -45,13 +45,17 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="<%=admins_path%>">Admins dashboard</a></li>
+                  <%if user_signed_in? && current_user.is_admin%>
+                    <li class="active"><a href="<%=admins_path%>">Admins dashboard</a></li>
+                  <%end%>
                   <li class="active"><a href="<%=regions_path%>">Region</a></li>
                   <li class="active"><a href="<%=produits_path%>">Produit</a></li>
+                  <li><i class="fa fa-search"></i></li>
+                    
                   <li class="active">
                    <%=form_tag recherches_path ,method:'get' do%>
-                   <input type="text" name="find" placeholder="Search..."> 
-                    <input type="submit" value="recherche">
+                   <input type="text" class="search" name="find" placeholder="Search..."> 
+                    <input type="submit" hidden>
                    <%end%>
                   </li>
                 </ul>
@@ -71,21 +75,20 @@
                       <i class="fa fa-instagram"></i>
                     </a>
                   </li>
-                  <li><button href="#" class="btn btn-round btn-default">Sign in</button></li>
-                <li>
-                  <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                    <div id="myDropdown" class="dropdown-content">
-                      <%if user_signed_in?%>
-                        <a href="<%=user_path(current_user.id)%>">Profil</a>
-                        <a href="<%=destroy_user_session_path%>" data-method="delete">Déconection</a>
-                      <%else%>
-                        <a href="<%=new_user_registration_path%>">S'inscire</a>
-                        <a href="<%=new_user_session_path%>">Se connecter</a>
-                      <%end%>
+                  <li>
+                    <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn"><%if user_signed_in?%>Profil<%else%>Sing<%end%></button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <%if user_signed_in?%>
+                          <a href="<%=user_path(current_user.id)%>">Profil</a>
+                          <a href="<%=destroy_user_session_path%>" data-method="delete">Déconection</a>
+                        <%else%>
+                          <a href="<%=new_user_registration_path%>">S'inscire</a>
+                          <a href="<%=new_user_session_path%>">Se connecter</a>
+                        <%end%>
+                      </div>
                     </div>
-                  </div>
-                </li>
+                  </li>
                 </ul>  
               </div>
             </div>
