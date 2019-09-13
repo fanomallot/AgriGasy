@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'produits/index'
+  get "/accueils",to: 'accueils#accueil'
   devise_for :users
   root to: 'accueils#accueil'
   resources :ventes do
