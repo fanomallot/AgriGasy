@@ -1,5 +1,6 @@
 class VentesController < ApplicationController
   before_action :authenticate_user!,except: [:index]
+  before_action :is_admis_or_current_user?,only: [:edit,:destroy] 
   def index
     @vente = Vente.all
   end
@@ -146,5 +147,13 @@ class VentesController < ApplicationController
     @vente.destroy
     redirect_to root_path
   end
-  
+  private
+    def is_admis_or_current_user?
+    @vente = Vente.find(params[:id])
+    if current_user == @vente.user || current_user.is_admin
+      return true
+    else
+      redirect_back fallback_location: '/' ,allow_other_host: false
+    end
+  end
 end
