@@ -3,7 +3,7 @@ class AvatarventesController < ApplicationController
 	def create
 		@vente = Vente.find(params[:vente_id])
 		@vente.avatarvente.attach(params[:avatarvente])
-		redirect_to vente_path(@vente)	
+		redirect_back fallback_location: '/' ,allow_other_host: false
 	end
 	private
     def is_admis_or_current_user?

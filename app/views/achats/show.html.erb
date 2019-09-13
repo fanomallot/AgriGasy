@@ -5,13 +5,13 @@
   <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:200px; width: 240px;" %>
 <%else%>
   <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-  <%if current_user == @achat.user || current_user.is_admin%>
-  <h3>Changer de photo ?</h3>
-	<%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
-	  <%= file_field_tag :avatarachat %>
-	  <%= submit_tag "mettre à jour" %>
-	<% end %>
-	<%end%>
+<%end%>
+<%if current_user == @achat.user || current_user.is_admin%>
+<h3>Changer de photo ?</h3>
+<%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
+  <%= file_field_tag :avatarachat %>
+  <%= submit_tag "mettre à jour" %>
+<% end %>
 <%end%>
 <p>
 	<strong>Nom : </strong> <%= @achat.produit.name %><br/>

@@ -5,6 +5,7 @@
   <%= image_tag @vente.avatarvente, alt: 'photo_vente',style: "max-height:200px; width: 240px;"  %>
 <%else%>
   <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+<%end%>
   <%if current_user == @vente.user || current_user.is_admin%>
   	<h3>Changer de photo ?</h3>
 	<%= form_tag vente_avatarventes_path(@vente), multipart: true do %>
@@ -12,7 +13,6 @@
 	  <%= submit_tag "mettre à jour" %>
 	<% end %>
   <%end%>
-<%end%>
 <p>
 	<strong>Nom : </strong> <%= @vente.produit.name %><br>
 	<strong>Description : </strong> <%= @vente.description %><br>
