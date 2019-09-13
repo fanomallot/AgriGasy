@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'produits/index'
   devise_for :users
   root to: 'accueils#accueil'
   resources :ventes do
@@ -17,5 +16,7 @@ Rails.application.routes.draw do
   end
   resources :regions
   resources :admins
+  resources :recherches,only: [:index]
+
 end
 

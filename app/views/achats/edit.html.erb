@@ -15,7 +15,7 @@
     Prix en ariary / unité<br/>
     <input type="text" name="prix" value="<%=@achat.prix%>"><br/>
     Date de disponibilité<br/>
-    <input type="date" name="date" value="<%=@achat.date.to_date%>" min= <%=Time.now%>><br/>
+    <input type="date" name="date" <%if @achat.date != nil %>value="<%=@achat.date.to_date%>"<%end%> min= <%=Time.now%>><br/>
     Region<br>
     <input type="text" name="place" value="<%=@achat.region.place%>">*<br/>
     Lieu<br/>

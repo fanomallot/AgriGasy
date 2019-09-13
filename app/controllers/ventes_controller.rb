@@ -26,13 +26,14 @@ class VentesController < ApplicationController
       prodnew = Produit.create(name: params[:nom])
       @vente.produit = prodnew
     else
+      check = 0
       @produit.each do |produit|
         if produit.name == params[:nom]
-          @check = 1
+          check = 1
           break
         end
       end
-      if @check == 1 
+      if check == 1 
         prodancien = Produit.find_by(name: params[:nom])
         @vente.produit = prodancien
       else
@@ -46,13 +47,14 @@ class VentesController < ApplicationController
       regionnew = Region.create(place: params[:place])
       @vente.region = regionnew
     else
+      check = 0
       @region.each do |region|
         if region.place == params[:place]
-          @check = 1
+          check = 1
           break
         end
       end
-      if @check == 1 
+      if check == 1 
         regionancien = Region.find_by(place: params[:place])
         @vente.region = regionancien
       else
