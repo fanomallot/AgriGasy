@@ -4,6 +4,8 @@ class Achat < ApplicationRecord
   belongs_to :region
   belongs_to :produit
 
+  has_one_attached :avatarachat
+
   validates :description,
   presence: true,
   length: {in: 12..3000}

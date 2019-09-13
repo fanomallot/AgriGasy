@@ -1,14 +1,22 @@
 <h2>Voici les liste détails du produits <%=@produit.name%></h2>
-<p>vente</p>
-<%@produit.ventes.each do |vente|%>
-	<i>Région du produit : </i><%=vente.region.place%><br>
-	<i>Quantité du produit : </i><%=vente.quantite%><br/>
-	<%= link_to "See more", vente_path(vente.id) %><br/><br/>
+<%if @produit.ventes.length != 0%>
+	<p>vente</p>
+	<%@produit.ventes.each do |vente|%>
+		<i>Région du produit : </i><%=vente.region.place%><br>
+		<i>Quantité du produit : </i><%=vente.quantite%><br/>
+		<%= link_to "See more", vente_path(vente.id) %><br/><br/>
+	<%end%>
+<%else%>
+	Aucune publication de vente de ce produit <%=@produit.name%>!
 <%end%>
-<p>achat</p>
-<%@produit.achats.each do |achat|%>
-	<i>Région du produit : </i><%=achat.region.place%><br>
-	<i>Quantité du produit : </i><%=achat.quantite%><br/>
-	<%= link_to "See more", achat_path(achat.id) %><br/><br/>
+<%if @produit.achats.length != 0%>
+	<p>achat</p>
+	<%@produit.achats.each do |achat|%>
+		<i>Région du produit : </i><%=achat.region.place%><br>
+		<i>Quantité du produit : </i><%=achat.quantite%><br/>
+		<%= link_to "See more", achat_path(achat.id) %><br/><br/>
+	<%end%>
+<%else%>
+	Aucune publication d'achat de ce produit <%=@produit.name%>!
 <%end%>
 

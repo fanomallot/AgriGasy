@@ -1,4 +1,17 @@
 <h1>Voici le besoin de cette personne</h1>
+
+<h3>Photo du produit qu'on a besoin</h3>
+<%if @achat.avatarachat.attached?%>
+  <%= image_tag @achat.avatarachat, alt: 'photo_achat' %>
+<%else%>
+  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+  <h3>Changer de photo ?</h3>
+	<%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
+	  <%= file_field_tag :avatarachat %>
+	  <%= submit_tag "mettre à jour" %>
+	<% end %>
+<%end%>
+
 <p>
 
 	<strong>Nom : </strong> <%= @achat.produit.name %><br/>
