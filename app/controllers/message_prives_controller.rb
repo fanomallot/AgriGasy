@@ -3,22 +3,31 @@ class MessagePrivesController < ApplicationController
 	    @message_prive = MessagePrive.all
 	end
 	def create
-	     @message_prive = MessagePrive.new(content: params[:content])
-	     @message_prive.sender = current_user
-	     @message_prive.recipient = User.find(params[:user_id])
-        if @message_prive.save
-	    redirect_to user_message_prives_path(params[:user_id])
-	    else
-	    render create
-	    end
+	    @messagePrive = MessagePrive.new(content:params[:content])
+	    @messagePrive.sender = current_user
+	    @messagePrive.recipient = User.find(params[:user_id])
+	   @messagePrive.save
+	    redirect_to user_message_prives_path(params[:user_id] )
+	   #else 
+	#	render create
+     #  end
 	end
-	def edit
-		@messagePrive = MessagePrive.find(params[:id])
-	end
-	def update
-		puts "*"*90
-		@messagePrive = MessagePrive.find(params[:id])
-	    @messagePrive.update(content: params[:content])
-		redirect_to user_message_prives_path(@messagePrive.sender.id)
+
+
+	   def edit
+		  @messagePrive = MessagePrive.find(params[:id])
+	   end
+	  def update
+		  puts "*"*90
+		  @messagePrive = MessagePrive.find(params[:id])
+	      @messagePrive.update(content: params[:content])
+		  redirect_to user_message_prives_path(@messagePrive.sender.id)
+	 end
+
+	def destroy
+		 @messagePrive = MessagePrive.find(params[:id])
+		 @messagePrive.destroy
+		 redirect_to root_path
+		
 	end
 end

@@ -3,8 +3,7 @@ Fils de discussion<br>
 <%= mp.sender.first_name%><br>
 
 <%= mp.content%><br>
-<%= link_to 'edit', edit_user_message_prife_path(mp.sender.id,mp.id) %>
-
+<%= link_to 'edit', edit_user_message_prife_path(mp.sender.id,mp.id) %
 
 <%end%>
 <%= form_tag url_for(action:'create'),method:'post' do%>
