@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div id="navbar-full">
+ <!--    <div id="navbar-full">
       <div id="navbar">
           <nav class="navbar navbar-ct-green navbar-transparent navbar-fixed-top" role="navigation">
             <div class="alert alert-success hidden">
@@ -28,13 +28,17 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="<%=admins_path%>">Admins dashboard</a></li>
+                  <%if user_signed_in? && current_user.is_admin%>
+                    <li class="active"><a href="<%=admins_path%>">Admins dashboard</a></li>
+                  <%end%>
                   <li class="active"><a href="<%=regions_path%>">Region</a></li>
                   <li class="active"><a href="<%=produits_path%>">Produit</a></li>
+                  <li><i class="fa fa-search"></i></li>
+                    
                   <li class="active">
                    <%=form_tag recherches_path ,method:'get' do%>
-                   <input type="text" name="find" placeholder="Search..."> 
-                    <input type="submit" value="recherche">
+                   <input type="text" class="search" name="find" placeholder="Search..."> 
+                    <input type="submit" hidden>
                    <%end%>
                   </li>
                 </ul>
@@ -54,21 +58,20 @@
                       <i class="fa fa-instagram"></i>
                     </a>
                   </li>
-                  <li><button href="#" class="btn btn-round btn-default">Sign in</button></li>
-                <li>
-                  <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                    <div id="myDropdown" class="dropdown-content">
-                      <%if user_signed_in?%>
-                        <a href="<%=user_path(current_user.id)%>">Profil</a>
-                        <a href="<%=destroy_user_session_path%>" data-method="delete">Déconection</a>
-                      <%else%>
-                        <a href="<%=new_user_registration_path%>">S'inscire</a>
-                        <a href="<%=new_user_session_path%>">Se connecter</a>
-                      <%end%>
+                  <li>
+                    <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn"><%if user_signed_in?%>Profil<%else%>Sing<%end%></button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <%if user_signed_in?%>
+                          <a href="<%=user_path(current_user.id)%>">Profil</a>
+                          <a href="<%=destroy_user_session_path%>" data-method="delete">Déconection</a>
+                        <%else%>
+                          <a href="<%=new_user_registration_path%>">S'inscire</a>
+                          <a href="<%=new_user_session_path%>">Se connecter</a>
+                        <%end%>
+                      </div>
                     </div>
-                  </div>
-                </li>
+                  </li>
                 </ul>  
               </div>
             </div>
@@ -82,11 +85,93 @@
     <div class="main">
       <div class="container tim-container" style="max-width:800px; padding-top:100px">
         </div>
-      <%= yield %>        
       </div>
-    </div>
-    <footer>
+    </div> -->
 
-    </footer> 
-  </body>
+
+  <header>
+    <div class="topnav">
+    <a class="active" href="<%=accueils_path%>">AgriGasy</a>
+    <%if user_signed_in? && current_user.is_admin%>
+      <a href="<%=admins_path%>">Admins dashboard</a>
+    <%end%>
+    <a href="<%=regions_path%>">Region</a>
+    <a href="<%=produits_path%>">Produit</a>
+    <i class="fa fa-search"></i>
+    <%=form_tag recherches_path ,method:'get' do%>
+     <input type="text" class="search" name="find" placeholder="Search..."> 
+      <input type="submit" hidden>
+    <%end%>
+   
+  </div> 
+  </header>
+<div class="row">
+ <!--  <div class="left" style="background-color:#bbb, opacity: 0.5;">
+    <h2>Menu</h2>
+    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category" style="opacity: 0.5;">
+    <ul id="myMenu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+      <li><a href="#">PHP</a></li>
+      <li><a href="#">Python</a></li>
+      <li><a href="#">jQuery</a></li>
+      <li><a href="#">SQL</a></li>
+      <li><a href="#">Bootstrap</a></li>
+      <li><a href="#">Node.js</a></li>
+    </ul>
+  </div> -->
+</div>
+
+<div id="circularMenu1" class="circular-menu circular-menu-left active">
+
+  <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+    <i class="fa fa-bars"></i>
+  </a>
+
+  <menu class="items-wrapper">
+    <a href="<%=root_path%>" class="menu-item fa fa-home"></a>
+    <%if user_signed_in?%>
+      <a href="<%=destroy_user_session_path%>" data-method="delete" class="menu-item fa fa-sign-out"></a>
+      <a href="<%=user_path(current_user.id)%>" class="menu-item fa fa-user"></a>
+    <%else%>
+      <a href="<%=new_user_session_path%>" class="menu-item fa fa-sign-in"></a>
+      <a href="<%=new_user_registration_path%>" class="menu-item fa fa-user-plus"></a>
+    <%end%>
+  </menu>
+
+</div>
+<div id="circularMenu" class="circular-menu">
+
+  <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+    <i class="fa fa-share-alt"></i>
+  </a>
+
+  <menu class="items-wrapper">
+    <a href="https://www.facebook.com/" class="menu-item fa fa-facebook"></a>
+    <a href="https://twitter.com/" class="menu-item fa fa-twitter"></a>
+    <a href="https://aboutme.google.com" class="menu-item fa fa-google-plus"></a>
+    <a href="https://www.instagram.com/" class="menu-item fa fa-linkedin"></a>
+  </menu>
+</div> 
+<div class="dropdown">
+  <button onclick="mYFunction()" class="dropbtn"><i class="fa fa-plus"></i></button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="<%=new_vente_path%>">New vente</a>
+    <a href="<%=new_achat_path%>">New achat</a>
+  </div>
+</div>
+
+
+<%= yield %>
+<footer>
+</footer> 
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+    // $(".first").hide()
+</script>
+
+
 </html>
+

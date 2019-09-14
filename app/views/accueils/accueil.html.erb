@@ -1,24 +1,66 @@
-<head>
-	<title>ListeAchats</title>
-</head>
-<body>
-	<%= link_to "Créer une publication vente", new_vente_path %><br>
-	<%= link_to "Créer une publication achat", new_achat_path %>
-	<h1>Voici les listes de tous les Ventes disponibles :</h1>
-	<p>
-		<% @vente.each do |vente| %>
-			<strong>Nom : </strong> <%= vente.produit.name %><br/>
-			<strong>Lieu : </strong> <%= vente.region.place %><br/>
-			<%= link_to "See more", vente_path(vente.id) %><br/><br/>
-		<% end %>
-	</p>
-	
-	<h1>Voici les listes de tous les achats disponibles :</h1>
+
+<div class="first center">
+<i class="agri">AgriGasy</i>
+</div>
+<div class="Acceuil">
+
+</div>
+<div class="grid-container">
+	<div class="grid-item ">
+	<div class="center">
+		
+		<%= link_to "Créer une publication vente ",new_vente_path,class:'boutton success' %><br>
+	</div> 
+	  	<h1>Voici les listes de tous les Ventes disponibles :</h1>
+		<p>
+			<% @vente.each do |vente| %>
+				<%if vente.avatarvente.attached?%>
+				  <%= image_tag vente.avatarvente, alt: 'photo_vente',style: "max-height:200px; width: 240px;"  %><br>
+				<%else%>
+				  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+				<%end%>
+			 	<%if user_signed_in?%>
+				  	<%if current_user == vente.user || current_user.is_admin%>
+					  	<h3>Changer de photo ?</h3>
+						<%= form_tag vente_avatarventes_path(vente), multipart: true do %>
+						  <%= file_field_tag :avatarvente %>
+						  <%= submit_tag "mettre à jour" %>
+						<% end %>
+					  <%end%>
+				<%end%>
+				<strong>Nom : </strong> <%= vente.produit.name %><br/>
+				<strong>Lieu : </strong> <%= vente.region.place %><br/>
+				<%= link_to "See more", vente_path(vente.id) %><br/><br/>
+			<% end %>
+		</p>
+	</div>
+  <div class="grid-item ">
+  	<div class="center">	
+  		<%= link_to "Créer une publication achat", new_achat_path,class:'boutton success' %>
+  	</div>
+
+  	<h1>Voici les listes de tous les achats disponibles :</h1>
 	<p>
 		<% @achat.each do |achat| %>
+			<%if achat.avatarachat.attached?%>
+			  <%= image_tag achat.avatarachat, alt: 'photo_vente',style: "max-height:200px; width: 240px;"  %><br>
+			<%else%>
+			  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+			<%end%>
+			<%if user_signed_in?%>
+			  <%if current_user == achat.user || current_user.is_admin%>
+			  	<h3>Changer de photo ?</h3>
+				<%= form_tag achat_avatarachats_path(achat), multipart: true do %>
+				  <%= file_field_tag :avatarachat %>
+				  <%= submit_tag "mettre à jour" %>
+				<% end %>
+			  <%end%>
+			<%end%>
 			<strong>Nom : </strong> <%= achat.produit.name %><br/>
 			<strong>Lieu : </strong> <%= achat.region.place %><br/>
 			<%= link_to "See more", achat_path(achat.id) %><br/><br/>
 		<% end %>
-	</p>
-</body>
+	</p>	
+
+  </div> 
+</div>
