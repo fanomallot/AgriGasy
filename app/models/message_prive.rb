@@ -4,5 +4,5 @@ class MessagePrive < ApplicationRecord
 	
 	validates :content, 
 	presence: true,
-	length: {in: 13..3000}
+	length: {in: 1..3000}
 end

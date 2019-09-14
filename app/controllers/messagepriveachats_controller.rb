@@ -1,10 +1,10 @@
-class MessagePrivesController < ApplicationController
-	def index
+class MessagepriveachatsController < ApplicationController
+		def index
 	   #  @message_recue = MessagePrive.where(recipient: current_user)
 	   #  @message_envoyE = MessagePrive.where(sender: current_user)
 	   #  puts '*'*90
 	   # puts @vente_user = params[:vente_user]
-	    	 	 receveur = Vente.find(params[:vente_id]).user
+	  	 receveur = Achat.find(params[:achat_id]).user
 	   @mp =[]
 	   	
 	   	
@@ -46,16 +46,17 @@ class MessagePrivesController < ApplicationController
 
 	end
 
-	def create	   		
+	def create
 		     message_prive = MessagePrive.new(content: params[:content])
 		     message_prive.sender = current_user
-		     message_prive.recipient = Vente.find(params[:vente_id]).user
+		     message_prive.recipient = Achat.find(params[:achat_id]).user
 	        if message_prive.save
-		   	 redirect_to user_vente_message_prives_path(current_user.id, params[:vente_id])
-		    else
-		   	 redirect_to user_vente_message_prives_path(current_user.id, params[:vente_id])
-		    end	   	
+		   	 redirect_to user_achat_messagepriveachats_path(current_user.id, params[:achat_id])
+		   	else
+		   	 redirect_to user_achat_message_prives_path(current_user.id, params[:achat_id])
+		    end	   	 			
 	end
+
 	def edit
 		@messagePrive = MessagePrive.find(params[:id])
 	end
@@ -63,10 +64,10 @@ class MessagePrivesController < ApplicationController
 		puts "*"*90
 		@messagePrive = MessagePrive.find(params[:id])
 	    @messagePrive.update(content: params[:content])
-		redirect_to user_vente_message_prives_path(current_user.id, params[:vente_id])
+		redirect_to user_achat_messagepriveachats_path(current_user.id, params[:achat_id])
 	end
 	def destroy
 		MessagePrive.find(params[:id]).destroy
-		redirect_to user_vente_message_prives_path(current_user.id, params[:vente_id])
+		redirect_to user_achat_messagepriveachats_path(current_user.id, params[:achat_id])
 	end
 end

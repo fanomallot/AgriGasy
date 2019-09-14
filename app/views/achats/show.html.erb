@@ -34,5 +34,9 @@
 		<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
 		<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %>
 	</p>
-<%end%>
-<%= link_to "Envoyer message", user_message_prives_path(@achat.user.id) %>
+<%end%>			
+<%= form_tag user_achat_messagepriveachats_path(current_user.id,@achat.id),method:'get' do %>
+	 	
+	 	  <%= submit_tag "envoyer message" %> 
+	  	  
+	<% end %>	
