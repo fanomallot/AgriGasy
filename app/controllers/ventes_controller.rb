@@ -1,6 +1,7 @@
 class VentesController < ApplicationController
   before_action :authenticate_user!,except: [:index]
   before_action :is_admis_or_current_user?,only: [:edit,:destroy] 
+
   def index
     @vente = Vente.all
   end
@@ -155,5 +156,6 @@ class VentesController < ApplicationController
     else
       redirect_back fallback_location: '/' ,allow_other_host: false
     end
+
   end
 end

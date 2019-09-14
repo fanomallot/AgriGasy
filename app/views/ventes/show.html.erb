@@ -25,6 +25,12 @@
 <p>
 	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
 	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
-	<%= link_to "Envoyer message", user_message_prives_path(@vente.user.id) %>
+
+
+	<%= form_tag "/users/#{current_user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
+	 	  <%=@vente.user.id%>
+	 	  <%= submit_tag "envoyer message" %> 
+	  	  
+	<% end %>
 
 </p>

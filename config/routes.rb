@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :profils, only: [:create]
-    resources :message_prives
+    resources :ventes do 
+      resources :message_prives 
+    end
   end
   resources :regions
   resources :admins
