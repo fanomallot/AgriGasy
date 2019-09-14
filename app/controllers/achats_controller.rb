@@ -1,5 +1,6 @@
 class AchatsController < ApplicationController
   before_action :authenticate_user!,except: [:index]
+  before_action :is_admis_or_current_user?,only: [:edit,:destroy] 
   def index
     @achat = Achat.all
   end
@@ -149,5 +150,13 @@ class AchatsController < ApplicationController
     @achat.destroy
     redirect_to root_path
   end
-  
+  private
+    def is_admis_or_current_user?
+    @achat = Achat.find(params[:id])
+    if current_user == @achat.user || current_user.is_admin
+      return true
+    else
+      redirect_back fallback_location: '/' ,allow_other_host: false
+    end
+  end
 end

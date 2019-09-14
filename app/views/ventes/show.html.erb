@@ -2,16 +2,17 @@
 
 <h3>Photo du produit à vendre</h3>
 <%if @vente.avatarvente.attached?%>
-  <%= image_tag @vente.avatarvente, alt: 'photo_vente' %>
+  <%= image_tag @vente.avatarvente, alt: 'photo_vente',style: "max-height:200px; width: 240px;"  %>
 <%else%>
   <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-  <h3>Changer de photo ?</h3>
+<%end%>
+  <%if current_user == @vente.user || current_user.is_admin%>
+  	<h3>Changer de photo ?</h3>
 	<%= form_tag vente_avatarventes_path(@vente), multipart: true do %>
 	  <%= file_field_tag :avatarvente %>
 	  <%= submit_tag "mettre à jour" %>
 	<% end %>
-<%end%>
-
+  <%end%>
 <p>
 	<strong>Nom : </strong> <%= @vente.produit.name %><br>
 	<strong>Description : </strong> <%= @vente.description %><br>
@@ -22,9 +23,17 @@
 	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
 	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br>
 </p>
+
 <p>
 	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
 	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
-	<%= link_to "Envoyer message", user_message_prives_path(@vente.user.id) %>
+
+
+	<%= form_tag "/users/#{current_user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
+	 	  <%=@vente.user.id%>
+	 	  <%= submit_tag "envoyer message" %> 
+	  	  
+	<% end %>
 
 </p>
+

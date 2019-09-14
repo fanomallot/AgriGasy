@@ -1,4 +1,5 @@
 class RegionsController < ApplicationController
+  	before_action :is_admis,only: [:destroy]
 	def index
 		@region = Region.all
 	end
@@ -15,5 +16,13 @@ class RegionsController < ApplicationController
 		@region.destroy
 		flash[:success] = "Region supprimer!"
 		redirect_to regions_path
+	end
+	private
+  	def is_admin?
+	    if current_user.is_admin
+	      return true
+	    else
+	      redirect_back fallback_location: "/",allow_other_host: false
+	    end
 	end
 end
