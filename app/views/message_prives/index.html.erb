@@ -1,4 +1,4 @@
-
+<%if params[:achat_id]==0%>
 <%@message.each do |mp|%>
    <%if mp.sender == current_user%>
      <h1><%=mp.sender.first_name%></h1></br>
@@ -22,4 +22,31 @@
   <%=text_area_tag :content%>
 
     <%=submit_tag :envoyer%>
+<%end%>
+
+<%else%>
+<%@message.each do |mp|%>
+   <%if mp.sender == current_user%>
+     <h1><%=mp.sender.first_name%></h1></br>
+     <%=mp.content%>
+     <%= form_tag edit_user_vente_message_prife_path(current_user.id,params[:vente_id],mp.id),method:'get' do%>
+      <%=submit_tag 'Edit'%>
+<%end%>
+   <%= form_tag "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives/#{mp.id}",method:'delete' do%>
+      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+<%end%>
+   	
+   	</br>
+   	 <%else%>
+   	 <h1><%=mp.sender.first_name%></h1>
+   	 <%=mp.content%></br>
+   	 <%end%>
+
+<%end%>
+
+<%= form_tag "/users/#{current_user.id}/ventes/#{params[:vente_id]}/message_prives",method:'post' do%>
+  <%=text_area_tag :content%>
+
+    <%=submit_tag :envoyer%>
+<%end%>
 <%end%>

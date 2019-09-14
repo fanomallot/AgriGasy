@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :ventes do 
       resources :message_prives 
     end
+    resources :achats do 
+      resources :message_prives 
+    end
   end
   resources :regions
   resources :admins
