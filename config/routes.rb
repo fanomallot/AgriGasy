@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :message_prives 
     end
     resources :achats do 
-      resources :message_prives 
+      resources :messagepriveachats 
     end
   end
   resources :regions
