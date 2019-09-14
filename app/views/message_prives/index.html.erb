@@ -1,9 +1,4 @@
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+<div class="ground editachatground blanche">
 <%@message.each do |mp|%>
    <%if mp.sender == current_user%>
      <h1><%=mp.sender.first_name%></h1></br>
@@ -30,5 +25,6 @@
 
     <%=submit_tag :envoyer%>
 <%end%>
+</div>
 
 
