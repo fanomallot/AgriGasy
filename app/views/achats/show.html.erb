@@ -35,10 +35,12 @@
 		<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
 		<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %>
 	</p>
-<%end%>			
-<%= form_tag user_achat_messagepriveachats_path(current_user.id,@achat.id),method:'get' do %>
+<%end%>
+<%if @achat.user != current_user || current_user.is_admin %>			
+	<%= form_tag user_achat_messagepriveachats_path(current_user.id,@achat.id),method:'get' do %>
 	 	
 	 	  <%= submit_tag "envoyer message" %> 
 	  	  
-	<% end %>	
+	<% end %>
+<%end%>	
 </div>

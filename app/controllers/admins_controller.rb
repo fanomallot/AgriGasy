@@ -22,7 +22,7 @@ class AdminsController < ApplicationController
       if current_user.is_admin
         return true
       else 
-        redirect_back fallback_location: '/' ,allow_other_host: false
+        redirect_to "/accueils"
       end
     end
 
