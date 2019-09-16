@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/authentification_vente", to: 'admindasboard#vente'
   get "/authentification_achat", to: 'admindasboard#achat'
   get "/liste_des_utilisateurs", to: 'admindasboard#utilisateur'
+  get "/authentificate_vente", to: 'admindasboard#updatevente'
   devise_for :users
   root to: 'accueils#accueil'
   resources :ventes do

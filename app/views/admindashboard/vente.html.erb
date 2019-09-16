@@ -1,5 +1,5 @@
 <h3>Liste de(s) vente(s) à authentifier </h3>
 <p>
 	<% @authenticatevente.each do |vente| %>
-		
+		vente.produit.name <%= link_to "authentifier la publication", authentificate_vente_path %>
 </p>
