@@ -3,7 +3,7 @@ class Achat < ApplicationRecord
   belongs_to :user
   belongs_to :region
   belongs_to :produit
-
+  has_many :signal_achats
   has_one_attached :avatarachat
 
   validates :description,

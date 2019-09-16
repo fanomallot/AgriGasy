@@ -1,0 +1,2 @@
+module SignallsHelper
+end

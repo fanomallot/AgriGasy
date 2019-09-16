@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   resources :users do
     resources :profils, only: [:create]
     resources :ventes do 
+      resources :signalls
       resources :message_prives 
     end
     resources :achats do 
+      resources :signal_achats
       resources :messagepriveachats 
     end
   end
