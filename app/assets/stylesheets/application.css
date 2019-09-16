@@ -400,12 +400,12 @@ textarea{
   overflow-y: scroll;
   overflow-x: hidden;
   padding-top: 10px;
-  border: 2px solid; 
+
 }
 .scroll1{
   padding-top: 10px;
   display: inline-block;
-  border: 2px solid;
+
   width: 790px;
   vertical-align: top;
   padding-right: 5px;
@@ -529,7 +529,7 @@ tr:nth-child(even) {
 ul{
   list-style-type: none;
 }
-.container {
+.containerlist {
   display: inline-block;
 }
 .border {
