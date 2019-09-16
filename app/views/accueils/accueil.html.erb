@@ -34,10 +34,20 @@
 								<%unless vente.avatarvente.attached?%>
 									<li><div class="center">
 										<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
-									</div>
-									</li>
+									</div></li>
 								<%end%>
-								
+								<li><div class="center">	
+							  		<%if current_user !=nil %>
+							  			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
+							  				<%=link_to "signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
+							  			<%else%>
+							  				<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
+							  			<%end%>
+							  			<%if vente.signalls.length != 0%>
+							  				<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
+							  			<%end%> 
+							  		<%end%>
+							  	</div></li>	
 							</ul>
 						</div>
 					<% end %>
@@ -74,28 +84,23 @@
 									<td> <%= achat.region.place %></td>
 								</tr>
 							</table>
-
-							<li><div class="center">	
-						  		
-						  		<%if current_user !=nil %>
-						  			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-						  				<%=link_to "signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
-						  			<%else%>
-						  				<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
-						  			<%end%>
-						  			<%if vente.signalls.length != 0%> <%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
-						  			<%end%> 
-						  		<%end%>
-
-						  	</div></li>
-
 							<%unless achat.avatarachat.attached?%>
 								<li><div class="center">
 									<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
 								</div></li>
 							<%end%>
-
-							
+							<li><div class="center">
+						  		<%if current_user !=nil %>
+						  			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+								  		<%=link_to "signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
+								  	<%else%>
+								  		<%=link_to "ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
+								  	<%end%>
+								  	<%if achat.signal_achats.length != 0%>
+								  		<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+								  	<%end%> 
+								<%end%>
+							</div></li>	
 						</ul>
 					</div>
 				<% end %>
@@ -103,7 +108,7 @@
 		</p>	
 	</div>
 
-  <div class="grid-item ">
+<!--   <div class="grid-item ">
   	<div class="center">	
   		<%= link_to "Créer une publication achat", new_achat_path,class:'boutton success' %>
   	</div>
@@ -132,15 +137,6 @@
 					</table>
 					<li><div class="center">	
 				  		<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
-				  		<%if current_user !=nil %>
-				  			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-						  	<%=link_to "signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
-						  	<%else%>
-						  	<%=link_to "ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
-						  	<%end%>
-						  	<%if achat.signal_achats.length != 0%> <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-						  	<%end%> 
-						<%end%>
 
 				  	</div></li>
 					
@@ -151,4 +147,4 @@
 
   </div> 
 
-</div>
+</div> -->
