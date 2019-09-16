@@ -1,0 +1,2 @@
+class AddIsauthenticateToVente < ApplicationRecord
+end
