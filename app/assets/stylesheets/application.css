@@ -568,4 +568,56 @@ span.psw {
 }
 .online{
   margin-top: 32px;
-}*/*/
+}
+#tree{
+  width: 40px;
+  height: 50px;
+
+}
+.toptop{
+  margin-top: 20px;
+}
+/*photo de user*/
+.img-comp-container {
+  position: relative;
+  height: 200px; /*should be the same height as the images*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+  vertical-align:middle;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+.img-comp-overlay{
+  border-radius: 50%;
+  margin-left: 185px;
+  margin-top: 155px;
+}
+.img-comp-overlay:hover{
+  border:1px solid rgba(52, 172, 220, 0.98);
+  opacity: 0.8;
+
+}
+.pblink:hover{
+  border: 2px solid white;
+  box-shadow: 1px 1px;
+  opacity: 0.6;
+}
