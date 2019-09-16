@@ -12,9 +12,11 @@
 	<% end %>
 	<br>
 
-	<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %><br>
-	<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %><br>
-	<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
+	<p>
+		<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (@vente.length) <br>
+		<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (@achat.length) <br>
+		<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
+	</p>
 
 	<p>Essayer de bien gérer notre page</p>
 </div>

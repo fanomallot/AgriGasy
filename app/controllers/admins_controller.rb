@@ -3,6 +3,8 @@ class AdminsController < ApplicationController
 	before_action :is_admins
 	def index
 		@admin = User.where(is_admin: true)
+		@vente = Vente.where(is_authenticate: false)
+		@vente = Achat.where(is_authenticate: false)
 		@user = User.all
 	end
 
