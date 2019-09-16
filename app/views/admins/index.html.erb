@@ -1,3 +1,4 @@
+<div class="ground editachatground blanche">
 <div class="container">
 	<h1>BIENVENUE DANS NOTRE SITE</h1>
 
@@ -9,9 +10,14 @@
 	<% @admin.each do |admin| %>
 		<i>Nom : </i><%= link_to admin.first_name, user_path(admin.id) %><br>
 	<% end %>
-
 	<br>
+
+	<%= link_to "Vente à authentifier", authentification_vente_path %><br>
+	<%= link_to "Achat à authentifier", authentification_achat_path %><br>
+	<%= link_to "liste des utilisateurs de votre Site", liste_des_utilisateurs_path %><br>
+
 	<p>Essayer de bien gérer notre page</p>
+
 
 	<h3>Voici la liste de tous les utilisateurs y compris les administrateurs:)</h3>
 	<table>
@@ -34,3 +40,7 @@
 	<%end%>
 </table>
 </div>
+
+</div>
+</div>
+

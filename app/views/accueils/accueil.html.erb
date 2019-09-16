@@ -1,5 +1,5 @@
 
-<div class="first center">
+<div class=" ground first center">
 <i class="agri">AgriGasy</i>
 </div>
 <div class="Acceuil">
@@ -13,25 +13,33 @@
 	</div> 
 	  	<h1>Voici les listes de tous les Ventes disponibles :</h1>
 		<p>
-			<% @vente.each do |vente| %>
-				<%if vente.avatarvente.attached?%>
-				  <%= image_tag vente.avatarvente, alt: 'photo_vente',style: "max-height:200px; width: 240px;"  %><br>
-				<%else%>
-				  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-				<%end%>
-			 	<%if user_signed_in?%>
-				  	<%if current_user == vente.user || current_user.is_admin%>
-					  	<h3>Changer de photo ?</h3>
-						<%= form_tag vente_avatarventes_path(vente), multipart: true do %>
-						  <%= file_field_tag :avatarvente %>
-						  <%= submit_tag "mettre à jour" %>
-						<% end %>
-					  <%end%>
-				<%end%>
-				<strong>Nom : </strong> <%= vente.produit.name %><br/>
-				<strong>Lieu : </strong> <%= vente.region.place %><br/>
-				<%= link_to "See more", vente_path(vente.id) %><br/><br/>
-			<% end %>
+			<div class="mar">
+				<% @vente.each do |vente| %>
+					<div class="w3-container">
+						<ul class="w3-ul w3-border">
+							<div class="tezz"> 
+								<li>
+									<%if vente.avatarvente.attached?%>
+									<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+									<%else%>
+									  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+									<%end%>
+								</li>
+							</div>
+							<table class="tableau">
+							  <tr>
+							    <td><%= vente.produit.name %></td>
+							    <td><%= vente.region.place %></td>
+							  </tr>
+							</table>
+							<li><div class="center">	
+						  		<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
+						  	</div></li>
+							
+						</ul>
+					</div>		
+				<% end %>
+			</div>
 		</p>
 	</div>
   <div class="grid-item ">
@@ -41,24 +49,32 @@
 
   	<h1>Voici les listes de tous les achats disponibles :</h1>
 	<p>
+		<div class="mar">
 		<% @achat.each do |achat| %>
-			<%if achat.avatarachat.attached?%>
-			  <%= image_tag achat.avatarachat, alt: 'photo_vente',style: "max-height:200px; width: 240px;"  %><br>
-			<%else%>
-			  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-			<%end%>
-			<%if user_signed_in?%>
-			  <%if current_user == achat.user || current_user.is_admin%>
-			  	<h3>Changer de photo ?</h3>
-				<%= form_tag achat_avatarachats_path(achat), multipart: true do %>
-				  <%= file_field_tag :avatarachat %>
-				  <%= submit_tag "mettre à jour" %>
-				<% end %>
-			  <%end%>
-			<%end%>
-			<strong>Nom : </strong> <%= achat.produit.name %><br/>
-			<strong>Lieu : </strong> <%= achat.region.place %><br/>
-			<%= link_to "See more", achat_path(achat.id) %><br/><br/>
+
+			<div class="w3-container">
+				<ul class="w3-ul w3-border">
+					<div class="tezz"> 
+						<li>
+							<%if achat.avatarachat.attached?%>
+							<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+							<%else%>
+							  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+							<%end%>
+						</li>
+					</div>
+					<table class="tableau">
+					  <tr>
+					    <td><%= achat.produit.name %></td>
+					    <td> <%= achat.region.place %></td>
+					  </tr>
+					</table>
+					<li><div class="center">	
+				  		<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
+				  	</div></li>
+					
+				</ul>
+			</div>		
 		<% end %>
 	</p>	
 

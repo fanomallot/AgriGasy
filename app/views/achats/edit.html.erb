@@ -1,29 +1,46 @@
-<h1>Edit Publication :</h1>
+<div class="ground editachatground">
+  <h1 class="center blanche">Edit Publication</h1>
+  <div class=" editachat1 ">
+    <%if @achat.avatarachat.attached?%>
+      <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:400px; width: 440px;",class:'radius' %>
+    <%else%>
+      <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+    <%end%>
+    <div class="photo floue">
+      <%if current_user == @achat.user || current_user.is_admin%>
+        <h3>Changer de photo ?</h3>
+        <%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
+          <%= file_field_tag :avatarachat,class:'boutton success' %>
+          <%= submit_tag "mettre à jour",class:'boutton success' %>
+        <% end %>
+      <%end%>     
+    </div>
+  </div>
+  <div class="editachat2 textgras">
+    <p>
+    	<%= form_tag url_for(action: 'update'), method: "put" do %>
 
-<p>
-	<%= form_tag url_for(action: 'update'), method: "put" do %>
+      	<i class="floue">Nom de produit</i><br/>
+        <input type="text" name="nom" value="<%=@achat.produit.name %>"><i class="rouge">*</i><br/> 
 
-  	Nom de produit<br/>
-    <input type="text" name="nom" value="<%=@achat.produit.name %>">*<br/> 
+      	<i class="floue">Description</i><br/>
+        <textarea type="text" name="description" class="areaedit"><%=@achat.description %>
+        </textarea> <i class="rouge">*</i><br/> 
 
-  	Description<br/>
-    <input type="text" name="description" value="<%=@achat.description %>">*<br/> 
+        <i class="floue">Quantité disponible</i><br/>
+        <input type="text" name="quantite" value="<%=@achat.quantite%>"><i class="rouge">*</i></br>
 
-    Quantité disponible<br/>
-    <input type="text" name="quantite" value="<%=@achat.quantite%>">*</br>
-
-    Prix en ariary / unité<br/>
-    <input type="text" name="prix" value="<%=@achat.prix%>"><br/>
-    Date de disponibilité<br/>
-    <input type="date" name="date" <%if @achat.date != nil %>value="<%=@achat.date.to_date%>"<%end%> min= <%=Time.now%>><br/>
-    Region<br>
-    <input type="text" name="place" value="<%=@achat.region.place%>">*<br/>
-    Lieu<br/>
-    <input type="text" name="lieu" value="<%=@achat.lieu%>"><br/>
-    
-    <%= submit_tag "Update post" %>
-
-  <% end %>
-  <h4><em><%= link_to "Back", :back %></em></h4>
-  <h4><em><%= link_to "Home", root_path %></em></h4>
-</p>
+        <i class="floue">Region</i><br>
+        <input type="text" name="place" value="<%=@achat.region.place%>"><i class="rouge">*</i><br/>
+        <i class="floue">Prix en ariary / unité</i><br/>
+        <input type="text" name="prix" value="<%=@achat.prix%>"><br/>
+        <i class="floue">Date de disponibilité</i><br/>
+        <input type="date" name="date" <%if @achat.date != nil %>value="<%=@achat.date.to_date%>"<%end%> min= <%=Time.now%>><br/>
+        <i class="floue">Lieu</i><br/>
+        <input type="text" name="lieu" value="<%=@achat.lieu%>"><br/><br/>
+        
+        <%= submit_tag "Update post",class:'boutton success ' %> <%= link_to "Annulé", :back ,class:'boutton primary '%>
+      <% end %>
+    </p>  
+  </div>
+</div>
