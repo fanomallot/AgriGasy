@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get "/accueils",to: 'accueils#accueil'
-  get "/authentification_vente", to: 'admindasboard#vente'
-  get "/authentification_achat", to: 'admindasboard#achat'
-  get "/liste_des_utilisateurs", to: 'admindasboard#utilisateur'
+  get "/admindashboard/authentification_vente", to: 'admindashboard#vente'
+  get "/admindashboard/authentification_achat", to: 'admindashboard#achat'
+  get "/admindashboard/liste_des_utilisateurs", to: 'admindashboard#utilisateur'
+  get "/admindashboard/authentificate_vente/:id", to: 'admindashboard#updatevente'
+  get "/admindashboard/authentificate_achat/:id", to: 'admindashboard#updateachat'
   devise_for :users
   root to: 'admins#index'
   resources :ventes do
@@ -17,9 +19,11 @@ Rails.application.routes.draw do
   resources :users do
     resources :profils, only: [:create]
     resources :ventes do 
+      resources :signalls
       resources :message_prives 
     end
     resources :achats do 
+      resources :signal_achats
       resources :messagepriveachats 
     end
   end

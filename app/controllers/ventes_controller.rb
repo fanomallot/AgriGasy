@@ -11,7 +11,7 @@ class VentesController < ApplicationController
   end
 
   def new
-    @vente=Vente.new
+    @vente = Vente.new
   end
 
   def create
@@ -22,7 +22,7 @@ class VentesController < ApplicationController
       prix: params[:prix] + params[:unite],
       date: params[:date],
       lieu: params[:lieu],
-      user: current_user,is_authenticate: false)
+      user: current_user, is_authenticate: false)
     # test si le produit exist déjà dans la table produit
     @produit = Produit.all 
     if @produit.length == 0

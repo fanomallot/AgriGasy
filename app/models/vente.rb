@@ -3,7 +3,7 @@ class Vente < ApplicationRecord
   belongs_to :user
   belongs_to :region
   belongs_to :produit
-
+  has_many :signalls
   has_one_attached :avatarvente
 
   validates :description,
