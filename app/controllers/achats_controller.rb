@@ -20,7 +20,7 @@ class AchatsController < ApplicationController
       date: params[:date],
       lieu: params[:lieu],
       quantite: params[:quantite], 
-      user: current_user, is_authenticate: false)
+      user: current_user,is_authenticate: false)
   # test si le produit exist déjà dans la table produit
     @produit = Produit.all 
     if @produit.length == 0
