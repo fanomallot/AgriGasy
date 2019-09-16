@@ -12,33 +12,21 @@
 	<% end %>
 	<br>
 
-	<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %><br>
-	<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %><br>
-	<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/authentificate_vente" %><br>
+	<p>
+		<% if @vente.length != 0 %>
+			<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (<%@vente.length%>) <br>
+		<% else %>
+			<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (0) <br>
+		<% end %>
+		<% if @achat.length != 0 %>
+			<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (<%@achat.length%>) <br>
+		<% else %>
+			<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (0) <br>
+		<% end %>
+		<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
+	</p>
 
 	<p>Essayer de bien gérer notre page</p>
-
-
-	<h3>Voici la liste de tous les utilisateurs y compris les administrateurs:)</h3>
-	<table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Admin</th>
-  </tr>
-	<%@user.each do |user| %>
-	  <tr>
-	    <td><%=user.first_name%></td>
-	    <td><%= user.last_name%></td>
-	 
-	    <td><label class="switch">
-			  <input type="checkbox" checked>
-			  <span class="slider round"></span>
-			</label>
-		</td>
-  	  </tr>
-	<%end%>
-</table>
 </div>
 
 </div>

@@ -1,0 +1,20 @@
+<h3>Voici la liste de tous les utilisateurs y compris les administrateurs:)</h3>
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Admin</th>
+  </tr>
+	<%@user.each do |user| %>
+	  <tr>
+	    <td><%=user.first_name%></td>
+	    <td><%= user.last_name%></td>
+	 
+	    <td><label class="switch">
+			  <input type="checkbox" checked>
+			  <span class="slider round"></span>
+			</label>
+		</td>
+  	  </tr>
+	<%end%>
+</table>
