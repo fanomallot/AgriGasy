@@ -1,7 +1,5 @@
-<div class=" ground first center">
+<div class=" ground first center ">
 	<i class="agri">AgriGasy</i>
-</div>
-<div class="Acceuil">
 </div>
 <div class="mar">
 	<div class="scroll">
@@ -19,7 +17,7 @@
 						<div class="tezz">
 							<li>
 								<%if vente.avatarvente.attached?%>
-								<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+								<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %><%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:20px; width: 24px;"  %></a>
 								<%else%>
 								<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
 								<%end%>

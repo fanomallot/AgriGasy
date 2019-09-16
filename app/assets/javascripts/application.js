@@ -53,6 +53,4 @@ function myFunction() {
   }
 }
 $(document).ready(function() {
-
-
 });

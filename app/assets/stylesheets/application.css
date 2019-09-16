@@ -17,6 +17,7 @@
 /*dropdown*/
 /*************************************/
 .drop-btn {
+  margin-top: 480px;
   margin-left: 20px;
   background-color: #4000ff;
   color: white;
@@ -43,7 +44,7 @@
 }
 
 .drop-down-content {
-  margin-left: 70px;
+  margin-top: 390px;
   display: none;
   position: absolute;
   background-color: #4000ff;
