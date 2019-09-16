@@ -1,7 +1,7 @@
 class AdmindashboardController < ApplicationController
 
 	def vente
-		@authenticatevente = Vente.where(is_authenticate: false)
+		@authenticatevente = Vente.all
 	end
 
 	def achat

@@ -1,5 +1,10 @@
 <h3>Liste de(s) vente(s) à authentifier </h3>
 <p>
 	<% @authenticatevente.each do |vente| %>
-		vente.produit.name <%= link_to "authentifier la publication", authentificate_vente_path %>
+		<% if vente.is_authenticate == false %>
+			vente.produit.name <%= link_to "authentifier la publication", admindashboard_authentificate_vente_path %>
+		<% else %>
+			<h5><i>Il n'y pas de vente à authentifier</i></h5>
+		<% end %>
+	<% end %>
 </p>
