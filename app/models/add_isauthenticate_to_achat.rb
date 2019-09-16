@@ -1,0 +1,2 @@
+class AddIsauthenticateToAchat < ApplicationRecord
+end

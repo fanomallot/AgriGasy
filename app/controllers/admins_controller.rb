@@ -3,6 +3,7 @@ class AdminsController < ApplicationController
 	before_action :is_admins
 	def index
 		@admin = User.where(is_admin: true)
+		@user = User.all
 	end
 
 	def update
