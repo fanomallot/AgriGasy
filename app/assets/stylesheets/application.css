@@ -496,7 +496,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-table {
+/*table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -510,7 +510,7 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
-
+}*/
 .simple{
   background-color: #93948b;
   opacity: 0.5;
@@ -518,6 +518,9 @@ tr:nth-child(even) {
 .primary{
   background-color: #00fffb;
   color: white;
+}
+.seemore{
+  font-size:12px;
 }
   /*list*/
   /**********************************************/
