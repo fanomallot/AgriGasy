@@ -13,9 +13,10 @@ class AdmindashboardController < ApplicationController
 	end
 
 	def updatevente
-		@vente = Vente.find(params[:id])
+		@id = params[:id]
+		@vente = Vente.find(@id)
 		if @vente.update(is_authenticate: true)
-			redirect_to authentification_vente_path
+			redirect_to root_path
 		else
 			render "vente"
 		end
