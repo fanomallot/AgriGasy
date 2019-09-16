@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/admindashboard/liste_des_utilisateurs", to: 'admindashboard#utilisateur'
   get "/admindashboard/authentificate_vente", to: 'admindashboard#updatevente'
   devise_for :users
-  root to: 'accueils#accueil'
+  root to: 'admins#index'
   resources :ventes do
     resources :avatarventes
   end

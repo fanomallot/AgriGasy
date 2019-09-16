@@ -372,6 +372,9 @@ input[name=find]{
 .radius{
   border-radius: 20px;
 }
+.round{
+  border-radius:50%;
+}
 textarea{
   border-radius: 5px;
 }
@@ -379,21 +382,39 @@ textarea{
   width: 244px;
 
 }
+.online{
+  margin-top: 10px;
+}
+.profilphoto:hover{
+  opacity: 0.8;
+  border: 1px solid #f7f139;
+}
 /*grid*/
 /******************************/
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 10px;
-}
-.grid-item {
-  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
-  padding: 10px;
+
+.scroll{
+  display: inline-block;
+  width: 525px;
+  height: 650px;
+  vertical-align: top;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 700px;
-  height: 700px
+  padding-top: 10px;
+  border: 2px solid; 
 }
+.scroll1{
+  padding-top: 10px;
+  display: inline-block;
+  border: 2px solid;
+  width: 790px;
+  vertical-align: top;
+  padding-right: 5px;
+  padding-left: 5px;
+  height: 650px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 /*boutton*/
 /******************** BOUTTON*******************************/
 .boutton{
@@ -501,31 +522,25 @@ tr:nth-child(even) {
   /*list*/
   /**********************************************/
 .mar {
-  
   }
-  ul{
-    list-style-type: none;
-  }
-.w3-container {
-  display: inline-block;
-  margin-left: 10px
+ul{
+  list-style-type: none;
 }
-.w3-border {
+.container {
+  display: inline-block;
+}
+.border {
   width:250px;
-
+  padding-left: 13px;
+ 
 }
 .tezz {
 
 }
 .tableau{
-width: 200%;
-margin-left: 5px;
+width: 150%;
 margin-right: 5px;
 font-size:12px;
-}
-.seemore{
-  font-size:12px;
-
 }
 /*achat*/
 /*/**************************/

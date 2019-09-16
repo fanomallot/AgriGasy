@@ -15,6 +15,7 @@
   <header>
     <div class="topnav">
     <a class="active" href="<%=accueils_path%>">AgriGasy</a>
+    <!-- <a href="<%=accueils_path%>" class="online"><li></li></a> -->
     <%if user_signed_in? && current_user.is_admin%>
       <a href="<%=admins_path%>">Admins dashboard</a>
     <%end%>
@@ -51,15 +52,17 @@
   <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
     <i class="fa fa-bars"></i>
   </a>
-
   <menu class="items-wrapper">
-    <a href="<%=root_path%>" class="menu-item fa fa-home"></a>
+    <a href="<%=root_path%>" title="Home" class="menu-item fa fa-home"></a>
     <%if user_signed_in?%>
-      <a href="<%=destroy_user_session_path%>" data-method="delete" class="menu-item fa fa-sign-out"></a>
-      <a href="<%=user_path(current_user.id)%>" class="menu-item fa fa-user"></a>
+      <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out"></a>
+      <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
+        class="menu-item fa fa-user"<%end%>>
+        <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'profil_picture',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
+      </a>
     <%else%>
-      <a href="<%=new_user_session_path%>" class="menu-item fa fa-sign-in"></a>
-      <a href="<%=new_user_registration_path%>" class="menu-item fa fa-user-plus"></a>
+      <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
+      <a href="<%=new_user_registration_path%>" title="Sign_up" class="menu-item fa fa-user-plus"></a>
     <%end%>
   </menu>
 
@@ -71,10 +74,14 @@
   </a>
 
   <menu class="items-wrapper">
-    <a href="https://www.facebook.com/" class="menu-item fa fa-facebook"></a>
-    <a href="https://twitter.com/" class="menu-item fa fa-twitter"></a>
-    <a href="https://aboutme.google.com" class="menu-item fa fa-google-plus"></a>
-    <a href="https://www.instagram.com/" class="menu-item fa fa-linkedin"></a>
+    <a  rel="tooltip" title="Facebook" data-placement="bottom" href="https://www.facebook.com/" target="_blank" class="menu-item fa fa-facebook">
+    </a>    
+    <a  rel="tooltip" title="Twitter" data-placement="bottom" href="https://twitter.com/" target="_blank" class="menu-item fa fa-twitter">
+    </a>
+    <a  rel="tooltip" title="Google+" data-placement="bottom" href="https://aboutme.google.com" class="menu-item fa fa-google-plus" target="_blank">
+    </a>    
+    <a  rel="tooltip" title="instagram" data-placement="bottom" href="https://www.instagram.com/" class="menu-item fa fa-linkedin" target="_blank">
+    </a>
   </menu>
 </div> 
 <div class="dropdown">

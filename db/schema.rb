@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_081758) do
+
+ActiveRecord::Schema.define(version: 2019_09_16_122214) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "achats", force: :cascade do |t|
-    t.string "nom"
     t.text "description"
     t.string "quantite"
     t.string "prix"
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_081758) do
     t.bigint "produit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_authenticate"
     t.index ["produit_id"], name: "index_achats_on_produit_id"
     t.index ["region_id"], name: "index_achats_on_region_id"
     t.index ["user_id"], name: "index_achats_on_user_id"
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_081758) do
     t.bigint "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "check"
     t.boolean "is_read"
     t.index ["recipient_id"], name: "index_message_prives_on_recipient_id"
     t.index ["sender_id"], name: "index_message_prives_on_sender_id"
@@ -121,7 +124,6 @@ ActiveRecord::Schema.define(version: 2019_09_16_081758) do
   end
 
   create_table "ventes", force: :cascade do |t|
-    t.string "nom"
     t.text "description"
     t.string "quantite"
     t.string "prix"
@@ -132,6 +134,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_081758) do
     t.bigint "produit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_authenticate"
     t.index ["produit_id"], name: "index_ventes_on_produit_id"
     t.index ["region_id"], name: "index_ventes_on_region_id"
     t.index ["user_id"], name: "index_ventes_on_user_id"
