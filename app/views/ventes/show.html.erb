@@ -28,7 +28,6 @@
 
 <p>
 <%if @vente.user == current_user || current_user.is_admin%>
-
 	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
 	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
 <%end%>

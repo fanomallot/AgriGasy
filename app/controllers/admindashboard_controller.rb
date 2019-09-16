@@ -5,7 +5,7 @@ class AdmindashboardController < ApplicationController
 	end
 
 	def achat
-		@authenticateachat = Achat.where(is_authenticate: false)
+		@authenticateachat = Achat.all
 	end
 
 	def utilisateur
@@ -19,6 +19,16 @@ class AdmindashboardController < ApplicationController
 			redirect_to root_path
 		else
 			render "vente"
+		end
+	end
+
+	def updateachat
+		@id = params[:id]
+		@achat = Achat.find(@id)
+		if @achat.update(is_authenticate: true)
+			redirect_to root_path
+		else
+			render "achat"
 		end
 	end
 
