@@ -1,3 +1,5 @@
+<div class="ground editachatground blanche">
+
 <h1>Editer le profil d'utilisateur</h1>
  <%= form_tag url_for(action: 'update'), method:'patch' %>
 
@@ -9,3 +11,4 @@
 	 description:<textarea type="text" name="description"><%=@user.description%></textarea>
 
 <input type="submit" value="update">
+</div>

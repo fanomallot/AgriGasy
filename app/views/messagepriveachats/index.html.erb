@@ -1,0 +1,28 @@
+<div class="ground editachatground blanche">
+
+<%@message.each do |mp|%>
+   <%if mp.sender == current_user%>
+     <h1><%=mp.sender.first_name%></h1></br>
+     <%=mp.content%>
+     <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],mp.id),method:'get' do%>
+      <%=submit_tag 'Edit'%>
+<%end%> 
+   <%= form_tag "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{mp.id}",method:'delete' do%>
+      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+<%end%>
+   	
+   	</br>
+   	 <%else%>
+   	 <h1><%=mp.sender.first_name%></h1>
+   	 <%=mp.content%></br>
+   	 <%end%>
+
+<%end%>
+
+
+<%= form_tag "/users/#{current_user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
+  <%=text_area_tag :content%>
+
+    <%=submit_tag :envoyer%>
+<%end%>
+</div>

@@ -1,24 +1,82 @@
-<head>
-	<title>ListeAchats</title>
-</head>
-<body>
-	<%= link_to "Créer une publication vente", new_vente_path %><br>
-	<%= link_to "Créer une publication achat", new_achat_path %>
-	<h1>Voici les listes de tous les Ventes disponibles :</h1>
+
+<div class=" ground first center">
+<i class="agri">AgriGasy</i>
+</div>
+<div class="Acceuil">
+
+</div>
+<div class="grid-container">
+	<div class="grid-item ">
+	<div class="center">
+		
+		<%= link_to "Créer une publication vente ",new_vente_path,class:'boutton success' %><br>
+	</div> 
+	  	<h1>Voici les listes de tous les Ventes disponibles :</h1>
+		<p>
+			<div class="mar">
+				<% @vente.each do |vente| %>
+					<div class="w3-container">
+						<ul class="w3-ul w3-border">
+							<div class="tezz"> 
+								<li>
+									<%if vente.avatarvente.attached?%>
+									<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+									<%else%>
+									  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+									<%end%>
+								</li>
+							</div>
+							<table class="tableau">
+							  <tr>
+							    <td><%= vente.produit.name %></td>
+							    <td><%= vente.region.place %></td>
+							  </tr>
+							</table>
+							<li><div class="center">	
+						  		<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
+						  	</div></li>
+							
+						</ul>
+					</div>		
+				<% end %>
+			</div>
+		</p>
+	</div>
+  <div class="grid-item ">
+  	<div class="center">	
+  		<%= link_to "Créer une publication achat", new_achat_path,class:'boutton success' %>
+  	</div>
+
+  	<h1>Voici les listes de tous les achats disponibles :</h1>
 	<p>
-		<% @vente.each do |vente| %>
-			<strong>Nom : </strong> <%= vente.produit.name %><br/>
-			<strong>Lieu : </strong> <%= vente.region.place %><br/>
-			<%= link_to "See more", vente_path(vente.id) %><br/><br/>
-		<% end %>
-	</p>
-	
-	<h1>Voici les listes de tous les achats disponibles :</h1>
-	<p>
+		<div class="mar">
 		<% @achat.each do |achat| %>
-			<strong>Nom : </strong> <%= achat.produit.name %><br/>
-			<strong>Lieu : </strong> <%= achat.region.place %><br/>
-			<%= link_to "See more", achat_path(achat.id) %><br/><br/>
+
+			<div class="w3-container">
+				<ul class="w3-ul w3-border">
+					<div class="tezz"> 
+						<li>
+							<%if achat.avatarachat.attached?%>
+							<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+							<%else%>
+							  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+							<%end%>
+						</li>
+					</div>
+					<table class="tableau">
+					  <tr>
+					    <td><%= achat.produit.name %></td>
+					    <td> <%= achat.region.place %></td>
+					  </tr>
+					</table>
+					<li><div class="center">	
+				  		<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
+				  	</div></li>
+					
+				</ul>
+			</div>		
 		<% end %>
-	</p>
-</body>
+	</p>	
+
+  </div> 
+</div>

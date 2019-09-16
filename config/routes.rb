@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/accueils",to: 'accueils#accueil'
   devise_for :users
   root to: 'accueils#accueil'
   resources :ventes do
@@ -12,7 +13,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :profils, only: [:create]
-    resources :message_prives
+    resources :ventes do 
+      resources :message_prives 
+    end
+    resources :achats do 
+      resources :messagepriveachats 
+    end
   end
   resources :regions
   resources :admins

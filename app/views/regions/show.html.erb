@@ -1,3 +1,5 @@
+<div class="ground editachatground blanche">
+
 <h1><%=@region.place%></h1>
  </br>
 <%if @region.ventes.length == 0%>
@@ -22,8 +24,8 @@
 	  <%=achat.quantite%></br>
 	<%end%>
 <%end%>
-<h1><%=form_tag url_for(action: 'destroy'), method: 'delete' do%>
-	<%=submit_tag "Supprimer cette region",  data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}%>
-	<%end%>
-</h1>
+<%if current_user.is_admin%>
+	<%=link_to 'supprimer la region',region_path,method: 'delete',data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}  %>
+<%end%>
+</div>
 

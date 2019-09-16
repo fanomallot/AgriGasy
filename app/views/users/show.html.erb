@@ -1,9 +1,10 @@
+<div class="ground editachatground blanche">
 
 <h1>Mon profil est changer</h1>
 
 <h3>Profil actuel</h3>
 <%if @user.profil.attached?%>
-  <%= image_tag @user.profil, alt: 'profil_picture' %>
+  <%= image_tag @user.profil, alt: 'profil_picture',style: "max-height:400px; width: 440px;" %>
   <h3>Changer la photo de profil ?</h3>
 	<%= form_tag user_profils_path(@user), multipart: true do %>
 	  <%= file_field_tag :profil %>
@@ -70,3 +71,4 @@
 <%end%>
 <%= link_to "Créer une publication achat", new_achat_path %><br>
 
+</div>

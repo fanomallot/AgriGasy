@@ -1,0 +1,8 @@
+<div class="ground editachatground blanche">
+
+<h1>Edit le message_prive</h1>
+<%=form_tag url_for(action:'update'),method:'put' do%>
+<textarea type="text" name="content"><%=@messagePrive.content%></textarea> 
+<input type="submit" value="update">
+<%end%>
+</div>
