@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   get "/accueils",to: 'accueils#accueil'
+  get "/authentification_vente", to: 'admindasboard#vente'
+  get "/authentification_achat", to: 'admindasboard#achat'
+  get "/liste_des_utilisateurs", to: 'admindasboard#utilisateur'
   devise_for :users
   root to: 'accueils#accueil'
   resources :ventes do
