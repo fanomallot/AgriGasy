@@ -23,22 +23,30 @@
 	<%end%>
 	<strong>Region : </strong> <%= @achat.region.place %><br/>
 	<%if @achat.lieu != "" %>
-	<strong>Lieu : </strong> <%= @achat.lieu %><br/>
+	<strong>Lieu : </strong> <%= @achat.lieu %><br>
 	<%end%>
 
 	<%if @achat.date != nil %>
-	<strong>Date : </strong> <%= @achat.date.to_date %><br/>
+	<strong>Date : </strong> <%= @achat.date.to_date %><br>
 	<%end%>
+	
 </p>
 <%if @achat.user == current_user || current_user.is_admin%>
-	<p>
-		<%= link_to "Editer", edit_achat_path(@achat.id) %><br/>
-		<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %>
-	</p>
-<%end%>			
-<%= form_tag user_achat_messagepriveachats_path(current_user.id,@achat.id),method:'get' do %>
+		<%= link_to "Editer", edit_achat_path(@achat.id) %><br>
+		<%= link_to "Effacer", achat_path(@achat.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
+<%end%>
+
+<% if current_user.is_admin %>
+	<% if @achat.is_authenticate == false %>
+		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{@achat.id}" %><br><br>
+	<% end %>
+<% end %>
+
+<%if @achat.user != current_user || current_user.is_admin %>			
+	<%= form_tag user_achat_messagepriveachats_path(current_user.id,@achat.id),method:'get' do %>
 	 	
 	 	  <%= submit_tag "envoyer message" %> 
 	  	  
-	<% end %>	
+	<% end %>
+<%end%>	
 </div>

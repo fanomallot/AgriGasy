@@ -27,15 +27,24 @@
 </p>
 
 <p>
+<%if @vente.user == current_user || current_user.is_admin%>
 	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
 	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
+<%end%>
 
+<% if current_user.is_admin %>
+	<% if @vente.is_authenticate == false %>
+		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_vente/#{@vente.id}" %><br>
+	<% end %>
+<% end %>
 
+<%if @vente.user != current_user || current_user.is_admin %>			
 	<%= form_tag "/users/#{current_user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
 	 	  <%=@vente.user.id%>
 	 	  <%= submit_tag "envoyer message" %> 
 	  	  
 	<% end %>
+<%end%>
 
 </p>
 </div>

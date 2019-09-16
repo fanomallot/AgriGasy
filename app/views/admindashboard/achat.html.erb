@@ -1,0 +1,13 @@
+<br>
+<br>
+<br>
+<br>
+<h1>En tant qu'administrateur, <br>vous avez comme tâche d'authetifier les publications des utilisateurs</h1>
+<h3>Liste de(s) achat(s) à authentifier </h3>
+<p>
+	<% @authenticateachat.each do |achat| %>
+		<% if achat.is_authenticate == false %>
+			<%= achat.produit.name %> <%= link_to "Voire la publication pour l'authentification", achat_path(achat) %>
+		<% end %>
+	<% end %>
+</p>
