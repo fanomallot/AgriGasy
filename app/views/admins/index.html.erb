@@ -10,9 +10,37 @@
 	<% @admin.each do |admin| %>
 		<i>Nom : </i><%= link_to admin.first_name, user_path(admin.id) %><br>
 	<% end %>
-
 	<br>
+
+	<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %><br>
+	<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %><br>
+	<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/authentificate_vente" %><br>
+
 	<p>Essayer de bien gérer notre page</p>
-	
+
+
+	<h3>Voici la liste de tous les utilisateurs y compris les administrateurs:)</h3>
+	<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Admin</th>
+  </tr>
+	<%@user.each do |user| %>
+	  <tr>
+	    <td><%=user.first_name%></td>
+	    <td><%= user.last_name%></td>
+	 
+	    <td><label class="switch">
+			  <input type="checkbox" checked>
+			  <span class="slider round"></span>
+			</label>
+		</td>
+  	  </tr>
+	<%end%>
+</table>
+</div>
+
 </div>
 </div>
+

@@ -3,6 +3,7 @@ class AdminsController < ApplicationController
 	before_action :is_admins
 	def index
 		@admin = User.where(is_admin: true)
+		@user = User.all
 	end
 
 	def update
@@ -22,7 +23,7 @@ class AdminsController < ApplicationController
       if current_user.is_admin
         return true
       else 
-        redirect_back fallback_location: '/' ,allow_other_host: false
+        redirect_to "/accueils"
       end
     end
 
