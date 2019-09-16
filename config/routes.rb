@@ -30,6 +30,6 @@ Rails.application.routes.draw do
   resources :regions
   resources :admins
   resources :recherches,only: [:index]
-
+  resources :conditions, only: [:index]
 end
 
