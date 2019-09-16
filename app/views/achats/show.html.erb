@@ -37,7 +37,7 @@
 <%end%>
 
 <% if current_user.is_admin %>
-	<% if @achat.is_authenticate == false %>
+	<% if @achat.is_authenticate != true %>
 		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{@achat.id}" %><br><br>
 	<% end %>
 <% end %>

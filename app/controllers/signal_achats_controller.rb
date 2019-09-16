@@ -8,13 +8,13 @@ class SignalAchatsController < ApplicationController
 		if (SignalAchat.find_by(user: current_user, achat_id: params[:achat_id])==nil)
 			@signal = SignalAchat.new(user: current_user, achat_id: params[:achat_id])
 			if @signal.save
-				redirect_to "/"  #signal create
+				redirect_back fallback_location: '/' ,allow_other_host: false  #signal create
 			else
-				redirect_to "/"  #signal non create
+				redirect_back fallback_location: '/' ,allow_other_host: false  #signal non create
 			end			
 		else
 			SignalAchat.find_by(user: current_user, achat_id: params[:achat_id]).destroy
-			redirect_to "/"
+			redirect_back fallback_location: '/' ,allow_other_host: false
 		end
 	end
 end

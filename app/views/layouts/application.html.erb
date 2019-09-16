@@ -24,11 +24,11 @@
           navbar-default can be changed with navbar-ct-blue navbar-ct-azzure navbar-ct-red navbar-ct-green navbar-ct-orange
           -->
           <nav class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
-            <div class="alert alert-success hidden">
+            <!-- <div class="alert alert-success hidden">
               <div class="container">
                 <b>Lorem ipsum</b> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
               </div>
-            </div>
+            </div> -->
             
             <div class="container">
               <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,62 +53,49 @@
                     </menu>
                   </div>
                
-                <a class="navbar-brand" href="#gsdk">GSDKit</a>
+                <a class="navbar-brand" href="/accueils">AgriGasy</a>
+                <%if user_signed_in?%>
+                <h4><li class="online text-success"></li></h4> 
+                <%end%>
+                 
               </div>
-              
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="#gsdk">Link</a></li>
-                  <!-- <li class="dropdown">
-                    <a href="#gsdk" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#gsdk">Action</a></li>
-                      <li><a href="#gsdk">Another action</a></li>
-                      <li><a href="#gsdk">Something</a></li>
-                      <li><a href="#gsdk">Another action</a></li>
-                      <li><a href="#gsdk">Something</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#gsdk">Separated link</a></li>
-                    </ul>
-                  </li> -->
+                  <li class="active"><a href="/">Admin Dasbord</a></li>
+                  <li class="active"> <a href="<%=produits_path%>"> Produits</a></li>
+                  <li class="active"> <a href="<%=regions_path%>">Regions</a> </li>
+                  <li> <a href="javascript:void(0);" data-toggle="search" class="hidden-xs"><i class="fa fa-search"></i></a>
+                    </li> 
                   <li>
-                    <a href="javascript:void(0);" data-toggle="search" class="hidden-xs"><i class="fa fa-search"></i></a>
+                    <%=form_tag recherches_path ,method:'get' do%>
+                     <input type="text" class="search" name="find" placeholder="Search..."> 
+                      <input type="submit" hidden>
+                    <%end%>
                   </li>
                 </ul>
-                <form class="navbar-form navbar-left navbar-search-form" role="search">
-                  <div class="form-group">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                  </div>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="#gsdk">Register</a></li>
                   
-                  <li>            <div id="circularMenu1" class="circular-menu circular-menu-left ">
-              <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
-                <i class="fa fa-bars"></i>
-              </a>
-              <menu class="items-wrapper">
-              <a href="<%=root_path%>" title="Home" class="menu-item fa fa-home"></a>
-              <%if user_signed_in?%>
-              <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out"></a>
-              <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
-                class="menu-item fa fa-user"<%end%>>
-                <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'profil_picture',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
-              </a>
-              <%else%>
-              <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
-              <a href="<%=new_user_registration_path%>" title="Sign_up" class="menu-item fa fa-user-plus"></a>
-              <%end%>
-              </menu>
-            </div>
-
-
-
-
-
-
-
+                  <li>            
+                    <div id="circularMenu1" class="circular-menu circular-menu-left ">
+                      <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                      <menu class="items-wrapper">
+                      <a href="<%=root_path%>" title="Home" class="menu-item fa fa-home"></a>
+                      <%if user_signed_in?%>
+                      <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out"></a>
+                      <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
+                        class="menu-item fa fa-user"<%end%>>
+                        <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'profil_picture',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
+                      </a>
+                      <%else%>
+                      <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
+                      <a href="<%=new_user_registration_path%>" title="Sign_up" class="menu-item fa fa-user-plus"></a>
+                      <%end%>
+                      </menu>
+                    </div>
                   </li>
                 </ul>
                 

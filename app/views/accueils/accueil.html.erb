@@ -7,144 +7,104 @@
 	<div class="scroll">
 		<div class="center">
 			
-		<%= link_to "Créer une publication vente ",new_vente_path,class:'boutton success' %><br>
-		<p>Voici les listes de tous les Ventes disponibles :</p>
+			<%= link_to "Créer une publication vente ",new_vente_path,class:'boutton success' %><br>
+			<p>Voici les listes de tous les Ventes disponibles :</p>
 		</div>
 		<p>
 			<div class="mar">
 				<% @vente.each do |vente| %>
-					<% if vente.is_authenticate == true %>
-						<div class="container">
-							<ul class="border">
-								<div class="tezz">
-									<li>
-										<%if vente.avatarvente.attached?%>
-											<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
-										<%else%>
-											<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-										<%end%>
-									</li>
-								</div>
-								<table class="tableau">
-									<tr>
-										<td><%= vente.produit.name %></td>
-										<td><%= vente.region.place %></td>
-									</tr>
-								</table>
-								<%unless vente.avatarvente.attached?%>
-									<li><div class="center">
-										<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
-									</div></li>
+				<% if vente.is_authenticate == true %>
+				<div class="containerlist">
+					<ul class="border">
+						<div class="tezz">
+							<li>
+								<%if vente.avatarvente.attached?%>
+								<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+								<%else%>
+								<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
 								<%end%>
-								<li><div class="center">	
-							  		<%if current_user !=nil %>
-							  			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-							  				<%=link_to "signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
-							  			<%else%>
-							  				<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
-							  			<%end%>
-							  			<%if vente.signalls.length != 0%>
-							  				<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
-							  			<%end%> 
-							  		<%end%>
-							  	</div></li>	
-							</ul>
+							</li>
 						</div>
-					<% end %>
+						<table class="tableau">
+							<tr>
+								<td><%= vente.produit.name %></td>
+								<td><%= vente.region.place %></td>
+							</tr>
+						</table>
+						<%unless vente.avatarvente.attached?%>
+						<li><div class="center">
+							<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
+						</div></li>
+						<%end%>
+						<li><div class="center">
+							<%if current_user !=nil %>
+							<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
+							<%=link_to "signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
+							<%else%>
+							<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
+							<%end%>
+							<%if vente.signalls.length != 0%>
+							<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
+							<%end%>
+							<%end%>
+						</div></li>
+					</ul>
+				</div>
+				<% end %>
 				<% end %>
 			</div>
 		</p>
 		
 	</div>
-
-			
+	
 	<div class="scroll1">
 		<div class="center">
 			<%= link_to "Créer une publication achat", new_achat_path,class:'boutton success' %>
-		<p>Voici les listes de tous les achats disponibles :</p>
+			<p>Voici les listes de tous les achats disponibles :</p>
 		</div>
 		<p>
-		<div class="mar">
-			<% @achat.each do |achat| %>
+			<div class="mar">
+				<% @achat.each do |achat| %>
 				<% if achat.is_authenticate == true %>
-					<div class="container">
-						<ul class="border">
-							<div class="tezz">
-								<li>
-									<%if achat.avatarachat.attached?%>
-									<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
-									<%else%>
-									<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-									<%end%>
-								</li>
-							</div>
-							<table class="tableau">
-								<tr>
-									<td><%= achat.produit.name %></td>
-									<td> <%= achat.region.place %></td>
-								</tr>
-							</table>
-							<%unless achat.avatarachat.attached?%>
-								<li><div class="center">
-									<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
-								</div></li>
-							<%end%>
-							<li><div class="center">
-						  		<%if current_user !=nil %>
-						  			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-								  		<%=link_to "signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
-								  	<%else%>
-								  		<%=link_to "ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
-								  	<%end%>
-								  	<%if achat.signal_achats.length != 0%>
-								  		<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-								  	<%end%> 
+				<div class="containerlist">
+					<ul class="border">
+						<div class="tezz">
+							<li>
+								<%if achat.avatarachat.attached?%>
+								<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
+								<%else%>
+								<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
 								<%end%>
-							</div></li>	
-						</ul>
-					</div>
-				<% end %>
-			<% end %>
-		</p>	
-	</div>
-
-<!--   <div class="grid-item ">
-  	<div class="center">	
-  		<%= link_to "Créer une publication achat", new_achat_path,class:'boutton success' %>
-  	</div>
-
-  	<h1>Voici les listes de tous les achats disponibles :</h1>
-	<p>
-		<div class="mar">
-		<% @achat.each do |achat| %>
-
-			<div class="w3-container">
-				<ul class="w3-ul w3-border">
-					<div class="tezz"> 
-						<li>
-							<%if achat.avatarachat.attached?%>
-							<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+							</li>
+						</div>
+						<table class="tableau">
+							<tr>
+								<td><%= achat.produit.name %></td>
+								<td> <%= achat.region.place %></td>
+							</tr>
+						</table>
+						<%unless achat.avatarachat.attached?%>
+						<li><div class="center">
+							<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
+						</div></li>
+						<%end%>
+						<li><div class="center">
+							<%if current_user !=nil %>
+							<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+							<%=link_to "signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
 							<%else%>
-							  <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+							<%=link_to "ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
 							<%end%>
-						</li>
-					</div>
-					<table class="tableau">
-					  <tr>
-					    <td><%= achat.produit.name %></td>
-					    <td> <%= achat.region.place %></td>
-					  </tr>
-					</table>
-					<li><div class="center">	
-				  		<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
-
-				  	</div></li>
-					
-				</ul>
-			</div>		
-		<% end %>
-	</p>	
-
-  </div> 
-
-</div> -->
+							<%if achat.signal_achats.length != 0%>
+							<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+							<%end%>
+							<%end%>
+						</div></li>
+					</ul>
+				</div>
+				<% end %>
+				<% end %>
+			</div>
+		</p>
+	</div>
+</div>

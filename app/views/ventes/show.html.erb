@@ -33,7 +33,7 @@
 <%end%>
 
 <% if current_user.is_admin %>
-	<% if @vente.is_authenticate == false %>
+	<% if @vente.is_authenticate != true %>
 		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_vente/#{@vente.id}" %><br>
 	<% end %>
 <% end %>

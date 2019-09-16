@@ -77,24 +77,14 @@ input[name=find]{
   color:white;
   float: right;
 }
-input[type=text], input[type=password] {
+/*input[type=text], input[type=password] {
   width: 400px;
   padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
+  /*margin: 8px 0;*/
+/*  display: inline-block;
   box-sizing: border-box;
-}
-
-
-.fa-search{
-  padding: 1px;
-  margin-top: 16px;
-  border:none;
-  border-bottom: 1.5px solid white;
-  background-color: transparent;
-  color:white;
-  float: right;
-}
+}*/
+*/
 
 
 
@@ -361,8 +351,8 @@ textarea{
   opacity: 0.8;
   border: 1px solid #f7f139;
 }
-/*grid*/
-/******************************/
+/*grid
+*****************************/
 
 .scroll{
   display: inline-block;
@@ -372,12 +362,10 @@ textarea{
   overflow-y: scroll;
   overflow-x: hidden;
   padding-top: 10px;
-
 }
 .scroll1{
   padding-top: 10px;
   display: inline-block;
-
   width: 790px;
   vertical-align: top;
   padding-right: 5px;
@@ -387,8 +375,8 @@ textarea{
   overflow-y: scroll;
 }
 
-/*boutton*/
-/******************** BOUTTON*******************************/
+boutton
+******************* BOUTTON******************************
 .boutton{
   border:1px solid;
   padding: 10px;
@@ -459,7 +447,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
+ Rounded sliders 
 .slider.round {
   border-radius: 34px;
 }
@@ -468,21 +456,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/*table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}*/
 .simple{
   background-color: #93948b;
   opacity: 0.5;
@@ -494,8 +467,8 @@ tr:nth-child(even) {
 .seemore{
   font-size:12px;
 }
-  /*list*/
-  /**********************************************/
+ /* list
+  *********************************************/
 .mar {
   }
 ul{
@@ -517,8 +490,8 @@ width: 150%;
 margin-right: 5px;
 font-size:12px;
 }
-/*achat*/
-/*/**************************/
+/*achat
+/**************************/
 .editachat1 {
   display: inline-block;
   margin-left: 90px;
@@ -592,3 +565,6 @@ span.psw {
 .navbar{
   height: 90px;
 }
+.online{
+  margin-top: 32px;
+}*/*/

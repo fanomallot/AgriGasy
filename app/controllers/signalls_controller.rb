@@ -6,13 +6,13 @@ class SignallsController < ApplicationController
 		if (Signall.find_by(user: current_user, vente_id: params[:vente_id])==nil)
 			@signal = Signall.new(user: current_user, vente_id: params[:vente_id])
 			if @signal.save
-				redirect_to "/"  #signal create
+				redirect_back fallback_location: '/' ,allow_other_host: false  #signal create
 			else
-				redirect_to "/"  #signal non create
+				redirect_back fallback_location: '/' ,allow_other_host: false  #signal non create
 			end			
 		else
 			Signall.find_by(user: current_user, vente_id: params[:vente_id]).destroy
-			redirect_to "/"
+			redirect_back fallback_location: '/' ,allow_other_host: false
 		end
 
 
