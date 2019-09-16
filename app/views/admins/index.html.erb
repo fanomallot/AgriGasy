@@ -12,9 +12,19 @@
 	<% end %>
 	<br>
 
-	<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %><br>
-	<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %><br>
-	<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
+	<p>
+		<% if @vente.length != 0 %>
+			<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (<%@vente.length%>) <br>
+		<% else %>
+			<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (0) <br>
+		<% end %>
+		<% if @achat.length != 0 %>
+			<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (<%@achat.length%>) <br>
+		<% else %>
+			<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (0) <br>
+		<% end %>
+		<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
+	</p>
 
 	<p>Essayer de bien gérer notre page</p>
 </div>
