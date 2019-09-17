@@ -614,7 +614,6 @@ img.avatar {
 
 span.psw {
   
-  background-color: white;
 }
 
 .btn-log{
@@ -625,4 +624,65 @@ span.psw {
 .btn-sig{
    width: 120px;
    border-radius: 14px;
+}
+
+.grid-con {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  border-radius: 15px;
+  grid-column-gap: 10px;
+}
+.grid-it {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 50px;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 15px;
+
+}
+
+#slider {
+  overflow: hidden;
+}
+#slider figure {
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  animation: 20s slider infinite;
+}
+#slider figure img {
+  width: 20%;
+  float: left;
+}
+
+@keyframes slider {
+  0% {
+    left: 0;
+  }
+  20% {
+    left: 0;
+  }
+  25% {
+    left: -100%;
+  }
+  45% {
+    left: -100%;
+  }
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  75% {
+    left: -300%;
+  }
+  95% {
+    left: -300%;
+  }
+  100% {
+    left: -400%;
+  }
 }
