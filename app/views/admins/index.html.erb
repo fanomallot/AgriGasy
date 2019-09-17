@@ -1,6 +1,6 @@
 <div class="ground editachatground blanche">
 <div class="container">
-	<h1>BIENVENUE DANS NOTRE SITE</h1>
+	<h1><strong>BIENVENUE DANS NOTRE SITE</strong></h1>
 
 	<p>
 		<h3>Vous êtes l'administrateur de notre site <strong><i>AgriGasy</i></strong>.<br/></h3>
@@ -13,16 +13,8 @@
 	<br>
 
 	<p>
-		<% if @vente.length != 0 %>
-			<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (<%@vente.length%>) <br>
-		<% else %>
-			<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (0) <br>
-		<% end %>
-		<% if @achat.length != 0 %>
-			<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (<%@achat.length%>) <br>
-		<% else %>
-			<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (0) <br>
-		<% end %>
+		<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (<%=@vente.length%>) <br>
+		<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (<%=@achat.length%>) <br>
 		<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
 	</p>
 

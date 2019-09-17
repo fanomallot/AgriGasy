@@ -1,9 +1,14 @@
 <div class="ground editachatground blanche">
 
-	<h1>Liste de tous les produits</h1>
+	<h1>Liste de tous les produits disponibles</h1>
 	<p>
 		<% @produit.each do |produit| %>
-			<strong>Nom : </strong> <%= produit.name %> <%= link_to "(details)", produit_path(produit.id) %><%if user_signed_in?%> <%if current_user.is_admin%>|<%= link_to "supprimer", produit_path(produit.id), method: 'delete', data: {confirm: 'supprimer?'} %><%end%><%end%><br/>
+			<h4><strong>Nom : </strong><%= link_to produit.name, produit_path(produit.id) %></h4>
+			<%if user_signed_in?%>
+				<%if current_user.is_admin%>
+					<i><%= link_to " supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+				<%end%>
+			<%end%>
 		<% end %>
 	</p>
 </div>
