@@ -17,7 +17,16 @@
 						<div class="tezz">
 							<li>
 								<%if vente.avatarvente.attached?%>
-								<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %><%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:20px; width: 24px;"  %></a>
+								<div class="img-comp-container">
+								  <div class="img-comp-img pblink">
+								    <a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %>
+									</a>
+								  </div>
+								  <div class="img-comp-img img-comp-overlay">
+								  	<a href="<%=user_path(vente.user.id)%>"><%if vente.user.profil.attached?%>
+								    <%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %><%else%><i class="menu-item fa fa-user"></i><%end%></a>
+								  </div>
+								</div>
 								<%else%>
 								<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
 								<%end%>
@@ -69,7 +78,18 @@
 						<div class="tezz">
 							<li>
 								<%if achat.avatarachat.attached?%>
-								<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
+								<div class="img-comp-container">
+								  <div class="img-comp-img pblink">
+								    <a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
+								  </div>
+								  <div class="img-comp-img img-comp-overlay">
+								  	<a href="<%=user_path(achat.user.id)%>">	<%if achat.user.profil.attached?%>
+								    	<%= image_tag achat.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %><%end%>
+								  	</a>
+								  </div>
+								</div>
+
+								
 								<%else%>
 								<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
 								<%end%>
@@ -106,11 +126,4 @@
 		</p>
 	</div>
 </div>
-<div class="img-comp-container">
-  <div class="img-comp-img">
-    <img src="color1.jpg" width="300" height="200">
-  </div>
-  <div class="img-comp-img img-comp-overlay">
-    <img src="cover_4.jpg" width="70" height="90">
-  </div>
-</div>
+

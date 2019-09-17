@@ -85,13 +85,13 @@ input[name=find]{
 /*  display: inline-block;
   box-sizing: border-box;
 }*/
-*/
 
 
 
-* {
+
+/** {
   box-sizing: border-box;
-}
+}*/
 
 /* Create a column layout with Flexbox */
 .row {
@@ -362,10 +362,10 @@ textarea{
   vertical-align: top;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 .scroll1{
-  padding-top: 10px;
+  padding-top: 20px;
   display: inline-block;
   width: 790px;
   vertical-align: top;
@@ -374,10 +374,11 @@ textarea{
   height: 650px;
   overflow-x: hidden;
   overflow-y: scroll;
+
 }
 
-boutton
-******************* BOUTTON******************************
+/*boutton
+******************* BOUTTON*******************************/
 .boutton{
   border:1px solid;
   padding: 10px;
@@ -580,7 +581,7 @@ span.psw {
 /*photo de user*/
 .img-comp-container {
   position: relative;
-  height: 200px; 
+  height: 200px; /*should be the same height as the images*/
 }
 
 .img-comp-img {
@@ -599,9 +600,27 @@ span.psw {
   position: absolute;
   z-index:9;
   cursor: ew-resize;
+
   width: 40px;
   height: 40px;
   background-color: #2196F3;
   opacity: 0.7;
   border-radius: 50%;
+
+}
+.img-comp-overlay{
+  border-radius: 50%;
+  margin-left: 185px;
+  margin-top: 155px;
+}
+.img-comp-overlay:hover{
+  border:1px solid rgba(52, 172, 220, 0.98);
+  opacity: 0.8;
+
+}
+.pblink:hover{
+  border: 2px solid white;
+  box-shadow: 1px 1px;
+  opacity: 0.6;
+
 }
