@@ -1,4 +1,3 @@
-
 <div class="ground editachatground blanche">
 <div class="grid-con">
   <div class="grid-it">
@@ -20,31 +19,31 @@
     <%= image_tag('000.jpg', class: "avatar")%><br>
 
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", type:"text", placeholder:"First Name",name: "logsign", required: true %><br>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", type:"text", placeholder:"First Name",id: "logsign", required: true %><br>
 
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", type:"text", placeholder:"Last Name",name: "logsign" %><br>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", type:"text", placeholder:"Last Name",id: "logsign" %><br>
 
     <%= f.label :age %><br />
     <%= f.text_field :age, autofocus: true, autocomplete: "age", type:"text", placeholder:"Age" %><br>
 
     <%= f.label :ville %><br />
-    <%= f.text_field :ville, autofocus: true, autocomplete: "ville",type:"text", placeholder:"City",name: "logsign", required: true %><br>
+    <%= f.text_field :ville, autofocus: true, autocomplete: "ville",type:"text", placeholder:"City",id: "logsign", required: true %><br>
 
     <%= f.label :description %><br />
     <%= f.text_area :description, autofocus: true, autocomplete: "description" %><br>
 
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",name: "logsign", required: true%><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",id: "logsign", required: true%><br>
 
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",name: "logsign", required: true %><br>
+    <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",id: "logsign", required: true %><br>
 
      <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",type:"password", placeholder:"Confirme Password",name: "logsign", required: true %><br>    
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",type:"password", placeholder:"Confirme Password",id: "logsign", required: true %><br>    
 
     <button type="submit" class="btn-sig">Sign-in</button>
 
