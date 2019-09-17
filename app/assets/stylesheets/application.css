@@ -443,7 +443,7 @@ input:checked + .slider {
 
 h1 {
   text-align: center;
-  color: blue;
+  color: grey;
 }
 
 
@@ -717,7 +717,7 @@ span.psw {
   font-family: arial;
   color: black;
 }
-
+/*
 .title {
   color: grey;
   font-size: 18px;
@@ -744,7 +744,7 @@ a {
 
 button:hover, a:hover {
   opacity: 0.7;
-}
+}*/
 
 
 /*///////////////////////////*/
@@ -771,5 +771,47 @@ button:hover, a:hover {
 }
 
 se{
+  color: grey;
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-item {
   color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.grid-sous-item{
+  display: inline-grid;
+    grid-template-columns: auto auto;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.grid-sous-items{
+  display: inline-grid;
+    grid-template-columns: auto auto;
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }

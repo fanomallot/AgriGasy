@@ -2,13 +2,29 @@
 
 <h1>Editer le profil d'utilisateur</h1>
  <%= form_tag url_for(action: 'update'), method:'patch' %>
+<div class="grid-con">
+	<div class="grid-it">
+		<div id="slider">
+		    <figure>
+		      <%= image_tag("r01.jpg")%>
+		      <%= image_tag("r02.jpg")%>
+		      <%= image_tag("r03.jpg")%>
+		      <%= image_tag("r01.jpg")%>
+		      <%= image_tag("r03.jpg")%>
+		    </figure>
+		  </div>
+		</div>
+	<div class="grid-it">
+	 <h3>First Name<br>    <input type="text" name="first_name" id="logsign" value="<%=@user.first_name%>"><br>
+	 Last Name<br>    <input type="text" name="last_name" id="logsign" value="<%=@user.last_name%>"><br>
+	 Age<br>   <input type="number" name="age"  min="0" id="logsign" value="<%=@user.age%>"><br>
+	 City<br>    <input type="text" name="ville" id="logsign" value="<%=@user.ville%>"><br>
+	 Contaclt<br>    <input type="text" name="contact" id="logsign" value="<%=@user.contact%>"><br>
+	 Description<br>    <textarea type="text" name="description" id="logsign"><%=@user.description%></textarea> </h3>
 
-	 first_name:<input type="text" name="first_name" value="<%=@user.first_name%>"><br>
-	 last_name:<input type="text" name="last_name" value="<%=@user.last_name%>"><br>
-	 Age : <input type="number" name="age"  min="0" value="<%=@user.age%>"><br>
-	 Habite à : <input type="text" name="ville" value="<%=@user.ville%>"><br>
-	 contact :<input type="text" name="contact" value="<%=@user.contact%>"><br>
-	 description:<textarea type="text" name="description"><%=@user.description%></textarea>
-
-<input type="submit" value="update">
+<button type="submit" class="btn btn-primary">Update</button>
+	</div>
 </div>
+</div>
+
+

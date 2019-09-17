@@ -65,59 +65,104 @@
 				  </div>
 			</div>
 		</div>  
-		<div class="g grid-ito">
-			<% if current_user.is_admin %>
-					<% if @user.is_admin %>
-						<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
-						<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
-					<% else %>
-						<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
-						<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
-					<% end %>
-				<% end %>
-				<%if current_user == @user || current_user.is_admin%>
-					<%if @user.ventes.length != 0%>
-						<h1>voici mon liste de publication de vente</h1>
-						<p>liste en ligne</p>
-						<%@user.ventes.each do |vente|%>
-							<%if vente.is_authenticate%>
-								<%=vente.produit.name%><br>
-								<%=vente.region.place%><br>
-								<%= link_to "See more", vente_path(vente.id) %><br>
-							<%end%>
-						<%end%>
-						<br>
-						<p>liste en attent</p>
-						<%@user.ventes.each do |vente|%>
-							<%unless vente.is_authenticate%>
-								<%=vente.produit.name%><br>
-								<%=vente.region.place%><br>
-								<%= link_to "See more", vente_path(vente.id) %><br>
-							<%end%>
-						<%end%>
-						<br>
+	</div>
+	<div style="text-align: center;">
+	<% if current_user.is_admin %>
+			<% if @user.is_admin %>
+				<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+				<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
+			<% else %>
+				<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+				<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="grid-container">
+		<%if current_user == @user || current_user.is_admin%>
+			<div class="grid-item">
+				<h1>voici mon liste de publication de vente</h1>
+			<%if @user.ventes.length != 0%>
+				<table>
+				<tr>	
+				<th>Liste en ligne</th>
+				<th>Liste en attent</th>
+				</tr>	
+				<tr>			
+				<%@user.ventes.each do |vente|%>
+					<%if vente.is_authenticate%>
+					<td>
+						<h6>
 
-					<%end%>
-					<%if @user.achats.length != 0%>
-						<h1>voici mon liste de publication d'achat</h1>
-						<p>liste en ligne</p>
-						<%@user.achats.each do |achat|%>
-							<%if achat.is_authenticate%>
-								<%=achat.produit.name%><br>
-								<%=achat.region.place%><br>
-								<%= link_to "See more", achat_path(achat.id) %><br>
-							<%end%>
-						<%end%>
-						<p>liste en attent</p>
-						<%@user.achats.each do |achat|%>
-							<%unless achat.is_authenticate%>
-								<%=achat.produit.name%><br>
-								<%=achat.region.place%><br>
-								<%= link_to "See more", achat_path(achat.id) %><br>
-							<%end%>
-						<%end%>
+						<%=vente.produit.name%><br>
+						<%=vente.region.place%><br>
+						<%= link_to "See more", vente_path(vente.id) %><br>
+
+						</h6>
+					</td>
 					<%end%>
 				<%end%>
-		</div>  
+				</tr>
+				
+				
+				<tr>
+				<%@user.ventes.each do |vente|%>
+					<%unless vente.is_authenticate%>
+					<td>
+						<h6>
+
+						<%=vente.produit.name%><br>
+						<%=vente.region.place%><br>
+						<%= link_to "See more", vente_path(vente.id) %><br>
+
+						</h6>
+					</td>
+					<%end%>
+				<%end%>
+				</tr>
+				</table>
+			<%end%>
+			</div>
+			<div class="grid-item">
+				<h1>voici mon liste de publication d'achat</h1>
+			<%if @user.achats.length != 0%>
+				<table>
+				<tr>
+					<th>Liste en ligne</th>
+					<th>Liste en attent</th>
+				</tr>
+				<tr>
+				<%@user.achats.each do |achat|%>
+					<%if achat.is_authenticate%>
+					<td>
+						<h6>
+
+						<%=achat.produit.name%><br>
+						<%=achat.region.place%><br>
+						<%= link_to "See more", achat_path(achat.id) %><br>
+
+						</h6>
+					</td>
+					<%end%>
+				<%end%>
+				</tr>
+				<tr>
+				<%@user.achats.each do |achat|%>
+					<%unless achat.is_authenticate%>
+					<td>
+						<h6>
+
+						<%=achat.produit.name%><br>
+						<%=achat.region.place%><br>
+						<%= link_to "See more", achat_path(achat.id) %><br>
+
+						</h6>
+					</td>
+					<%end%>
+				<%end%>
+				</tr>
+				</table>
+			<%end%>
+			</div>
+		<%end%>
 	</div>
 </div>
