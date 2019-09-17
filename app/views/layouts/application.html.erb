@@ -56,7 +56,10 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                  <%if user_signed_in?%>
+                  <%if current_user.is_admin%>
                   <li class="active"><a href="/">Admin Dasbord</a></li>
+                  <%end%><%end%>
                   <li class="active"> <a href="<%=produits_path%>"> Produits</a></li>
                   <li class="active"> <a href="<%=regions_path%>">Regions</a> </li>
                   <li> <a href="javascript:void(0);" data-toggle="search" class="hidden-xs"><i class="fa fa-search"></i></a>

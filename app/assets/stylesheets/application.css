@@ -85,13 +85,13 @@ input[name=find]{
 /*  display: inline-block;
   box-sizing: border-box;
 }*/
-*/
 
 
 
-* {
+
+/** {
   box-sizing: border-box;
-}
+}*/
 
 /* Create a column layout with Flexbox */
 .row {
@@ -362,10 +362,10 @@ textarea{
   vertical-align: top;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 .scroll1{
-  padding-top: 10px;
+  padding-top: 20px;
   display: inline-block;
   width: 790px;
   vertical-align: top;
@@ -374,10 +374,11 @@ textarea{
   height: 650px;
   overflow-x: hidden;
   overflow-y: scroll;
+
 }
 
-boutton
-******************* BOUTTON******************************
+/*boutton
+******************* BOUTTON*******************************/
 .boutton{
   border:1px solid;
   padding: 10px;

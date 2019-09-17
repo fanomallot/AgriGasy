@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :is_admis_or_current_user?
+	before_action :is_admis_or_current_user?,except:[:show]
 	before_action :is_admis,only: [:destroy]
 	def show
 		@user = User.find(params[:id])

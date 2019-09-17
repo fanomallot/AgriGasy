@@ -1,6 +1,7 @@
 <div class="ground editachatground blanche">
 
-<h1>Mon profil est changer</h1>
+
+<h1><%if @user == current_user%>Mon profil<%else%>Profil de <%=@user.first_name%><%end%></h1>
 
 <h3>Profil actuel</h3>
 <%if @user.profil.attached?%>
@@ -37,10 +38,11 @@
 <%end%>
 <i>description :</i><br>
 <%= @user.description%><br>
-<i>Votre e-mail :</i><br>
+<i>e-mail :</i><br>
 <%=@user.email%><br>
+<%if @user == current_user || current_user.is_admin%>
 <%=link_to 'editer mon profil', edit_user_path(@user.id)%><br>
-
+<%end%>
 <% if current_user.is_admin %>
 	<% if @user.is_admin %>
 		<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
@@ -50,25 +52,48 @@
 		<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
 	<% end %>
 <% end %>
+<%if current_user == @user || current_user.is_admin%>
+	<%if @user.ventes.length != 0%>
+		<h1>voici mon liste de publication de vente</h1>
+		<p>liste en ligne</p>
+		<%@user.ventes.each do |vente|%>
+			<%if vente.is_authenticate%>
+				<%=vente.produit.name%><br>
+				<%=vente.region.place%><br>
+				<%= link_to "See more", vente_path(vente.id) %><br>
+			<%end%>
+		<%end%>
+		<br>
+		<p>liste en attent</p>
+		<%@user.ventes.each do |vente|%>
+			<%unless vente.is_authenticate%>
+				<%=vente.produit.name%><br>
+				<%=vente.region.place%><br>
+				<%= link_to "See more", vente_path(vente.id) %><br>
+			<%end%>
+		<%end%>
+		<br>
 
-<%if @user.ventes.length != 0%>
-	<h1>voici mon liste de publication de vente</h1>
-	<%@user.ventes.each do |vente|%>
-		<%=vente.produit.name%><br>
-		<%=vente.region.place%><br>
-		<%= link_to "See more", vente_path(vente.id) %><br>
 	<%end%>
-	<br>
-<%end%>
-<%= link_to "Créer une publication vente", new_vente_path %><br>
-<%if @user.achats.length != 0%>
-	<h1>voici mon liste de publication d'achat</h1>
-	<%@user.achats.each do |achat|%>
-		<%=achat.produit.name%><br>
-		<%=achat.region.place%><br>
-		<%= link_to "See more", achat_path(achat.id) %><br>
+	<%if @user.achats.length != 0%>
+		<h1>voici mon liste de publication d'achat</h1>
+		<p>liste en ligne</p>
+		<%@user.achats.each do |achat|%>
+			<%if achat.is_authenticate%>
+				<%=achat.produit.name%><br>
+				<%=achat.region.place%><br>
+				<%= link_to "See more", achat_path(achat.id) %><br>
+			<%end%>
+		<%end%>
+		<p>liste en attent</p>
+		<%@user.achats.each do |achat|%>
+			<%unless achat.is_authenticate%>
+				<%=achat.produit.name%><br>
+				<%=achat.region.place%><br>
+				<%= link_to "See more", achat_path(achat.id) %><br>
+			<%end%>
+		<%end%>
 	<%end%>
 <%end%>
-<%= link_to "Créer une publication achat", new_achat_path %><br>
 
 </div>
