@@ -82,15 +82,15 @@
 			<div class="grid-item">
 				<h1>voici mon liste de publication de vente</h1>
 			<%if @user.ventes.length != 0%>
-				<table>
-				<tr>	
-				<th>Liste en ligne</th>
-				<th>Liste en attent</th>
-				</tr>	
-				<tr>			
+				<table name="pro">
+				<tr name="pro">	
+				<th name="pro">Liste en ligne</th>
+				<th name="pro">Liste en attent</th>
+				</tr name="pro">	
+				<tr name="pro">			
 				<%@user.ventes.each do |vente|%>
 					<%if vente.is_authenticate%>
-					<td>
+					<td name="pro">
 						<h6>
 
 						<%=vente.produit.name%><br>
@@ -98,16 +98,16 @@
 						<%= link_to "See more", vente_path(vente.id) %><br>
 
 						</h6>
-					</td>
+					</td name="pro">
 					<%end%>
 				<%end%>
-				</tr>
+				</tr name="pro">
 				
 				
-				<tr>
+				<tr name="pro">
 				<%@user.ventes.each do |vente|%>
 					<%unless vente.is_authenticate%>
-					<td>
+					<td name="pro">
 						<h6>
 
 						<%=vente.produit.name%><br>
@@ -115,25 +115,25 @@
 						<%= link_to "See more", vente_path(vente.id) %><br>
 
 						</h6>
-					</td>
+					</td name="pro">
 					<%end%>
 				<%end%>
-				</tr>
-				</table>
+				</tr name="pro">
+				</table name="pro">
 			<%end%>
 			</div>
 			<div class="grid-item">
 				<h1>voici mon liste de publication d'achat</h1>
 			<%if @user.achats.length != 0%>
-				<table>
-				<tr>
-					<th>Liste en ligne</th>
-					<th>Liste en attent</th>
-				</tr>
-				<tr>
+				<table name="pro">
+				<tr name="pro">
+					<th name="pro">Liste en ligne</th>
+					<th name="pro">Liste en attent</th>
+				</tr name="pro">
+				<tr name="pro">
 				<%@user.achats.each do |achat|%>
 					<%if achat.is_authenticate%>
-					<td>
+					<td name="pro">
 						<h6>
 
 						<%=achat.produit.name%><br>
@@ -141,14 +141,14 @@
 						<%= link_to "See more", achat_path(achat.id) %><br>
 
 						</h6>
-					</td>
+					</td name="pro">
 					<%end%>
 				<%end%>
-				</tr>
-				<tr>
+				</tr name="pro">
+				<tr name="pro">
 				<%@user.achats.each do |achat|%>
 					<%unless achat.is_authenticate%>
-					<td>
+					<td name="pro">
 						<h6>
 
 						<%=achat.produit.name%><br>
@@ -156,11 +156,11 @@
 						<%= link_to "See more", achat_path(achat.id) %><br>
 
 						</h6>
-					</td>
+					</td name="pro">
 					<%end%>
 				<%end%>
-				</tr>
-				</table>
+				</tr name="pro">
+				</table name="pro">
 			<%end%>
 			</div>
 		<%end%>

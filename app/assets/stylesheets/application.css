@@ -800,18 +800,18 @@ se{
 }
 
 
-table {
+table[name="pro"] {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-td, th {
+td, th[name="pro"] {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even)[name="pro"] {
   background-color: #dddddd;
 }
