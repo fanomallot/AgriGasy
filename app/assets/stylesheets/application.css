@@ -86,7 +86,15 @@ input[name=find]{
   box-sizing: border-box;
 }*/
 
-
+input#logsign{
+  padding: 1px;
+  margin-top: 15px;
+  border:none;
+  border-bottom: 1.5px solid white;
+  background-color: transparent;
+  color:white;
+  width: 500px
+}
 
 
 /** {
@@ -552,7 +560,6 @@ img.avatar {
 
 span.psw {
   
-  background-color: white;
 }
 
 .btn-log{
@@ -563,6 +570,82 @@ span.psw {
 .btn-sig{
    width: 120px;
    border-radius: 14px;
+}
+
+
+.grid-con {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  border-radius: 15px;
+  grid-column-gap: 10px;
+}
+.grid-it {
+  background-color: rgba(10, 255, 10, 0.1);
+  padding: 50px;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 15px;
+  width: 700px;
+}
+.grid-cono {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  border-radius: 15px;
+  grid-column-gap: 10px;
+}
+.grid-ito {
+  background-color: rgba(10, 255, 10, 0.1);
+  padding: 50px;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+#slider {
+  overflow: hidden;
+}
+#slider figure {
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  animation: 20s slider infinite;
+}
+#slider figure img {
+  width: 20%;
+  float: left;
+}
+
+@keyframes slider {
+  0% {
+    left: 0;
+  }
+  20% {
+    left: 0;
+  }
+  25% {
+    left: -100%;
+  }
+  45% {
+    left: -100%;
+  }
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  75% {
+    left: -300%;
+  }
+  95% {
+    left: -300%;
+  }
+  100% {
+    left: -400%;
+  }
 }
 .navbar{
   height: 90px;
@@ -624,4 +707,71 @@ span.psw {
 }
 .bienvenue{
   background-image: url("cover_4.jpg");
+
+/*//////////////////////////////////////////////////*/
+/*Profil*/
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  color: black;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+
+/*///////////////////////////*/
+/*racourci*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+se{
+  color: black;
 }
