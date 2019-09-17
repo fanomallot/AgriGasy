@@ -38,7 +38,7 @@
                   <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out"></a>
                   <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
                     class="menu-item fa fa-user"<%end%>>
-                    <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'profil_picture',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
+                    <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'P',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
                   </a>
                   <%else%>
                   <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
@@ -83,7 +83,7 @@
                     <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out"></a>
                     <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
                       class="menu-item fa fa-user"<%end%>>
-                      <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'profil_picture',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
+                      <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'P',style: "height:50px; width: 50px;",class:'round profilphoto' %><%else%><%end%>
                     </a>
                     <%else%>
                     <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
@@ -100,7 +100,7 @@
 <!--         <div class="blurred-container">
           <div class="img-src" style="background-image: url('img/cover_4.jpg')"></div>
         </div> -->
-        </div><!--  end navbar -->
+        </div><!--  end navbar -->   
       </div> <!-- end menu-dropdown -->
     </header>
         
