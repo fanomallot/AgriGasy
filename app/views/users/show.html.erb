@@ -1,8 +1,8 @@
 <div class="ground editachatground blanche">
 <h2 style="text-align:center"><%if @user == current_user%>Profil<%else%>Profil de <%=@user.first_name%><%end%></h2>
 
-	<div class=" grid-cono">
-	  	<div class="g grid-ito">
+	<div class="grid-con">
+	  	<div class="grid-it">
 			<h3>Apropos</h3>
 				<h4>
 				<i>First name :</i><br>
@@ -31,14 +31,14 @@
 				<%end%>
 				
 		</div>
-		<div class="g grid-ito">
+		<div class="grid-it">
 		  <div class="card" style="border-radius: 15px;">
 				  <%if @user.profil.attached?%>
 				  <%= image_tag @user.profil, alt: 'profil_picture',style: "width: 100%; border-radius: 50%;" %>
-				  <h7>Changer la photo de profil ?</h7>
+				  <h6>Changer la photo de profil ?</h6>
 					<%= form_tag user_profils_path(@user), multipart: true do %>
 					<span class="btn btn-primary btn-file">
-						Racourcie
+						Parcourir...
 					  <%= file_field_tag :profil%>
 					 </span>
 					  <button type="submit" class="btn btn-primary">MaJ</button>
