@@ -13,48 +13,12 @@
  *= require_tree .
  *= require_self
  */
-/*navbar*/
-/**********************************************/
-
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-  opacity: 0.5;
-  width: 100%;
-  height: 80px;
-  padding: 10px;
-  padding-left: 30px;
-  padding-right: 150px;
-  position: fixed;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #fff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-
-}
-/* Change the color of links on hover */
-.topnav a:hover {
-  opacity: 0.8;
-  color: white;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  font-weight: bold;
-  font-size: 1.2em;
-  
-}
 /************************************/
 /*dropdown*/
 /*************************************/
-.dropbtn {
-  margin-top: 90px;
+.drop-btn {
+  margin-top: 480px;
+  margin-left: 20px;
   background-color: #4000ff;
   color: white;
   opacity: 0.5;
@@ -66,21 +30,21 @@
   position: fixed;
   width:60px;
   height:60px;
+
 }
 
-.dropbtn:hover, .dropbtn:focus {
+.drop-btn:hover, .drop-btn:focus {
   background-color: #4000ff;
   opacity: 0.2;
 }
 
-.dropdown {
-  margin-right: 50px;
-  margin-top: 460px;
+.drop {
   position: fixed;
   display: inline-block;
 }
 
-.dropdown-content {
+.drop-down-content {
+  margin-top: 390px;
   display: none;
   position: absolute;
   background-color: #4000ff;
@@ -91,19 +55,19 @@
   opacity: 0.5;
 }
 
-.dropdown-content a {
+.drop-down-content a {
   color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown a:hover {
+.drop a:hover {
   background-color: #4000ff;
   opacity: 0.2;
 }
 
-.show {display: block;}
+.show {display: block;}*
 /*search bar manipulation */
 input[name=find]{
   padding: 1px;
@@ -114,30 +78,20 @@ input[name=find]{
   color:white;
   float: right;
 }
-input[type=text], input[type=password] {
+/*input[type=text], input[type=password] {
   width: 400px;
   padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
+  /*margin: 8px 0;*/
+/*  display: inline-block;
   box-sizing: border-box;
-}
-
-
-.fa-search{
-  padding: 1px;
-  margin-top: 16px;
-  border:none;
-  border-bottom: 1.5px solid white;
-  background-color: transparent;
-  color:white;
-  float: right;
-}
+}*/
 
 
 
-* {
+
+/** {
   box-sizing: border-box;
-}
+}*/
 
 /* Create a column layout with Flexbox */
 .row {
@@ -398,8 +352,8 @@ textarea{
   opacity: 0.8;
   border: 1px solid #f7f139;
 }
-/*grid*/
-/******************************/
+/*grid
+*****************************/
 
 .scroll{
   display: inline-block;
@@ -408,13 +362,11 @@ textarea{
   vertical-align: top;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding-top: 10px;
-  border: 2px solid; 
+  padding-top: 20px;
 }
 .scroll1{
-  padding-top: 10px;
+  padding-top: 20px;
   display: inline-block;
-  border: 2px solid;
   width: 790px;
   vertical-align: top;
   padding-right: 5px;
@@ -422,10 +374,11 @@ textarea{
   height: 650px;
   overflow-x: hidden;
   overflow-y: scroll;
+
 }
 
-/*boutton*/
-/******************** BOUTTON*******************************/
+/*boutton
+******************* BOUTTON*******************************/
 .boutton{
   border:1px solid;
   padding: 10px;
@@ -496,7 +449,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
+ Rounded sliders 
 .slider.round {
   border-radius: 34px;
 }
@@ -505,21 +458,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/*table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}*/
 .simple{
   background-color: #93948b;
   opacity: 0.5;
@@ -531,14 +469,14 @@ tr:nth-child(even) {
 .seemore{
   font-size:12px;
 }
-  /*list*/
-  /**********************************************/
+ /* list
+  *********************************************/
 .mar {
   }
 ul{
   list-style-type: none;
 }
-.container {
+.containerlist {
   display: inline-block;
 }
 .border {
@@ -554,8 +492,8 @@ width: 150%;
 margin-right: 5px;
 font-size:12px;
 }
-/*achat*/
-/*/**************************/
+/*achat
+/**************************/
 .editachat1 {
   display: inline-block;
   margin-left: 90px;
@@ -626,6 +564,7 @@ span.psw {
    border-radius: 14px;
 }
 
+
 .grid-con {
   display: grid;
   grid-template-columns: auto auto;
@@ -685,4 +624,62 @@ span.psw {
   100% {
     left: -400%;
   }
+
+.navbar{
+  height: 90px;
+}
+.online{
+  margin-top: 32px;
+}
+#tree{
+  width: 40px;
+  height: 50px;
+
+}
+.toptop{
+  margin-top: 20px;
+}
+/*photo de user*/
+.img-comp-container {
+  position: relative;
+  height: 200px; /*should be the same height as the images*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+  vertical-align:middle;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+.img-comp-overlay{
+  border-radius: 50%;
+  margin-left: 185px;
+  margin-top: 155px;
+}
+.img-comp-overlay:hover{
+  border:1px solid rgba(52, 172, 220, 0.98);
+  opacity: 0.8;
+
+}
+.pblink:hover{
+  border: 2px solid white;
+  box-shadow: 1px 1px;
+  opacity: 0.6;
 }

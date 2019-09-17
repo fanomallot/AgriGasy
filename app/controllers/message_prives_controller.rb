@@ -4,42 +4,57 @@ class MessagePrivesController < ApplicationController
 	   #  @message_envoyE = MessagePrive.where(sender: current_user)
 	   #  puts '*'*90
 	   # puts @vente_user = params[:vente_user]
-	    	 	 receveur = Vente.find(params[:vente_id]).user
-	   @mp =[]
-	   	
-	   	
-		if (MessagePrive.find_by(sender: current_user, recipient: receveur )!=nil && MessagePrive.find_by(sender:receveur  , recipient: current_user)!=nil)
-			
-			message_recue = MessagePrive.where(sender: receveur , recipient: current_user )
-			message_envoyE = MessagePrive.where(sender: current_user, recipient:receveur )
-		@message =message_recue+message_envoyE
-			puts "*"*90
-			puts  "1"
-			max = @message[0]
-			@message.each do |m|
-				if max.created_at < m.created_at
-					max = m 
-					
-				else 
-					max = max
-				
-				end
-				@mp << max
-				
 
-			end	
+	 	if (current_user != Vente.find(params[:vente_id]).user)
+		    	 	 receveur = Vente.find(params[:vente_id]).user
+		   @mp =[]
+		   	
+		   	
+			if (MessagePrive.find_by(sender: current_user, recipient: receveur )!=nil && MessagePrive.find_by(sender:receveur  , recipient: current_user)!=nil)
+				
+				message_recue = MessagePrive.where(sender: receveur , recipient: current_user )
+				message_envoyE = MessagePrive.where(sender: current_user, recipient:receveur )
+			@message =message_recue+message_envoyE
+				puts "*"*90
+				puts  "1"
+				max = @message[0]
+				@message.each do |m|
+					if max.created_at < m.created_at
+						max = m 
 						
-			@message = @mp
-			elsif (MessagePrive.where(sender: current_user, recipient: receveur ).length != 0) 
-			puts "*"*90
-			puts  "2"
-				@message =  MessagePrive.where(sender: current_user, recipient:receveur ).order(created_at: :asc)
+					else 
+						max = max
+					
+					end
+					@mp << max
+					
+
+				end	
+							
+				@message = @mp
+				elsif (MessagePrive.where(sender: current_user, recipient: receveur ).length != 0) 
+				puts "*"*90
+				puts  "2"
+					@message =  MessagePrive.where(sender: current_user, recipient:receveur ).order(created_at: :asc)
+			else
+							puts "*"*90
+				puts  "3"
+				@message =  MessagePrive.where(sender:receveur , recipient:current_user).order(created_at: :asc)
+			end
 		else
-						puts "*"*90
-			puts  "3"
-			@message =  MessagePrive.where(sender:receveur , recipient:current_user).order(created_at: :asc)
+			mp_send_by_vente_user = MessagePrive.where(sender: current_user)
+			mp_received_by_vente_user = MessagePrive.where(recipient: current_user)
+			discussion = []
+			mp_send_by_vente_user.each do |mp_send|
+				mp_received_by_vente_user.each do |mp_received|
+					if (mp_send.recipient == mp_received.sender)
+					end
+				end
+			end
+			#mbl ts vita
+
 		end
-	
+		
 	end
 
 	def show
