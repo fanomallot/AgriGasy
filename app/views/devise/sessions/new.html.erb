@@ -16,9 +16,9 @@
     <%= image_tag('000.jpg', class: "avatar")%><br>
 
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email", required: true%><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",name: "logsign", required: true%><br>
      <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password",type:"password", placeholder:"Enter Password", required: true %><br>    
+    <%= f.password_field :password, autocomplete: "current-password",type:"password", placeholder:"Enter Password",name: "logsign", required: true %><br>    
     <button type="submit" class="btn-sig">Login</button>
     <label>
       <% if devise_mapping.rememberable? %>
