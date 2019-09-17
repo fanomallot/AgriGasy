@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'bienvenues/index'
   get "/accueils",to: 'accueils#accueil'
   get "/admindashboard/authentification_vente", to: 'admindashboard#vente'
   get "/admindashboard/authentification_achat", to: 'admindashboard#achat'
@@ -31,5 +32,6 @@ Rails.application.routes.draw do
   resources :admins
   resources :recherches,only: [:index]
   resources :conditions, only: [:index]
+  resources :bienvenues, only: [:index]
 end
 
