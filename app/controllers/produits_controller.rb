@@ -1,5 +1,5 @@
 class ProduitsController < ApplicationController
-  before_action :is_admis,only: [:destroy]
+
   def index
   	@produit = Produit.all
   end
@@ -17,12 +17,5 @@ class ProduitsController < ApplicationController
   	@produit.destroy
   	redirect_to produits_path
   end
-  private
-  def is_admin?
-    if current_user.is_admin
-      return true
-    else
-      redirect_back fallback_location: "/",allow_other_host: false
-    end
-  end
+
 end
