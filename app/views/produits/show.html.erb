@@ -1,5 +1,4 @@
-<div class="ground editachatground blanche">
-
+<div class="ground editachatground ">
 <!-- affichage allert -->
 <% if flash[:success] %>
 	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
@@ -9,31 +8,52 @@
 	<% end %>
 <% end %>
 
-
-	<h2>Voici la liste de tous les produits sur : <%=@produit.name%></h2>
-	<%if @produit.ventes.length != 0%>
-		<h4>Vente disponible sur <%=@produit.name%></h4>
-		<%@produit.ventes.each do |vente|%>
-			<i>Région du produit : </i><%=vente.region.place%><br>
-			<i>Quantité du produit : </i><%=vente.quantite%><br/>
-			<%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+<h2>Voici la liste de toutes les publications dans la région <%=@produit.name%></h2>
+<%if @produit.ventes.length == 0%>
+	<h4>Aucune publication de vente dans cette produit <%=@produit.name%> </h4>
+	</br>
+<%else%>
+	<h4>Liste des ventes dans cette produit :</h4>
+	<%@produit.ventes.each do |vente|%>
+		<%if user_signed_in?%>
+		 	<%if vente.is_authenticate || current_user.is_admin%>
+			  <i>Nom du produit : </i><%= vente.produit.name %> </br>
+			  <i>Quantité du produit : </i><%=vente.quantite%></br>
+			  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+			<%end%>
+		<%else%>
+			<%if vente.is_authenticate%>
+			  <i>Nom du produit : </i><%= vente.produit.name %> </br>
+			  <i>Quantité du produit : </i><%=vente.quantite%></br>
+			  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+			<%end%>
 		<%end%>
-	<%else%>
-		<h4>Personne n'a besoin de <%=@produit.name%>!</h4><br><br/>
 	<%end%>
-	<%if @produit.achats.length != 0%>
-		<h4>Besoin des autres sur <%=@produit.name%></h4>
-		<%@produit.achats.each do |achat|%>
-			<i>Région du produit : </i><%=achat.region.place%><br>
-			<i>Quantité du produit : </i><%=achat.quantite%><br/>
-			<%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+<%end%>
+<%if @produit.achats.length == 0%>
+	<h4>Aucune publication de besoin dans cette produit <%=@produit.name%> </h4>
+	</br>
+<%else%>
+	<h4>Liste des besoins dans cette produit :</h4>
+	<%@produit.achats.each do |achat|%>
+		<%if user_signed_in?%>
+			<%if achat.is_authenticate || current_user.is_admin%>
+			  <i>Nom du produit : </i><%= achat.produit.name %></br>
+			  <i>Quantité du produit : </i><%=achat.quantite%></br>
+			  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+			<%end%>
+		<%else%>
+			<%if achat.is_authenticate%>
+			  <i>Nom du produit : </i><%= achat.produit.name %></br>
+			  <i>Quantité du produit : </i><%=achat.quantite%></br>
+			  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+			<%end%>
 		<%end%>
-	<%else%>
-		<h4>Personne n'a besoin de <%=@produit.name%>!</h4><br><br/>
 	<%end%>
+<%end%>
+<%if user_signed_in?%>
 	<%if current_user.is_admin%>
-		<i><%= link_to " supprimer ce produit", produit_path, class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+		<%=link_to 'supprimer cette produit',produit_path, class:'btn btn-danger',method: 'delete',data:{confirm: "Etes-vous sûre de vouloir supprimer cette produit?"}  %>
 	<%end%>
-
+<%end%>
 </div>
-
