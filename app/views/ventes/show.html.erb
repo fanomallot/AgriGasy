@@ -1,5 +1,12 @@
 <div class="ground editachatground blanche">
-
+<!-- affichage allert -->
+<% if flash[:success] %>
+	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+<% else  %>
+  	<%if flash[:danger]%>
+		<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+	<% end %>
+<% end %>
 <h1>Voici le contenu de cet article</h1>
 
 <h3>Photo du produit à vendre</h3>
@@ -27,28 +34,33 @@
 </p>
 
 <p>
-<%if @vente.user == current_user || current_user.is_admin%>
-	<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
-	<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
-<%end%>
-
-<% if current_user.is_admin %>
-	<% if @vente.is_authenticate != true %>
-		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_vente/#{@vente.id}" %><br>
-	<% end %>
-<% end %>
-
-<%if current_user != @vente.user%>
-	<%if @vente.user != current_user || current_user.is_admin %>			
-		<%= form_tag "/users/#{current_user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
-		 	  <%=@vente.user.id%>
-		 	  <%= submit_tag "envoyer message" %> 
-		  	  
-		<% end %>
+	<%if @vente.user == current_user || current_user.is_admin%>
+		<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
+		<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
 	<%end%>
-<%else%>
 
-<%end%>
+	<% if current_user.is_admin %>
+		<% if @vente.is_authenticate != true %>
+			<%= link_to "Authentifier la publication", "/admindashboard/authentificate_vente/#{@vente.id}" %><br>
+		<% end %>
+	<% end %>
+
+	<%if current_user != @vente.user%>
+		<%if @vente.user != current_user || current_user.is_admin %>			
+			<%= form_tag "/users/#{@vente.user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
+			 
+			 	  <%= submit_tag "envoyer message" %> 
+			  	  
+			<% end %>
+		<%end%>
+	<%else%>	
+			<%@sender_id.each do |s|%>
+				<%a = MessagePrive.where(sender_id: s, recipient_id:current_user.id)+MessagePrive.where(sender_id:current_user.id, recipient_id:s)%>
+			 <%= link_to "Message from #{User.find(s).first_name}", "/users/#{s}/ventes/#{@vente.id}/message_prives/#{a[0].id}"%><br>	
+		
+			<%end%> 	  
+	<%end%>
+		
 
 </p>
 </div>

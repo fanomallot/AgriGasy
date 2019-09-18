@@ -15,31 +15,16 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
 $(document).ready(function() {
  $('.search').hide();
   var check = true;
   $('.fa-search').on('click',function() {
     if (check == true) {
-      $('.search').fadeIn(1000);
+      $('.search').fadeIn(100);
       check = false;
     }
     else {
-      $('.search').fadeOut(1000);
+      $('.search').fadeOut(10);
       check = true;
     }
   });

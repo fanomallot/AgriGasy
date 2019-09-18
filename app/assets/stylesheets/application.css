@@ -63,31 +63,6 @@ input#logsign{
 
 }
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
-
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
-
-#myMenu li a:hover {
-  background-color: #eee;
-}
 /* Menu Boribory*/
 
 .circular-menu {
@@ -95,14 +70,13 @@ input#logsign{
   right: 1em;
   margin-top: 0;
   top:35em;
-
   z-index: 1500;
 }
 
 .circular-menu .floating-btn {
   display: block;
-  width: 3.5em;
-  height: 3.5em;
+  width: 3.8em;
+  height: 3.8em;
   border-radius: 50%;
   background-color: hsl(4, 98%, 60%);
   box-shadow: 0 2px 5px 0 hsla(0, 0%, 0%, .26);  
@@ -133,8 +107,8 @@ input#logsign{
 .circular-menu:after {
   display: block;
   content: ' ';
-  width: 3.5em;
-  height: 3.5em;
+  width: 3.8em;
+  height: 3.8em;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -659,35 +633,6 @@ span.psw {
   font-family: arial;
   color: black;
 }
-/*
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}*/
-
 
 /*///////////////////////////*/
 /*racourci*/
@@ -764,11 +709,7 @@ tr:nth-child(even)[name="pro"] {
 }
 
 nav{
-  background-attachment: fixed;
   background-color: transparent;
-   top: 0;
-   overflow: hidden;
-
 }
 .fa-search{
   color: #007bff;

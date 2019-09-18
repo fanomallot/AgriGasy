@@ -1,10 +1,10 @@
 class MessagepriveachatsController < ApplicationController
-		def index
+	def index
 	   #  @message_recue = MessagePrive.where(recipient: current_user)
 	   #  @message_envoyE = MessagePrive.where(sender: current_user)
 	   #  puts '*'*90
 	   # puts @vente_user = params[:vente_user]
-	  	 receveur = Achat.find(params[:achat_id]).user
+	  	receveur = Achat.find(params[:achat_id]).user
 	   @mp =[]
 	   	
 	   	
@@ -12,7 +12,7 @@ class MessagepriveachatsController < ApplicationController
 			
 			message_recue = MessagePrive.where(sender: receveur , recipient: current_user )
 			message_envoyE = MessagePrive.where(sender: current_user, recipient:receveur )
-		@message =message_recue+message_envoyE
+			@message =message_recue+message_envoyE
 			puts "*"*90
 			puts  "1"
 			max = @message[0]
@@ -39,7 +39,6 @@ class MessagepriveachatsController < ApplicationController
 			puts  "3"
 			@message =  MessagePrive.where(sender:receveur , recipient:current_user).order(created_at: :asc)
 		end
-	
 	end
 
 	def show

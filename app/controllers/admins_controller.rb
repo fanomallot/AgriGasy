@@ -1,5 +1,4 @@
 class AdminsController < ApplicationController
-	before_action :authenticate_user!
 	before_action :is_admins
 	def index
 		@admin = User.where(is_admin: true)
@@ -22,11 +21,15 @@ class AdminsController < ApplicationController
 	end
 	private
 	def is_admins
-      if current_user.is_admin
-        return true
-      else 
-        redirect_to "/accueils"
-      end
+		if user_signed_in?
+	      if current_user.is_admin
+	        return true
+	      else 
+	        redirect_to "/accueils"
+	      end
+	 	else
+	 		redirect_to "/accueils"
+	 	end
     end
 
 end
