@@ -1,31 +1,30 @@
 <div class="ground editachatground blanche">
 
-<h1><%=@region.place%></h1>
- </br>
+<h2>Voici la liste de toutes les publications dans la région <%=@region.place%></h2>
 <%if @region.ventes.length == 0%>
-	<h4>Aucune publication de vente dans cette region </h4>
+	<h4>Aucune publication de vente dans cette region <%=@region.place%> </h4>
 	</br>
 <%else%>
 	<h4>Liste des ventes dans cette region :</h4>
 	<%@region.ventes.each do |vente|%>
-	  <%=link_to vente.produit.name, vente_path(vente.id)%> 
-	  </br>
-	  <%=vente.quantite%></br>
+	  <i>Nom du produit : </i><%= vente.produit.name %> </br>
+	  <i>Quantité du produit : </i><%=vente.quantite%></br>
+	  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
 	<%end%>
 <%end%>
 <%if @region.achats.length == 0%>
-	<h4>Aucune publication d'achat dans cette region </h4>
+	<h4>Aucune publication de besoin dans cette region <%=@region.place%> </h4>
 	</br>
 <%else%>
-	<h4>Liste des achats dans cette region :</h4>
+	<h4>Liste des besoins dans cette region :</h4>
 	<%@region.achats.each do |achat|%>
-	  <%=link_to achat.produit.name, achat_path(achat.id)%>
-	  </br>
-	  <%=achat.quantite%></br>
+	  <i>Nom du produit : </i><%= achat.produit.name %></br>
+	  <i>Quantité du produit : </i><%=achat.quantite%></br>
+	  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
 	<%end%>
 <%end%>
 <%if current_user.is_admin%>
-	<%=link_to 'supprimer la region',region_path,method: 'delete',data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}  %>
+	<%=link_to 'supprimer cette region',region_path, class:'btn btn-danger',method: 'delete',data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}  %>
 <%end%>
 </div>
 

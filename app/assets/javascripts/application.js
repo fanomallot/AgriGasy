@@ -15,42 +15,17 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-
-
-
-
-
-function mYFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.drop-btn')) {
-    var dropdowns = document.getElementsByClassName("drop-down-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
 $(document).ready(function() {
+ $('.search').hide();
+  var check = true;
+  $('.fa-search').on('click',function() {
+    if (check == true) {
+      $('.search').fadeIn(100);
+      check = false;
+    }
+    else {
+      $('.search').fadeOut(10);
+      check = true;
+    }
+  });
 });

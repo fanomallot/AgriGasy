@@ -1,25 +1,29 @@
 <div class="ground editachatground blanche">
 
-<h2>Voici les liste détails du produits <%=@produit.name%></h2>
-<%if @produit.ventes.length != 0%>
-	<p>vente</p>
-	<%@produit.ventes.each do |vente|%>
-		<i>Région du produit : </i><%=vente.region.place%><br>
-		<i>Quantité du produit : </i><%=vente.quantite%><br/>
-		<%= link_to "See more", vente_path(vente.id) %><br/><br/>
+	<h2>Voici la liste de tous les produits sur : <%=@produit.name%></h2>
+	<%if @produit.ventes.length != 0%>
+		<h4>Vente disponible sur <%=@produit.name%></h4>
+		<%@produit.ventes.each do |vente|%>
+			<i>Région du produit : </i><%=vente.region.place%><br>
+			<i>Quantité du produit : </i><%=vente.quantite%><br/>
+			<%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+		<%end%>
+	<%else%>
+		<h4>Personne n'a besoin de <%=@produit.name%>!</h4><br><br/>
 	<%end%>
-<%else%>
-	Aucune publication de vente de ce produit <%=@produit.name%>!
-<%end%>
-<%if @produit.achats.length != 0%>
-	<p>achat</p>
-	<%@produit.achats.each do |achat|%>
-		<i>Région du produit : </i><%=achat.region.place%><br>
-		<i>Quantité du produit : </i><%=achat.quantite%><br/>
-		<%= link_to "See more", achat_path(achat.id) %><br/><br/>
+	<%if @produit.achats.length != 0%>
+		<h4>Besoin des autres sur <%=@produit.name%></h4>
+		<%@produit.achats.each do |achat|%>
+			<i>Région du produit : </i><%=achat.region.place%><br>
+			<i>Quantité du produit : </i><%=achat.quantite%><br/>
+			<%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+		<%end%>
+	<%else%>
+		<h4>Personne n'a besoin de <%=@produit.name%>!</h4><br><br/>
 	<%end%>
-<%else%>
-	Aucune publication d'achat de ce produit <%=@produit.name%>!
-<%end%>
+	<%if current_user.is_admin%>
+		<i><%= link_to " supprimer ce produit", produit_path, class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+	<%end%>
+
 </div>
 
