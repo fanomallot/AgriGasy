@@ -243,8 +243,8 @@ input#logsign{
 .center{
   text-align: center;
 }
-.blanche{
-  color:white;
+.blanch{
+  color:blue;
 }
 .rouge{
   color: #ff0400;
@@ -446,7 +446,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 button {
   background-color: #4CAF50;
-  color: white;
+ 
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -713,4 +713,7 @@ nav{
 }
 .fa-search{
   color: #007bff;
+}
+input{
+  color: black;
 }

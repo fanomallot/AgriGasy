@@ -1,3 +1,4 @@
+
 <div class="ground editachatground blanche">
 <%if current_user == Achat.find(params[:achat_id]).user%>
   <%for i in (0...@id_sender_recipient.length)%>
@@ -45,5 +46,6 @@
             <%=submit_tag :envoyer%>
         <%end%>
     <%end%>
+
 <%end%>
 </div>
