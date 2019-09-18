@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2019_09_16_122214) do
     t.string "title"
     t.boolean "is_read"
 
-    t.boolean "is_read"
     t.index ["recipient_id"], name: "index_message_prives_on_recipient_id"
     t.index ["sender_id"], name: "index_message_prives_on_sender_id"
   end
