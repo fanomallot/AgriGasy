@@ -74,10 +74,10 @@
       <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out" aria-hidden="true"></a>
       <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
         class="menu-item fa fa-user"<%end%>>
-        <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'profil_picture',style: "height:40px; width: 40px;",class:'round profilphoto' %><%else%><%end%>
+        <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'P',style: "height:40px; width: 40px;",class:'round profilphoto' %><%else%><%end%>
       </a>
       <%if current_user.is_admin%>
-        <a href="/" title="AdminDashboard" class="menu-item fas fa-user-secret" aria-hidden="true"></a>
+        <a href="/" title="AdminDashboard" class="menu-item fa fa-user-secret" aria-hidden="true"></a>
       <%end%>
       <%else%>
       <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
@@ -100,6 +100,7 @@
       </a>
       </menu>
     </div>
+    
     <%= yield %>
     <footer>
     </footer>

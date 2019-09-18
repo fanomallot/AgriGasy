@@ -8,6 +8,15 @@ class VentesController < ApplicationController
 
   def show
     @vente = Vente.find(params[:id])
+    id_sender =[]
+    @message = current_user.received_messages
+    @message.each do |m|
+     id_sender << m.sender.id
+    end
+     id_sender = id_sender.uniq
+     id_sender.delete(Vente.find(params[:id]).user.id)
+     puts id_sender
+     @sender_id = id_sender
   end
 
   def new
@@ -135,8 +144,10 @@ class VentesController < ApplicationController
       lieu: params[:lieu], 
       produit: @vente_produit,
       region: @vente_region)
+      flash[:success] = "La modification a été enregistré"
       redirect_to vente_path(@vente.id)
     else
+      flash[:danger] = "Erreur"
       render "edit"
     end
   end

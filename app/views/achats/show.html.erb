@@ -1,4 +1,12 @@
-<div class="ground editachatground blanche">
+<div class="ground editachatground ">
+<!-- affichage allert -->
+    <% if flash[:success] %>
+    <div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+    <% else  %>
+      <%if flash[:danger]%>
+    <div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+    <% end %>
+    <% end %>
 <h1>Voici le besoin de cette personne</h1>
 
 <h3>Photo du produit qu'on a besoin</h3>
