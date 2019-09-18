@@ -1,89 +1,127 @@
 <div class="ground editachatground blanche">
+<h2 style="text-align:center"><%if @user == current_user%>Profil<%else%>Profil de <%=@user.first_name%><%end%></h2>
 
+	<div class="grid-con">
+	  	<div class="grid-it">
+			<h3>Apropos</h3>
+				<h4>
+				<i>First name :</i><br>
+				<se><%= @user.first_name%></se><br> 
+				<i>Last Name :</i><br>
+				<se><%= @user.last_name%></se><br>
+				<%if params[:age] != "" %>
+				  <i>Age :</i><br>
+				  <se><%=@user.age%>ans</se><br>
+				 <%end%>
+				<%if params[:ville] != "" %>
+				  <i>City :</i><br>
+				  <se><%= @user.ville%></se><br>
+				<%end%>
+				<%if params[:contact] != nil %>
+					<i>Contact :</i><br>
+					<se><%=@user.contact%></se><br>
+				<%end%>
+				<i>Description :</i><br>
+				<se><%= @user.description%></se><br>
+				<i>E-mail :</i><br>
+				<se><%=@user.email%></se><br>
+				</h4>
+				<%if @user == current_user || current_user.is_admin%>
+				<%=link_to 'editer mon profil', edit_user_path(@user.id), class: "btn btn-primary"%><br>
+				<%end%>
+				
+		</div>
+		<div class="grid-it">
+		  <div class="card" style="border-radius: 15px;">
+				  <%if @user.profil.attached?%>
+				  <%= image_tag @user.profil, alt: 'profil_picture',style: "width: 100%; border-radius: 50%;" %>
+				  <h6>Changer la photo de profil ?</h6>
+					<%= form_tag user_profils_path(@user), multipart: true do %>
+					<span class="btn btn-primary btn-file">
+						Parcourir...
+					  <%= file_field_tag :profil%>
+					 </span>
+					  <button type="submit" class="btn btn-primary">MaJ</button>
+					<%end%>
+				<%else%>
+				  <p>=== Vous n'avez pas encore une photo de profil ===</p>
+				  <h7>Ajouter une photo de profil ?</h7>
+					<%= form_tag user_profils_path(@user), multipart: true do %>
+					  <span class="btn btn-primary btn-file">
+						Racourcie
+					  <%= file_field_tag :profil%>
+					 </span>
+					  <span type="submit" class="btn btn-primary">Maj</span>
+					<% end %>
+				<%end%>
+				<br>
+				  <h1><%= @user.first_name%></h1>
+				  <p class="title"><%= @user.description%></p>
+				  <div style="margin: 24px 0;">
+				    <a href="#"><i class="fa fa-dribbble"></i></a> 
+				    <a href="#"><i class="fa fa-twitter"></i></a>  
+				    <a href="#"><i class="fa fa-linkedin"></i></a>  
+				    <a href="#"><i class="fa fa-facebook"></i></a> 
+				  </div>
+			</div>
+		</div>  
+	</div>
+	<div style="text-align: center;">
+	<% if current_user.is_admin %>
+			<% if @user.is_admin %>
+				<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+				<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
+			<% else %>
+				<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
+				<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="grid-container">
+		<%if current_user == @user || current_user.is_admin%>
+			<div class="grid-item">
+				<h1>voici mon liste de publication de vente</h1>
+			<%if @user.ventes.length != 0%>
+				<table name="pro">
+				<tr name="pro">	
+				<th name="pro">Liste en ligne</th>
+				<th name="pro">Liste en attent</th>
+				</tr name="pro">	
+				<tr name="pro">			
+				<%@user.ventes.each do |vente|%>
+					<%if vente.is_authenticate%>
+					<td name="pro">
+						<h6>
 
-<h1><%if @user == current_user%>Mon profil<%else%>Profil de <%=@user.first_name%><%end%></h1>
+						<%=vente.produit.name%><br>
+						<%=vente.region.place%><br>
+						<%= link_to "See more", vente_path(vente.id) %><br>
 
-<h3>Profil actuel</h3>
-<%if @user.profil.attached?%>
-  <%= image_tag @user.profil, alt: 'profil_picture',style: "max-height:400px; width: 440px;" %>
-  <h3>Changer la photo de profil ?</h3>
-	<%= form_tag user_profils_path(@user), multipart: true do %>
-	  <%= file_field_tag :profil %>
-	  <%= submit_tag "mettre à jour" %>
-	<%end%>
-<%else%>
-  <p>=== Vous n'avez pas encore une photo de profil ===</p>
-  <h3>Ajouter une photo de profil ?</h3>
-	<%= form_tag user_profils_path(@user), multipart: true do %>
-	  <%= file_field_tag :profil %>
-	  <%= submit_tag "mettre à jour" %>
-	<% end %>
-<%end%>
-<br>
-<i>first_name :</i><br>
-<%= @user.first_name%><br> 
-<i>last_name :</i><br>
-<%= @user.last_name%><br>
-<%if params[:age] != "" %>
-  <i>Age :</i><br>
-  <%=@user.age%>ans<br>
- <%end%>
-<%if params[:ville] != "" %>
-  <i>Ville :</i><br>
-  <%= @user.ville%><br>
-<%end%>
-<%if params[:contact] != nil %>
-	<i>contact :</i><br>
-	<%=@user.contact%><br>
-<%end%>
-<i>description :</i><br>
-<%= @user.description%><br>
-<i>e-mail :</i><br>
-<%=@user.email%><br>
-<%if @user == current_user || current_user.is_admin%>
-<%=link_to 'editer mon profil', edit_user_path(@user.id)%><br>
-<%end%>
-<% if current_user.is_admin %>
-	<% if @user.is_admin %>
-		<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
-		<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
-	<% else %>
-		<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
-		<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
-	<% end %>
-<% end %>
-<%if current_user == @user || current_user.is_admin%>
-	<%if @user.ventes.length != 0%>
-		<h1>voici mon liste de publication de vente</h1>
-		<p>liste en ligne</p>
-		<%@user.ventes.each do |vente|%>
-			<%if vente.is_authenticate%>
-				<%=vente.produit.name%><br>
-				<%=vente.region.place%><br>
-				<%= link_to "See more", vente_path(vente.id) %><br>
+						</h6>
+					</td name="pro">
+					<%end%>
+				<%end%>
+				</tr name="pro">
+				
+				
+				<tr name="pro">
+				<%@user.ventes.each do |vente|%>
+					<%unless vente.is_authenticate%>
+					<td name="pro">
+						<h6>
+
+						<%=vente.produit.name%><br>
+						<%=vente.region.place%><br>
+						<%= link_to "See more", vente_path(vente.id) %><br>
+
+						</h6>
+					</td name="pro">
+					<%end%>
+				<%end%>
+				</tr name="pro">
+				</table name="pro">
 			<%end%>
-		<%end%>
-		<br>
-		<p>liste en attent</p>
-		<%@user.ventes.each do |vente|%>
-			<%unless vente.is_authenticate%>
-				<%=vente.produit.name%><br>
-				<%=vente.region.place%><br>
-				<%= link_to "See more", vente_path(vente.id) %><br>
-			<%end%>
-		<%end%>
-		<br>
 
-	<%end%>
-	<%if @user.achats.length != 0%>
-		<h1>voici mon liste de publication d'achat</h1>
-		<p>liste en ligne</p>
-		<%@user.achats.each do |achat|%>
-			<%if achat.is_authenticate%>
-				<%=achat.produit.name%><br>
-				<%=achat.region.place%><br>
-				<%= link_to "See more", achat_path(achat.id) %><br>
-			<%end%>
 		<%end%>
 		
 		<p>liste en attent</p>
@@ -92,9 +130,49 @@
 				<%=achat.produit.name%><br>
 				<%=achat.region.place%><br>
 				<%= link_to "See more", achat_path(achat.id) %><br>
-			<%end%>
-		<%end%>
-	<%end%>
-<%end%>
 
+			</div>
+			<div class="grid-item">
+				<h1>voici mon liste de publication d'achat</h1>
+			<%if @user.achats.length != 0%>
+				<table name="pro">
+				<tr name="pro">
+					<th name="pro">Liste en ligne</th>
+					<th name="pro">Liste en attent</th>
+				</tr name="pro">
+				<tr name="pro">
+				<%@user.achats.each do |achat|%>
+					<%if achat.is_authenticate%>
+					<td name="pro">
+						<h6>
+
+						<%=achat.produit.name%><br>
+						<%=achat.region.place%><br>
+						<%= link_to "See more", achat_path(achat.id) %><br>
+
+						</h6>
+					</td name="pro">
+					<%end%>
+				<%end%>
+				</tr name="pro">
+				<tr name="pro">
+				<%@user.achats.each do |achat|%>
+					<%unless achat.is_authenticate%>
+					<td name="pro">
+						<h6>
+
+						<%=achat.produit.name%><br>
+						<%=achat.region.place%><br>
+						<%= link_to "See more", achat_path(achat.id) %><br>
+
+						</h6>
+					</td name="pro">
+					<%end%>
+				<%end%>
+				</tr name="pro">
+				</table name="pro">
+			<%end%>
+			</div>
+		<%end%>
+	</div>
 </div>

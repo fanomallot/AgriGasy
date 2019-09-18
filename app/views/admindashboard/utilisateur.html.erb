@@ -7,14 +7,21 @@
   </tr>
 	<%@user.each do |user| %>
 	  <tr>
-	    <td><%=user.first_name%></td>
-	    <td><%= user.last_name%></td>
-	 
-	    <td><label class="switch">
-			  <input type="checkbox" checked>
-			  <span class="slider round"></span>
-			</label>
-		</td>
+	    <td><%= link_to user.first_name, user_path(user) %></td>
+	    <td><%= link_to user.last_name, user_path(user) %></td>
+	    <% if user.is_admin %>
+		    <td><label class="switch">
+				  <input type="checkbox" checked>
+				  <span class="slider round"></span>
+				</label>
+			</td>
+		<%else%>
+			<td><label class="switch">
+				  <input type="checkbox">
+				  <span class="slider round"></span>
+				</label>
+			</td>
+		<%end%>
   	  </tr>
 	<%end%>
 </table>

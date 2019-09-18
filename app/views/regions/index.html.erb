@@ -1,8 +1,14 @@
 <div class="ground editachatground blanche">
 
-<h1>Liste des regions </h1>
-<%@region.each do |region|%>
-	<%=link_to region.place , region_path(region.id)%>
-</br>
-<%end%>
+	<h1>Liste des regions </h1>
+	<p>
+		<%@region.each do |region|%>
+			<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
+			<%if user_signed_in?%>
+				<%if current_user.is_admin%>
+					<i><%= link_to " supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+				<%end%>
+			<%end%>
+		<%end%>
+	</p>
 </div>
