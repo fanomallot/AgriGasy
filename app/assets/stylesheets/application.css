@@ -95,6 +95,7 @@ input#logsign{
   right: 1em;
   margin-top: 0;
   top:35em;
+  z-index: 1500;
 }
 
 .circular-menu .floating-btn {
@@ -109,7 +110,6 @@ input#logsign{
   line-height: 3.9;
   cursor: pointer;
   outline: 0;
-  z-index: 1500;
 }
 
 .circular-menu.active .floating-btn {
