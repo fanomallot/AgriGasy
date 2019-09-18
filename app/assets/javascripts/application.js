@@ -35,7 +35,7 @@ $(document).ready(function() {
   var check = true;
   $('.fa-search').on('click',function() {
     if (check == true) {
-      $('.search').fadeIn(1000);
+      $('.search').fadeIn(100);
       check = false;
     }
     else {
