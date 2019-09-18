@@ -39,7 +39,7 @@ $(document).ready(function() {
       check = false;
     }
     else {
-      $('.search').fadeOut(1000);
+      $('.search').fadeOut(10);
       check = true;
     }
   });
