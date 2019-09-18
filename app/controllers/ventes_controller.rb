@@ -144,8 +144,10 @@ class VentesController < ApplicationController
       lieu: params[:lieu], 
       produit: @vente_produit,
       region: @vente_region)
+      flash[:success] = "La modification a été enregistré"
       redirect_to vente_path(@vente.id)
     else
+      flash[:danger] = "Erreur"
       render "edit"
     end
   end

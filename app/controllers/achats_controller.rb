@@ -69,8 +69,10 @@ class AchatsController < ApplicationController
     end
   # test de sauvegarde des donnés
     if @achat.save
-      redirect_to root_path
+      flash[:success] = "La publication a été créée avec success,attent d'authentification"
+      redirect_to achat_path(@achat.id)
     else
+      flash[:danger] = "erreur de création"
       render "new"
     end
   end
@@ -137,8 +139,10 @@ class AchatsController < ApplicationController
       lieu: params[:lieu], 
       produit: @achat_produit,
       region: @achat_region)
+      flash[:success] = "La publication a été créée avec success,attent d'authentification"
       redirect_to achat_path(@achat.id)
     else
+      flash[:danger] = "erreur de création"
       render "edit"
     end
   end

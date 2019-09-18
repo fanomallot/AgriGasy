@@ -1,4 +1,12 @@
 <div class="ground editachatground blanche">
+<!-- affichage allert -->
+<% if flash[:success] %>
+	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+<% else  %>
+  	<%if flash[:danger]%>
+		<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+	<% end %>
+<% end %>
 <h2 style="text-align:center"><%if @user == current_user%>Profil<%else%>Profil de <%=@user.first_name%><%end%></h2>
 
 	<div class="grid-con">
