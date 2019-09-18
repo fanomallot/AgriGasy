@@ -2,8 +2,14 @@ class AvatarventesController < ApplicationController
 	before_action :is_admis_or_current_user?
 	def create
 		@vente = Vente.find(params[:vente_id])
-		@vente.avatarvente.attach(params[:avatarvente])
-		redirect_back fallback_location: '/' ,allow_other_host: false
+		if params[:avatarvente]!= nil
+			@vente.avatarvente.attach(params[:avatarvente])
+			flash[:success] = "La photo a été enregistré"
+			redirect_back fallback_location: '/' ,allow_other_host: false
+		else
+			flash[:danger] = "Erreur de chargement de photo"
+			redirect_back fallback_location: '/' ,allow_other_host: false
+		end
 	end
 	private
     def is_admis_or_current_user?

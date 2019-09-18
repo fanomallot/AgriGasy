@@ -1,28 +1,49 @@
 <div class="ground editachatground blanche">
-
-<%@message.each do |mp|%>
-   <%if mp.sender == current_user%>
-     <h1><%=mp.sender.first_name%></h1></br>
-     <%=mp.content%>
-     <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],mp.id),method:'get' do%>
-      <%=submit_tag 'Edit'%>
-<%end%> 
-   <%= form_tag "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{mp.id}",method:'delete' do%>
-      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
-<%end%>
-   	
-   	</br>
-   	 <%else%>
-   	 <h1><%=mp.sender.first_name%></h1>
-   	 <%=mp.content%></br>
-   	 <%end%>
-
-<%end%>
-
-
-<%= form_tag "/users/#{current_user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
-  <%=text_area_tag :content%>
-
-    <%=submit_tag :envoyer%>
+<%if current_user == Achat.find(params[:achat_id]).user%>
+  <%for i in (0...@id_sender_recipient.length)%>
+    <% a = MessagePrive.where(sender_id:current_user.id,recipient_id:@id_sender_recipient[i]) + MessagePrive.where(sender_id: @id_sender_recipient[i],recipient_id:current_user)%>
+        <%= link_to User.find(@id_sender_recipient[i]).first_name, user_achat_messagepriveachat_path(@id_sender_recipient[i],params[:achat_id],a[0].id)%><br>
+     
+  <%end%>
+<%else%>
+      <%if @message.length !=0%>
+        <%i =@message.length%>
+        <%for k in (0..@message.length-1)%>
+            <%i-=1%>
+           <%if @message[i].sender == current_user%>
+                 <h1><%=@message[i].sender.first_name%></h1></br>
+                 <%=@message[i].content%>
+                 <%if current_user == Achat.find(params[:achat_id]).user%>
+                     <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],@message[i].id),method:'get' do%>
+                    <%=submit_tag 'Edit'%>
+                     <%end%>
+                    <%= form_tag "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
+                      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                    <%end%>
+                  <%else%>
+                     <%= form_tag edit_user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id,params[:achat_id],@message[i].id),method:'get' do%>
+                    <%=submit_tag 'Edit'%>
+                     <%end%>
+                    <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
+                      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                    <%end%>
+                  <%end %>
+                </br>
+           <%else%>
+             <h1><%=@message[i].sender.first_name%></h1>
+             <%=@message[i].content%></br>
+           <%end%>  
+        <%end%>
+        <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
+          <%=text_area_tag :content%>
+            <%=submit_tag :envoyer%>
+        <%end%>
+    <%else%>
+    <h1>Pas de message</h1>
+        <%= form_tag "/users/#{current_user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
+          <%=text_area_tag :content%>
+            <%=submit_tag :envoyer%>
+        <%end%>
+    <%end%>
 <%end%>
 </div>

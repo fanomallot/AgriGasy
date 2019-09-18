@@ -2,8 +2,15 @@ class ProfilsController < ApplicationController
 	before_action :is_admis_or_current_user?
 	def create
 		@user = User.find(params[:user_id])
-		@user.profil.attach(params[:profil])
-		redirect_to user_path(@user)
+		if params[:profil] != nil
+			@user.profil.attach(params[:profil])
+    		flash[:success] = "La photo a été enregistré"
+			redirect_to user_path(@user)
+		else
+			flash[:danger] = "Erreur de chargement de photo"
+			redirect_to user_path(@user)
+		end
+
 	end
 	private
 	def is_admis_or_current_user?

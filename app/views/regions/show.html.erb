@@ -1,4 +1,12 @@
 <div class="ground editachatground blanche">
+<!-- affichage allert -->
+<% if flash[:success] %>
+	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+<% else  %>
+  	<%if flash[:danger]%>
+		<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+	<% end %>
+<% end %>
 
 <h2>Voici la liste de toutes les publications dans la région <%=@region.place%></h2>
 <%if @region.ventes.length == 0%>
