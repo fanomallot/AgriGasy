@@ -1,4 +1,4 @@
-<div class="ground editachatground blanche">
+<div class="ground editachatground ">
 <%if current_user == Vente.find(params[:vente_id]).user%>
   <%for i in (0...@id_sender_recipient.length)%>
     <% a = MessagePrive.where(sender_id:current_user.id,recipient_id:@id_sender_recipient[i]) + MessagePrive.where(sender_id: @id_sender_recipient[i],recipient_id:current_user)%>
@@ -25,7 +25,7 @@
                     <%=submit_tag 'Edit'%>
                      <%end%>
                     <%= form_tag "/users/#{Vente.find(params[:vente_id]).user.id}/ventes/#{params[:vente_id]}/message_prives/#{@message[i].id}",method:'delete' do%>
-                      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                      <%=submit_tag 'destroy',class:'boutton btn-danger', data:{confirm: "voulez vraiment supprimer cette message"}%>
                     <%end%>
                   <%end %>
                 </br>
