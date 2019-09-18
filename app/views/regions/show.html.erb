@@ -1,4 +1,4 @@
-<div class="ground editachatground blanche">
+<div class="ground editachatground ">
 <!-- affichage allert -->
 <% if flash[:success] %>
 	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
@@ -15,9 +15,19 @@
 <%else%>
 	<h4>Liste des ventes dans cette region :</h4>
 	<%@region.ventes.each do |vente|%>
-	  <i>Nom du produit : </i><%= vente.produit.name %> </br>
-	  <i>Quantité du produit : </i><%=vente.quantite%></br>
-	  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+		<%if user_signed_in?%>
+		 	<%if vente.is_authenticate || current_user.is_admin%>
+			  <i>Nom du produit : </i><%= vente.produit.name %> </br>
+			  <i>Quantité du produit : </i><%=vente.quantite%></br>
+			  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+			<%end%>
+		<%else%>
+			<%if vente.is_authenticate%>
+			  <i>Nom du produit : </i><%= vente.produit.name %> </br>
+			  <i>Quantité du produit : </i><%=vente.quantite%></br>
+			  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+			<%end%>
+		<%end%>
 	<%end%>
 <%end%>
 <%if @region.achats.length == 0%>
@@ -26,13 +36,25 @@
 <%else%>
 	<h4>Liste des besoins dans cette region :</h4>
 	<%@region.achats.each do |achat|%>
-	  <i>Nom du produit : </i><%= achat.produit.name %></br>
-	  <i>Quantité du produit : </i><%=achat.quantite%></br>
-	  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+		<%if user_signed_in?%>
+			<%if achat.is_authenticate || current_user.is_admin%>
+			  <i>Nom du produit : </i><%= achat.produit.name %></br>
+			  <i>Quantité du produit : </i><%=achat.quantite%></br>
+			  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+			<%end%>
+		<%else%>
+			<%if achat.is_authenticate%>
+			  <i>Nom du produit : </i><%= achat.produit.name %></br>
+			  <i>Quantité du produit : </i><%=achat.quantite%></br>
+			  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+			<%end%>
+		<%end%>
 	<%end%>
 <%end%>
-<%if current_user.is_admin%>
-	<%=link_to 'supprimer cette region',region_path, class:'btn btn-danger',method: 'delete',data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}  %>
+<%if user_signed_in?%>
+	<%if current_user.is_admin%>
+		<%=link_to 'supprimer cette region',region_path, class:'btn btn-danger',method: 'delete',data:{confirm: "Etes-vous sûre de vouloir supprimer cette region?"}  %>
+	<%end%>
 <%end%>
 </div>
 
