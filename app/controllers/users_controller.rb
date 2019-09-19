@@ -11,11 +11,6 @@ class UsersController < ApplicationController
 	end 
 	def update
         @user = User.find(params[:id])
-        if current_user == User.first
-        	@user.is_admin = true
-        else
-        	@user.is_admin = false
-        end
 		if @user.update(first_name: params[:first_name],
 			last_name: params[:last_name],
 			age: params[:age],
