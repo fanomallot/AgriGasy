@@ -364,10 +364,6 @@ input:checked + .slider {
   background-color: #2196F3;
 }
 
-h1 {
-  text-align: center;
-  color: grey;
-}
 
 
 input:focus + .slider {
@@ -446,9 +442,6 @@ font-size:12px;
   padding-top: 2px;
   border-radius: 30px
 }
-
-
-body {font-family: Arial, Helvetica, sans-serif;}
 
 button {
   background-color: #4CAF50;
@@ -707,10 +700,10 @@ nav{
 input{
   color: black;
 }
-/*user profil*/
+/*user profil box*/
 .bigbox{
   padding: 2px;
-  border:3px solid black;
+  border:1px solid black;
 }
 .firstbox{
   width: 270px;
