@@ -1,122 +1,136 @@
-<div class="ground editachatground ">
-<!-- affichage allert -->
-<% if flash[:success] %>
-	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
-<% else  %>
-  	<%if flash[:danger]%>
-		<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
-	<% end %>
-<% end %>
-<h2 style="text-align:center"><%if @user == current_user%>Profil<%else%>Profil de <%=@user.first_name%><%end%></h2>
-			<h3>Apropos</h3>
-				<h4>
-				<i>First name :</i><br>
-				<se><%= @user.first_name%></se><br> 
-				<i>Last Name :</i><br>
-				<se><%= @user.last_name%></se><br>
-				<%if params[:age] != "" %>
-				  <i>Age :</i><br>
-				  <se><%=@user.age%>ans</se><br>
-				 <%end%>
-				<%if params[:ville] != "" %>
-				  <i>City :</i><br>
-				  <se><%= @user.ville%></se><br>
-				<%end%>
-				<%if params[:contact] != nil %>
-					<i>Contact :</i><br>
-					<se><%=@user.contact%></se><br>
-				<%end%>
-				<i>Description :</i><br>
-				<se><%= @user.description%></se><br>
-				<i>E-mail :</i><br>
-				<se><%=@user.email%></se><br>
-				</h4>
-				<%if @user == current_user || current_user.is_admin%>
-				<%=link_to 'editer mon profil', edit_user_path(@user.id), class: "btn btn-primary"%><br>
-				<%end%>
-
-				<%if @user.profil.attached?%>
-				  <%= image_tag @user.profil, alt: 'profil_picture',style: "width: 100px;height:90px;" %>
-				  <h6>Changer la photo de profil ?</h6>
-					<%= form_tag user_profils_path(@user), multipart: true do %>
-
-					  <%= file_field_tag :profil%>
-
-					  <input type="submit" value="Enregistré" > 
-					<%end%>
-				<%else%>
-				  <p>=== Vous n'avez pas encore une photo de profil ===</p>
-				  <h7>Ajouter une photo de profil ?</h7>
-					<%= form_tag user_profils_path(@user), multipart: true do %>
-					  <%= file_field_tag :profil%>
-					  <input type="submit" value="Enregistré">
-					<% end %>
-				<%end%>
-				<br>
-				  <h1><%= @user.first_name%></h1>
-				  <p class="title"><%= @user.description%></p>
-				
-	<% if current_user.is_admin %>
-			<% if @user.is_admin %>
-				<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
-				<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
-			<% else %>
-				<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%><br>
-				<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
-			<% end %>
+<div class=" ground userprofil">
+	
+	<!-- affichage allert -->
+	<% if flash[:success] %>
+		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+	<% else  %>
+	  	<%if flash[:danger]%>
+			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
 		<% end %>
-
-		<%if current_user == @user || current_user.is_admin%>
-		
-				<h1>voici mon liste de publication de vente</h1>
-				<%if @user.ventes.length != 0%>
-				Liste en ligne<br>
-				<%@user.ventes.each do |vente|%>
-					<%if vente.is_authenticate%>
-		
-
-						<%=vente.produit.name%><br>
-						<%=vente.region.place%><br>
-						<%= link_to "See more", vente_path(vente.id) %><br>
-					<%end%>
-				<%end%>
-					Liste en attent<br>
-				<%@user.ventes.each do |vente|%>
-					<%unless vente.is_authenticate%>
-						<%=vente.produit.name%><br>
-						<%=vente.region.place%><br>
-						<%= link_to "See more", vente_path(vente.id) %><br>
-					<%end%>
-				<%end%>
-			<%end%>
-			
-				<h1>voici mon liste de publication d'achat</h1>
-			<%if @user.achats.length != 0%>
-					Liste en ligne<br>
-
-				<%@user.achats.each do |achat|%>
-					<%if achat.is_authenticate%>
-			
-
-						<%=achat.produit.name%><br>
-						<%=achat.region.place%><br>
-						<%= link_to "See more", achat_path(achat.id) %><br>
-
-						
-					<%end%>
-				<%end%>
-					Liste en attent<br>
-				<%@user.achats.each do |achat|%>
-					<%unless achat.is_authenticate%>
-					
-
-						<%=achat.produit.name%><br>
-						<%=achat.region.place%><br>
-						<%= link_to "See more", achat_path(achat.id) %><br>
-
+	<% end %>
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content">
+						<%if current_user == @user || current_user.is_admin%>
+							<h1 class="page-name">Dashboard</h1>
+							<ol class="breadcrumb">
+								<% if current_user.is_admin %>
+									<% if @user.is_admin %>
+										<li>
+											<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%>
+										</li>
+										<li>
+											<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
+										</li>
+									<% else %>
+										<li>
+										<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%>	
+										</li>									
+										<li>
+										<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
+										</li>
+									<% end %>
+								<% end %>	
+								</li>
+								<li class="active"><%if current_user == @user%>Mon compte<%else%>Détail<%end%></li>
+							</ol>
+						<%else%>
+							<%if current_user == @user%>
+								<h1 class="page-name">Mon Profil</h1>
+								<ol class="breadcrumb">
+									<li><a href="/">Home</a></li>
+									<li class="active">my account</li>
+								</ol>
+							<%else%>
+								<h1 class="page-name">About <%=@user.first_name%></h1>
+								<ol class="breadcrumb">
+									<li><a href="/">Home</a></li>
+								</ol>
+							<%end%>
 						<%end%>
-				<%end%>
-				
-			<%end%>
-		<%end%>
-	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="user-dashboard page-wrapper">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-md-12">
+	        <ul class="list-inline blanche text-center">
+	        	<%if current_user.is_admin%>
+	          		<li ><a href="/" class="btn btn-dark">Dashboard</a></li>
+	         	<%end%>
+	         	<%if current_user.is_admin || current_user == @user%>
+		          <li><a href="<%=mes_ventes_path(@user.id)%>" class='btn btn-secondary'>mes publications Ventes</a></li>
+		          <li><a href="<%=mes_achats_path(@user.id)%>" class='btn btn-secondary'>mes publications d'achats</a></li>
+		          <li>
+		          	<%if @user == current_user || current_user.is_admin%>
+						<%=link_to 'editer mon profil', edit_user_path(@user.id), class: "btn btn-secondary"%><br>
+					<%end%>
+
+		          </li>
+		        <%end%>
+	        </ul>
+	        <div class="bigbox">
+	            <div class="firstbox center">
+	            	<%if @user.profil.attached?%>
+					  <%= image_tag @user.profil, alt: 'profil_picture',class:'profilshow' %>
+					   <h6>Changer la photo de profil ?</h6>
+					<%else%>
+						<%if current_user.is_admin || current_user == @user%>
+						  <p>=== Vous n'avez pas encore une photo de profil ===</p>
+						  <%= image_tag "profil.png", alt: 'profil_picture',style: "width: 200px;height:190px;" %><br>
+						  <h7>Ajouter une photo de profil ?</h7>
+						<%else%>
+	            			<%= image_tag "profil.png", alt: 'profil_picture',style: "width: 200px;height:190px;" %><br>
+	            		<%end%>
+					<%end%>
+					<%if current_user.is_admin || current_user == @user%>
+						<%= form_tag user_profils_path(@user), multipart: true do %>
+						  <%= file_field_tag :profil%>
+						  <input type="submit" class="btn btn-primary" value="Change Image">
+						<% end %>
+					<%end%>
+	            </div>
+	            <div class="secondtbox">
+	              <ul class="user-profile-list">
+	                <li ><strong><%= @user.first_name%> <%= @user.last_name%> </strong> </li>
+	                <li>
+	                	<%if @user.age != "" %>
+					  	<%=@user.age%>ans
+					  	<%end%>
+					</li>
+	                <li >
+	                	<%if @user.ville != "" %>
+						  <i>Habite à :</i>
+						  <%= @user.ville%>
+						<%end%>
+	                	
+	                </li> 
+	                <li>
+	                	<%if @user.contact != "" %>
+							<i>Contact :</i>
+							<%=@user.contact%>
+						<%end%>
+	                </li>
+	                <li>
+	                	<i>E-mail :</i>
+						<%=@user.email%>
+	                </li>
+	                <li> 
+	                	<%if @user.description != "" %>
+		                	<i>Description :</i>
+							<%= @user.description%>
+						<%end%>
+					</li>
+	              </ul>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+</div>

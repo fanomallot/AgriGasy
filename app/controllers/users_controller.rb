@@ -2,6 +2,9 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 	before_action :is_admis_or_current_user?,except:[:show]
 	before_action :is_admis,only: [:destroy]
+	def userachat
+		@user = User.find(params[:id])
+	end
 	def show
 		@user = User.find(params[:id])
 	end
@@ -13,8 +16,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if current_user == User.first
         	@user.is_admin = true
-        else
-        	@user.is_admin = false
         end
 		if @user.update(first_name: params[:first_name],
 			last_name: params[:last_name],
