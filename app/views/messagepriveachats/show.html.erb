@@ -36,7 +36,7 @@
             <%=submit_tag :envoyer%>
         <%end%>
     <%else%>
-    <h1>Pas de message</h1>
+    <h1>Ecrire une message</h1>
     <%= form_tag "/users/#{current_user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
       <%=text_area_tag :content%>
         <%=submit_tag :envoyer%>
