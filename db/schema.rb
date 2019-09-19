@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_09_19_093628) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,6 +124,8 @@ ActiveRecord::Schema.define(version: 2019_09_19_093628) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "contact"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["region_id"], name: "index_users_on_region_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

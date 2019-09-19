@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'bienvenues/index'
   get "/accueils",to: 'accueils#accueil'
+
   get "/user/:id/mes_ventes",to: 'users#uservente',as: 'mes_ventes'
   get "/user/:id/mes_achats",to: 'users#userachat',as: 'mes_achats'
   get "/admindashboard/authentification_vente", to: 'admindashboard#vente',as:'admincheckvente'
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   get "/admindashboard/liste_des_utilisateurs", to: 'admindashboard#utilisateur',as:'admincheckuser'
   get "/admindashboard/authentificate_vente/:id", to: 'admindashboard#updatevente',as:'authentificate_vente'
   get "/admindashboard/authentificate_achat/:id", to: 'admindashboard#updateachat',as:'authentificate_achat'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'admins#index'
   resources :ventes do
     resources :avatarventes
@@ -35,5 +36,6 @@ Rails.application.routes.draw do
   resources :recherches,only: [:index]
   resources :conditions, only: [:index]
   resources :bienvenues, only: [:index]
+
 end
 
