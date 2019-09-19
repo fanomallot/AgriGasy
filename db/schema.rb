@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_080602) do
+ActiveRecord::Schema.define(version: 2019_09_19_093628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,12 +53,23 @@ ActiveRecord::Schema.define(version: 2019_09_19_080602) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+<<<<<<< HEAD
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
   end
 
   create_table "conversatons", force: :cascade do |t|
+=======
+  create_table "add_isauthenticate_to_achats", force: :cascade do |t|
+    t.boolean "is_authenticate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "add_isauthenticate_to_ventes", force: :cascade do |t|
+    t.boolean "is_authenticate"
+>>>>>>> development
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,7 +120,6 @@ ActiveRecord::Schema.define(version: 2019_09_19_080602) do
     t.string "last_name"
     t.integer "age"
     t.string "ville"
-    t.integer "contact"
     t.text "description"
     t.string "email"
     t.string "encrypted_password"
@@ -120,6 +130,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_080602) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "contact"
     t.string "provider"
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true

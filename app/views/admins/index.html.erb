@@ -13,9 +13,9 @@
 	<br>
 
 	<p>
-		<%= link_to "Vente à authentifier", "/admindashboard/authentification_vente" %> (<%=@vente.length%>) <br>
-		<%= link_to "Achat à authentifier", "/admindashboard/authentification_achat" %> (<%=@achat.length%>) <br>
-		<%= link_to "Liste des utilisateurs de votre Site", "/admindashboard/liste_des_utilisateurs" %><br>
+		<%= link_to "Vente à authentifier", admincheckvente_path %> (<%=@vente.length%>) <br>
+		<%= link_to "Achat à authentifier", admincheckachat_path %> (<%=@achat.length%>) <br>
+		<%= link_to "Liste des utilisateurs de votre Site", admincheckuser_path %><br>
 	</p>
 
 	<p>Essayer de bien gérer notre page</p>

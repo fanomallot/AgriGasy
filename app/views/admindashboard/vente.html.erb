@@ -29,13 +29,13 @@
 						<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
 			</div></li>
 			<%end%>
-				<%= link_to "Authentifier la publication", "/admindashboard/authentificate_vente/#{vente.id}" %><br>
+				<%= link_to authentificate_vente(vente.id) %><br>
 			<li><div class="center">
 				<%if current_user !=nil %>
 				<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-				<%=link_to "signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
+				<%=link_to "signaler",user_vente_signalls(current_user.id,vente.id),method: 'post' %>
 				<%else%>
-				<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",method: 'post' %>
+				<%=link_to "ne pas signaler", user_vente_signalls(current_user.id,vente.id),method: 'post' %>
 				<%end%>
 				<%if vente.signalls.length != 0%>
 				<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>

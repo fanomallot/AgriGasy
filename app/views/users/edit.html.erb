@@ -1,38 +1,87 @@
-<div class="ground editachatground ">
+<div class="ground">
 <!-- affichage allert -->
-<% if flash[:success] %>
-	<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
-<% else  %>
- 	<%if flash[:danger]%>
-		<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+	<% if flash[:success] %>
+		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+	<% else  %>
+	 	<%if flash[:danger]%>
+			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+		<% end %>
 	<% end %>
-<% end %>
-
-<h1>Editer le profil d'utilisateur</h1>
- <%= form_tag url_for(action: 'update'), method:'patch' %>
-<div class="grid-con">
-	<div class="grid-it">
-		<div id="slider">
-		    <figure>
-		      <%= image_tag("r01.jpg")%>
-		      <%= image_tag("r02.jpg")%>
-		      <%= image_tag("r03.jpg")%>
-		      <%= image_tag("r01.jpg")%>
-		      <%= image_tag("r03.jpg")%>
-		    </figure>
-		  </div>
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content">
+						<h1 class="page-name">Modifier mon profil</h1>
+					</div>
+				</div>
+			</div>
 		</div>
-	<div class="grid-it">
-	 <h3>First Name<br>    <input type="text" name="first_name" id="logsign" value="<%=@user.first_name%>"><br>
-	 Last Name<br>    <input type="text" name="last_name" id="logsign" value="<%=@user.last_name%>"><br>
-	 Age<br>   <input type="number" name="age"  min="0" id="logsign" value="<%=@user.age%>"><br>
-	 City<br>    <input type="text" name="ville" id="logsign" value="<%=@user.ville%>"><br>
-	 Contaclt<br>    <input type="text" name="contact" id="logsign" value="<%=@user.contact%>"><br>
-	 Description<br>    <textarea type="text" name="description" id="logsign"><%=@user.description%></textarea> </h3>
-
-<button type="submit" class="btn btn-primary">Update</button>
+	</section>
+	<div class="page-wrapper ">
+	   <div class="checkout shopping">
+	      <div class="container">
+	         <div class="row">
+	            <div class="col-md-8">
+	               <div class="block billing-details">
+	                  <h4 class="widget-title">changer les détails</h4>
+	                   <%= form_tag url_for(action: 'update'), method:'patch' do%>
+	                     <div class="form-group">
+	                        <label for="user_address">Nom</label>
+	                        <input type="text" class="form-control" name="last_name" value="<%=@user.last_name%>">
+	                     </div>
+	                     <div class="form-group">
+	                        <label for="full_name">Prénom</label>
+	                        <input type="text" class="form-control" name="first_name" value="<%=@user.first_name%>">
+	                     </div>
+	                     <div class="checkout-country-code clearfix">
+	                        <div class="form-group">
+	                           <label for="user_post_code">Age</label>
+	                           <input type="integer" class="form-control" min="0" name="age" value="<%=@user.age%>">
+	                        </div>
+	                        <div class="form-group" >
+	                           <label for="user_city">ville</label>
+	                           <input type="text" class="form-control" name="ville" value="<%=@user.ville%>">
+	                        </div>
+	                     </div>
+	                     <div class="form-group">
+	                        <label for="user_country">Contact</label>
+	                        <input type="text" class="form-control" name="contact" value="<%=@user.contact%>">
+	                     </div>                     
+	                     <div class="form-group">
+	                        <label for="user_country">Description</label>
+	                        <textarea type="text" name="description" class="form-control" ><%=@user.description%></textarea>
+	                     </div>
+	                    <input type="submit" value="Enregistrer" class="btn btn-primary">
+	                  <%end%>
+	               </div>
+	            </div>
+				<div class="col-md-4 ">
+	               <div class="product-checkout-details">
+	                  <div class="block">
+	                     <h4 class="widget-title">Changer la photo</h4>
+	                     <div class="media product-card">
+	                        <%if @user.profil.attached?%>
+							  <%= image_tag @user.profil, alt: 'profil_picture',class:'profiledit' %>
+							   
+							<%else%>
+							  <p>=== Vous n'avez pas encore une photo de profil ===</p>
+							  <%= image_tag "profil.png", alt: 'profil_picture',style: "width: 200px;height:190px;" %><br>	
+							<%end%>
+	                     </div>
+	                     <div >
+	                     	<h6>Changer la photo de profil ?</h6>
+	                        <%= form_tag user_profils_path(@user), multipart: true do %>
+							  <%= file_field_tag :profil%>
+							  <input type="submit" class="btn btn-primary" value="Change Image">
+							<% end %>
+	                     </div>
+	                  </div>
+	               </div>
+	            </div> 
+	         </div>
+	      </div>
+	   </div>
 	</div>
-</div>
-</div>
 
-
+</div>

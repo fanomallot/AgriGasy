@@ -29,17 +29,17 @@
 				<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
 			</div></li>
 			<%end%>
-			<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{achat.id}" %>
+			<%= link_to "Authentifier la publication", authentificate_achat_path(achat.id) %>
 			<li><div class="center">
 				<%if current_user !=nil %>
-				<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-				<%=link_to "signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
-				<%else%>
-				<%=link_to "ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",method: 'post' %>
-				<%end%>
-				<%if achat.signal_achats.length != 0%>
-				<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-				<%end%>
+					<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+						<%=link_to "signaler",user_achat_signal_achats_path(current_user.id,achat.id),method: 'post' %>
+					<%else%>
+						<%=link_to "ne pas signaler", user_achat_signal_achats_path(current_user.id,achat.id),method: 'post' %>
+					<%end%>
+					<%if achat.signal_achats.length != 0%>
+						<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+					<%end%>
 				<%end%>
 			</div></li>
 		</ul>
