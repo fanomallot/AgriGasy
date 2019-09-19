@@ -1,21 +1,23 @@
 class AchatsController < ApplicationController
   before_action :authenticate_user!,except: [:index]
   before_action :is_admis_or_current_user?,only: [:edit,:destroy] 
+  
   def index
     @achat = Achat.all
   end
 
   def show
-    @achat = Achat.find(params[:id])
-    id_sender =[]
-    @message = current_user.received_messages
-    @message.each do |m|
-     id_sender << m.sender.id
-    end
-     id_sender = id_sender.uniq
-     id_sender.delete(Achat.find(params[:id]).user.id)
-     puts id_sender
-     @sender_id = id_sender
+          @achat = Achat.find(params[:id])
+          @achat = Achat.find(params[:id])
+          id_sender =[]
+          @message = current_user.received_messages
+          @message.each do |m|
+          id_sender << m.sender.id
+          end
+          id_sender = id_sender.uniq
+          id_sender.delete(Achat.find(params[:id]).user.id)
+          puts id_sender
+          @sender_id = id_sender
   end
 
   def new
@@ -25,10 +27,10 @@ class AchatsController < ApplicationController
   def create
   # ajout de tous ce qui sont obligatoire dans la table
     @achat = Achat.new(description: params[:description],
+      quantite: params[:quantite], 
       prix: params[:prix] + params[:unite] ,
       date: params[:date],
       lieu: params[:lieu],
-      quantite: params[:quantite], 
       user: current_user, is_authenticate: false)
   # test si le produit exist déjà dans la table produit
     @produit = Produit.all 

@@ -47,7 +47,8 @@
 
 
 	<%if current_user != @vente.user%>
-		<%if @vente.user != current_user || current_user.is_admin %>			
+		<%if @vente.user != current_user || current_user.is_admin %>		
+			
 			<%= form_tag "/users/#{@vente.user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
 			 
 			 	  <%= submit_tag "envoyer message" %> 
