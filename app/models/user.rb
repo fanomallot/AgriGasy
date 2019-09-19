@@ -8,8 +8,8 @@ class User < ApplicationRecord
 	has_many :ventes
 	has_many :achats
 	has_many :signalls
-	has_many :sent_messages, foreign_key: 'sender_id', class_name: "Message_prive"
-	has_many :received_messages, foreign_key: 'recipient_id', class_name: "Message_prive"
+  has_many :sent_messages, foreign_key: 'sender_id', class_name: "MessagePrive"
+  has_many :received_messages, foreign_key: 'recipient_id', class_name: "MessagePrive"
 
 	has_one_attached :profil
 	

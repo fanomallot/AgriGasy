@@ -1,7 +1,37 @@
-<div class="ground editachatground blanche">
+<div class="ground editachatground ">
 
-Message envoyer</br>
+    <%if @message.length !=0%>
+        <%i =@message.length%>
+        <%for k in (0..@message.length-1)%>
+            <%i-=1%>
+           <%if @message[i].sender == current_user%>
+                 <h1><%=@message[i].sender.first_name%></h1></br>
+                 <%=@message[i].content%>
+                 <%= form_tag edit_user_vente_message_prife_path(params[:user_id],params[:vente_id],@message[i].id),method:'get' do%>
+                 
+                    <%=submit_tag 'Edit'%>
+                 <%end%>
+                <%= form_tag "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives/#{@message[i].id}",method:'delete' do%>
+                  <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                <%end%>
+               	</br>
+           <%else%>
+           	 <h1><%=@message[i].sender.first_name%></h1>
+           	 <%=@message[i].content%></br>
+           <%end%>  
+        <%end%>
+        <%= form_tag "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives",method:'post' do%>
+          <%=text_area_tag :content%>
+            <%=submit_tag :envoyer%>
+        <%end%>
+    <%else%>
+    <h1>Pas de message</h1>
+    <%= form_tag "/users/#{current_user.id}/ventes/#{params[:vente_id]}/message_prives",method:'post' do%>
+      <%=text_area_tag :content%>
+        <%=submit_tag :envoyer%>
+    <%end%>
+    <%end%>
 
-
-Message reçue </br>
 </div>
+
+

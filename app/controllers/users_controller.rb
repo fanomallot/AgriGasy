@@ -17,8 +17,10 @@ class UsersController < ApplicationController
 			ville: params[:ville],
 			contact: params[:contact],
 			description: params[:description])
+			flash[:success] = "Modification enregistré"
 			redirect_to user_path(@user.id)
 		else
+			flash[:danger] = "Erreur modification"
 			render edit
 		end
 	end

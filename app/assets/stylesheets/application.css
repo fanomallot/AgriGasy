@@ -13,59 +13,6 @@
  *= require_tree .
  *= require_self
  */
-/************************************/
-/*dropdown*/
-/*************************************/
-.drop-btn {
-  margin-top: 480px;
-  margin-left: 20px;
-  background-color: #4000ff;
-  color: white;
-  opacity: 0.5;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid white;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  width:60px;
-  height:60px;
-
-}
-
-.drop-btn:hover, .drop-btn:focus {
-  background-color: #4000ff;
-  opacity: 0.2;
-}
-
-.drop {
-  position: fixed;
-  display: inline-block;
-}
-
-.drop-down-content {
-  margin-top: 390px;
-  display: none;
-  position: absolute;
-  background-color: #4000ff;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  opacity: 0.5;
-}
-
-.drop-down-content a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.drop a:hover {
-  background-color: #4000ff;
-  opacity: 0.2;
-}
 
 .show {display: block;}*
 /*search bar manipulation */
@@ -73,19 +20,11 @@ input[name=find]{
   padding: 1px;
   margin-top: 15px;
   border:none;
-  border-bottom: 1.5px solid white;
+  border-bottom: 1.5px solid #0056b3;
   background-color: transparent;
-  color:white;
+  color:#0056b3;
   float: right;
 }
-/*input[type=text], input[type=password] {
-  width: 400px;
-  padding: 12px 20px;
-  /*margin: 8px 0;*/
-/*  display: inline-block;
-  box-sizing: border-box;
-}*/
-
 input#logsign{
   padding: 1px;
   margin-top: 15px;
@@ -124,31 +63,6 @@ input#logsign{
 
 }
 
-/* Style the search box */
-#mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
-}
-
-/* Style the navigation menu inside the left column */
-#myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
-}
-
-#myMenu li a:hover {
-  background-color: #eee;
-}
 /* Menu Boribory*/
 
 .circular-menu {
@@ -156,12 +70,13 @@ input#logsign{
   right: 1em;
   margin-top: 0;
   top:35em;
+  z-index: 1500;
 }
 
 .circular-menu .floating-btn {
   display: block;
-  width: 3.5em;
-  height: 3.5em;
+  width: 3.8em;
+  height: 3.8em;
   border-radius: 50%;
   background-color: hsl(4, 98%, 60%);
   box-shadow: 0 2px 5px 0 hsla(0, 0%, 0%, .26);  
@@ -192,8 +107,8 @@ input#logsign{
 .circular-menu:after {
   display: block;
   content: ' ';
-  width: 3.5em;
-  height: 3.5em;
+  width: 3.8em;
+  height: 3.8em;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -328,8 +243,8 @@ input#logsign{
 .center{
   text-align: center;
 }
-.blanche{
-  color:white;
+.blanch{
+  color:blue;
 }
 .rouge{
   color: #ff0400;
@@ -354,7 +269,9 @@ textarea{
 
 }
 .online{
-  margin-top: 10px;
+
+  position: relative;
+  color: #00ff1e;
 }
 .profilphoto:hover{
   opacity: 0.8;
@@ -457,7 +374,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
- Rounded sliders 
+ /*Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
@@ -529,7 +446,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 button {
   background-color: #4CAF50;
-  color: white;
+ 
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -716,35 +633,6 @@ span.psw {
   font-family: arial;
   color: black;
 }
-/*
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}*/
-
 
 /*///////////////////////////*/
 /*racourci*/
@@ -767,10 +655,6 @@ button:hover, a:hover {
     background: white;
     cursor: inherit;
     display: block;
-}
-
-se{
-  color: grey;
 }
 
 .grid-container {
@@ -798,7 +682,7 @@ se{
     grid-template-columns: auto auto;
 }
 
-
+/*
 table[name="pro"] {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -813,4 +697,23 @@ td, th[name="pro"] {
 
 tr:nth-child(even)[name="pro"] {
   background-color: #dddddd;
+}*/
+.gras{
+  font-weight: bold;
+  font-size:30px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 2px 2px #a4b9ba;
+}
+.transparent{
+  background-color: transparent;
+}
+
+nav{
+  background-color: transparent;
+}
+.fa-search{
+  color: #007bff;
+}
+input{
+  color: black;
 }
