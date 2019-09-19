@@ -59,7 +59,8 @@
 <%else%>	
 			<%@sender_id.each do |s|%>
 				<%a = MessagePrive.where(sender_id: s, recipient_id:current_user.id)+MessagePrive.where(sender_id:current_user.id, recipient_id:s)%>
-			 <%= link_to "Message from #{User.find(s).first_name}", "/users/#{s}/achats/#{@achat.id}/messagepriveachats/#{a[0].id}"%><br>	
+				 
+			 <%= link_to "Message from #{User.find(s).first_name}", user_achat_messagepriveachat_path(s,@achat.id,a[0].id)%><br>	
 		
 			<%end%> 	  
 	<%end%>
