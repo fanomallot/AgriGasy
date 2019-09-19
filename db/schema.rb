@@ -53,13 +53,22 @@ ActiveRecord::Schema.define(version: 2019_09_19_080602) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+  end
+
+  create_table "conversatons", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "message_prives", force: :cascade do |t|
     t.text "content"
     t.bigint "recipient_id"
     t.bigint "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
     t.boolean "is_read"
     t.index ["recipient_id"], name: "index_message_prives_on_recipient_id"
     t.index ["sender_id"], name: "index_message_prives_on_sender_id"
