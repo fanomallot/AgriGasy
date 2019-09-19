@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/admindashboard/liste_des_utilisateurs", to: 'admindashboard#utilisateur'
   get "/admindashboard/authentificate_vente/:id", to: 'admindashboard#updatevente'
   get "/admindashboard/authentificate_achat/:id", to: 'admindashboard#updateachat'
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
   root to: 'admins#index'
   resources :ventes do
     resources :avatarventes
