@@ -50,7 +50,7 @@
 										<%else%>
 											<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",class:'boutton simple seemore',method: 'post' %>
 										<%end%>
-										<%if vente.signalls.length != 0%>
+										<%if vente.signalls.length != 0 && current_user.is_admin%>
 											<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
 										<%end%>
 									<%end%>
@@ -113,7 +113,7 @@
 								<%else%>
 									<%=link_to "ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",class:'boutton simple seemore',method: 'post' %>
 								<%end%>
-								<%if achat.signal_achats.length != 0%>
+								<%if achat.signal_achats.length != 0 && current_user.is_admin%>
 									<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
 								<%end%>
 							<%end%>

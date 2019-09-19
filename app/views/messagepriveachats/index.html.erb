@@ -11,8 +11,13 @@
         <%for k in (0..@message.length-1)%>
             <%i-=1%>
            <%if @message[i].sender == current_user%>
-                 <h1><%=@message[i].sender.first_name%></h1></br>
-                 <%=@message[i].content%>
+                  <br>
+                  <%if @message[i].sender.profil.attached?%>
+                    <%= image_tag @message[i].sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
+                  <%else%>
+                    <%=@message[i].sender.first_name%><br>
+                    <%=  @message[i].content%>
+                  <%end%>
                  <%if current_user == Achat.find(params[:achat_id]).user%>
                      <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],@message[i].id),method:'get' do%>
                     <%=submit_tag 'Edit'%>
@@ -30,8 +35,13 @@
                   <%end %>
                 </br>
            <%else%>
-             <h1><%=@message[i].sender.first_name%></h1>
-             <%=@message[i].content%></br>
+                  <br>
+                  <%if @message[i].sender.profil.attached?%>
+                    <%= image_tag @message[i].sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
+                  <%else%>
+                    <%=@message[i].sender.first_name%><br>
+                    <%=  @message[i].content%>
+                  <%end%>
            <%end%>  
         <%end%>  
         <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
