@@ -40,18 +40,22 @@
 								<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
 							</div></li>
 						<%end%>
-						<li><div class="center">
-							<%if current_user !=nil %>
-								<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-									<%=link_to "Signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",class:'boutton simple seemore',method: 'post' %>
-								<%else%>
-									<%=link_to "Ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",class:'boutton simple seemore',method: 'post' %>
+						<% if user_signed_in? %>
+							<li><div class="center">
+								<%if current_user !=nil %>
+									<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+										<%=link_to "Signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",class:'boutton simple seemore',method: 'post' %>
+									<%else%>
+										<%=link_to "Ne pas signaler", "/users/#{current_user.id}/achats/#{achat.id}/signal_achats",class:'boutton simple seemore',method: 'post' %>
+									<%end%>
+									<% if current_user.is_admin %>
+										<%if achat.signal_achats.length != 0%>
+											<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+										<%end%>
+									<%end%>
 								<%end%>
-								<%if achat.signal_achats.length != 0%>
-									<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-								<%end%>
-							<%end%>
-						</div></li>
+							</div></li>
+						<%end%>
 					</ul>
 				</div>
 			<% end %>
