@@ -1,4 +1,8 @@
-<h1>Liste des personnes qui ont signalé cette publication:</h1>
-  <%@signall.each do |signal|%>
-  	<%=link_to signal.user.first_name,user_path(signal.user.id)%><br>
-  	<%end%>
+<% if user_signed_in? %>
+	<% if current_user.is_admin %>
+		<h1>Liste des personnes qui ont signalé cette publication:</h1>
+		<%@signall.each do |signal|%>
+		  	<%=link_to signal.user.first_name,user_path(signal.user.id)%><br>
+		<%end%>
+	<%end%>
+<%end%>

@@ -23,12 +23,12 @@
   <input type="text" name="quantite" placeholder="quantité du produit rechercher">*<br/>
   Prix en Ariary / Unité <br/>
   <input type="number" name="prix" min='0' placeholder="3562.1">* <input type="text" name="unite" placeholder="ex : Ar/t(Ariary/tonne)">*<br/>
-  Date de disponibilité<br/> 
+  Date<br/> 
   <input type="date" name="date" value="<%=Time.now%>" min= <%=Time.now%>>*<br/>
-  Lieu<br/>
+  Lieu exacte<br/>
   <input type="text" name="lieu" placeholder="city">*<br/>
   </div>
   <br/>
-  <%= submit_tag "Create Vente" %>
+  <%= submit_tag "Creer la Publication", class:'btn btn-success' %>
 <% end %>
 </div>

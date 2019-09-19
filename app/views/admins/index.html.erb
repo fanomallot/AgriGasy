@@ -1,26 +1,35 @@
 <div class="ground editachatground ">
-<div class="container">
-	<h1><strong>BIENVENUE DANS NOTRE SITE</strong></h1>
+	<div class="container" style="text-align: center;">
+		<h1><strong>BIENVENUE DANS NOTRE SITE</strong></h1>
 
-	<p>
-		<h3>Vous êtes l'administrateur de notre site <strong><i>AgriGasy</i></strong>.<br/></h3>
-	</p>
+		<p>
+			<h3>Vous êtes administrateur dans notre site <strong><i>AgriGasy</i></strong>.<br/></h3>
+		</p>
 
-	<h3>Liste de tout(s) le(s) administrateur(s)</h3>
-	<% @admin.each do |admin| %>
-		<i>Nom : </i><%= link_to admin.first_name, user_path(admin.id) %><br>
-	<% end %>
-	<br>
+		<h3>Liste de tout(s) le(s) administrateur(s)</h3>
 
-	<p>
-		<%= link_to "Vente à authentifier", admincheckvente_path %> (<%=@vente.length%>) <br>
-		<%= link_to "Achat à authentifier", admincheckachat_path %> (<%=@achat.length%>) <br>
-		<%= link_to "Liste des utilisateurs de votre Site", admincheckuser_path %><br>
-	</p>
+		<table>
+		  <tr>
+		    <th>First name</th>
+		    <th>Last name</th>
+		  </tr>
+			<% @admin.each do |admin| %>
+			  <tr>
+			    <td><i>Nom : </i><%= link_to admin.first_name, user_path(admin.id) %></td>
+			    <td><i>Nom : </i><%= link_to admin.last_name, user_path(admin.id) %></td>
+		  	 </tr>
+			<%end%>
+		</table>
 
-	<p>Essayer de bien gérer notre page</p>
-</div>
+		<br>
 
-</div>
+		<p>
+			<%= link_to "Ventes à authentifier (#{@vente.length})", admincheckvente_path, class:'btn btn-secondary' %>
+			<%= link_to "Achats à authentifier (#{@achat.length})", admincheckachat_path, class:'btn btn-secondary' %>
+			<%= link_to "Liste des utilisateurs de votre Site", admincheckuser_path, class:'btn btn-secondary' %><br>
+		</p>
+
+		<p>Essayer de bien gérer notre page</p>
+	</div>
 </div>
 

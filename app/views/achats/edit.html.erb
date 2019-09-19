@@ -1,9 +1,9 @@
 <div class="ground editachatground">
 <!-- affichage allert -->
-<%if flash[:danger]%>
-  <div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
-<% end %>
-  <h1 class="center blanche">Edit Publication</h1>
+  <%if flash[:danger]%>
+    <div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+  <% end %>
+  <h1 class="center blanche">Edition de la Publication</h1>
   <div class=" editachat1 ">
     <%if @achat.avatarachat.attached?%>
       <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:400px; width: 440px;",class:'radius' %>
@@ -40,10 +40,11 @@
         <input type="text" name="prix" value="<%=@achat.prix%>"><br/>
         <i class="floue">Date de disponibilité</i><br/>
         <input type="date" name="date" <%if @achat.date != nil %>value="<%=@achat.date.to_date%>"<%end%> min= <%=Time.now%>><br/>
-        <i class="floue">Lieu</i><br/>
+        <i class="floue">Lieu exacte</i><br/>
         <input type="text" name="lieu" value="<%=@achat.lieu%>"><br/><br/>
         
-        <%= submit_tag "Update post",class:'boutton success ' %> <%= link_to "Annulé", :back ,class:'boutton primary '%>
+        <%= submit_tag "Valider",class:'boutton success ' %>
+        <%= link_to "Annuler", :back ,class:'boutton primary '%>
       <% end %>
     </p>  
   </div>

@@ -1,5 +1,5 @@
 <h1>Envoyer une message a un user</h1>
 <%form_tag url_for(action:'create'),method:'post' %>
-<input type="text" name="first_name" value="<%first_name%>">
-<textarea  type="text" name="content"><%= message_prive.content%></textarea>
+	<input type="text" name="first_name" value="<%first_name%>">
+	<textarea  type="text" name="content"><%= message_prive.content%></textarea>
 <%link_to "Envoyer message",%>

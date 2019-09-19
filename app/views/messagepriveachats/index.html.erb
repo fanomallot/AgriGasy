@@ -15,18 +15,18 @@
                  <%=@message[i].content%>
                  <%if current_user == Achat.find(params[:achat_id]).user%>
                      <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],@message[i].id),method:'get' do%>
-                    <%=submit_tag 'Edit'%>
+                    <%=submit_tag 'Editer'%>
                      <%end%>  
                     <%= form_tag "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
-                      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                      <%=submit_tag 'Supprimer', data:{confirm: "Etes-vous sûr ?"}%>
                     <%end%>
                   <%else%>
                      <%= form_tag edit_user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id,params[:achat_id],@message[i].id),method:'get' do%>
-                    <%=submit_tag 'Edit'%>
+                    <%=submit_tag 'Editer'%>
                      <%end%>
                     <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
-                      <%=submit_tag 'destroy',class:'boutton btn-danger', data:{confirm: "voulez vraiment supprimer cette message"}%>
-                    <%end%>
+                      <%=submit_tag 'Supprimer',class:'boutton btn-danger', data:{confirm: "Etes-vous sûr ?"}%>
+                    <%end%>Editer
                   <%end %>
                 </br>
            <%else%>

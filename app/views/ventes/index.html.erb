@@ -1,5 +1,5 @@
 <br><br><br>
-<h1>Voici les listes de tous les Ventes disponibles :</h1>
+<h1>Listes de toutes les Ventes disponibles :</h1>
 <p>
 	<div class="mar">
 		<% @vente.each do |vente| %>
@@ -37,15 +37,15 @@
 						</table>
 						<%unless vente.avatarvente.attached?%>
 							<li><div class="center">
-								<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
+								<%= link_to "Detail", vente_path(vente.id) ,class:'boutton simple seemore' %>
 							</div></li>
 						<%end%>
 						<li><div class="center">
 							<%if current_user !=nil %>
 								<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-									<%=link_to "signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",class:'boutton simple seemore',method: 'post' %>
+									<%=link_to "Signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",class:'boutton simple seemore',method: 'post' %>
 								<%else%>
-									<%=link_to "ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",class:'boutton simple seemore',method: 'post' %>
+									<%=link_to "Ne pas signaler", "/users/#{current_user.id}/ventes/#{vente.id}/signalls",class:'boutton simple seemore',method: 'post' %>
 								<%end%>
 								<%if vente.signalls.length != 0%>
 									<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>

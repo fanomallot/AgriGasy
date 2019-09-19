@@ -1,6 +1,6 @@
 <div class="ground editachatground ">
 
-	<h1>Liste des regions </h1>
+	<h1>Liste de toutes les régions qui existent </h1>
 	<p>
 		<%@region.each do |region|%>
 			<%@vente_authentifie = false
@@ -26,7 +26,7 @@
 					<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
 					<%if user_signed_in?%>
 						<%if current_user.is_admin%>
-							<i><%= link_to " supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+							<i><%= link_to " Supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
 						<%end%>
 					<%end%>
 				<%end%>
@@ -35,7 +35,7 @@
 					<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
 					<%if user_signed_in?%>
 						<%if current_user.is_admin%>
-							<i><%= link_to " supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+							<i><%= link_to " Supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
 						<%end%>
 					<%end%>
 				<%end%>

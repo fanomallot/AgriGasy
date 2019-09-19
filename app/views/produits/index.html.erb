@@ -1,5 +1,4 @@
 <div class="ground editachatground ">
-
 	<h1>Liste de tous les produits disponibles </h1>
 	<p> 
 	<% @produit.each do |produit| %>
@@ -26,7 +25,7 @@
 				<h4><strong>Produit : </strong><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
 				<%if user_signed_in?%>
 					<%if current_user.is_admin%>
-						<i><%= link_to " supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+						<i><%= link_to " Supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Supprimer ce produit ?'} %></i><br/>
 					<%end%>
 				<%end%>
 			<%end%>
@@ -36,13 +35,11 @@
 				<h4><strong>Produit : </strong><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
 				<%if user_signed_in?%>
 					<%if current_user.is_admin%>
-						<i><%= link_to " supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %></i><br/>
+						<i><%= link_to " Supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
 					<%end%>
 				<%end%>
 			<%end%>
-		<%end%>
-		
+		<%end%>	
  	<%end%>
-
 	</p>
 </div>

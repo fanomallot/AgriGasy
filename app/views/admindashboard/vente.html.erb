@@ -3,47 +3,35 @@
 <br>
 <br>
 <h1>En tant qu'administrateur, <br>vous avez comme tâche d'authetifier les publications des utilisateurs</h1>
-<h3>Liste de(s) vente(s) à authentifier </h3>
+<h3>Liste de(s) publication(s) de vente(s) à authentifier </h3>
 <div class="mar">
 	<% @authenticatevente.each do |vente| %>
-	<% if vente.is_authenticate != true %>
-	<div class="containerlist">
-		<ul class="border">
-			<div class="tezz">
-				<li>
-					<%if vente.avatarvente.attached?%>
-					<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
-					<%else%>
-					<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+		<% if vente.is_authenticate != true %>
+			<div class="containerlist">
+				<ul class="border">
+					<div class="tezz">
+						<li>
+							<%if vente.avatarvente.attached?%>
+								<a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %></a>
+							<%else%>
+								<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+							<%end%>
+						</li>
+					</div>
+					<table class="tableau">
+						<tr>
+							<td><%= vente.produit.name %></td>
+							<td><%= vente.region.place %></td>
+						</tr>
+					</table>
+					<%unless vente.avatarvente.attached?%>
+						<li><div class="center">
+							<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
+						</div></li>
 					<%end%>
-				</li>
+					<%= link_to "Authentifier la publication", authentificate_vente_path(vente.id) %><br>
+				</ul>
 			</div>
-			<table class="tableau">
-				<tr>
-					<td><%= vente.produit.name %></td>
-					<td><%= vente.region.place %></td>
-				</tr>
-			</table>
-			<%unless vente.avatarvente.attached?%>
-					<li><div class="center">
-						<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
-			</div></li>
-			<%end%>
-				<%= link_to authentificate_vente(vente.id) %><br>
-			<li><div class="center">
-				<%if current_user !=nil %>
-				<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-				<%=link_to "signaler",user_vente_signalls(current_user.id,vente.id),method: 'post' %>
-				<%else%>
-				<%=link_to "ne pas signaler", user_vente_signalls(current_user.id,vente.id),method: 'post' %>
-				<%end%>
-				<%if vente.signalls.length != 0%>
-				<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
-				<%end%>
-				<%end%>
-			</div></li>
-		</ul>
-	</div>
-	<% end %>
+		<% end %>
 	<% end %>
 </div>
