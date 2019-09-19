@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'bienvenues/index'
   get "/accueils",to: 'accueils#accueil'
-
   get "/user/:id/mes_ventes",to: 'users#uservente',as: 'mes_ventes'
   get "/user/:id/mes_achats",to: 'users#userachat',as: 'mes_achats'
   get "/admindashboard/authentification_vente", to: 'admindashboard#vente',as:'admincheckvente'
