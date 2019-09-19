@@ -7,6 +7,15 @@ class AchatsController < ApplicationController
 
   def show
     @achat = Achat.find(params[:id])
+    id_sender =[]
+    @message = current_user.received_messages
+    @message.each do |m|
+     id_sender << m.sender.id
+    end
+     id_sender = id_sender.uniq
+     id_sender.delete(Achat.find(params[:id]).user.id)
+     puts id_sender
+     @sender_id = id_sender
   end
 
   def new
