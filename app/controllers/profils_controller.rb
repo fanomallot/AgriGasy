@@ -5,7 +5,7 @@ class ProfilsController < ApplicationController
 		if params[:profil] != nil
 			@user.profil.attach(params[:profil])
     		flash[:success] = "La photo a été enregistré"
-			redirect_to user_path(@user)
+			redirect_back fallback_location: '/' ,allow_other_host: false
 		else
 			flash[:danger] = "Erreur de chargement de photo"
 			redirect_to user_path(@user)
