@@ -3,7 +3,28 @@ class UsersController < ApplicationController
 	before_action :is_admis_or_current_user?,except:[:show]
 	before_action :is_admis,only: [:destroy]
 	def userachat
+		@achat_authentifie = []
+		@achat_unauthentifie = []
 		@user = User.find(params[:id])
+		@user.achats.each do |achat|
+			if achat.is_authenticate
+				@achat_authentifie << achat
+			else
+				@achat_unauthentifie << achat
+			end
+		end
+	end
+	def uservente
+		@vente_authentifie = []
+		@vente_unauthentifie = []
+		@user = User.find(params[:id])
+		@user.ventes.each do |vente|
+		if vente.is_authenticate
+			@vente_authentifie << vente
+		else
+			@vente_unauthentifie << vente
+		end
+	end
 	end
 	def show
 		@user = User.find(params[:id])

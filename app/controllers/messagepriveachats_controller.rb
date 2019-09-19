@@ -114,7 +114,14 @@ if current_user == Achat.find(params[:achat_id]).user
 		end
 	end
 	def destroy
-		MessagePrive.find(params[:id]).destroy
-		redirect_to user_achat_messagepriveachats_path(current_user.id, params[:achat_id])
+		if current_user == Achat.find(params[:achat_id]).user
+			puts '*'*90
+			puts id_message_detruit = params[:id]
+			MessagePrive.find(params[:id]).destroy
+			redirect_to "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{params[:id]}"
+		else
+			MessagePrive.find(params[:id]).destroy
+			redirect_to user_achat_messagepriveachats_path(params[:user_id], params[:achat_id])
+		end	
 	end
 end

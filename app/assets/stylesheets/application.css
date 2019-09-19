@@ -688,22 +688,6 @@ span.psw {
   grid-template-columns: auto auto;
 }
 
-/*
-table[name="pro"] {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th[name="pro"] {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even)[name="pro"] {
-  background-color: #dddddd;
-}*/
 .gras{
   font-weight: bold;
   font-size:30px;
@@ -824,4 +808,18 @@ input{
 .userprofil{
   background-image: url('var.jpg');
 }
-/************************************************************/
+/********Photo show user achat et vente****************************************************/
+.img-responsive{
+  width: 600px;
+  max-height: 300px;
+}
+@media screen and (min-width: 200px) and (max-width: 480px) {
+  .img-responsive{
+  max-width: 100px;
+  max-height: 150px;
+}
+
+}
+.col-md-6{
+  margin-bottom: 10px;
+}

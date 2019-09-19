@@ -1,1 +1,140 @@
-uservente.html.erb
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Mes publications de Ventes</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<%if @user.ventes.length == 0%>
+	<div class="page-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="post">
+					  <div class="post-thumb">
+					      <%=image_tag 'etonné1.jpg',alt:'rien',class:"img-responsive"%>
+					    </a>
+					  </div>
+				  		<h3 class="post-title">Vous n'avez pas de publication de vente</a></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<%else%>
+	<%if @vente_authentifie.length != 0%>
+		<ol class="breadcrumb">
+			<li class="active">Publication de demande </li>
+			<li class="active">En ligne</li>
+		</ol>
+		<div class="page-wrapper">
+			<div class="container">
+				<div class="row">
+					<%@vente_authentifie.each do |vente|%>
+			      		<div class="col-md-6">
+					        <div class="post">
+					          <div class="post-thumb">
+					              <%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-responsive" %>
+					          </div>
+					          <h2 class="post-title"><%=vente.produit.name %></h2>
+					          <div class="post-meta">
+					            <ul>
+									<%if vente.date != nil %>
+										<li>
+						                <i class="fal fa-calendar-alt"></i>  <%=vente.date.to_date %></a>
+						              </li>
+									<%end%>
+					              <li>
+					                <i class="fas fa-weight"> </i>  <%=vente.quantite %>
+					              </li>
+					              <%if vente.prix != "" %>
+						              <li>
+						                <i class="fas fa-dollar-sign"> </i>  <%=vente.prix %>
+						              </li>
+						            <%end%>
+						              <li>
+						               <i class="fas fa-map-marker-alt"></i> <%=vente.region.place %></a>
+						              </li>
+						            <%if vente.lieu != "" %>
+						              <li>
+						                <i class="fas fa-map-marker-alt"> </i>  <%=vente.lieu %></a>
+						              </li>
+									<%end%>
+					            </ul>
+					          </div>
+					          <div class="post-content">
+					            <p><%= vente.description %></p>
+					            <%=link_to "Editer",edit_vente_path(vente.id),class:"btn btn-primary"%>
+					            
+					            <%= link_to "supprimer",vente_path(vente.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %>
+					          </div>
+							</div>
+			        	</div>
+			        <%end%>
+				</div>
+			</div>
+		</div>
+	<%end%>
+	<%if @vente_unauthentifie.length != 0%>
+		<ol class="breadcrumb">
+			<li class="active">Publication de demande </li>
+			<li class="active">En attente</li>
+		</ol>
+		<div class="page-wrapper">
+			<div class="container">
+				<div class="row">
+					<%@vente_unauthentifie.each do |vente|%>
+			      		<div class="col-md-6">
+					        <div class="post">
+					          <div class="post-thumb">
+					          	<%if vente.avatarvente.attached?%>
+					              <%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-responsive" %>
+								<%else%>
+								<%= image_tag 'no-photo.png', alt: 'photo_vente',class:"img-responsive" %>
+								<%end%>
+					          </div>
+					          <h2 class="post-title"><%=vente.produit.name %></h2>
+					          <div class="post-meta">
+					            <ul>
+									<%if vente.date != nil %>
+										<li>
+						               <i class="fal fa-calendar-alt"></i>  <%=vente.date.to_date %></a>
+						              </li>
+									<%end%>
+					              <li>
+					                <i class="fas fa-weight"></i><%=vente.quantite %>
+					              </li>
+					              <%if vente.prix != "" %>
+						              <li>
+						                <i class="fas fa-dollar-sign"></i> <%=vente.prix %>
+						              </li>
+						            <%end%>
+						              <li>
+						                <i class="fas fa-map-marker-alt"></i>  <%=vente.region.place %></a>
+						              </li>
+						            <%if vente.lieu != "" %>
+						              <li>
+						                <i class="fas fa-map-marker-alt"></i> <%=vente.lieu %></a>
+						              </li>
+									<%end%>
+					            </ul>
+					          </div>
+					          <div class="post-content">
+					            <p><%= vente.description %></p>
+					            <%=link_to "Editer",edit_vente_path(vente.id),class:"btn btn-primary"%>
+					            
+					            <%= link_to "supprimer",vente_path(vente.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'supprimer?'} %>
+					          </div>
+							</div>
+			        	</div>
+			        <%end%>
+				</div>
+			</div>
+		</div>
+	<%end%>
+<%end%>b
