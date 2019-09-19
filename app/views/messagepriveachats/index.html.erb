@@ -1,4 +1,6 @@
-<div class="ground editachatground ">
+
+
+<div class="ground editachatground blanche">
 <%if current_user == Achat.find(params[:achat_id]).user%>
   <%for i in (0...@id_sender_recipient.length)%>
     <% a = MessagePrive.where(sender_id:current_user.id,recipient_id:@id_sender_recipient[i]) + MessagePrive.where(sender_id: @id_sender_recipient[i],recipient_id:current_user)%>
@@ -16,7 +18,8 @@
                  <%if current_user == Achat.find(params[:achat_id]).user%>
                      <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],@message[i].id),method:'get' do%>
                     <%=submit_tag 'Edit'%>
-                     <%end%>  
+
+                     <%end%>
                     <%= form_tag "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
                       <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
                     <%end%>
@@ -25,7 +28,9 @@
                     <%=submit_tag 'Edit'%>
                      <%end%>
                     <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
-                      <%=submit_tag 'destroy',class:'boutton btn-danger', data:{confirm: "voulez vraiment supprimer cette message"}%>
+
+                      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+
                     <%end%>
                   <%end %>
                 </br>
@@ -33,7 +38,9 @@
              <h1><%=@message[i].sender.first_name%></h1>
              <%=@message[i].content%></br>
            <%end%>  
-        <%end%>  
+
+        <%end%>
+
         <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
           <%=text_area_tag :content%>
             <%=submit_tag :envoyer%>

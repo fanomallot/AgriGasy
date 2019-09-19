@@ -45,6 +45,7 @@
 		<% end %>
 	<% end %>
 
+
 	<%if current_user != @vente.user%>
 		<%if @vente.user != current_user || current_user.is_admin %>			
 			<%= form_tag "/users/#{@vente.user.id}/ventes/#{@vente.id}/message_prives",method:'get' do %>
@@ -59,6 +60,7 @@
 			 <%= link_to "Message from #{User.find(s).first_name}", "/users/#{s}/ventes/#{@vente.id}/message_prives/#{a[0].id}"%><br>	
 		
 			<%end%> 	  
+
 	<%end%>
 		
 

@@ -1,4 +1,4 @@
-class MessagepriveachatsController < ApplicationController
+class MessagePrivesController < ApplicationController
 	def index
 if current_user == Achat.find(params[:achat_id]).user
 	 @message = []
@@ -26,10 +26,21 @@ if current_user == Achat.find(params[:achat_id]).user
 			@id_sender_recipient.delete(current_user.id)
 			@id_sender_recipient = @id_sender_recipient.compact
 			puts "*"*90
-
 			puts @id_sender_recipient
 		 puts "*"*90
-		
+			# for i in 0..@mp.length-1
+			# 	max = @mp[0]
+			# 	@mp.each do |m|
+			# 		if max.created_at < m.created_at
+			# 			max = m 
+						
+			# 		else 
+			# 			max = max
+			# 		end
+			# 	end	
+			# 	@message << max
+			# 		@mp.delete(max)
+			# end	
 			@message =@mp
 	else
 		@message = []
@@ -56,8 +67,9 @@ if current_user == Achat.find(params[:achat_id]).user
 	end	
 		
 	end
+
 	def show
-		 		@message = []
+ 		@message = []
 		@mp = MessagePrive.where(recipient_id:current_user.id,sender_id:params[:user_id]) +	MessagePrive.where(recipient_id:params[:user_id],sender_id:current_user.id)
 		puts "*"*90
 		for i in 0..@mp.length-1
@@ -72,34 +84,31 @@ if current_user == Achat.find(params[:achat_id]).user
 				end	
 				@message << max
 					@mp.delete(max)
-			end	
-		
-	end
-
-	def create
+			end		
+		end
+	def create	
 		if current_user == Achat.find(params[:achat_id]).user   		
-			     message_prive = MessagePrive.new(content: params[:content], is_read: false)
-			     message_prive.sender = current_user
-			     puts params[:user_id]
-			     puts User.find(params[:user_id])
-			     message_prive.recipient = User.find(params[:user_id])
-		        if message_prive.save
-			   	 redirect_to "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{ message_prive.id}"
-			    else	
-			   	 redirect_to "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{ message_prive.id}"
-			    end	
-			else
-				 message_prive = MessagePrive.new(content: params[:content], is_read: false)
-			     message_prive.sender = current_user
-			     message_prive.recipient = Achat.find(params[:achat_id]).user
-		        if message_prive.save
-			   	 redirect_to user_achat_messagepriveachats_path(Achat.find(params[:achat_id]).user.id, params[:achat_id])
-			    else
-			   	 redirect_to user_achat_messagepriveachats_path(Achat.find(params[:achat_id]).user.id, params[:achat_id])
-			    end	
-			end   		
+		     message_prive = MessagePrive.new(content: params[:content], is_read: false)
+		     message_prive.sender = current_user
+		     puts params[:user_id]
+		     puts User.find(params[:user_id])
+		     message_prive.recipient = User.find(params[:user_id])
+	        if message_prive.save
+		   	 redirect_to "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{ message_prive.id}"
+		    else	
+		   	 redirect_to "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{ message_prive.id}"
+		    end	
+		else
+			 message_prive = MessagePrive.new(content: params[:content], is_read: false)
+		     message_prive.sender = current_user
+		     message_prive.recipient = Achat.find(params[:achat_id]).user
+	        if message_prive.save
+		   	 redirect_to user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id, params[:achat_id])
+		    else
+		   	 redirect_to user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id, params[:achat_id])
+		    end	
+		end   	
 	end
-
 	def edit
 		@messagePrive = MessagePrive.find(params[:id])
 	end
@@ -110,11 +119,19 @@ if current_user == Achat.find(params[:achat_id]).user
 		if current_user == Achat.find(params[:achat_id]).user
 			redirect_to user_achat_messagepriveachat_path(params[:user_id],params[:achat_id],params[:id])
 		else
-			redirect_to user_achat_messagepriveachats_path(params[:user_id], params[:achat_id])
+			redirect_to user_achat_messagepriveachat_path(params[:user_id], params[:achat_id])
+			
 		end
 	end
 	def destroy
-		MessagePrive.find(params[:id]).destroy
-		redirect_to user_achat_messagepriveachats_path(current_user.id, params[:achat_id])
+		if current_user == Achat.find(params[:achat_id]).user
+			puts '*'*90
+			puts id_message_detruit = params[:id]
+			MessagePrive.find(params[:id]).destroy
+			redirect_to "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{params[:id]}"
+		else
+			MessagePrive.find(params[:id]).destroy
+			redirect_to user_achat_messagepriveachat_path(params[:user_id], params[:achat_id])
+		end	
 	end
 end
