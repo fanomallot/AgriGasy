@@ -23,14 +23,14 @@
                      <%= form_tag edit_user_achat_messagepriveachat_path(current_user.id,params[:achat_id],@message[i].id),method:'get' do%>
                     <%=submit_tag 'Edit'%>
                      <%end%>  
-                    <%= form_tag "/users/#{params[:user_id]}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
+                    <%= form_tag user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id,params[:achat_id],@message[i].id),action:'destroy',method:'delete' do%>
                       <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
                     <%end%>
                   <%else%>
                      <%= form_tag edit_user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id,params[:achat_id],@message[i].id),method:'get' do%>
                     <%=submit_tag 'Edit'%>
                      <%end%>
-                    <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats/#{@message[i].id}",method:'delete' do%>
+                    <%= form_tag user_achat_messagepriveachat_path(Achat.find(params[:achat_id]).user.id,params[:achat_id],@message[i].id),action:'destroy', method:'delete' do%>
                       <%=submit_tag 'destroy',class:'boutton btn-danger', data:{confirm: "voulez vraiment supprimer cette message"}%>
                     <%end%>
                   <%end %>
@@ -46,13 +46,13 @@
                   <%end%>
            <%end%>  
         <%end%>  
-        <%= form_tag "/users/#{Achat.find(params[:achat_id]).user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
+        <%= form_tag user_achat_messagepriveachats_path(params[:user_id],params[:achat_id]),action: 'create',method:'post' do%>
           <%=text_area_tag :content%>
             <%=submit_tag :envoyer%>
         <%end%>
     <%else%>
     <h1>Ecrire une message</h1>
-        <%= form_tag "/users/#{current_user.id}/achats/#{params[:achat_id]}/messagepriveachats",method:'post' do%>
+        <%= form_tag user_achat_messagepriveachats_path(params[:user_id],params[:achat_id]),action: 'create',method:'post' do%>
           <%=text_area_tag :content%>
             <%=submit_tag :envoyer%>
         <%end%>

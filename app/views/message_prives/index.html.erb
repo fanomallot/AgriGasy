@@ -1,4 +1,4 @@
-<div class="ground editachatground ">
+<div class="ground editventeground ">
 <%if current_user == Vente.find(params[:vente_id]).user%>
   <%for i in (0...@id_sender_recipient.length)%>
     <% a = MessagePrive.where(sender_id:current_user.id,recipient_id:@id_sender_recipient[i]) + MessagePrive.where(sender_id: @id_sender_recipient[i],recipient_id:current_user)%>
@@ -14,45 +14,45 @@
                   <br>
                   <%if @message[i].sender.profil.attached?%>
                     <%=@message[i].sender.first_name%><br>
-                    <%= image_tag @message[i].sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
+                    <%= image_tag @message[i].sender.profil, alt: 'photo_vente',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
                   <%else%>
                     <%=@message[i].sender.first_name%><br>
                     <%=  @message[i].content%>
                   <%end%>
-
                  <%if current_user == Vente.find(params[:vente_id]).user%>
                      <%= form_tag edit_user_vente_message_prife_path(current_user.id,params[:vente_id],@message[i].id),method:'get' do%>
-                     <%=submit_tag 'Edit'%>
-                     <%end%>
-                     <%= form_tag "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives/#{@message[i].id}",method:'delete' do%><%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                    <%=submit_tag 'Edit'%>
+                     <%end%>  
+                    <%= form_tag user_vente_message_prife_path(Vente.find(params[:vente_id]).user.id,params[:vente_id],@message[i].id),action:'destroy',method:'delete' do%>
+                      <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
                     <%end%>
                   <%else%>
                      <%= form_tag edit_user_vente_message_prife_path(Vente.find(params[:vente_id]).user.id,params[:vente_id],@message[i].id),method:'get' do%>
                     <%=submit_tag 'Edit'%>
                      <%end%>
-                    <%= form_tag "/users/#{Vente.find(params[:vente_id]).user.id}/ventes/#{params[:vente_id]}/message_prives/#{@message[i].id}",method:'delete' do%>
+                    <%= form_tag user_vente_message_prife_path(Vente.find(params[:vente_id]).user.id,params[:vente_id],@message[i].id),action:'destroy', method:'delete' do%>
                       <%=submit_tag 'destroy',class:'boutton btn-danger', data:{confirm: "voulez vraiment supprimer cette message"}%>
                     <%end%>
                   <%end %>
                 </br>
            <%else%>
-              <br>
-              <%if @message[i].sender.profil.attached?%>
-                  <%=@message[i].sender.first_name%><br>
-                  <%= image_tag @message[i].sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
-              <%else%>
-                  <%=@message[i].sender.first_name%><br>
-                  <%=  @message[i].content%>
-              <%end%>
-            <%end%>  
-        <%end%>
-        <%= form_tag "/users/#{Vente.find(params[:vente_id]).user.id}/ventes/#{params[:vente_id]}/message_prives",method:'post' do%>
+                  <br>
+                  <%if @message[i].sender.profil.attached?%>
+                    <%=@message[i].sender.first_name%><br>
+                    <%= image_tag @message[i].sender.profil, alt: 'photo_vente',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
+                  <%else%>
+                    <%=@message[i].sender.first_name%><br>
+                    <%=  @message[i].content%>
+                  <%end%>
+           <%end%>  
+        <%end%>  
+        <%= form_tag user_vente_message_prives_path(params[:user_id],params[:vente_id]),action: 'create',method:'post' do%>
           <%=text_area_tag :content%>
             <%=submit_tag :envoyer%>
         <%end%>
     <%else%>
     <h1>Ecrire une message</h1>
-        <%= form_tag "/users/#{current_user.id}/ventes/#{params[:vente_id]}/message_prives",method:'post' do%>
+        <%= form_tag user_vente_vente_message_prives_path(params[:user_id],params[:vente_id]),action: 'create',method:'post' do%>
           <%=text_area_tag :content%>
             <%=submit_tag :envoyer%>
         <%end%>
