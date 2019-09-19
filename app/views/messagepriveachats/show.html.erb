@@ -7,6 +7,7 @@
            <%if @message[i].sender == current_user%>
                    <br>
                   <%if @message[i].sender.profil.attached?%>
+                    <%=@message[i].sender.first_name%><br>  
                     <%= image_tag @message[i].sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
                   <%else%>
                     <%=@message[i].sender.first_name%><br>
@@ -22,6 +23,7 @@
            <%else%>
                       <br>
                   <%if @message[i].sender.profil.attached?%>
+                    <%=@message[i].sender.first_name%><br>
                     <%= image_tag @message[i].sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
                   <%else%>
                     <%=@message[i].sender.first_name%><br>
