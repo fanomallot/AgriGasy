@@ -3,47 +3,35 @@
 <br>
 <br>
 <h1>En tant qu'administrateur, <br>vous avez comme tâche d'authetifier les publications des utilisateurs</h1>
-<h3>Liste de(s) achat(s) à authentifier </h3>
+<h3>Liste de(s) publication(s) achat(s) à authentifier </h3>
 <div class="mar">
 	<% @authenticateachat.each do |achat| %>
-	<% if achat.is_authenticate != true %>
-	<div class="containerlist">
-		<ul class="border">
-			<div class="tezz">
-				<li>
-					<%if achat.avatarachat.attached?%>
-					<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
-					<%else%>
-					<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+		<% if achat.is_authenticate != true %>
+			<div class="containerlist">
+				<ul class="border">
+					<div class="tezz">
+						<li>
+							<%if achat.avatarachat.attached?%>
+							<a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
+							<%else%>
+							<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+							<%end%>
+						</li>
+					</div>
+					<table class="tableau">
+						<tr>
+							<td><%= achat.produit.name %></td>
+							<td> <%= achat.region.place %></td>
+						</tr>
+					</table>
+					<%unless achat.avatarachat.attached?%>
+						<li><div class="center">
+							<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
+						</div></li>
 					<%end%>
-				</li>
+					<%= link_to "Authentifier la publication", authentificate_achat_path(achat.id) %>
+				</ul>
 			</div>
-			<table class="tableau">
-				<tr>
-					<td><%= achat.produit.name %></td>
-					<td> <%= achat.region.place %></td>
-				</tr>
-			</table>
-			<%unless achat.avatarachat.attached?%>
-			<li><div class="center">
-				<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
-			</div></li>
-			<%end%>
-			<%= link_to "Authentifier la publication", authentificate_achat_path(achat.id) %>
-			<li><div class="center">
-				<%if current_user !=nil %>
-					<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-						<%=link_to "signaler",user_achat_signal_achats_path(current_user.id,achat.id),method: 'post' %>
-					<%else%>
-						<%=link_to "ne pas signaler", user_achat_signal_achats_path(current_user.id,achat.id),method: 'post' %>
-					<%end%>
-					<%if achat.signal_achats.length != 0%>
-						<%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-					<%end%>
-				<%end%>
-			</div></li>
-		</ul>
-	</div>
-	<% end %>
+		<% end %>
 	<% end %>
 </div>

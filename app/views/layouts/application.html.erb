@@ -19,7 +19,7 @@
           <i class="gras">AgriGasy</i>
         </a>
         <%if user_signed_in?%>
-          <h4><li class="online"></li></h4>
+          <h3><li class="online"></l></h3>
         <%end%>
 
         <button class="navbar-toggler collapsed toptop" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,21 +38,32 @@
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nouvelle publication</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                <li><a class="dropdown-item" href="<%=new_vente_path%>">New vente</a></li>
-                <li><a class="dropdown-item" href="<%=new_achat_path%>">New achat</a></li>
+                <li><a class="dropdown-item" href="<%=new_vente_path%>">Vente</a></li>
+                <li><a class="dropdown-item" href="<%=new_achat_path%>">Achat</a></li>
 <!--                 <li><a class="dropdown-item" href="portfolio-3.html">Portfolio 2 column</a></li>
                 <li><a class="dropdown-item" href="portfolio-single.html">Portfolio Details</a></li> -->
               </ul>
             </li>
-
             <li class="nav-item dropdown active">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types</a>
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publication disponible</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown02">
                 <li><a class="dropdown-item" href="<%=ventes_path%>">Vente</a></li>
                 <li><a class="dropdown-item" href="<%=achats_path%>">Achat</a></li>
               </ul>
             </li>
-             <li class="nav-item dropdown">
+            <%if user_signed_in?%>
+              <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Messages</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                  <li><a class="dropdown-item" href="<%=user_message_prives_path(current_user.id)%>">Boite de reception (<%=MessagePrive.where('recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , a:false).count%>)</a></li>
+                  <li><a class="dropdown-item" href="<%=send_messages_path%>">Nouveau message</a></li>
+                  <%MessagePrive.where('recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , a:false).each do |mp|%>
+                  <li><a class="dropdown-item" href="<%=new_user_message_prife_path(mp.sender.id)%>"><%=mp.sender.first_name%> (<%=MessagePrive.where(recipient:current_user,sender:mp.sender,is_read: false).count%>)</a></li>
+                  <%end%>
+                </ul>
+              </li>
+             <%end%>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown"><i class="fa fa-search"></i></a>
             </li>
              <li class="nav-item"><%=form_tag recherches_path ,method:'get' do%>
@@ -74,33 +85,34 @@
       <a href="<%=destroy_user_session_path%>" title="sign_out" data-method="delete" class="menu-item fa fa-sign-out" aria-hidden="true"></a>
       <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
         class="menu-item fa fa-user"<%end%>>
-        <%if current_user.profil.attached?%><%= image_tag current_user.profil, alt: 'P',style: "height:40px; width: 40px;",class:'round profilphoto' %><%else%><%end%>
+        <%if current_user.profil.attached?%>
+          <%= image_tag current_user.profil, alt: 'P',style: "height:40px; width: 40px;",class:'round profilphoto' %>
+        <%end%>
       </a>
       <%if current_user.is_admin%>
         <a href="/" title="AdminDashboard" class="menu-item fa fa-user-secret" aria-hidden="true"></a>
       <%end%>
       <%else%>
-      <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
-      <a href="<%=new_user_registration_path%>" title="Sign_up" class="menu-item fa fa-user-plus"></a>
+        <a href="<%=new_user_session_path%>" title="Sign_in" class="menu-item fa fa-sign-in"></a>
+        <a href="<%=new_user_registration_path%>" title="Sign_up" class="menu-item fa fa-user-plus"></a>
       <%end%>
       </menu>
-    </div>
-    <div id="circularMenu" class="circular-menu">
-      <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
-        <i class="fa fa-share-alt"></i>
-      </a>
-      <menu class="items-wrapper">
-      <a  rel="tooltip" title="Facebook" data-placement="bottom" href="https://www.facebook.com/" target="_blank" class="menu-item fa fa-facebook">
-      </a>
-      <a  rel="tooltip" title="Twitter" data-placement="bottom" href="https://twitter.com/" target="_blank" class="menu-item fa fa-twitter">
-      </a>
-      <a  rel="tooltip" title="Google+" data-placement="bottom" href="https://aboutme.google.com" class="menu-item fa fa-google-plus" target="_blank">
-      </a>
-      <a  rel="tooltip" title="instagram" data-placement="bottom" href="https://www.instagram.com/" class="menu-item fa fa-linkedin" target="_blank">
-      </a>
-      </menu>
-    </div>
-    
+        </div>
+          <div id="circularMenu" class="circular-menu">
+            <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+              <i class="fa fa-share-alt"></i>
+            </a>
+            <menu class="items-wrapper">
+            <a  rel="tooltip" title="Facebook" data-placement="bottom" href="https://www.facebook.com/" target="_blank" class="menu-item fa fa-facebook">
+            </a>
+            <a  rel="tooltip" title="Twitter" data-placement="bottom" href="https://twitter.com/" target="_blank" class="menu-item fa fa-twitter">
+            </a>
+            <a  rel="tooltip" title="Google+" data-placement="bottom" href="https://aboutme.google.com" class="menu-item fa fa-google-plus" target="_blank">
+            </a>
+            <a  rel="tooltip" title="instagram" data-placement="bottom" href="https://www.instagram.com/" class="menu-item fa fa-linkedin" target="_blank">
+            </a>
+          </menu>
+        </div>
     <%= yield %>
     <footer>
     </footer>

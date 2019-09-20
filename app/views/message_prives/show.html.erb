@@ -14,10 +14,10 @@
                     <%=  @message[i].content%>
                   <%end%>
                   <%= form_tag edit_user_vente_message_prife_path(params[:user_id],params[:vente_id],@message[i].id),method:'get' do%>
-                     <%=submit_tag 'Edit'%>
+                     <%=submit_tag 'Editer'%>
                   <%end%> 
                   <%= form_tag user_vente_message_prife_path(params[:user_id],params[:vente_id],@message[i].id),method:'delete' do%>
-                    <%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"}%>
+                    <%=submit_tag 'Supprimer', data:{confirm: "Etes-vous sûr ?"}%>
                   <%end%>
            <%else%>
               <br>
