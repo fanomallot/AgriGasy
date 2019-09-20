@@ -36,7 +36,7 @@
 		<p>
 			<%if @vente.user == current_user || current_user.is_admin%>
 				<%= link_to "Editer", edit_vente_path(@vente.id), class:'btn btn-secondary' %><br><br>
-				<%= link_to "Supprimer", vente_path(@vente.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger' %><br><br>
+				<%= link_to "Supprimer", vente_path(@vente.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger', remote: true %><br><br>
 			<%end%>
 
 			<% if user_signed_in? %>
