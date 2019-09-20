@@ -13,14 +13,20 @@
 	    	</div>	
 			<div class="row shuffle-wrapper portfolio-gallery">
 			  	<%@achat.each do |achat|%>
-			  		
+			  		<%if achat.is_authenticate%>
 				      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;branding&quot;]">
+				      	<table class="tableau">
+		                  <tr>
+			                <td><%= achat.produit.name %></td>
+			                <td class="tabletd"> <%= achat.region.place %></td>
+			              </tr>
+			            </table>
 				        <div class="position-relative inner-box" >
 				            <div class="image position-relative ">
 								<%if achat.avatarachat.attached?%>
 				                  <div class="img-comp-container">
 				                    <div class="img-comp-img pblink">
-				                      <a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',class:"img-fluid w-100 d-block" ,style: "height:400px; width: 300px;"%>
+				                      <a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',class:"img-fluid w-100 d-block" ,style: "height:250px; width: 300px;"%>
 				                      </a>
 				                    </div>
 				                    <div class="img-comp-img img-comp-overlay">
@@ -36,7 +42,7 @@
 								<%else%>
 								   <div class="img-comp-container">
 				                    <div class="img-comp-img pblink">
-										<%=image_tag 'no-photo.png',class:"img-fluid w-100 d-block" %>
+										<%=image_tag 'no-photo.png',class:"img-fluid w-100 d-block" ,style: "height:250px; width: 200px;"%>
 				                    </div>
 				                    <div class="img-comp-img img-comp-overlay">
 				                      <a href="<%=user_path(achat.user.id)%>">
@@ -61,33 +67,34 @@
 											<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
 			                    		</a>
 			                    		<% if user_signed_in? %>
-			                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-			                    				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
-													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Signaler</h3>
-			                    				</a>
-						                 	<%else%>
-												<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
-													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</h3>
-			                    				</a>
-						                 	<%end%>
-						                 	<% if current_user.is_admin %>
-							                    <%if achat.signal_achats.length != 0%>
-							                      <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-							                    <%end%>
-							                <%else%>
-							                	<%if achat.signal_achats.length != 0%>
-							                      <%=achat.signal_achats.length%>
-							                    <%end%>
-							                <%end%>
+			                    			<h3 class="mb-0">
+				                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+				                    				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
+														<i class="fa fa-user rouge"></i> Signaler
+				                    				</a>
+							                 	<%else%>
+													<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
+														<i class="fa fa-user rouge"></i> Ne pas signaler
+				                    				</a>
+							                 	<%end%>
+							                 	<% if current_user.is_admin %>
+								                    <%if achat.signal_achats.length != 0%>
+								                      <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+								                    <%end%>
+								                <%else%>
+								                	<%if achat.signal_achats.length != 0%>
+								                      <%=achat.signal_achats.length%>
+								                    <%end%>
+								                <%end%>
+								            </h3>
 							            <%end%>
 				                	</div> 
 					            </div>
 					        </div>
 					      </div>
 				      </div>
-				    
+				    <%end%>
 			    <%end%>
-
 		    </div>
 		</div>
 	</section>

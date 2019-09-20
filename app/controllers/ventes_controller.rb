@@ -148,7 +148,7 @@ class VentesController < ApplicationController
     @signall = Signall.where(vente_id: @vente.id)
     @signall.destroy_all
     @vente.destroy
-    redirect_to root_path
+    redirect_to ventes_path
   end
 
   private

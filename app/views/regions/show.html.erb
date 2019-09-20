@@ -19,13 +19,13 @@
 		 	<%if vente.is_authenticate || current_user.is_admin%>
 			  <i>Nom du produit : </i><%= vente.produit.name %> </br>
 			  <i>Quantité du produit : </i><%=vente.quantite%></br>
-			  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+			  <%= link_to "Detail", vente_path(vente.id), class:'btn btn-secondary' %><br/><br/>
 			<%end%>
 		<%else%>
 			<%if vente.is_authenticate%>
 			  <i>Nom du produit : </i><%= vente.produit.name %> </br>
 			  <i>Quantité du produit : </i><%=vente.quantite%></br>
-			  <%= link_to "Detail", vente_path(vente.id) %><br/><br/>
+			  <%= link_to "Detail", vente_path(vente.id), class:'btn btn-secondary' %><br/><br/>
 			<%end%>
 		<%end%>
 	<%end%>
@@ -40,13 +40,13 @@
 			<%if achat.is_authenticate || current_user.is_admin%>
 			  <i>Nom du produit : </i><%= achat.produit.name %></br>
 			  <i>Quantité du produit : </i><%=achat.quantite%></br>
-			  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+			  <%= link_to "Detail", achat_path(achat.id), class:'btn btn-secondary' %><br/><br/>
 			<%end%>
 		<%else%>
 			<%if achat.is_authenticate%>
 			  <i>Nom du produit : </i><%= achat.produit.name %></br>
 			  <i>Quantité du produit : </i><%=achat.quantite%></br>
-			  <%= link_to "Detail", achat_path(achat.id) %><br/><br/>
+			  <%= link_to "Detail", achat_path(achat.id), class:'btn btn-secondary' %><br/><br/>
 			<%end%>
 		<%end%>
 	<%end%>
