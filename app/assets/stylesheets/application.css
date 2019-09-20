@@ -401,8 +401,12 @@ ul{
 
 }
 .tableau{
-width: 90%;
-margin-right: 3px;
+  font-weight:bolder;
+  width: 100%;
+  margin-right: 3px;
+}
+.tabletd{
+  float: right;
 }
 /*achat
 /**************************/
@@ -599,7 +603,7 @@ span.psw {
   opacity: 0.6;
 }
 .bienvenue{
-  background-image: url("cover_4.jpg");
+  background-image: url("images.jpg");
 }
 .card{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -840,12 +844,43 @@ input{
   font-weight: bold;
 }
 }
-/*====================================================================*/
+/*=======================photo index=============================================*/
 .overlay-content:hover{
   text-decoration: none;
   opacity: 0.5;
 }
+
 /*==========================new achat / event =============*/
 .newpb{
-  border: 2px solid;
+  width: 500px;
+  margin: 0 auto;
+}
+.divide{
+  width: 240px;
+  display: inline-block;
+}
+.divide1{
+  vertical-align: top;
+  margin-left: 2px;
+  width: 245px;
+  display: inline-block;
+}
+@media screen and (min-width: 200px) and (max-width: 480px) {
+  .newpb{
+  width: 260px;
+  margin: 0 auto;
+}
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .newpb{
+  width: 450px;
+  margin: 0 auto;
+}
+}
+/*=========================new  pb ================*/
+#newpb{
+  padding: 1px;
+  border:none;
+  border-bottom: 1.5px solid #0056b3;
+  background-color: transparent;
 }

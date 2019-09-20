@@ -1,35 +1,50 @@
-<div class="ground editachatground ">
-
-<% if @vente.errors.any? %>
-  <p>Nous n'avons pas réussi à créer l'Event pour la (ou les) raison(s) suivante(s) :</p>
-  <ul>
-    <% @vente.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="ground">
+  <!-- affichage allert -->
+  <% if flash[:success] %>
+    <div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+  <% else  %>
+    <%if flash[:danger]%>
+      <div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
     <% end %>
-  </ul>
-<% end %>
-
-<h1>Créer une publication vente</h1>
-  <div style="text-align: center;">
+  <% end %>
+  <% if @vente.errors.any? %>
+    <p>Nous n'avons pas réussi à créer l'Event pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @vente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <h1 class="center">Créer une publication dont vous avez besoin</h1>
+  <div class="newpb center">
     <%= form_tag url_for(action: 'create'), method: "post" do %>
-      Nom du produit</br>
-      <input type="text" name="nom" placeholder="name product">*<br/>
-      Region <br/>
-      <input type='text' name='place' placeholder="Region">*<br/><br/>
-      <div>      
-      Description<br/>
-      <textarea type="text" name="description" placeholder="donné un détail du demande"></textarea>*<br/>
-      Quantité<br/>
-      <input type="text" name="quantite" placeholder="quantité du produit rechercher">*<br/>
-      Prix en Ariary / Unité <br/>
-      <input type="number" name="prix" min='0' placeholder="3562.1">* <input type="text" name="unite" placeholder="ex : Ar/t(Ariary/tonne)">*<br/>
-      Date<br/> 
-      <input type="date" name="date" value="<%=Time.now%>" min= <%=Time.now%>>*<br/>
-      Lieu exacte<br/>
-      <input type="text" name="lieu" placeholder="city">*<br/>
-      </div>
+    <strong>Nom du produit</strong> <i class="rouge">*</i></br>
+    <input type="string" class="form-control" name="nom" placeholder="Nom du produit" id='newpb'><br/>
+    <strong>Region où vous êtes</strong><i class="rouge">*</i>
+    <br/>
+    <input type='text' name='place' class="form-control" placeholder="Region" id='newpb'><br/><br/>
+    <div>
+      <strong>Déscription</strong><i class="rouge">*</i>
       <br/>
-      <%= submit_tag "Creer la Publication", class:'btn btn-success' %>
+      <textarea type="text" class="form-control" name="description" placeholder="donné un détail du demande" id='newpb'></textarea><br/>
+     <strong>Quantité</strong><i class="rouge">*</i>
+      <br/>
+      <input type="text" class="form-control" name="quantite" placeholder="quantité du produit rechercher" id='newpb'><br/>
+      <strong>Prix en Ariary / Unité </strong><i class="rouge">*</i>
+      <br/>
+      <div class="divide">
+        <input type="number" class="form-control" name="prix" min="0" placeholder="3562.1"   id='newpb'>
+      </div>
+      <div class="divide1">
+        <input type="text" class="form-control"  name="unite" placeholder="ex : Ar/t(Ariary/tonne)" id='newpb'>
+      </div> <br/>
+      <strong>Date</strong><i class="rouge">*</i><br/>
+      <input type="date" id='newpb' class="form-control" name="date" value="<%=Time.now%>" min= <%=Time.now%> ><br/>
+      <strong>Lieu exacte</strong><i class="rouge">*</i><br/>
+      <input type="text" class="form-control" name="lieu" placeholder="local" id='newpb'><br/>
+    </div>
+    <br/>
+    <%= submit_tag "Creer la Publication", class:'btn btn-success' %>
     <% end %>
   </div>
 </div>

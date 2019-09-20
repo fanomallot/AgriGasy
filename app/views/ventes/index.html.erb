@@ -1,64 +1,103 @@
-<br><br><br>
-<h1>Listes de toutes les Ventes disponibles :</h1>
-<p>
-	<div class="mar">
-		<% @vente.each do |vente| %>
-			<% if vente.is_authenticate == true %>
-				<div class="containerlist">
-					<ul class="border">
-						<div class="tezz">
-							<li>
+
+<div class="ground">
+	<section class="portfolio ">
+		<div class="container">
+			<div class="row mb-5">
+		      	<div class="col-10">
+			        <div class="btn-group btn-group-toggle " data-toggle="buttons">
+			           <label class="btn">
+			            <input type="radio" name="shuffle-filter" value="photo" />Liste des ventes
+			          </label><br><br>
+	    				<p>Listes des publications de ventes disponibles</p>
+			        </div>
+		      	</div>
+	    	</div>	
+			<div class="row shuffle-wrapper portfolio-gallery">
+			  	<%@vente.each do |vente|%>
+			  		<%if vente.is_authenticate%>
+				      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;branding&quot;]">
+		      			<table class="tableau">
+		                  <tr>
+			                <td><%= vente.produit.name %></td>
+			                <td class="tabletd"> <%= vente.region.place %></td>
+			              </tr>
+			            </table>
+				        <div class="position-relative inner-box" >
+				            <div class="image position-relative ">
 								<%if vente.avatarvente.attached?%>
-									<div class="img-comp-container">
-									  <div class="img-comp-img pblink">
-									    <a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %>
-										</a>
-									  </div>
-									  <div class="img-comp-img img-comp-overlay">
-									  	<a href="<%=user_path(vente.user.id)%>">
-									  		<%if vente.user.profil.attached?%>
-									    		<%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
-									    	<%else%>
-									    		<i class="menu-item fa fa-user"></i>
-									    	<%end%>
-									    </a>
-									  </div>
-									</div>
+				                  <div class="img-comp-container">
+				                    <div class="img-comp-img pblink">
+				                      <a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-fluid w-100 d-block" ,style: "height:250px; width: 200px;"%>
+				                      </a>
+				                    </div>
+				                    <div class="img-comp-img img-comp-overlay">
+				                      <a href="<%=user_path(vente.user.id)%>">
+				                        <%if vente.user.profil.attached?%>
+				                          <%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
+
+				                        <%else%>
+				                          <i class="menu-item fa fa-user"></i>
+				                        <%end%>
+				                      </a>
+				                    </div>
+				                  </div>
 								<%else%>
-									<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+								   <div class="img-comp-container">
+				                    <div class="img-comp-img pblink">
+										<%=image_tag 'no-photo.png',class:"img-fluid w-100 d-block",style: "height:250px; width: 200px;" %>
+				                    </div>
+				                    <div class="img-comp-img img-comp-overlay">
+				                      <a href="<%=user_path(vente.user.id)%>">
+				                        <%if vente.user.profil.attached?%>
+				                          <%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
+				                        <%else%>
+				                          <i class="menu-item fa fa-user"></i>
+				                        <%end%>
+				                      </a>
+				                    </div>
+				                  </div>
 								<%end%>
-							</li>
-						</div>
-						<table class="tableau">
-							<tr>
-								<td><%= link_to vente.produit.name, produits_path %></td>
-								<td><%= link_to vente.region.place, regions_path %></td>
-							</tr>
-						</table>
-						<%unless vente.avatarvente.attached?%>
-							<li><div class="center">
-								<%= link_to "Detail", vente_path(vente.id) ,class:'boutton simple seemore' %>
-							</div></li>
-						<%end%>
-						<% if user_signed_in? %>
-							<li><div class="center">
-								<%if current_user !=nil %>
-									<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-										<%=link_to 'signaler' ,user_vente_signalls_path(current_user.id,vente.id),class:'boutton simple seemore',method: 'post' %>
-									<%else%> 
-										<%=link_to "ne pas signaler", user_vente_signalls_path(current_user.id,vente.id),class:'boutton simple seemore',method: 'post' %>
-									<%end%>
-									<% if current_user.is_admin %>
-										<%if vente.signalls.length != 0%>
-											<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
-										<%end%>
-									<%end%>
-								<%end%>
-							</div></li>
-						<% end %>
-					</ul>
-				</div>
-			<% end %>
-		<% end %>
-	</div>
-</p>
+																<table class="tableau">
+				                  <tr>
+					                <td><%= vente.produit.name %></td>
+					                <td> <%= vente.region.place %></td>
+					              </tr>
+					            </table>
+
+				                <div class="overlay-box">
+				                  <div class="overlay-inner">
+			                    		<a class="overlay-content" href="<%=vente_path(vente.id)%>">
+											<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
+			                    		</a>
+			                    		<% if user_signed_in? %>
+			                    			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
+			                    				<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
+													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Signaler</h3>
+			                    				</a>
+						                 	<%else%>
+												<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
+													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</h3>
+			                    				</a>
+						                 	<%end%>
+						                 	<% if current_user.is_admin %>
+							                    <%if vente.signalls.length != 0%>
+							                      <%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
+							                    <%end%>
+							                <%else%>
+							                	<%if vente.signalls.length != 0%>
+							                      <%=vente.signalls.length%>
+							                    <%end%>
+							                <%end%>
+							            <%end%>
+				                	</div> 
+					            </div>
+					        </div>
+					      </div>
+				      </div>
+				    <%end%>
+			    <%end%>
+
+		    </div>
+		</div>
+	</section>
+</div>
