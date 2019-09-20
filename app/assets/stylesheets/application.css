@@ -477,7 +477,7 @@ span.psw {
   grid-column-gap: 10px;
 }
 .grid-it {
-  background-color: rgba(10, 255, 10, 0.1);
+ /* background-color: rgba(10, 255, 10, 0.1);*/
   padding: 50px;
   font-size: 10px;
   text-align: center;
@@ -918,4 +918,29 @@ input{
   width: 430px;
   padding: 5px;
 }
+}
+/*========liste des users========== */
+.tab {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tdh {
+  font-family: Times New Roman;
+  font-size: 20px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.tr1:nth-child(even) {
+  background-color: #dddddd;
+}
+/*==============liste des users========== */
+
+/*==============index produits========== */
+.tab1 {
+  border-collapse: collapse;
+  border-spacing: 10px; 
 }
