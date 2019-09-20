@@ -884,3 +884,38 @@ input{
   border-bottom: 1.5px solid #0056b3;
   background-color: transparent;
 }
+/*================show pb ==================*/
+.showpb{
+  margin: 0 auto;
+  width: 530px;
+  padding: 5px;
+}
+.showpbbow1{
+  display:inline-block;
+  margin-left: 2px;
+  margin-bottom: 9px;
+}
+.showpbbow2{
+  display:inline-block;
+  margin-left:2px;
+}
+
+.showpbbow{
+  width: 450px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  
+}
+@media screen and (min-width: 200px) and (max-width: 480px) {
+  .showpbbow{
+  width: 350px;
+  margin: 0 auto;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+  .showpb{
+  margin: 0 auto;
+  width: 430px;
+  padding: 5px;
+}
+}
