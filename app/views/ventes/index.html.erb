@@ -35,27 +35,33 @@
 								<td><%= link_to vente.region.place, regions_path %></td>
 							</tr>
 						</table>
-						<%unless vente.avatarvente.attached?%>
-							<li><div class="center">
-								<%= link_to "Detail", vente_path(vente.id) ,class:'boutton simple seemore' %>
-							</div></li>
-						<%end%>
-						<% if user_signed_in? %>
-							<li><div class="center">
-								<%if current_user !=nil %>
-									<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-										<%=link_to 'signaler' ,user_vente_signalls_path(current_user.id,vente.id),class:'boutton simple seemore',method: 'post' %>
-									<%else%> 
-										<%=link_to "ne pas signaler", user_vente_signalls_path(current_user.id,vente.id),class:'boutton simple seemore',method: 'post' %>
-									<%end%>
-									<% if current_user.is_admin %>
-										<%if vente.signalls.length != 0%>
-											<%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
-										<%end%>
-									<%end%>
-								<%end%>
-							</div></li>
-						<% end %>
+						<div class="overlay-box">
+              <div class="overlay-inner">
+            		<a class="overlay-content" href="<%=vente_path(vente.id)%>">
+									<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
+            		</a>
+            		<% if user_signed_in? %>
+            			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
+            				<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
+										<h3 class="mb-0"><i class="fa fa-user rouge"></i> Signaler</h3>
+            				</a>
+               		<%else%>
+										<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
+										<h3 class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</h3>
+            				</a>
+               		<%end%>
+               		<% if current_user.is_admin %>
+                    <%if vente.signalls.length != 0%>
+                      <%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
+                    <%end%>
+                	<%else%>
+                		<%if vente.signalls.length != 0%>
+                    	<%=vente.signalls.length%>
+                  	<%end%>
+                	<%end%>
+            		<%end%>
+            	</div> 
+          	</div>
 					</ul>
 				</div>
 			<% end %>

@@ -40,22 +40,41 @@
 			
 		</p>
 		<%if @achat.user == current_user || current_user.is_admin%>
-				<%= link_to "Editer", edit_achat_path(@achat.id), class:'btn btn-secondary' %><br>
-				<%= link_to "Supprimer", achat_path(@achat.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger' %><br>
+				<%= link_to "Editer", edit_achat_path(@achat.id), class:'btn btn-secondary' %><br><br>
+				<%= link_to "Supprimer", achat_path(@achat.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger' %><br><br>
 		<%end%>
 
-<% if current_user.is_admin %>
-	<% if @achat.is_authenticate != true %>
-		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{@achat.id}" %><br><br>
-	<% end %>
-<% end %>
-	<%if current_user != @achat.user%> 
-		<%if @achat.user != current_user || current_user.is_admin %>			
-			<%= form_tag new_user_message_prife_path(@achat.user.id) ,action: 'new',method:'get' do %>
-			 
-			 	  <%= submit_tag "Envoyer message" %> 
-			  	  
+		<% if user_signed_in? %>
+			<%if (SignalAchat.find_by(user: current_user, achat_id: @achat.id)== nil)%>
+				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,@achat.id)%>" data-method= 'post'>
+					<h3 class="mb-0"><i class="fa fa-user rouge"></i> Signaler</h3><br><br>
+				</a>
+	    <%else%>
+				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,@achat.id)%>" data-method= 'post'>
+					<h3 class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</h3>
+				</a>
+	    <%end%>
+	    <% if current_user.is_admin %>
+	      <%if @achat.signal_achats.length != 0%>
+	        <%=link_to "(#{@achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id, @achat.id)%><br><br>
+	      <%end%>
+	    <%else%>
+	      <%if @achat.signal_achats.length != 0%>
+	        <%=@achat.signal_achats.length%><br><br>
+	      <%end%>
+	    <%end%>
+	  <%end%>
+
+		<% if current_user.is_admin %>
+			<% if @achat.is_authenticate != true %>
+				<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{@achat.id}", class:'btn btn-primary'  %><br><br>
 			<% end %>
+		<% end %>
+		<%if current_user != @achat.user%> 
+			<%if @achat.user != current_user || current_user.is_admin %>			
+				<%= form_tag new_user_message_prife_path(@achat.user.id) ,action: 'new',method:'get' do %>
+				 	  <%= submit_tag "Envoyer message" %> <br><br>
+				<% end %>
+			<%end%>
 		<%end%>
-	<%end%>
 </div>
