@@ -44,27 +44,20 @@
 				<%= link_to "Supprimer", achat_path(@achat.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger' %><br>
 		<%end%>
 
-		<% if current_user.is_admin %>
-			<% if @achat.is_authenticate != true %>
-				<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{@achat.id}" %><br><br>
+<% if current_user.is_admin %>
+	<% if @achat.is_authenticate != true %>
+		<%= link_to "Authentifier la publication", "/admindashboard/authentificate_achat/#{@achat.id}" %><br><br>
+	<% end %>
+<% end %>
+	<%if current_user != @achat.user%> 
+		<%if @achat.user != current_user || current_user.is_admin %>			
+			<%= form_tag new_user_message_prife_path(@achat.user.id) ,action: 'new',method:'get' do %>
+			 
+			 	  <%= submit_tag "Envoyer message" %> 
+			  	  
 			<% end %>
-		<% end %>
-		<%if current_user != @achat.user%>
-			<%if @achat.user != current_user || current_user.is_admin %>			
-				<%= form_tag "/users/#{@achat.user.id}/achats/#{@achat.id}/messagepriveachats",method:'get' do %>
-				 
-				 	  <%= submit_tag "envoyer message" %> 
-				  	  
-				<% end %>
-			<%end%>
-		<%else%>	
-				<%@sender_id.each do |s|%>
-					<%a = MessagePrive.where(sender_id: s, recipient_id:current_user.id)+MessagePrive.where(sender_id:current_user.id, recipient_id:s)%>
-				 <%= link_to "Message from #{User.find(s).first_name}", "/users/#{s}/achats/#{@achat.id}/messagepriveachats/#{a[0].id}"%><br>	
-			
-				<%end%> 	  
-		<%end%>	
-	</div>
+		<%end%>
+	<%end%>
 </div>
 
 

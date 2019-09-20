@@ -44,7 +44,6 @@
                 <li><a class="dropdown-item" href="portfolio-single.html">Portfolio Details</a></li> -->
               </ul>
             </li>
-
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publication disponible</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown02">
@@ -52,7 +51,19 @@
                 <li><a class="dropdown-item" href="<%=achats_path%>">Achat</a></li>
               </ul>
             </li>
-             <li class="nav-item dropdown">
+            <%if user_signed_in?%>
+              <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Messages</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                  <li><a class="dropdown-item" href="<%=user_message_prives_path(current_user.id)%>">Boite de reception (<%=MessagePrive.where('recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , a:false).count%>)</a></li>
+                  <li><a class="dropdown-item" href="<%=send_messages_path%>">Nouveau message</a></li>
+                  <%MessagePrive.where('recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , a:false).each do |mp|%>
+                  <li><a class="dropdown-item" href="<%=new_user_message_prife_path(mp.sender.id)%>"><%=mp.sender.first_name%> (<%=MessagePrive.where(recipient:current_user,sender:mp.sender,is_read: false).count%>)</a></li>
+                  <%end%>
+                </ul>
+              </li>
+             <%end%>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown"><i class="fa fa-search"></i></a>
             </li>
              <li class="nav-item"><%=form_tag recherches_path ,method:'get' do%>
@@ -106,4 +117,6 @@
     <footer>
     </footer>
   </body>
+
 </html>
+

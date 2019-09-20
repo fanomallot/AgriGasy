@@ -1,62 +1,16 @@
 
 <div class="ground editventeground ">
-<%if current_user == Vente.find(params[:vente_id]).user%>
-  <%for i in (0...@id_sender_recipient.length)%>
-    <% a = MessagePrive.where(sender_id:current_user.id,recipient_id:@id_sender_recipient[i]) + MessagePrive.where(sender_id: @id_sender_recipient[i],recipient_id:current_user)%>
-        <%= link_to User.find(@id_sender_recipient[i]).first_name, user_vente_message_prife_path(@id_sender_recipient[i],params[:vente_id],a[0].id)%><br>
-     
+<h1>Messages</h1>
+
+<%@id_sender_recipient.each do |id|%>
+  <%m = MessagePrive.where('sender_id = :u AND recipient_id = :cu OR sender_id = :cu AND recipient_id = :u', cu:current_user.id, u:id).last%>
+  <%if current_user == m.sender %>
+  <h2><%=m.recipient.first_name%></h2>
+     <h3><%=link_to m.content, new_user_message_prife_path(id), method:'get'%></h3>
+  <%else%>
+    <h2><%=User.find(id).first_name%></h2>
+     <h3> <%=link_to m.content, new_user_message_prife_path(id), method:'get'%></h3>
   <%end%>
-<%else%>
-      <%if @message.length !=0%>
-        <% i = @message.length %>
-        <%for k in (0..@message.length-1)%>
-            <%i-=1%>
-           <%if @message[i].sender == current_user%>
-                  <br>
-                  <%if @message[i].sender.profil.attached?%>
-                    <%=@message[i].sender.first_name%><br>
-                    <%= image_tag @message[i].sender.profil, alt: 'photo_vente',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
-                  <%else%>
-                    <%=@message[i].sender.first_name%><br>
-                    <%=  @message[i].content%>
-                  <%end%>
-                 <%if current_user == Vente.find(params[:vente_id]).user%>
-                     <%= form_tag edit_user_vente_message_prife_path(current_user.id,params[:vente_id],@message[i].id),method:'get' do%>
-                    <%=submit_tag 'Editer'%>
-                     <%end%>  
-                    <%= form_tag user_vente_message_prife_path(Vente.find(params[:vente_id]).user.id,params[:vente_id],@message[i].id),action:'destroy',method:'delete' do%>
-                      <%=submit_tag 'Supprimer', data:{confirm: "Etes-vous sûr ?"}%>
-                    <%end%>
-                  <%else%>
-                     <%= form_tag edit_user_vente_message_prife_path(Vente.find(params[:vente_id]).user.id,params[:vente_id],@message[i].id),method:'get' do%>
-                    <%=submit_tag 'Editer'%>
-                     <%end%>
-                    <%= form_tag user_vente_message_prife_path(Vente.find(params[:vente_id]).user.id,params[:vente_id],@message[i].id),action:'destroy', method:'delete' do%>
-                      <%=submit_tag 'Supprimer',class:'boutton btn-danger', data:{confirm: "Etes-vous sûr ?"}%>
-                    <%end%>
-                  <%end %>
-                </br>
-           <%else%>
-                  <br>
-                  <%if @message[i].sender.profil.attached?%>
-                    <%=@message[i].sender.first_name%><br>
-                    <%= image_tag @message[i].sender.profil, alt: 'photo_vente',style: "height:50px; width: 50px;"%><%=  @message[i].content%>
-                  <%else%>
-                    <%=@message[i].sender.first_name%><br>
-                    <%=  @message[i].content%>
-                  <%end%>
-           <%end%>  
-        <%end%>  
-        <%= form_tag user_vente_message_prives_path(params[:user_id],params[:vente_id]),action: 'create',method:'post' do%>
-          <%=text_area_tag :content%>
-            <%=submit_tag :envoyer%>
-        <%end%>
-    <%else%>
-    <h1>Ecrire une message</h1>
-        <%= form_tag user_vente_vente_message_prives_path(params[:user_id],params[:vente_id]),action: 'create',method:'post' do%>
-          <%=text_area_tag :content%>
-            <%=submit_tag :envoyer%>
-          <%end%>
-      <%end%>
-  <%end%>
+  <br>
+<%end%>
 </div>

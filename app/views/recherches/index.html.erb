@@ -1,5 +1,4 @@
 <div class="ground editachatground ">
-
 	<%if @produit.length != 0%>
 		<h1>Résultat de produit sur <%=@params%> : </h1>
 		<h4>Vente</h4><br>
@@ -9,6 +8,7 @@
 					<%=link_to vente.produit.name, vente_path(vente.id)%><br>
 					<%=link_to vente.region.place, region_path(vente.region.id)%><br>
 				<%end%>
+
 			<%end%>
 		<%else%>
 			Pas de resultat sur <%=@params%><br>	

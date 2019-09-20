@@ -1,6 +1,6 @@
 
 <body>
-	<h1>Salut les admins <%@admin.each do |admin|%> '<%= admin.first_name %>' <%end%>!</h1>
+	<h1>Salut : <%@admin.each do |admin|%> '<%= admin.first_name %>' <%end%>!</h1>
 
 	<p>
 	  Un utilisateur nommé '<%=@achat.user.first_name%>' et ayant le mail  `<%= @achat.user.email %>`  vient de créer une publication d'achat sur ton site.
