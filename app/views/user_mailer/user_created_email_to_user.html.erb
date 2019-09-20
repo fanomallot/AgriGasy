@@ -1,5 +1,7 @@
-    <h1>Salut <%= @user.first_name %> et bienvenue chez nous !</h1>
+<div class="center">
+    <h1>Salut <%= @user.first_name %> et bienvenue chez <strong><i style="color: green;">AgriGasy</i></strong></h1>
     <p>
-      Vous venez de s'inscrir sur Agrigasy avec l'e-mail <%= @user.email %> 
+    	Vous venez de s'inscrir sur notre site <strong><i>AgriGasy</i></strong> avec l'e-mail <%= @user.email %>
+    	Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
     </p>    
- 
+</div>
