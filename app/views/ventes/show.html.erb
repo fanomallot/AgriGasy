@@ -23,20 +23,20 @@
 	<% end %>
   <%end%>
 <p>
-	<strong>Nom : </strong> <%= @vente.produit.name %><br>
+	<strong>Nom du produit : </strong> <%= @vente.produit.name %><br>
 	<strong>Description : </strong> <%= @vente.description %><br>
 
 	<strong>Quantite : </strong> <%= @vente.quantite %><br>
 	<strong>Prix : </strong> <%= @vente.prix %><br>
 	<strong>Region : </strong> <%= @vente.region.place %><br>
-	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
+	<strong>Lieu exacte : </strong> <%= @vente.lieu %><br/>
 	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br>
 </p>
 
 <p>
 	<%if @vente.user == current_user || current_user.is_admin%>
-		<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
-		<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
+		<%= link_to "Editer", edit_vente_path(@vente.id) %><br>
+		<%= link_to "Supprimer", vente_path(@vente.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %><br>
 	<%end%>
 
 	<% if current_user.is_admin %>
@@ -47,21 +47,13 @@
 
 	<%if current_user != @vente.user%> 
 		<%if @vente.user != current_user || current_user.is_admin %>			
-			<%= form_tag user_vente_message_prives_path(@vente.user.id,@vente.id) ,action: 'index' do %>
+			<%= form_tag new_user_message_prife_path(@vente.user.id) ,action: 'new',method:'get' do %>
 			 
 			 	  <%= submit_tag "Envoyer message" %> 
 			  	  
 			<% end %>
 		<%end%>
-	<%else%>	
-			<%@sender_id.each do |s|%>
-				<%a = MessagePrive.where(sender_id: s, recipient_id:current_user.id)+MessagePrive.where(sender_id:current_user.id, recipient_id:s)%>
-			 <%= link_to "Message from #{User.find(s).first_name}", user_vente_message_prife_path(s,@vente.id,@vente.id),action:'show'%><br>	
-		
-			<%end%> 	  
 	<%end%>
-		
-
 </p>
 </div>
 

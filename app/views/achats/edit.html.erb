@@ -1,50 +1,86 @@
-<div class="ground editachatground">
+<div class="ground">
 <!-- affichage allert -->
-<%if flash[:danger]%>
-  <div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
-<% end %>
-  <h1 class="center blanche">Edit Publication</h1>
-  <div class=" editachat1 ">
-    <%if @achat.avatarachat.attached?%>
-      <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:400px; width: 440px;",class:'radius' %>
-    <%else%>
-      <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-    <%end%>
-    <div class="photo floue">
-      <%if current_user == @achat.user || current_user.is_admin%>
-        <h3>Changer de photo ?</h3>
-        <%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
-          <%= file_field_tag :avatarachat,class:'boutton success' %>
-          <%= submit_tag "mettre à jour",class:'boutton success' %>
-        <% end %>
-      <%end%>     
+  <% if flash[:success] %>
+    <div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+  <% else  %>
+    <%if flash[:danger]%>
+      <div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+    <% end %>
+  <% end %>
+  <section class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content">
+            <h1 class="page-name">Modifier ma publication d'achat</h1>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="editachat2 textgras">
-    <p>
-    	<%= form_tag url_for(action: 'update'), method: "put" do %>
-
-      	<i class="floue">Nom de produit</i><br/>
-        <input type="text" name="nom" value="<%=@achat.produit.name %>"><i class="rouge">*</i><br/> 
-
-      	<i class="floue">Description</i><br/>
-        <textarea type="text" name="description" class="areaedit"><%=@achat.description %>
-        </textarea> <i class="rouge">*</i><br/> 
-
-        <i class="floue">Quantité disponible</i><br/>
-        <input type="text" name="quantite" value="<%=@achat.quantite%>"><i class="rouge">*</i></br>
-
-        <i class="floue">Region</i><br>
-        <input type="text" name="place" value="<%=@achat.region.place%>"><i class="rouge">*</i><br/>
-        <i class="floue">Prix en ariary / unité</i><br/>
-        <input type="text" name="prix" value="<%=@achat.prix%>"><br/>
-        <i class="floue">Date de disponibilité</i><br/>
-        <input type="date" name="date" <%if @achat.date != nil %>value="<%=@achat.date.to_date%>"<%end%> min= <%=Time.now%>><br/>
-        <i class="floue">Lieu</i><br/>
-        <input type="text" name="lieu" value="<%=@achat.lieu%>"><br/><br/>
-        
-        <%= submit_tag "Update post",class:'boutton success ' %> <%= link_to "Annulé", :back ,class:'boutton primary '%>
-      <% end %>
-    </p>  
+  </section>
+  <div class="page-wrapper ">
+     <div class="checkout shopping">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-8">
+                 <div class="block billing-details">
+                    <h4 class="widget-title">changer les détails</h4>
+                     <%= form_tag url_for(action: 'update'), method:'patch' do%>
+                       <div class="form-group">
+                          <label for="user_address">Nom de produit</label><i class="rouge">*</i>
+                          <input type="text" class="form-control" name="nom" value="<%=@achat.produit.name %>">
+                       </div>
+                       <div class="form-group">
+                          <label for="full_name">Quantité disponible</label><i class="rouge">*</i>
+                          <input type="text" class="form-control" name="quantite" value="<%=@achat.quantite%>">
+                       </div>
+                       <div class="checkout-country-code clearfix">
+                          <div class="form-group">
+                             <label for="user_post_code">Region</label><i class="rouge">*</i>
+                             <input type="text" class="form-control" name="place" value="<%=@achat.region.place%>">
+                          </div>
+                          <div class="form-group" >
+                             <label for="user_city">Date de disponibilité</label>
+                             <input type="date" name="date" class="form-control" <%if @achat.date != nil %>value="<%=@achat.date.to_date%>"<%end%> min= <%=Time.now%>><br/>
+                          </div>
+                       </div>
+                       <div class="form-group">
+                          <label for="user_country">Local exacte</label>
+                          <input type="text" class="form-control" name="lieu" value="<%=@achat.lieu%>" >
+                       </div>                     
+                       <div class="form-group">
+                          <label for="user_country">Déscription</label><i class="rouge">*</i>
+                          <textarea type="text" name="description" class="form-control" ><%=@achat.description %></textarea>
+                       </div>
+                      <input type="submit" value="Enregistrer" class="btn btn-primary">
+                    <%end%>
+                 </div>
+              </div>
+        <div class="col-md-4 ">
+                 <div class="product-checkout-details">
+                    <div class="block">
+                       <h4 class="widget-title">Changer la photo</h4>
+                       <div class="media product-card">
+                       <%if @achat.avatarachat.attached?%>
+                          <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:400px; width: 440px;",class:'radius' %>
+                        <%else%>
+                          <p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
+                          <%= image_tag "profil.png", alt: 'profil_picture',style: "width: 200px;height:190px;" %>
+                        <%end%> 
+                        <br>
+                       </div>
+                      <div class="photo editachat1 floue">
+                        <h6>Changer la photo de profil ?</h6>
+                          <%= form_tag '/', multipart: true do %>
+                            <%= file_field_tag :profil%>
+                            <input type="submit" class="btn btn-primary" value="Valider">
+                          <% end %>
+                       </div>
+                    </div>
+                 </div>
+              </div> 
+           </div>
+        </div>
+     </div>
   </div>
 </div>

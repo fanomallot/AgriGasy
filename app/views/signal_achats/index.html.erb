@@ -1,4 +1,4 @@
 <h1>Liste des personnes qui ont signalé cette publication:</h1>
-  <%@signalAchat.each do |signal|%>
+<%@signalAchat.each do |signal|%>
   	<%=link_to signal.user.first_name,user_path(signal.user.id)%><br>
-  	<%end%>
+<%end%>

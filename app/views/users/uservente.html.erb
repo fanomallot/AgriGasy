@@ -17,7 +17,7 @@
 				<div class="col-md-6">
 					<div class="post">
 					  <div class="post-thumb">
-					      <%=image_tag 'etonné1.jpg',alt:'rien',class:"img-responsive"%>
+					      <%=image_tag 'etonné1.jpg',alt:'rien',class:"img-respons"%>
 					    </a>
 					  </div>
 				  		<h3 class="post-title">Vous n'avez pas de publication de vente</a></h3>
@@ -39,7 +39,7 @@
 			      		<div class="col-md-6">
 					        <div class="post">
 					          <div class="post-thumb">
-					              <%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-responsive" %>
+					              <%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-respons" %>
 					          </div>
 					          <h2 class="post-title"><%=vente.produit.name %></h2>
 					          <div class="post-meta">
@@ -93,9 +93,9 @@
 					        <div class="post">
 					          <div class="post-thumb">
 					          	<%if vente.avatarvente.attached?%>
-					              <%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-responsive" %>
+					              <%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-respons" %>
 								<%else%>
-								<%= image_tag 'no-photo.png', alt: 'photo_vente',class:"img-responsive" %>
+								<%= image_tag 'no-photo.png', alt: 'photo_vente',class:"img-respons" %>
 								<%end%>
 					          </div>
 					          <h2 class="post-title"><%=vente.produit.name %></h2>

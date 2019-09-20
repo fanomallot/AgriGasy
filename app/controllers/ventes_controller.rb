@@ -8,15 +8,6 @@ class VentesController < ApplicationController
 
   def show
     @vente = Vente.find(params[:id])
-    id_sender =[]
-    @message = current_user.received_messages
-    @message.each do |m|
-     id_sender << m.sender.id
-    end
-     id_sender = id_sender.uniq
-     id_sender.delete(Vente.find(params[:id]).user.id)
-     puts id_sender
-     @sender_id = id_sender
   end
 
   def new
@@ -76,10 +67,10 @@ class VentesController < ApplicationController
     end
     # test de sauvegarde des donnés
     if @vente.save
-      flash[:success] = 'Publication de vente bien créé'
+      flash[:success] = "La publication a été créée avec success, en attente d'authentification"
       redirect_to root_path
     else
-      flash[:danger] = 'Echec de publication de vente'
+      flash[:danger] = "Echec de la création"
       render "new"
     end
   end
@@ -159,6 +150,7 @@ class VentesController < ApplicationController
     @vente.destroy
     redirect_to root_path
   end
+
   private
     def is_admis_or_current_user?
     @vente = Vente.find(params[:id])
@@ -169,4 +161,5 @@ class VentesController < ApplicationController
     end
 
   end
+
 end
