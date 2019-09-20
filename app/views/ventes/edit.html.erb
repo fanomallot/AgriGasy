@@ -52,7 +52,7 @@
                           <label for="user_country">Déscription</label><i class="rouge">*</i>
                           <textarea type="text" name="description" class="form-control" ><%=@vente.description %></textarea>
                        </div>
-                      <input type="submit" value="Enregistrer" class="btn btn-primary">  <%= link_to "Annuler", :back ,class:"btn btn-secondary"%>
+                      <input type="submit" value="Enregistrer" class="btn btn-success">  <%= link_to "Annuler", :back ,class:"btn btn-secondary"%>
                     <%end%>
 
                  </div>
@@ -71,10 +71,10 @@
                         <br>
                        </div>
                       <div class="photo editvente1 floue">
-                        <h6>Changer la photo de profil ?</h6>
-                          <%= form_tag '/', multipart: true do %>
-                            <%= file_field_tag :profil%>
-                            <input type="submit" class="btn btn-primary" value="Valider">
+                        <h6>Changer la photo de vente ?</h6>
+                          <%= form_tag vente_avatarventes_path(@vente), multipart: true do %>
+                            <%= file_field_tag :avatarvente%>
+                            <input type="submit" class="btn btn-success" value="Valider">
                           <% end %>
                        </div>
                     </div>

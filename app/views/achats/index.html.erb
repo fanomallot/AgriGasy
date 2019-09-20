@@ -67,24 +67,26 @@
 											<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
 			                    		</a>
 			                    		<% if user_signed_in? %>
-			                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-			                    				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
-													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Signaler</h3>
-			                    				</a>
-						                 	<%else%>
-												<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
-													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</h3>
-			                    				</a>
-						                 	<%end%>
-						                 	<% if current_user.is_admin %>
-							                    <%if achat.signal_achats.length != 0%>
-							                      <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-							                    <%end%>
-							                <%else%>
-							                	<%if achat.signal_achats.length != 0%>
-							                      <%=achat.signal_achats.length%>
-							                    <%end%>
-							                <%end%>
+			                    			<h3 class="mb-0">
+				                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+				                    				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
+														<i class="fa fa-user rouge"></i> Signaler
+				                    				</a>
+							                 	<%else%>
+													<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
+														<i class="fa fa-user rouge"></i> Ne pas signaler
+				                    				</a>
+							                 	<%end%>
+							                 	<% if current_user.is_admin %>
+								                    <%if achat.signal_achats.length != 0%>
+								                      <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+								                    <%end%>
+								                <%else%>
+								                	<%if achat.signal_achats.length != 0%>
+								                      <%=achat.signal_achats.length%>
+								                    <%end%>
+								                <%end%>
+								            </h3>
 							            <%end%>
 				                	</div> 
 					            </div>

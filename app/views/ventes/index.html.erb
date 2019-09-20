@@ -1,4 +1,3 @@
-
 <div class="ground">
 	<section class="portfolio ">
 		<div class="container">
@@ -70,24 +69,26 @@
 											<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
 			                    		</a>
 			                    		<% if user_signed_in? %>
-			                    			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
-			                    				<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
-													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Signaler</h3>
-			                    				</a>
-						                 	<%else%>
-												<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
-													<h3 class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</h3>
-			                    				</a>
-						                 	<%end%>
-						                 	<% if current_user.is_admin %>
-							                    <%if vente.signalls.length != 0%>
-							                      <%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
-							                    <%end%>
-							                <%else%>
-							                	<%if vente.signalls.length != 0%>
-							                      <%=vente.signalls.length%>
-							                    <%end%>
-							                <%end%>
+											<h3 class="mb-0">
+				                    			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
+				                    				<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
+														<i class="fa fa-user rouge"></i> Signaler
+				                    				</a>
+							                 	<%else%>
+													<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,vente.id)%>" data-method= 'post'>
+														<i class="fa fa-user rouge"></i> Ne pas signaler
+				                    				</a>
+							                 	<%end%>
+							                 	<% if current_user.is_admin %>
+								                    <%if vente.signalls.length != 0%>
+								                      <%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
+								                    <%end%>
+								                <%else%>
+								                	<%if vente.signalls.length != 0%>
+								                      <%=vente.signalls.length%>
+								                    <%end%>
+								                <%end%>
+							                </h3>
 							            <%end%>
 				                	</div> 
 					            </div>
