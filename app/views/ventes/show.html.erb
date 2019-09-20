@@ -23,20 +23,20 @@
 	<% end %>
   <%end%>
 <p>
-	<strong>Nom : </strong> <%= @vente.produit.name %><br>
+	<strong>Nom du produit : </strong> <%= @vente.produit.name %><br>
 	<strong>Description : </strong> <%= @vente.description %><br>
 
 	<strong>Quantite : </strong> <%= @vente.quantite %><br>
 	<strong>Prix : </strong> <%= @vente.prix %><br>
 	<strong>Region : </strong> <%= @vente.region.place %><br>
-	<strong>Lieu : </strong> <%= @vente.lieu %><br/>
+	<strong>Lieu exacte : </strong> <%= @vente.lieu %><br/>
 	<strong>Date de sortie : </strong> <%= @vente.date.to_date %><br>
 </p>
 
 <p>
 	<%if @vente.user == current_user || current_user.is_admin%>
-		<%= link_to "Edit post", edit_vente_path(@vente.id) %><br>
-		<%= link_to "Effacer", vente_path(@vente.id), method: 'delete', data: {confirm: 'supprimé?'} %><br>
+		<%= link_to "Editer", edit_vente_path(@vente.id) %><br>
+		<%= link_to "Supprimer", vente_path(@vente.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %><br>
 	<%end%>
 
 	<% if current_user.is_admin %>

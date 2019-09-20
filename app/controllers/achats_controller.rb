@@ -1,6 +1,7 @@
 class AchatsController < ApplicationController
   before_action :authenticate_user!,except: [:index]
-  before_action :is_admis_or_current_user?,only: [:edit,:destroy] 
+  before_action :is_admis_or_current_user?,only: [:edit,:destroy]
+
   def index
     @achat = Achat.all
   end
@@ -78,10 +79,10 @@ class AchatsController < ApplicationController
     end
   # test de sauvegarde des donnés
     if @achat.save
-      flash[:success] = "La publication a été créée avec success,attent d'authentification"
-      redirect_to achat_path(@achat.id)
+      flash[:success] = "La publication a été créée avec success, en attente d'authentification"
+      redirect_to achat_path(@achat.id) 
     else
-      flash[:danger] = "erreur de création"
+      flash[:danger] = "Echec de la création"
       render "new"
     end
   end

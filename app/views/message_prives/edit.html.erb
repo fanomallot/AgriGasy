@@ -3,7 +3,7 @@
 	<%=form_tag url_for(action:'update'),method:'put' do%>
 		<textarea type="text" name="content"><%=MessagePrive.find(params[:id]).content%></textarea> 
 		<%=hidden_field_tag :read?, true%>
-		<input type="submit" value="update">
+		<input type="submit" value="Update">
 	<%end%>
 </div>
 

@@ -1,59 +1,61 @@
 <div class="ground editachatground ">
-<%if @produit.length != 0%>
-	<h1>produit</h1>
-	<h4>vente</h4><br>
-	<%if @vente.length != 0 %>
-		<%@vente.each do |vente|%>
-			<%if vente != nil%>
-				<%=link_to vente.produit.name, vente_path(vente.id)%><br>
-				<%=link_to vente.region.place, region_path(vente.region.id)%><br>
+	<%if @produit.length != 0%>
+		<h1>Résultat de produit sur <%=@params%> : </h1>
+		<h4>Vente</h4><br>
+		<%if @vente.length != 0 %>
+			<%@vente.each do |vente|%>
+				<%if vente != nil%>
+					<%=link_to vente.produit.name, vente_path(vente.id)%><br>
+					<%=link_to vente.region.place, region_path(vente.region.id)%><br>
+				<%end%>
+
 			<%end%>
+		<%else%>
+			Pas de resultat sur <%=@params%><br>	
 		<%end%>
-	<%else%>
-		Pas de resultat sur <%=@params%><br>	
+
+		<h4>Achat</h4> <br>
+		<%if @achat.length != 0 %>
+			<%@achat.each do |achat|%>
+				<%if achat != nil%>
+					<%= link_to achat.produit.name,achat_path(achat.id)%><br>
+					<%=link_to achat.region.place,region_path(achat.region.id)%><br>
+				<%end%>
+			<%end%>
+		<%else%>
+			Pas de resultat sur <%=@params%><br>
+		<%end%>
 	<%end%>
 
-
-	<h4>Achat</h4> <br>
-	<%if @achat.length != 0 %>
-		<%@achat.each do |achat|%>
-			<%if achat != nil%>
-				<%= link_to achat.produit.name,achat_path(achat.id)%><br>
-				<%=link_to achat.region.place,region_path(achat.region.id)%><br>
+	<%if @region.length != 0%>
+		<h1>Résultat dans la région sur <%=@params%> </h1>
+		<h4>vente</h4><br>
+		<%if @vente2.length != 0 %>
+			<%@vente2.each do |vente|%>
+				<%if vente != nil%>
+					<%=link_to vente.produit.name, vente_path(vente.id)%><br>
+					<%=link_to vente.region.place, region_path(vente.region.id)%>
+				<%end%>
 			<%end%>
+		<%else%>
+			Pas de resultat sur <%=@params%><br>	
 		<%end%>
-	<%else%>
-		Pas de resultat sur <%=@params%><br>
-	<%end%>
-<%end%>
-<%if @region.length != 0%>
-	<h1>Region</h1>
-	<h4>vente</h4><br>
-	<%if @vente2.length != 0 %>
-		<%@vente2.each do |vente|%>
-			<%if vente != nil%>
-				<%=link_to vente.produit.name, vente_path(vente.id)%><br>
-				<%=link_to vente.region.place, region_path(vente.region.id)%>
-			<%end%>
-		<%end%>
-	<%else%>
-		Pas de resultat sur <%=@params%><br>	
-	<%end%>
 
 
-	<h4>Achat</h4> <br>
-	<%if @achat2.length != 0 %>
-		<%@achat2.each do |achat|%>
-			<%if achat != nil%>
-				<%=link_to achat.produit.name,achat_path(achat.id)%><br>
-				<%=link_to achat.region.place, region_path(achat.region.id)%><br>
+		<h4>Achat</h4> <br>
+		<%if @achat2.length != 0 %>
+			<%@achat2.each do |achat|%>
+				<%if achat != nil%>
+					<%=link_to achat.produit.name,achat_path(achat.id)%><br>
+					<%=link_to achat.region.place, region_path(achat.region.id)%><br>
+				<%end%>
 			<%end%>
+		<%else%>
+			Pas de resultat sur <%=@params%><br>
 		<%end%>
-	<%else%>
-		Pas de resultat sur <%=@params%><br>
 	<%end%>
-<%end%>
-<%if @region.length == 0 && @produit.length == 0 %>
-	<p>Pas de résultat en vu sur <%=@params%></p>
-<%end%>
+
+	<%if @region.length == 0 && @produit.length == 0 %>
+		<p>Pas de résultat sur <%=@params%></p>
+	<%end%>
 </div>

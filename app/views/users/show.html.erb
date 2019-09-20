@@ -19,17 +19,17 @@
 								<% if current_user.is_admin %>
 									<% if @user.is_admin %>
 										<li>
-											<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%>
+											<%=link_to 'Supprimer',users_path(@user.id),method:'delete',data: {confirm:'Etes-vous sûr ?'}%>
 										</li>
 										<li>
-											<%= link_to "remove to admin", admin_path(@user.id), method:'put' %>
+											<%= link_to "Enlever dans l'admin", admin_path(@user.id), method:'put' %>
 										</li>
 									<% else %>
 										<li>
-										<%=link_to 'destroy',users_path(@user.id),method:'delete',data: {confirm:'are you sure?'}%>	
+										<%=link_to 'Supprimer',users_path(@user.id),method:'delete',data: {confirm:'Etes-vous sûr ?'}%>	
 										</li>									
 										<li>
-										<%= link_to "add to admin", admin_path(@user.id), method:'put' %>
+										<%= link_to "Ajouter dans l'admin", admin_path(@user.id), method:'put' %>
 										</li>
 									<% end %>
 								<% end %>	
@@ -68,7 +68,7 @@
 		          <li><a href="<%=mes_achats_path(@user.id)%>" class='btn btn-secondary'>mes publications d'achats</a></li>
 		          <li>
 		          	<%if @user == current_user || current_user.is_admin%>
-						<%=link_to 'editer mon profil', edit_user_path(@user.id), class: "btn btn-secondary"%><br>
+						<%=link_to 'Editer mon profil', edit_user_path(@user.id), class: "btn btn-secondary"%><br>
 					<%end%>
 
 		          </li>
