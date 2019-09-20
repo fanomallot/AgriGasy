@@ -224,22 +224,10 @@ input#logsign{
   padding-top: 90px;
 
 }
-.first {
-  font-family: Arial, Helvetica, sans-serif;
-  background-image: url('images.jpeg');
-  height: 700px;
-  background-attachment: fixed;
-  padding-top: 250px;
-  font-weight: bold;
-  font-size: 15em;
-}
 .editachatground{
   background-image: url("reunion13_0.jpg"); 
 }
-.agri{
- opacity: 0.8;
 
-}
 .Acceuil{
   margin-top: 90px;
 }
@@ -262,7 +250,7 @@ input#logsign{
   opacity: 0.7;
 }
 .radius{
-  border-radius: 20px;
+  border-radius: 5px;
 }
 .round{
   border-radius:50%;
@@ -275,8 +263,6 @@ textarea{
 
 }
 .online{
-
-  position: relative;
   color: #00ff1e;
 }
 .profilphoto:hover{
@@ -415,32 +401,22 @@ ul{
 
 }
 .tableau{
-width: 150%;
-margin-right: 5px;
-font-size:12px;
+width: 90%;
+margin-right: 3px;
 }
 /*achat
 /**************************/
 .editachat1 {
   display: inline-block;
-  margin-left: 90px;
+  
   margin-right: 50px;
 }
-.editachat2 {
-  background-image: url("color2.jpg");
-  border-radius: 30px;
-  padding: 25px;
-  background-size: cover;
-  margin-left: 100px;
-  display: inline-block;
-  vertical-align: top;
 
-}
 .photo{
   background-color: white;
   padding:6px;
   padding-top: 2px;
-  border-radius: 30px
+  border-radius: 10px
 }
 
 button {
@@ -608,8 +584,9 @@ span.psw {
 }
 .img-comp-overlay{
   border-radius: 50%;
-  margin-left: 185px;
-  margin-top: 155px;
+  margin-left: 290px;
+  margin-top: 160px;
+  z-index:1500;
 }
 .img-comp-overlay:hover{
   border:1px solid rgba(52, 172, 220, 0.98);
@@ -802,17 +779,73 @@ input{
   background-image: url('var.jpg');
 }
 /********Photo show user achat et vente****************************************************/
-.img-responsive{
-  width: 600px;
+.img-respons{
+  width: 550px;
   max-height: 300px;
 }
 @media screen and (min-width: 200px) and (max-width: 480px) {
-  .img-responsive{
-  max-width: 100px;
-  max-height: 150px;
+  .img-respons{
+  max-width: 250px;
+  height: 150px;
 }
 
 }
+@media screen and (min-width: 768px) and (max-width: 992px) {
+ .col-md-6{
+  margin-right: 10px;
+}
+ }
 .col-md-6{
   margin-bottom: 10px;
+}
+/*====================page acceuil=================*/
+.agri{
+ opacity: 0.8;
+  font-size: 15em;
+  font-weight: bold;
+}
+.first {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('images.jpeg');
+  height: 700px;
+  background-attachment: fixed;
+  padding-top: 250px;
+}
+
+@media screen and (min-width: 200px) and (max-width: 480px) {
+  .agri{
+ opacity: 0.8;
+  font-size: 5em;
+  font-weight: bold;
+}
+.first {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('images.jpeg');
+  height: 400px;
+  background-attachment: fixed;
+  padding-top: 250px;
+}
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .agri{
+ opacity: 0.8;
+  font-size: 7.5em;
+  font-weight: bold;
+}
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .agri{
+ opacity: 0.8;
+  font-size: 10em;
+  font-weight: bold;
+}
+}
+/*====================================================================*/
+.overlay-content:hover{
+  text-decoration: none;
+  opacity: 0.5;
+}
+/*==========================new achat / event =============*/
+.newpb{
+  border: 2px solid;
 }
