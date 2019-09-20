@@ -1,20 +1,39 @@
 <%if @messages.length == 0%>
-	<h1>Ecrire une message </h1>
+	<h2>Ecrire une message </h2>
 <%else%>
 	<%@messages.each do |message|%>
 		<%if current_user == message.sender%>
-			<h1><%=message.sender.first_name%></h1><br>
-			<h2><%=message.content%></h2>
-			<%= form_tag edit_user_message_prife_path(params[:user_id],message.id),method:'get' do submit_tag 'Edit' end%><%= form_tag user_message_prife_path(params[:user_id],message.id),action:'delete',method:'delete' do submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"} end%>
+			<% if message.sender.profil.attached? %>
+				<h2><%=message.sender.first_name%></h2>
+				 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;" %> <%=  message.content%>
+				<h3><%=message.content%></h3>
+			<%else%>
+				<h2><%=message.sender.first_name%></h2><br>
+				<h3><%=message.content%></h3>
+			<%end%>
+				<%= form_tag edit_user_message_prife_path(params[:user_id],message.id),method:'get' do submit_tag 'Edit' 
+				end%>
+				<%= form_tag user_message_prife_path(params[:user_id],message.id),action:'delete',method:'delete' do submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"} 
+		        end%>
 		<%else%>
-			<h1><%=message.sender.first_name%></h1><br>
-			<h2><%=message.content%></h2> <br>
+			<% if message.sender.profil.attached?%>
+				<h2><%=message.sender.first_name%></h2>
+				 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%> <h3><%=message.content%></h3>
+			<%else%>
+				<h2><%=message.sender.first_name%></h2><br>
+				<h3><%=message.content%></h3>
+			<%end%>
+			<%= form_tag  user_message_prife_path(params[:user_id],message.id),action:'update',method:'patch' do %>
+	        	<%=hidden_field_tag :content, message.content%>
+	        	<%=hidden_field_tag :read?, false%>
+	        	<%=submit_tag 'Marquer comme non lu'%>
+	        <%end%>
 		<%end%>
 	<%end%>
 <%end%>
 
 <%= form_tag user_message_prives_path(params[:user_id]),action:'create',method:'post' do%>
    	<%=text_area_tag :content%>
-   	<!-- recuperastion de l'id du destinataire -->
+  
  	<%=submit_tag :envoyer%>
 <%end%>

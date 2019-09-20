@@ -1,0 +1,16 @@
+<h1> Nouveau message </h1>
+
+<h2>Destinataire</h2>
+<%= form_tag user_message_prives_path(current_user.id), action: "create", method: "poste" do %>
+   	<select id="monselect" name="user_id">
+  		<%@users.each do |user|%>
+  			<%if user != current_user%>
+  		 		<option value="<%=user.id%>"><%=user.first_name%> <%=user.last_name%></option>
+		 	<%end%> 
+		 <%end%>
+	</select><br>
+	<%=text_area_tag :content%>
+ 	<%=submit_tag :envoyer%>
+<%end%>
+
+

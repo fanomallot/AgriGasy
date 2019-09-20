@@ -1,10 +1,18 @@
 class MessagePrivesController < ApplicationController
 	def new
-		puts '*'*90
+		
 		@messages = MessagePrive.where('sender_id = :u AND recipient_id = :cu OR sender_id = :cu AND recipient_id = :u', cu:current_user.id, u:params[:user_id]).order(created_at: :asc)
+		# dès que le recepteur ouvre la page new on  set is_read à true de ladernière messages
+		if @messages.length != 0
+			if (current_user == @messages.last.recipient)
+				@messages.each do |message|
+					message.update(is_read: true)
+				end
+			end	
+		end
 	end
 	def index
-	#@message array contenant les discussions du current_user et l'autre user
+	# id_sender_recipient, un array contenant les ids des users qui ont discuté avec le current_user
 		@message = []
 		@recipient_id = []
 		@sender_id = []
@@ -25,10 +33,9 @@ class MessagePrivesController < ApplicationController
 		@id_sender_recipient = @id_sender_recipient.uniq
 	end
 	def create
-		puts '*'*90
-		puts params[:user_id]
-		MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
-		redirect_to new_user_message_prife_path(params[:user_id])
+			puts params[:user_id]
+			MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
+			redirect_to new_user_message_prife_path(params[:user_id])
 	end
 
 	def show
@@ -37,12 +44,23 @@ class MessagePrivesController < ApplicationController
 	end
 
 	def update
-		MessagePrive.find(params[:id]).update(content: params[:content])
-		redirect_to new_user_message_prife_path(params[:user_id])
+		MessagePrive.find(params[:id]).update(content: params[:content],is_read: params[:read?])
+		if !params[:read?]
+			redirect_to new_user_message_prife_path(params[:user_id])
+		else
+			redirect_to user_message_prives_path(params[:user_id])
+		end
 	end
 
 	def destroy
 		MessagePrive.find(params[:id]).destroy
 		redirect_to  new_user_message_prife_path(params[:user_id])
+	end
+
+	def sendmessage
+
+		@users=[]
+		@users = User.all
+		 
 	end
 end
