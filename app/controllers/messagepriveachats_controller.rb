@@ -1,6 +1,6 @@
 class MessagePrivesController < ApplicationController
 	def index
-if current_user == Achat.find(params[:achat_id]).user
+	if current_user == Achat.find(params[:achat_id]).user
 	 @message = []
 		 @mp = []
 		 id_u1 = []
@@ -26,6 +26,7 @@ if current_user == Achat.find(params[:achat_id]).user
 			@id_sender_recipient.delete(current_user.id)
 			@id_sender_recipient = @id_sender_recipient.compact
 			puts "*"*90
+
 			puts @id_sender_recipient
 		 puts "*"*90
 			# for i in 0..@mp.length-1
@@ -84,8 +85,9 @@ if current_user == Achat.find(params[:achat_id]).user
 				end	
 				@message << max
 					@mp.delete(max)
-			end		
-		end
+			end	
+	end
+
 	def create	
 		if current_user == Achat.find(params[:achat_id]).user   		
 		     message_prive = MessagePrive.new(content: params[:content], is_read: false)
@@ -120,7 +122,6 @@ if current_user == Achat.find(params[:achat_id]).user
 			redirect_to user_achat_messagepriveachat_path(params[:user_id],params[:achat_id],params[:id])
 		else
 			redirect_to user_achat_messagepriveachat_path(params[:user_id], params[:achat_id])
-			
 		end
 	end
 	def destroy

@@ -8,7 +8,6 @@ class AchatsController < ApplicationController
 
   def show
           @achat = Achat.find(params[:id])
-          @achat = Achat.find(params[:id])
           id_sender =[]
           @message = current_user.received_messages
           @message.each do |m|
@@ -43,8 +42,6 @@ class AchatsController < ApplicationController
         if produit.name == params[:nom]
           check = 1
           break
-        else
-          check = 0
         end
       end
       if check == 1 
