@@ -6,6 +6,7 @@
 	  	<%if flash[:danger]%>
 			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
 		<% end %>
+
 	<% end %>
 	<h1 class="center">Voici le contenu de cet article</h1>
 	<!-- ------------------- -->
@@ -57,7 +58,6 @@
 	    </div>
 	<!-- end container -->
 	</div>
-
 	<div class="showpbbow">
 		<div class="showpbbow1">
 			<%if @achat.user != current_user || current_user.is_admin %>	

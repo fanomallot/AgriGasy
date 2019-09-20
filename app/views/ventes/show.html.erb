@@ -1,5 +1,6 @@
 <div class="ground">
 	<!-- affichage allert -->
+
 	<% if flash[:success] %>
 		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
 	<% else  %>
@@ -7,6 +8,7 @@
 			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
 		<% end %>
 	<% end %>
+
 	<h1 class="center">Voici le contenu de cet article</h1>
 	<!-- ------------------- -->
 	<div class="main">
@@ -108,3 +110,4 @@
 		</div>
 	</div>
 </div>
+
