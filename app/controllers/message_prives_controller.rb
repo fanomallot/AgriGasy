@@ -1,6 +1,6 @@
 class MessagePrivesController < ApplicationController
 	def new
-		
+		@id = params[:user_id]
 		@messages = MessagePrive.where('sender_id = :u AND recipient_id = :cu OR sender_id = :cu AND recipient_id = :u', cu:current_user.id, u:params[:user_id]).order(created_at: :asc)
 		# dès que le recepteur ouvre la page new on  set is_read à true de ladernière messages
 		if @messages.length != 0
@@ -32,10 +32,15 @@ class MessagePrivesController < ApplicationController
 		  end
 		@id_sender_recipient = @id_sender_recipient.uniq
 	end
+
+	def sendingmessage
+		MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:users_id], is_read:false)
+		redirect_to new_user_message_prife_path(params[:users_id])
+	end
 	def create
-			puts params[:user_id]
-			MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
-			redirect_to new_user_message_prife_path(params[:user_id])
+		 	puts params[:users_id]
+				MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
+				redirect_to new_user_message_prife_path(params[:user_id])
 	end
 
 	def show

@@ -1,14 +1,15 @@
 <h1> Nouveau message </h1>
 
 <h2>Destinataire</h2>
-<%= form_tag user_message_prives_path(current_user.id), action: "create", method: "poste" do %>
-   	<select id="monselect" name="user_id">
-  		<%@users.each do |user|%>
-  			<%if user != current_user%>
-  		 		<option value="<%=user.id%>"><%=user.first_name%> <%=user.last_name%></option>
+<%= form_tag sending_messages_path, action: "sendingmessage", method: "get" do %>
+   	<select id="monselect" name="users_id">
+  		<%@users.each do |users|%>
+  			<%if users != current_user%>
+  		 		<option value="<%=users.id%>"><%=users.first_name%> <%=users.last_name%></option>
 		 	<%end%> 
 		 <%end%>
 	</select><br>
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	<%=text_area_tag :content%>
  	<%=submit_tag :envoyer%>
 <%end%>

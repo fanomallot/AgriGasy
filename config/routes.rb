@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/admindashboard/authentificate_vente/:id", to: 'admindashboard#updatevente',as:'authentificate_vente'
   get "/admindashboard/authentificate_achat/:id", to: 'admindashboard#updateachat',as:'authentificate_achat'
   get "/send_messages", to: 'message_prives#sendmessage', as: 'send_messages' 
+  get "/sending_messages", to: 'message_prives#sendingmessage', as: 'sending_messages'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'admins#index'
   resources :ventes do
