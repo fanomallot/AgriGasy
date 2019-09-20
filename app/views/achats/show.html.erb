@@ -78,3 +78,59 @@
 			<%end%>
 		<%end%>
 </div>
+
+
+
+
+
+
+
+
+<div class="main">
+    <div class="container tim-container">
+        <div id="extras">
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
+                    <div class="text-center">
+                    	<h3>Photo du produit qu'on a besoin</h3>
+						<%if @achat.avatarachat.attached?%>
+							<%= image_tag @achat.avatarachat, alt: 'photo_achat',class:"img-rounded img-responsive"%>
+						<%else%>
+		  					<%=image_tag '01.jpg',class:"img-rounded img-responsive" %>
+		  				<%end%>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <h1 class="text-center"><%=@achat.produit.name%><br>
+                    <small class="subtitle">A propos</small></h1>
+                    <hr>
+                    <p>
+                    <strong>Description : </strong> <%= @achat.description %><br/>
+                    </p>
+                    <p>
+                       <strong>Quantite : </strong> <%= @achat.quantite %><br/>
+                    </p>
+                    <p>
+               			<%if @achat.prix != "" %>
+							<strong>Prix : </strong> <%= @achat.prix %><br/>
+						<%end%>                                 
+                    </p>
+                    <p>
+                    	<strong>Region : </strong> <%= @achat.region.place %><br/>
+                    	<%if @achat.lieu != "" %><br>
+					      <strong>Local : </strong> <%= @achat.lieu %><br>
+					    <%end%>
+                    </p>
+                    <p>
+                    	<%if @achat.date != nil %>
+					      <strong>Date : </strong> <%= @achat.date.to_date %><br>
+					    <%end%>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <!--     end extras -->    
+    </div>
+<!-- end container -->
+</div>
