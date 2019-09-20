@@ -21,9 +21,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :profils, only: [:create]
+    resources :message_prives 
     resources :ventes do 
       resources :signalls,only:[:index,:create]
-      resources :message_prives 
+      
     end
     resources :achats do 
       resources :signal_achats,only:[:index,:create]

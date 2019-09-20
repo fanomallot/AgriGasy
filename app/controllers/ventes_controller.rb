@@ -8,15 +8,6 @@ class VentesController < ApplicationController
 
   def show
     @vente = Vente.find(params[:id])
-    id_sender =[]
-    @message = current_user.received_messages
-    @message.each do |m|
-     id_sender << m.sender.id
-    end
-     id_sender = id_sender.uniq
-     id_sender.delete(Vente.find(params[:id]).user.id)
-     puts id_sender
-     @sender_id = id_sender
   end
 
   def new

@@ -1,138 +1,48 @@
 class MessagePrivesController < ApplicationController
+	def new
+		puts '*'*90
+		@messages = MessagePrive.where('sender_id = :u AND recipient_id = :cu OR sender_id = :cu AND recipient_id = :u', cu:current_user.id, u:params[:user_id]).order(created_at: :asc)
+	end
 	def index
-	if current_user == Vente.find(params[:vente_id]).user
-	 @message = []
-		 @mp = []
-		 id_u1 = []
-		 id_u2 = []
-		 @id_sender_recipient = []
-		 
-		# if current_user != Vente.find(params[:vente_id])
-			@mp = MessagePrive.where('recipient_id=:cu OR sender_id=:cu', cu: current_user.id)
-			@mp.each do |m|
-				if  m.recipient_id != current_user.id
-					id_u1<< m.recipient_id
-				end
-			end
-		
-			@mp.each do |m|
-				if  m.sender_id != current_user.id
-					id_u2<< m.recipient_id
-				end
-			end
-
-			@id_sender_recipient = id_u1 + id_u2
-			@id_sender_recipient = @id_sender_recipient.uniq
-			@id_sender_recipient.delete(current_user.id)
-			@id_sender_recipient = @id_sender_recipient.compact
-			puts "*"*90
-
-			puts @id_sender_recipient
-		 puts "*"*90
-			# for i in 0..@mp.length-1
-			# 	max = @mp[0]
-			# 	@mp.each do |m|
-			# 		if max.created_at < m.created_at
-			# 			max = m 
-						
-			# 		else 
-			# 			max = max
-			# 		end
-			# 	end	
-			# 	@message << max
-			# 		@mp.delete(max)
-			# end	
-			@message =@mp
-	else
+	#@message array contenant les discussions du current_user et l'autre user
 		@message = []
-		@mp = MessagePrive.where(recipient_id:current_user.id,sender_id:params[:user_id]) +	MessagePrive.where(recipient_id:params[:user_id],sender_id:current_user.id)
-		puts "*"*90
-		 @mp.each do |m|
-		 	puts m.recipient.first_name
+		@recipient_id = []
+		@sender_id = []
+		@id_sender_recipient = []
+		message = MessagePrive.where('sender_id = :cu OR recipient_id = :cu', cu: current_user)
+		 #recherche (comptage) id des utilisateurs que le current_user à envoyé ou a recu des msg
+		 message.each do |m1|
+		 		@recipient_id << m1.recipient.id
+		 		@sender_id << m1.sender.id
 		 end
-
-		for i in 0..@mp.length-1
-				max = @mp[0]
-				@mp.each do |m|
-					if max.created_at < m.created_at
-						max = m 
-						
-					else 
-						max = max
-					end
-				end	
-				@message << max
-					@mp.delete(max)
-			end	
-		puts @message.length
-	end	
-		
+		  @message = @recipient_id + @sender_id
+		  @message = @message.uniq
+		  @message.each do |m|
+		  	 if m!=current_user.id
+		  	 	@id_sender_recipient << m
+		  	 end
+		  end
+		@id_sender_recipient = @id_sender_recipient.uniq
+	end
+	def create
+		puts '*'*90
+		puts params[:user_id]
+		MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
+		redirect_to new_user_message_prife_path(params[:user_id])
 	end
 
 	def show
- 		@message = []
-		@mp = MessagePrive.where(recipient_id:current_user.id,sender_id:params[:user_id]) +	MessagePrive.where(recipient_id:params[:user_id],sender_id:current_user.id)
-		puts "*"*90
-		for i in 0..@mp.length-1
-				max = @mp[0]
-				@mp.each do |m|
-					if max.created_at < m.created_at
-						max = m 
-						
-					else 
-						max = max
-					end
-				end	
-				@message << max
-					@mp.delete(max)
-			end	
-	end
-
-	def create	
-		if current_user == Vente.find(params[:vente_id]).user   		
-		     message_prive = MessagePrive.new(content: params[:content], is_read: false)
-		     message_prive.sender = current_user
-		     puts params[:user_id]
-		     puts User.find(params[:user_id])
-		     message_prive.recipient = User.find(params[:user_id])
-	        if message_prive.save
-		   	 redirect_to "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives/#{ message_prive.id}"
-		    else	
-		   	 redirect_to "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives/#{ message_prive.id}"
-		    end	
-		else
-			 message_prive = MessagePrive.new(content: params[:content], is_read: false)
-		     message_prive.sender = current_user
-		     message_prive.recipient = Vente.find(params[:vente_id]).user
-	        if message_prive.save
-		   	 redirect_to user_vente_message_prives_path(Vente.find(params[:vente_id]).user.id, params[:vente_id])
-		    else
-		   	 redirect_to user_vente_message_prives_path(Vente.find(params[:vente_id]).user.id, params[:vente_id])
-		    end	
-		end   	
 	end
 	def edit
-		@messagePrive = MessagePrive.find(params[:id])
 	end
+
 	def update
-		puts "*"*90
-		@messagePrive = MessagePrive.find(params[:id])
-	    @messagePrive.update(content: params[:content])
-		if current_user == Vente.find(params[:vente_id]).user
-			redirect_to user_vente_message_prife_path(params[:user_id],params[:vente_id],params[:id])
-		else
-			redirect_to user_vente_message_prives_path(params[:user_id], params[:vente_id])
-		end
+		MessagePrive.find(params[:id]).update(content: params[:content])
+		redirect_to new_user_message_prife_path(params[:user_id])
 	end
+
 	def destroy
-		if current_user == Vente.find(params[:vente_id]).user
-			puts '*'*90
-			puts id_message_detruit = params[:id]
-			MessagePrive.find(params[:id]).destroy
-			redirect_to "/users/#{params[:user_id]}/ventes/#{params[:vente_id]}/message_prives/#{params[:id]}"
-		else
-			MessagePrive.find(params[:id]).destroy
-			redirect_to user_vente_message_prives_path(params[:user_id], params[:vente_id])
-		end	
+		MessagePrive.find(params[:id]).destroy
+		redirect_to  new_user_message_prife_path(params[:user_id])
 	end
 end

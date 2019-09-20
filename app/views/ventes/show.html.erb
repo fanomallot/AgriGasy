@@ -47,21 +47,13 @@
 
 	<%if current_user != @vente.user%> 
 		<%if @vente.user != current_user || current_user.is_admin %>			
-			<%= form_tag user_vente_message_prives_path(@vente.user.id,@vente.id) ,action: 'index' do %>
+			<%= form_tag new_user_message_prife_path(@vente.user.id) ,action: 'new',method:'get' do %>
 			 
 			 	  <%= submit_tag "Envoyer message" %> 
 			  	  
 			<% end %>
 		<%end%>
-	<%else%>	
-			<%@sender_id.each do |s|%>
-				<%a = MessagePrive.where(sender_id: s, recipient_id:current_user.id)+MessagePrive.where(sender_id:current_user.id, recipient_id:s)%>
-			 <%= link_to "Message from #{User.find(s).first_name}", user_vente_message_prife_path(s,@vente.id,@vente.id),action:'show'%><br>	
-		
-			<%end%> 	  
 	<%end%>
-		
-
 </p>
 </div>
 
