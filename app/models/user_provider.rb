@@ -16,17 +16,25 @@ class UserProvider < ApplicationRecord
                               )
                 registered_user
             else
-                user = User.create!(
-                    first_name: auth.info.name,
-                            email: auth.info.email,
-                            password: Devise.friendly_token[0,20],
-                            )
-                user_provider = UserProvider.create!(
-                    provider:auth.provider,
-                            uid:auth.uid,
-                              user_id: user.id
-                    )
-                user
+              nom = auth.info.name
+              nom1 = nom.split(' ')
+              if nom1.length >= 2
+                fname = nom1[0]
+                lname = nom1[1]
+              else
+                fname = nom1[0]
+              end
+              user = User.create!(
+                  first_name: fname, last_name: lname,
+                          email: auth.info.email,
+                          password: Devise.friendly_token[0,20],
+                          )
+              user_provider = UserProvider.create!(
+                  provider:auth.provider,
+                          uid:auth.uid,
+                            user_id: user.id
+                  )
+              user
             end
         end
     end
@@ -45,18 +53,26 @@ class UserProvider < ApplicationRecord
                               )
                 registered_user
             else
-                user = User.create!(
-                    first_name: auth.info.name,
-                              email: auth.info.email,
-                              password: Devise.friendly_token[0,20],
-                            )
-                user_provider = UserProvider.create!(
-                    provider:auth.provider,
-                            uid:auth.uid,
-                            user_id: user.id
-                    )
-                user
-            end
+              nom = auth.info.name
+              nom1 = nom.split(' ')
+              if nom1.length >= 2
+                fname = nom1[0]
+                lname = nom1[1]
+              else
+                fname = nom1[0]
+              end
+              user = User.create!(
+                  first_name: fname, last_name: lname,
+                            email: auth.info.email,
+                            password: Devise.friendly_token[0,20],
+                          )
+              user_provider = UserProvider.create!(
+                  provider:auth.provider,
+                          uid:auth.uid,
+                          user_id: user.id
+                  )
+              user
+          end
         end
     end
 

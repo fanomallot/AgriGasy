@@ -162,7 +162,7 @@ class AchatsController < ApplicationController
     @signall = Signall.where(achat_id: @achat.id)
     @signall.destroy_all
     @achat.destroy
-    redirect_to root_path
+    redirect_to achats_path
   end
   private
     def is_admis_or_current_user?
