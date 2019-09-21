@@ -1,49 +1,52 @@
 <div class="ground editachatground blanche">
-<div class="grid-con">
-  <div class="grid-it">
-<div id="slider">
-    <figure>
-      <%= image_tag("r01.jpg")%>
-      <%= image_tag("r02.jpg")%>
-      <%= image_tag("r03.jpg")%>
-      <%= image_tag("r01.jpg")%>
-      <%= image_tag("r03.jpg")%>
-    </figure>
-  </div>
-</div>
-<div class="grid-it">
+  <div class="boxsignup0 ground">
+    <section class="section banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+           <h2 class="cd-headline clip is-full-width mb-4 ">
+            I provide <br>
+                <span class="cd-words-wrapper text-color">
+                    <b class="is-visible">Design solutions. </b>
+                    <b>Creative Ideas.</b>
+                    <b>Professional Content.</b>
+                </span>
+            </h2>
+            <p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain <br>was born and I will give you a complete account of the system</p>
+        </div>
+      </div>
+    </div>
+  </section>  </div>
+<div class="boxsignup">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
   <%= render "devise/shared/error_messages", resource: resource %><br>
+    <%= f.label :Prénoms %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", type:"text", placeholder:"Prénoms",id: "newpb", required: true ,class:'form-control'%><br>
 
-    <%= image_tag('000.jpg', class: "avatar")%><br>
-
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", type:"text", placeholder:"First Name",id: "logsign", required: true %><br>
-
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", type:"text", placeholder:"Last Name",id: "logsign" %><br>
+    <%= f.label :Nom %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", type:"text", placeholder:"Nom",id: "newpb" ,class:'form-control'%><br>
 
     <%= f.label :age %><br />
-    <%= f.text_field :age, autofocus: true, autocomplete: "age", type:"text", placeholder:"Age" %><br>
+    <%= f.text_field :age, autofocus: true, autocomplete: "age", type:"text", placeholder:"Age" ,class:'form-control'%><br>
 
     <%= f.label :ville %><br />
-    <%= f.text_field :ville, autofocus: true, autocomplete: "ville",type:"text", placeholder:"City",id: "logsign", required: true %><br>
+    <%= f.text_field :ville, autofocus: true, autocomplete: "ville",type:"text", placeholder:"City",id: "newpb", required: true,class:'form-control' %><br>
 
     <%= f.label :description %><br />
-    <%= f.text_area :description, autofocus: true, autocomplete: "description" %><br>
+    <%= f.text_area :description, autofocus: true, autocomplete: "description" ,class:'form-control'%><br>
 
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",id: "logsign", required: true%><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",id: "newpb", required: true,class:'form-control'%><br>
 
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",id: "logsign", required: true %><br>
+    <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",id: "newpb", required: true ,class:'form-control'%><br>
 
      <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",type:"password", placeholder:"Confirme Password",id: "logsign", required: true %><br>    
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",type:"password", placeholder:"Confirme Password",id: "newpb", required: true ,class:'form-control'%><br>    
 
     <button type="submit" class="btn-sig">Sign-in</button>
 

@@ -1,45 +1,82 @@
 <div class="ground editachatground ">
-	<h1>Liste de tous les produits disponibles </h1>
-	<p> 
-	<% @produit.each do |produit| %>
-		<%vente_authentification = false
-		  achat_authentification = false%>
-		<%produit.ventes.each do |vente| 
-			if vente.is_authenticate
-				vente_authentification = true
-				break
-			else
-				vente_authentification = false
-			end 
-		end%>
-		<%produit.achats.each do |achat|
-			if achat.is_authenticate
-				achat_authentification = true
-				break
-			else
-				achat_authentification = false
-			end
-		end%>
-		<%if user_signed_in?%>
-			<%if achat_authentification || vente_authentification || current_user.is_admin%>
-				<h4><strong>Produit : </strong><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
-				<%if user_signed_in?%>
-					<%if current_user.is_admin%>
-						<i><%= link_to " Supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Supprimer ce produit ?'} %></i><br/>
-					<%end%>
-				<%end%>
-			<%end%>
-		<%else%>
+	<div style="color: white;">
+		<h1 class="center" style="font-family: verdana;font-size: 30px;">Liste de tous les produits disponibles </h1>
+		<div class="grid-con">
+			<div class="grid-it">
+	      <div id="slider">
+	        <figure>
+	          <%= image_tag("image1.jpg")%>
+	          <%= image_tag("image2.jpg")%>
+	          <%= image_tag("image3.jpg")%>
+	          <%= image_tag("01.jpg")%>
+	        </figure>
+	      </div>
+	    </div>
+	    <div class="grid-it"> 
+	    	<caption><h1 class="center" style="font-family: Time New Roman;font-size: 25px;">PRODUITS</caption>
+				<% @produit.each do |produit| %>
+					<%vente_authentification = false
+					  achat_authentification = false%>
+					<%produit.ventes.each do |vente| 
+						if vente.is_authenticate
+							vente_authentification = true
+							break
+						else
+							vente_authentification = false
+						end 
+					end%>
+					<%produit.achats.each do |achat|
+						if achat.is_authenticate
+							achat_authentification = true
+							break
+						else
+							achat_authentification = false
+						end
+					end%>
+		 			<%if user_signed_in?%>
+						<%if achat_authentification || vente_authentification || current_user.is_admin%>
 
-			<%if achat_authentification || vente_authentification%>
-				<h4><strong>Produit : </strong><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
-				<%if user_signed_in?%>
-					<%if current_user.is_admin%>
-						<i><%= link_to " Supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
+							<table class="tab1">
+								
+								<tr>
+									<td><h4><i><%=link_to produit.name , produit_path(produit.id)%></i></h4></td>
+									<td><h4><i><%= link_to " Supprimer", produit_path(produit.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i></h4></td>
+								</tr>
+							</table>
+
+						<!-- 	<h4><strong>Produit : </strong><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
+							<%if user_signed_in?%>
+								<%if current_user.is_admin%>
+									<i><%= link_to " Supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Supprimer ce produit ?'} %></i><br/>
+								<%end%>
+							<%end%>
+						<%end%> -->
+
+					<%else%>
+						<%if achat_authentification || vente_authentification%> 
+
+							<table class="tab1">
+								<caption>PRODUITS</caption>
+								<tr>
+									<td><h4><i><%=link_to produit.name , produit_path(produit.id)%></i></h4></td>
+									<td><h4><i><%= link_to " Supprimer", produit_path(produit.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i></h4></td>
+								</tr>
+							</table>
+
+							<!-- <h4><strong>Produit : </strong><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
+							<%if user_signed_in?%>
+								<%if current_user.is_admin%>
+									<i><%= link_to " Supprimer", produit_path(produit.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
+								<%end%>
+							<%end%>
+						<%end%> -->
 					<%end%>
-				<%end%>
-			<%end%>
-		<%end%>	
- 	<%end%>
-	</p>
+			 	<%end%>
+			</div>
+	  </div>
+	</div>
 </div>
+
+
+
+

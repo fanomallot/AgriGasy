@@ -9,9 +9,9 @@
 		<% end %>
 	<% end %>
 	<div class="center" style="color: white;">
-		<h2>Voici la liste de tous les produits ayant le nom : <i><%=@produit.name%></i></h2>
+		<h2 style="font-family: verdana;font-size: 30px;">Voici la liste de tous les produits ayant le nom : <i><%=@produit.name%></i></h2>
 		<%if @produit.ventes.length == 0%>
-			<h4>Aucune publication de vente dans cette produit <%=@produit.name%> </h4>
+			<h4>Aucune publication de vente du produit <%=@produit.name%> </h4>
 			</br>
 		<%else%>
 			<h4>Liste des ventes de ce produit :</h4>
@@ -32,7 +32,7 @@
 			<%end%>
 		<%end%>
 		<%if @produit.achats.length == 0%>
-			<h4>Aucune publication de besoin dans cette produit <%=@produit.name%> </h4>
+			<h4>Aucune publication d'achat du produit <%=@produit.name%> </h4>
 			</br>
 		<%else%>
 			<h4>Liste des achats de ce produit :</h4>
