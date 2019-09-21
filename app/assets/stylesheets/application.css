@@ -1192,13 +1192,14 @@ border-radius: 50%;
 }
 /*messageprive*/
 .bigboxmp{
-  background-color: rgba(237, 239, 242,0.6);
+  background-color: rgba(237, 239, 242);
   border: 4px solid rgba(85, 89, 94,0.5);
   width: 70%;
   margin:0 auto;
   margin-top: 10px;
 }
 .boxmp{
+  
   border: 4px solid rgba(85, 89, 94,0.5);
 
 }

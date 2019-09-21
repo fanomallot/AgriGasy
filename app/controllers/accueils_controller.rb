@@ -1,7 +1,6 @@
 class AccueilsController < ApplicationController
 
   def accueil
-<<<<<<< HEAD
   	@vente = Vente.where(is_authenticate: true)
   	@achat = Achat.where(is_authenticate: true)
   	@achatnew = []
@@ -22,11 +21,7 @@ class AccueilsController < ApplicationController
 	  			@ventenew << @vente[i]
   		end
   	end
-=======
   	# recuperation des listes de vente et d'achat qui vont être affiché dans la page d'accueil 
-  	@vente = Vente.all
-  	@achat = Achat.all
->>>>>>> development
   end
 
 end
