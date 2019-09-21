@@ -12,18 +12,21 @@
 		    <td class="tdh"><%= link_to user.first_name, user_path(user) %></td>
 		    <td class="tdh"><%= link_to user.last_name, user_path(user) %></td>
 		    <% if user.is_admin %>
-			    <td><label class="switch">
-					  <input type="checkbox" checked>
-					  <span class="slider round"></span></label>
-					</td>
-				<%else%>
-					<td><label class="switch">
-					  <input type="checkbox">
-					  <span class="slider round"></span></label>
-					</td>
-				<%end%>
+		    <td><label class="switch">
+		    	<a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
+		    		<input type="checkbox" checked id='checkbox'>
+				  	<span class="slider round"></span>
+				</a>
+				</label>
+				</td>
+			<%else%>
+				<td><label class="switch">
+		    <a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
+				  <input type="checkbox" id='checkbox'>
+				  <span class="slider round"></span></a></label>
+				</td>
+			<%end%>
 			</tr>
 		<%end%>
 	</table>
 </div>
-

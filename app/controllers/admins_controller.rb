@@ -13,10 +13,16 @@ class AdminsController < ApplicationController
 
 		if @user.is_admin
 			@user.update(is_admin: false)
-			redirect_to user_path(@user.id)
+			respond_to do |format|
+	      		format.html{redirect_back fallback_location: '/' ,allow_other_host: false}
+	      		format.js { }
+	      	end
 		else
 			@user.update(is_admin: true)
-			redirect_to user_path(@user.id)
+			espond_to do |format|
+	      		format.html{redirect_back fallback_location: '/' ,allow_other_host: false}
+	      		format.js { }
+	      	end
 		end
 	end
 	private

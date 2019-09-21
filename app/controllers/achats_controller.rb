@@ -159,7 +159,7 @@ class AchatsController < ApplicationController
 
   def destroy
     @achat = Achat.find(params[:id])
-    @signall = Signall.where(achat_id: @achat.id)
+    @signall = SignalAchat.where(achat_id: @achat.id)
     @signall.destroy_all
     @achat.destroy
     redirect_to achats_path

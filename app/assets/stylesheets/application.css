@@ -195,28 +195,36 @@ input#logsign{
 }
 
 .circular-menu.circular-menu-left.active .menu-item:nth-child(1) {
-  transform: translate3d(0em,7em,0);
+  transform: translate3d(-1em,8.5em,0);
 }
 
 .circular-menu.circular-menu-left.active .menu-item:nth-child(2) {
-  transform: translate3d(-2.33em,4.66em,0);
+  transform: translate3d(-4.5em,7.1em,0);
 }
 
 .circular-menu.circular-menu-left.active .menu-item:nth-child(3) {
-  transform: translate3d(-4.66em,2.33em,0);
+  transform: translate3d(-7.1em,4.5em,0);
 }
 
 .circular-menu.circular-menu-left.active .menu-item:nth-child(4) {
-  transform: translate3d(-7em,0,0);
+  transform: translate3d(-8.5em,1em,0);
 }
 .fa{
   color: white;
 }
+/***********************************************************/
 /***************ground/style/COLOR*************************/
 .home{
   border:1px solid white;
   padding:10px;
   width: 70px;
+}
+.background{
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 50px;
+
 }
 .ground{
   background-repeat: no-repeat;
@@ -225,6 +233,60 @@ input#logsign{
   padding-bottom: 250px;
 
 }
+.adminindex{
+  border:none;
+  border-bottom: 1.5px solid #0056b3;
+  background-color: rgba(158, 176, 181,0.5);
+}
+.adminindexbody{
+  background-image: url(57997.jpg);
+}
+
+.first1{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+.contentslogang{
+ color: black;
+ background-color: rgba(247, 249, 250,0.6);
+}
+.first {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('ground2.jpg');
+  height: 700px;
+  padding-top: 250px;
+  filter: blur(8px);
+  -webkit-filter: blur(0.5px);
+}
+.acceuil1{
+  padding-bottom: 25px;
+  
+}
+.acceuil2{
+  background-image: url(agriculture-1822530_960_720.jpg);
+
+}
+.acceuil3{
+  padding-bottom: 25px;
+  
+}
+.acceuil4{
+ background-image: url(thumb-1920-79214.jpg);
+
+  
+}
+
 .editachatground{
   background-image: url("reunion13_0.jpg"); 
 }
@@ -475,7 +537,6 @@ span.psw {
   display: inline-block;
 }
 .grid-it {
- /* background-color: rgba(10, 255, 10, 0.1);*/
   padding: 50px;
   font-size: 10px;
   text-align: center;
@@ -807,39 +868,33 @@ input{
   font-size: 15em;
   font-weight: bold;
 }
-.first {
-  font-family: Arial, Helvetica, sans-serif;
-  background-image: url('images.jpeg');
-  height: 700px;
-  background-attachment: fixed;
-  padding-top: 250px;
-}
 
 @media screen and (min-width: 200px) and (max-width: 480px) {
   .agri{
  opacity: 0.8;
-  font-size: 5em;
+  font-size: 3em;
   font-weight: bold;
 }
 .first {
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url('images.jpeg');
+  background-image: url('ground2.jpg');
   height: 400px;
-  background-attachment: fixed;
   padding-top: 250px;
+  filter: blur(8px);
+  -webkit-filter: blur(0.5px);
 }
 }
 @media screen and (min-width: 480px) and (max-width: 767px) {
   .agri{
  opacity: 0.8;
-  font-size: 7.5em;
+  font-size: 5.8em;
   font-weight: bold;
 }
 }
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .agri{
  opacity: 0.8;
-  font-size: 10em;
+  font-size: 9.5em;
   font-weight: bold;
 }
 }
@@ -1134,4 +1189,42 @@ border-radius: 50%;
   border: 1px solid rgba(85, 89, 94,0.5);
   margin-left: 10%;
   max-width: 80%;
+}
+/*messageprive*/
+.bigboxmp{
+  background-color: rgba(237, 239, 242,0.6);
+  border: 4px solid rgba(85, 89, 94,0.5);
+  width: 70%;
+  margin:0 auto;
+  margin-top: 10px;
+}
+.boxmp{
+  border: 4px solid rgba(85, 89, 94,0.5);
+
+}
+.messageprofil{
+  margin-left: 15%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.messageshow{
+  font-size: 15px;
+}
+.messageshowuser{
+  font-weight: bold;
+  font-size: 15px;
+}
+.usermessage{
+  margin-left: 70%
+}
+.sipmlephoto{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+/*ground*/
+.slide{
+  border:2px solid black;
+  width: 50px;
 }
