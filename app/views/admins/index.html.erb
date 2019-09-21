@@ -56,6 +56,8 @@
 			    <th>Nom</th>
 			   
 			  </tr>
+
+			  <!-- liste de lien qui ammene vers le show profil de l'user -->
 				<% @admin.each do |admin| %>
 				  <tr>
 				    <td>
@@ -66,7 +68,8 @@
 		<br>
 	</div>	
 <div class="center">
-	<p>
+	<p> 
+		<!-- lien vers les vente/achat a autentifier  -->
 		<%= link_to "Ventes à authentifier (#{@vente.length})", admincheckvente_path, class:'btn btn-secondary' %>
 		<%= link_to "Achats à authentifier (#{@achat.length})", admincheckachat_path, class:'btn btn-secondary' %>
 		<%= link_to "Liste des utilisateurs de votre Site", admincheckuser_path, class:'btn btn-secondary' %><br>

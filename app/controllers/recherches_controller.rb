@@ -9,10 +9,12 @@ class RecherchesController < ApplicationController
 		@achat2 =[]
 		@produit = Produit.where(['name LIKE ?',"%#{params[:find]}%"])
 		@produit.each do |produit|
-			@id_produit << produit.id 
+		@id_produit << produit.id 
 		end
 		j=0
 		k=0
+
+		# on differencie le vent/achat  on les met dans @vente et @achat
 		for i in 0..@id_produit.length-1 do
 			if (Vente.find_by(produit_id: @id_produit[i])!=nil)
 				@vente[j] = Vente.find_by(produit_id: @id_produit[i])
@@ -23,12 +25,14 @@ class RecherchesController < ApplicationController
 				k+=1
 			end
 		end	
+		# recherche  dans le table region
 		@region = Region.where(['place LIKE ?',"%#{params[:find]}%"])
 
 		@region.each do |region|
 			@id_region << region.id
 			puts @id_region
 		end
+		# on differencie le vent/achat  on les met dans @vente1 et @achat2
 		j=0
 		k=0
 		for i in 0..@id_region.length-1 do

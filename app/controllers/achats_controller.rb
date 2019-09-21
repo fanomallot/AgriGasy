@@ -3,20 +3,22 @@ class AchatsController < ApplicationController
   before_action :is_admis_or_current_user?,only: [:edit,:destroy]
 
   def index
+    # recuperation de la liste des achats disponibles
     @achat = Achat.all
   end
 
   def show
+    # @achat, achat qui vas etre affiche dans la page show
     @achat = Achat.find(params[:id])
     id_sender =[]
     @message = current_user.received_messages
     @message.each do |m|
      id_sender << m.sender.id
     end
-     id_sender = id_sender.uniq
-     id_sender.delete(Achat.find(params[:id]).user.id)
-     puts id_sender
-     @sender_id = id_sender
+     # id_sender = id_sender.uniq
+     # id_sender.delete(Achat.find(params[:id]).user.id)
+     # puts id_sender
+     # @sender_id = id_sender
   end
 
   def new

@@ -5,6 +5,7 @@ class SignalAchatsController < ApplicationController
 	end
 
 	def create
+		# cree un signal pour un achat si ce dernier n est pas nil si non supprime le signal
 		if (SignalAchat.find_by(user: current_user, achat_id: params[:achat_id])==nil)
 			@signal = SignalAchat.new(user: current_user, achat_id: params[:achat_id])
 			if @signal.save

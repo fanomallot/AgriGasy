@@ -127,7 +127,7 @@ class VentesController < ApplicationController
         @vente_region = regionnew
       end
     end
-
+    # met à jour le vente avec ses parametres description, quatité, etc...
     if @vente.update(description: params[:description],
       quantite: params[:quantite], 
       prix: params[:prix],
@@ -144,6 +144,8 @@ class VentesController < ApplicationController
   end
 
   def destroy
+
+    # supprime la signal puis la vente
     @vente = Vente.find(params[:id])
     @signall = Signall.where(vente_id: @vente.id)
     @signall.destroy_all

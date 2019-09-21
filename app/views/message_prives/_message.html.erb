@@ -1,3 +1,4 @@
+<!-- partie html à inserer dans new.html.erb apres envoi du msg -->
 <% if @message.sender.profil.attached? %>
 	<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
 	 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;" %>
