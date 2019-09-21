@@ -9,8 +9,14 @@
 			<div id="message">
 				<h1 >
 					<strong>
-						<%= image_tag User.find(@id).profil, alt: 'photo_achat',class:'messageprofil' %><%=User.find(@id).first_name%>  <%=User.find(@id).last_name%>
-						</a>
+					<a href="<%= user_path(@id)%>">
+					  <% if User.find(@id).profil.attached?%>
+						<%= image_tag User.find(@id).profil, alt: 'photo_achat',class:'messageprofil' %>
+					<%else%>
+						<%=image_tag 'profil.png',class:'sipmlephoto'%>
+					<%end%>
+						<%=User.find(@id).first_name%>  <%=User.find(@id).last_name%>
+					</a>
 					</strong>
 				</h1><br>
 				<%comptage_length = 0 %>
@@ -19,7 +25,7 @@
 						<div class="usermessage" >
 						<% if message.sender.profil.attached? %>
 							<p>
-							 		<a href="<%=user_path(current_user.id)%>"><%= image_tag message.sender.profil, alt: 'photo_achat',class:'sipmlephoto'%></a>
+							 	<a href="<%=user_path(current_user.id)%>"><%= image_tag message.sender.profil, alt: 'photo_achat',class:'sipmlephoto'%></a>
 							</p>
 								<i class="messageshow"><%=message.content%></i><br>
 					
