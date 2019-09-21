@@ -1,44 +1,48 @@
-<%if @messages.length == 0%>
-	<h2>Ecrire une message </h2>
-<%else%>
-		<%comptage_length = 0 %>
-	<%@messages.each do |message|%>
-		<%if current_user == message.sender%>
-			<% if message.sender.profil.attached? %>
-				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
-				 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;" %><h3><%=message.content%></h3>
+<br><br><br><br>
+<h2 class="center" style="font-family: Time New Roman;font-size: 30px;">Discussion</h2>
+<div class="container">
+	<%if @messages.length == 0%>
+		<h2>Ecrire une message </h2>
+	<%else%>
+			<%comptage_length = 0 %>
+		<%@messages.each do |message|%>
+			<%if current_user == message.sender%>
+				<% if message.sender.profil.attached? %>
+					<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
+					 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;" %><h3><%=message.content%></h3>
+				<%else%>
+					<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2><br>
+					<h3><%=message.content%></h3>
+				<%end%>
+					<%= form_tag edit_user_message_prife_path(params[:user_id],message.id),method:'get' do submit_tag 'Edit' 
+					end%>
+					<%= form_tag user_message_prife_path(params[:user_id],message.id),action:'delete',method:'delete' do submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"} 
+			        end%>
+			        <%if message.is_read %>
+			        	<small><i>Vu le <%=message.updated_at.day%>/<%=message.updated_at.month%>/<%=message.updated_at.year%> à <%=message.updated_at.hour%>:<%=message.updated_at.min%></i></small>
+			         <%end%>
+			        <%comptage_length += 1 %>
 			<%else%>
-				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2><br>
-				<h3><%=message.content%></h3>
+				<% if message.sender.profil.attached?%>
+					<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
+					 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%> <h3><%=message.content%></h3>
+				<%else%>
+					<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2><br>
+					<h3><%=message.content%></h3>
+				<%end%>
+				<%comptage_length += 1 %>
+				<% if @messages.length == comptage_length && message.recipient == current_user%>
+					<%= form_tag  user_message_prife_path(params[:user_id],message.id),action:'update',method:'patch' do %>
+			        	<%=hidden_field_tag :content, message.content%>
+			        	<%=hidden_field_tag :read?, false%>
+			        	<%=submit_tag 'Marquer comme non lu'%>
+			        <%end%>
+			    <%end%>
 			<%end%>
-				<%= form_tag edit_user_message_prife_path(params[:user_id],message.id),method:'get' do submit_tag 'Edit' 
-				end%>
-				<%= form_tag user_message_prife_path(params[:user_id],message.id),action:'delete',method:'delete' do submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"} 
-		        end%>
-		        <%if message.is_read %>
-		        	<small><i>Vu le <%=message.updated_at.day%>/<%=message.updated_at.month%>/<%=message.updated_at.year%> à <%=message.updated_at.hour%>:<%=message.updated_at.min%></i></small>
-		         <%end%>
-		        <%comptage_length += 1 %>
-		<%else%>
-			<% if message.sender.profil.attached?%>
-				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
-				 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;"%> <h3><%=message.content%></h3>
-			<%else%>
-				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2><br>
-				<h3><%=message.content%></h3>
-			<%end%>
-			<%comptage_length += 1 %>
-			<% if @messages.length == comptage_length && message.recipient == current_user%>
-				<%= form_tag  user_message_prife_path(params[:user_id],message.id),action:'update',method:'patch' do %>
-		        	<%=hidden_field_tag :content, message.content%>
-		        	<%=hidden_field_tag :read?, false%>
-		        	<%=submit_tag 'Marquer comme non lu'%>
-		        <%end%>
-		    <%end%>
 		<%end%>
 	<%end%>
-<%end%>
-<%= form_tag user_message_prives_path(),action:'create',method:'post' do%>
-   	<%=text_area_tag :content%>
-  	<%=submit_tag :envoyer%>
-<%end%>
+	<%= form_tag user_message_prives_path(),action:'create',method:'post' do%>
+	   	<%=text_area_tag :content%>
+	  	<%=submit_tag :envoyer%>
+	<%end%>
+</div>
