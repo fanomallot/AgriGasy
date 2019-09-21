@@ -1,7 +1,9 @@
-<h1> Nouveau message </h1>
 
+<div class="ground first">
+<h1 style="text-align: center"> <strong>Nouveau message</strong></h1>
 <h2>Destinataire</h2>
 <%= form_tag sending_messages_path, action: "sendingmessage", method: "get" do %>
+
    	<select id="monselect" name="users_id">
   		<%@users.each do |users|%>
   			<%if users != current_user%>
@@ -13,5 +15,5 @@
 	<%=text_area_tag :content%>
  	<%=submit_tag :envoyer%>
 <%end%>
-
+<div class="ground first center">
 

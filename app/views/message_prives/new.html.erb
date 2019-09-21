@@ -1,24 +1,30 @@
+<div class="ground first">
 <%if @messages.length == 0%>
-	<h2>Ecrire une message </h2>
+<h1 style="text-align:center;"><strong>Ecrire un message à <%=User.find(@id).first_name%>  <%=User.find(@id).last_name%></strong></h1>
 <%else%>
+<div id="message" class="contentaside">
+	<h1 style="text-align:center;"><strong><%=User.find(@id).first_name%>  <%=User.find(@id).last_name%></strong></h1>
 		<%comptage_length = 0 %>
 	<%@messages.each do |message|%>
 		<%if current_user == message.sender%>
+		<div id ="<%=message.id%>" class="contentaside2">
 			<% if message.sender.profil.attached? %>
 				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
-				 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;" %><h3><%=message.content%></h3>
+				 <%= image_tag message.sender.profil, alt: 'photo_achat',style: "height:50px; width: 50px;" %>
+				 <h3><%=message.content%></h3>
 			<%else%>
 				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2><br>
 				<h3><%=message.content%></h3>
 			<%end%>
 				<%= form_tag edit_user_message_prife_path(params[:user_id],message.id),method:'get' do submit_tag 'Edit' 
 				end%>
-				<%= form_tag user_message_prife_path(params[:user_id],message.id),action:'delete',method:'delete' do submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"} 
-		        end%>
+				<%= form_tag(user_message_prife_path(params[:user_id],message.id), :id => 'form_tag_with_remote_true', remote: true, method:'delete') do%><%=submit_tag 'destroy', data:{confirm: "voulez vraiment supprimer cette message"} %>
+		        <%end%>
 		        <%if message.is_read %>
 		        	<small><i>Vu le <%=message.updated_at.day%>/<%=message.updated_at.month%>/<%=message.updated_at.year%> à <%=message.updated_at.hour%>:<%=message.updated_at.min%></i></small>
 		         <%end%>
 		        <%comptage_length += 1 %>
+		  </div>
 		<%else%>
 			<% if message.sender.profil.attached?%>
 				<h2><%= link_to message.sender.first_name, user_path(message.sender.id)%></h2>
@@ -38,7 +44,10 @@
 		<%end%>
 	<%end%>
 <%end%>
-<%= form_tag user_message_prives_path(),action:'create',method:'post' do%>
+<%= form_tag(user_message_prives_path(), :id => 'form_tag_with_remote_true', remote: true,method:'post')do%>
    	<%=text_area_tag :content%>
-  	<%=submit_tag :envoyer%>
+  	<%=submit_tag :envoyer, remote: true%>
 <%end%>
+</div>
+</div>
+
