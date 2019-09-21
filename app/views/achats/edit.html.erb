@@ -1,3 +1,4 @@
+<!-- page qui affiche la  formulaire pour modifier les information concerant l'achat -->
 <div class="ground">
 <!-- affichage allert -->
   <% if flash[:success] %>
@@ -25,6 +26,7 @@
               <div class="col-md-8">
                  <div class="block billing-details">
                     <h4 class="widget-title">changer les détails</h4>
+                    <!-- recuperation des infos concernants l'achat telles que le nom, quantité, place, lieu, etc.. afin d'etre renvoyées dans le controller vente -->
                      <%= form_tag url_for(action: 'update'), method:'patch' do%>
                        <div class="form-group">
                           <label for="user_address">Nom de produit</label><i class="rouge">*</i>
@@ -61,6 +63,7 @@
                     <div class="block">
                        <h4 class="widget-title">Changer la photo</h4>
                        <div class="media product-card">
+                        <!-- teste si l'chat a un image si oui on affiche la photo si non on la recupere par le form tag -->
                        <%if @achat.avatarachat.attached?%>
                           <%= image_tag @achat.avatarachat, alt: 'photo_achat',style: "max-height:400px; width: 440px;",class:'radius' %>
                         <%else%>
@@ -71,6 +74,7 @@
                        </div>
                       <div class="photo editachat1 floue">
                         <h6>Changer la photo d'achat ?</h6>
+                        <!-- mrecupere l'mage source d achat -->
                           <%= form_tag achat_avatarachats_path(@achat), multipart: true do %>
                             <%= file_field_tag :avatarachat%>
                             <input type="submit" class="btn btn-success" value="Valider">

@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
 	before_action :is_admins
 	def index
+		# recupere les listes  d'user qui sont admiins/ qui ne sont pas admins et liste de vente/achat non authentifier 
 		@admin = User.where(is_admin: true)
 		@vente = Vente.where(is_authenticate: false)
 		@achat = Achat.where(is_authenticate: false)

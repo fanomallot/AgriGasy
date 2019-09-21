@@ -8,6 +8,8 @@ class RegionsController < ApplicationController
 	end
 
 	def destroy
+
+		# supprime la region y compris les vente/achat dans la region en question
 		@region = Region.find(params[:id])
 		@vente = Vente.where(region: @region)
 	  	@vente.destroy_all

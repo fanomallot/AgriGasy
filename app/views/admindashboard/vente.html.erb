@@ -24,12 +24,14 @@
 				              	<%if vente.avatarvente.attached?%>
 					                  <div class="img-comp-container">
 					                    <div class="img-comp-img pblink">
+					                    	<!-- image sous form de lien qui ramenne ver le show de la vente -->
 					                      <a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',class:"img-fluid w-100 d-block" ,style: "height:300px; width: 300px;"%>
 					                      </a>
 					                    </div>
 					                    <div class="img-comp-img img-comp-overlay">
 					                      <a href="<%=user_path(vente.user.id)%>">
 					                        <%if vente.user.profil.attached?%>
+					                            <!-- affiche l'image profil de l'user  -->
 					                          <%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
 					                        <%else%>
 					                          <i class="menu-item fa fa-user"></i>
@@ -45,6 +47,7 @@
 					                    <div class="img-comp-img img-comp-overlay">
 					                      <a href="<%=user_path(vente.user.id)%>">
 					                        <%if vente.user.profil.attached?%>
+					                                <!-- affiche l'image profil de l'user  -->
 					                          <%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
 					                        <%else%>
 					                          <i class="menu-item fa fa-user"></i>
@@ -53,8 +56,7 @@
 					                    </div>
 					                  </div>
 									<%end%>
-							
-	      						<div class="overlay-box">
+							<div class="overlay-box">
 				                  <div class="overlay-inner">
 			                    		<a class="overlay-content" href="<%=vente_path(vente.id)%>">
 											<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
@@ -70,6 +72,7 @@
 														<i class="fa fa-user rouge"></i> Ne pas signaler
 				                    				</a>
 							                 	<%end%>
+							                 	<!-- affiche si admin et cache, si l'user n'est pass admin, le nbr de signall et un lien qui affiche l nbr d signal -->
 							                 	<% if current_user.is_admin %>
 								                    <%if vente.signalls.length != 0%>
 								                      <%=link_to "(#{vente.signalls.length})", user_vente_signalls_path(current_user.id,vente.id)%>
