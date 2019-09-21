@@ -798,5 +798,11 @@ textarea.form-control {
 .footer-widget a:hover {
   color: #f44336;
 }
+.message_content{
+background-color: #cadceb;
+text-align: center;
+margin-top: 4px;
+overflow: hidden;
+}
 
 /*# sourceMappingURL=maps/style.css.map */

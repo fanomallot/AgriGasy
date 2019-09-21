@@ -1,45 +1,98 @@
 <div class="ground editachatground ">
-
-	<h1>Liste de toutes les régions qui existent </h1>
-	<p>
-		<%@region.each do |region|%>
-			<%@vente_authentifie = false
-			@achat_authentifie = false%>
-			<%region.ventes.each do |vente|
-				if vente.is_authenticate
-					@vente_authentifie = true
-					break
-				else
-					@vente_authentifie = false
-				end
-			end%>
-			<%region.achats.each do |achat|
-				if achat.is_authenticate 
-					@achat_authentifie = true
-					break
-				else
-					@achat_authentifie = false
-				end
-			end%>
-			<%if user_signed_in?%>
-				<%if @achat_authentifie || @vente_authentifie || current_user.is_admin%>
-					<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
+	<!-- affichage allert -->
+	<% if flash[:success] %>
+		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+	<% else  %>
+		<%if flash[:danger]%>
+			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+		<% end %>
+	<% end %>
+	<div style="color: white;">
+		<h1 class="center" style="font-family: verdana;font-size: 30px;">Liste de tous les regions qui comporte des produits </h1>
+	</div >
+	<div class="row align-items-center">
+		<div class="region blanche">
+			<h1 class="center" style="font-family: Time New Roman;font-size: 25px;">PRODUITS
+			</h1>
+			<div class="text-center">
+				<%@region.each do |region|%>
+					<%@vente_authentifie = false
+					@achat_authentifie = false%>
+					<%region.ventes.each do |vente|
+						if vente.is_authenticate
+							@vente_authentifie = true
+							break
+						else
+							@vente_authentifie = false
+						end
+					end%>
+					<%region.achats.each do |achat|
+						if achat.is_authenticate 
+							@achat_authentifie = true
+							break
+						else
+							@achat_authentifie = false
+						end
+					end%>
 					<%if user_signed_in?%>
-						<%if current_user.is_admin%>
-							<i><%= link_to " Supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
+						<%if @achat_authentifie || @vente_authentifie || current_user.is_admin%>
+							<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
+							<%if user_signed_in?%>
+								<%if current_user.is_admin%>
+									<i><%= link_to " Supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
+								<%end%>
+							<%end%>
+						<%end%>
+					<%else%>
+						<%if @achat_authentifie || @vente_authentifie%>
+							<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
+							<%if user_signed_in?%>
+								<%if current_user.is_admin%>
+									<i><%= link_to " Supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
+								<%end%>
+							<%end%>
 						<%end%>
 					<%end%>
 				<%end%>
-			<%else%>
-				<%if @achat_authentifie || @vente_authentifie%>
-					<h4><strong>Région : </strong><i><%=link_to region.place , region_path(region.id)%></i></h4>
-					<%if user_signed_in?%>
-						<%if current_user.is_admin%>
-							<i><%= link_to " Supprimer", region_path(region.id),class:'btn btn-danger', method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i><br/>
-						<%end%>
-					<%end%>
-				<%end%>
-			<%end%>
-		<%end%>
-	</p>
+			</div>
+		</div>
+		<div>
+			<div class="regionphoto">
+				<div id="slider">
+					<figure>
+						<%= image_tag("image1.jpg")%>
+						<%= image_tag("image2.jpg")%>
+						<%= image_tag("image3.jpg")%>
+						<%= image_tag("01.jpg")%>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="contact section">
+    <div class="container">
+        <div class="row blanche">
+            <div class="col-lg-4 mb-4 mb-lg-0 col-md-4 ">
+                <h4>Voire plus d' info</h4>
+                <p>Essayer de verifier les regions où il y a des produits</p>
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0 col-md-4">
+                <h4>Local</h4>
+                <p>Trouver directement sur maps si c'est à votre disposition</p>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h4>Contact</h4>
+                 <p class="mb-0">Contacté le client en cas de besoin</p>
+                <p class="mb-0">Envoyé leurs des messages privés</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="google-map">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </div>

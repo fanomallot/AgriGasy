@@ -1,4 +1,15 @@
-<h1>Liste des personnes qui ont signalé cette publication:</h1>
-<%@signalAchat.each do |signal|%>
-  	<%=link_to signal.user.first_name,user_path(signal.user.id)%><br>
-<%end%>
+<div class="ground ">
+	<div class="result down">
+		<h1>Liste des personnes qui ont signalé cette publication:</h1>
+	</div>
+	<div class='signalcommande'>
+		<%@signalAchat.each do |signal|%>
+		  	<%if signal.user.profil.attached?%>
+				<a href="<%=user_path(signal.user.id)%>"><%= image_tag signal.user.profil, alt: 'profil_picture',class:'signalphoto' %></a> 
+			<%else%>
+				<a href="<%=user_path(signal.user.id)%>"><%= image_tag "profil.png", alt: 'profil_picture',style: "width: 200px;height:190px;" %></a>
+			<%end%>
+		  	<%=link_to signal.user.first_name,user_path(signal.user.id)%><br>
+		<%end%>	
+	</div>
+</div>
