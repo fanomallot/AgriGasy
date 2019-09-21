@@ -8,7 +8,7 @@
 		<% end %>
 
 	<% end %>
-	<h1 class="center">Voici le contenu de cet article</h1>
+	<h1 class="center" style="font-family: Time New Roman;font-size: 30px;">Voici le contenu de cet article</h1>
 	<!-- ------------------- -->
 	<div class="main">
 	    <div class="container tim-container">
@@ -21,7 +21,7 @@
 							<%if @achat.avatarachat.attached?%>
 								<%= image_tag @achat.avatarachat, alt: 'photo_achat',class:"img-rounded img-responsive"%>
 							<%else%>
-			  					<%=image_tag '01.jpg',class:"img-rounded img-responsive" %>
+			  					<%=image_tag 'no-photo.png', class:"img-rounded container img-responsive", style:"width:370px;height:370px;" %>
 			  				<%end%>
 	                    </div>
 	                </div>

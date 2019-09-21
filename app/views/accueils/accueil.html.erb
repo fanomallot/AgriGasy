@@ -1,271 +1,89 @@
-<!-- 
-<div class='blurred-container'>
-	<div>
-		
-	<div class="motto">
-	    <div>Get</div>
-	    <div class="border no-right-border">Sh</div><div class="border">it</div>
-	    <div>Done</div>
-	</div>
-	<div class="img-src Ag1" ></div>
-	<div class='img-src blur Ag2'></div>
-	</div> -->
-    
-    
 
 <div class=" ground first center ">
 	<i class="agri">AgriGasy</i>
 </div>
-<!-- <div class="mar">
-	<div class="scroll">
-		<div class="center">
-			
-			<%= link_to "Créer une publication vente ",new_vente_path,class:'boutton success' %><br>
-			<p>Voici les listes de tous les Ventes disponibles :</p>
-		</div>
-		<p>
-			<div class="mar">
-				<% @vente.each do |vente| %>
-					<% if vente.is_authenticate == true %>
-						<div class="containerlist">
-							<ul class="border">
-								<div class="tezz">
-									<li>
-										<%if vente.avatarvente.attached?%>
-											<div class="img-comp-container">
-											  <div class="img-comp-img pblink">
-											    <a href="<%=vente_path(vente.id)%>"><%= image_tag vente.avatarvente, alt: 'photo_vente',style: "height:200px; width: 240px;"  %>
-												</a>
-											  </div>
-											  <div class="img-comp-img img-comp-overlay">
-											  	<a href="<%=user_path(vente.user.id)%>">
-												  	<%if vente.user.profil.attached?%>
-												    	<%= image_tag vente.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
-												    <%else%>
-												    	<i class="menu-item fa fa-user"></i>
-												    <%end%>
-												  </a>
-											  </div>
-											</div>
-										<%else%>
-											<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-										<%end%>
-									</li>
-								</div>
-								<table class="tableau">
-									<tr>
-										<td><%= vente.produit.name %></td>
-										<td><%= vente.region.place %></td>
-									</tr>
-								</table>
-								<%unless vente.avatarvente.attached?%>
-									<li><div class="center">
-									<%= link_to "See more", vente_path(vente.id) ,class:'boutton simple seemore' %>
-									</div></li>
-								<%end%>
-							</ul>
-						</div>
-					<% end %>
-				<% end %>
-			</div>
-		</p>
-		
-	</div>
-	
-	<div class="scroll1">
-		<div class="center">
-			<%= link_to "Créer une publication achat", new_achat_path,class:'boutton success' %>
-			<p>Voici les listes de tous les achats disponibles :</p>
-		</div>
-		<p>
-			<div class="mar">
-				<% @achat.each do |achat| %>
-					<% if achat.is_authenticate == true %>
-						<div class="containerlist">
-							<ul class="border">
-								<div class="tezz">
-									<li>
-										<%if achat.avatarachat.attached?%>
-											<div class="img-comp-container">
-											  <div class="img-comp-img pblink">
-											    <a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',style: "height:200px; width: 240px;"  %></a>
-											  </div>
-											  <div class="img-comp-img img-comp-overlay">
-											  	<a href="<%=user_path(achat.user.id)%>">
-											  		<%if achat.user.profil.attached?%>
-											    		<%= image_tag achat.user.profil, alt: 'photo_vente',style: "height:60px; width: 60px;"  %>
-											    	<%end%>
-											  	</a>
-											  </div>
-											</div>
-										<%else%>
-											<p>=== Il n'y a pas encore de photo lié à cette publication ===</p>
-										<%end%>
-									</li>
-								</div>
-								<table class="tableau">
-									<tr>
-										<td><%= achat.produit.name %></td>
-										<td> <%= achat.region.place %></td>
-									</tr>
-								</table>
-								<%unless achat.avatarachat.attached?%>
-								<li><div class="center">
-									<%= link_to "See more", achat_path(achat.id),class:'boutton simple seemore' %>
-								</div></li>
-								<%end%>
-							</ul>
-						</div>
-					<% end %>
-				<% end %>
-			</div>
-		</p>
-	</div>
-
-</div> -->
-<!-- Banner Start -->
 <section class="section banner">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10">
 				 <h2 class="cd-headline clip is-full-width mb-4 ">
-				 	on propose <br>
+				 	On vous propose de<br>
                     <span class="cd-words-wrapper text-color">
-                        <b class="is-visible">Publier des ventes. </b>
-                        <b>Trouver les gens en besoin</b>
-                        <b>Faire des recherches.</b>
-                        <b>S'entreaider et avancer ensemble</b>
-                        <b>Créer un monde meilleur et modern ....</b>
+                        <b class="is-visible">faire des publications,</b>
+                        <b>les autres te contacteront</b>
+                        <b>si ils ont besoin</b>
+                        <b>de votre produit</b>
                     </span>
                 </h2>
-                <p>On vous invite à voire quelques exemples si dessous</p>
+                
 			</div>
 		</div>
 	</div>
 	<div class="main">
     <div class="container tim-container">
+      <p>Ci-dessous est un exemple d'une publication de vente</p>
         <div id="extras">
             <div class="space"></div>
-            <div class="row">
+           		<div class="row">
                 <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
                     <div class="text-center">
-                        <%=image_tag '01.jpg',class:"img-rounded img-responsive img-dog" %>
+                      <%=image_tag '01.jpg',class:"img-rounded img-responsive img-dog" %>
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-12">
-                                <h1 class="text-center">A propos des Ventes
-                                
-                                <small class="subtitle">Get to know us</small></h1>
-                                <hr>
-                                <p>
-                                Creative Tim offers Bootstrap based design elements that speed up your development work. From plugins to complex kits, we have everything you need. 
-                                </p>
-                                <p>
-                                    We love the web and care deeply for how users interact with a digital product. The idea behind Creative Tim was creating a standard of things we actually need and would personally use inside our web projects. We power businesses and individuals to create better looking web projects around the world.
-                                </p>
-                                <p>
-                                We take great interest in how our customers use our resources and offer strong support and unlimited updates. We are constantly thinking about how to make our products intuitive, beautiful and extremely easy to understand, so feel free to tell us your thoughts!                                   
-                                </p>
-
+                  <h1 class="text-center">A propos des Ventes</h1>
+                  <hr>
+                  <p>
+                  	Quand on fait une publication de vente, vous allez obligatoirement remplir un formulaire concernant votre produit.
+                  </p>
+                  <p>
+                  	Vous pouvez vous éxprimer librement en remplissant ce formulaire tels que :
+                  	<ul>
+                  		<li>nommer votre produit,</li>
+                  		<li>décrire votre produit (qualité, quantité, disponibilité, prix).</li>
+                  	</ul>
+                  </p>
+                  <p>
+                  	Nous nous intéressons beaucoup à la manière dont nos clients utilisent nos ressources et offrons un support solide et des mises à jour illimitées.                                   
+                  </p>
                 </div>
+              </div>
             </div>
-        </div>
-    <!--     end extras -->    
+        </div>   
     </div>
-<!-- end container -->
-</div>
-</section>
-
-<!-- Banner End -->
-
-<!-- POrtfolio start -->
-<section class="portfolio ">
-	<div class="container">
-		<div class="row mb-5">
-	      	<div class="col-10">
-		        <div class="btn-group btn-group-toggle " data-toggle="buttons">
-		           <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="photo" />Exemple de ventes
-		          </label><br><br>
-    				<p>Voici des exemples de ventes les plus recents,aller dans type vente ou faire des recherches pour en voir plus!</p>
-		        </div>
-	      	</div>
-    	</div>	
-		<div class="row shuffle-wrapper portfolio-gallery">
-		  <%if @vente.length < 6 %>
-		  	<%@vente.each do |vente|%>
-		      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;branding&quot;]">
-		        <div class="position-relative inner-box" >
-		            <div class="image position-relative ">
-		                <%=image_tag '01.jpg',class:"img-fluid w-100 d-block" %>
-		                fgsdrfg
-		                <div class="overlay-box">
-		                  <div class="overlay-inner">
-			                    <a class="overlay-content" href="portfolio-single.html">
-			                      <h5 class="mb-0">Web app</h5>
-			                      <p>Development</p>
-			                    </a>
-		                	</div> 
-			            </div>
-			        </div>
-			      </div>
-		      </div>
-		    <%end%>
-		  <%else%>
-		  <%end%>
-	    </div>
 	</div>
 </section>
-<!-- Portfolio End -->
-<!-- Footer start -->
-<!-- <section class="footer">
-	<div class="container">
-		<div class="row ">
-			<div class="col-lg-6">
-				<p class="mb-0">Copyrights © 2019. Designed & Developed by <a href="themefisher.com" class="text-white">Themefisher</a></p>
-			</div>
-			<div class="col-lg-6">
-				<div class="widget footer-widget text-lg-right mt-5 mt-lg-0">
-					<ul class="list-inline mb-0">
-						<li class="list-inline-item"><a href="https://www.facebook.com/themefisher" target="_blank"><i class="ti-facebook mr-3"></i></a>
-						</li>
-						<li class="list-inline-item"><a href="https://twitter.com/themefisher" target="_blank"><i class="ti-twitter mr-3"></i></a>
-						</li>
-						<li class="list-inline-item"><a href="https://github.com/themefisher/" target="_blank"><i class="ti-github mr-3"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.pinterest.com/themefisher/" target="_blank"><i class="ti-pinterest mr-3"></i></a></li>
-						<li class="list-inline-item"><a href="https://dribbble.com/themefisher/" target="_blank"><i class="ti-dribbble mr-3"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
- -->
 
 <div class="main">
     <div class="container tim-container">
+      <p>Ci-dessous est un exemple d'une publication d'achat</p>
         <div id="extras">
             <div class="space"></div>
             <div class="row">
                 <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
                     <div class="text-center">
-                        <%=image_tag '01.jpg',class:"img-rounded img-responsive img-dog" %>
+                        <%=image_tag 'image1.jpg',class:"img-rounded img-responsive img-dog" %>
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-12">
-                                <h1 class="text-center">About Creative Tim
-                                
-                                <small class="subtitle">Get to know us</small></h1>
-                                <hr>
-                                <p>
-                                Creative Tim offers Bootstrap based design elements that speed up your development work. From plugins to complex kits, we have everything you need. 
-                                </p>
-                                <p>
-                                    We love the web and care deeply for how users interact with a digital product. The idea behind Creative Tim was creating a standard of things we actually need and would personally use inside our web projects. We power businesses and individuals to create better looking web projects around the world.
-                                </p>
-                                <p>
-                                We take great interest in how our customers use our resources and offer strong support and unlimited updates. We are constantly thinking about how to make our products intuitive, beautiful and extremely easy to understand, so feel free to tell us your thoughts!                                   
-                                </p>
+                  <h1 class="text-center">A propos des Achats</h1>
+                  <hr>
+                  <p>
+                  	Quand on fait une publication d'achat, vous allez obligatoirement remplir un formulaire concernant votre produit.
+                  </p>
+                  <p>
+                  	Vous pouvez vous éxprimer librement en remplissant ce formulaire
+                  </p>
+                  <p>
+                  	Vous pouvez vous éxprimer librement en remplissant ce formulaire tels que :
+                  	<ul>
+                  		<li>nommer votre produit,</li>
+                  		<li>décrire votre produit (qualité, quantité, disponibilité, prix).</li>
+                  	</ul>
+                  </p>
+                  <p>
+                  	Nous nous intéressons beaucoup à la manière dont nos clients utilisent nos ressources et offrons un support solide et des mises à jour illimitées.                                   
+                  </p>
 
                 </div>
             </div>
