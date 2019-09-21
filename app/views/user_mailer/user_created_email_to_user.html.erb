@@ -1,7 +1,13 @@
-<div class="center">
-    <h1>Salut <%= @user.first_name %> et bienvenue chez <strong><i style="color: green;">AgriGasy</i></strong></h1>
-    <p>
-    	Vous venez de s'inscrir sur notre site <strong><i>AgriGasy</i></strong> avec l'e-mail <%= @user.email %>
-    	Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
-    </p>    
+<div class="ground">
+	<div class="mailenvoi center">
+		
+		<h1>Salut <%= @user.first_name %> et bienvenue chez <strong><i style="color: #03f2ff;">AgriGasy</i></strong></h1>
+		<p>
+	    	Vous venez de vous inscrir sur notre site <strong><i>AgriGasy</i></strong> avec l'e-mail <%= @user.email %>
+	    	Pour accéder à ton espace client, connecte-toi via :<a href="<%=@url%>" class="btn btn-warning">
+		<i class="fab fa-fly"></i>Agrigasy</a>
+	    </p>    
+		<img src="http://techstory.in/wp-content/uploads/2018/04/Is-India-Ready-for-Full-Scale-Agri-Entrepreneurship.jpg" class="photomail"><br>
+		<i class="bleu"> AgriGasy </i> vous souhaite une excéllante journée
+	</div>
 </div>

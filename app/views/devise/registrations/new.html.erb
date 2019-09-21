@@ -3,7 +3,7 @@
     <section class="section banner">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8test">
            <h2 class="cd-headline clip is-full-width mb-4 ">
             I provide <br>
                 <span class="cd-words-wrapper text-color">
@@ -22,31 +22,31 @@
 
   <%= render "devise/shared/error_messages", resource: resource %><br>
     <%= f.label :Prénoms %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", type:"text", placeholder:"Prénoms",id: "newpb", required: true ,class:'form-control'%><br>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", type:"text", placeholder:"Prénoms",id: "test", required: true ,class:'form-control'%><br>
 
     <%= f.label :Nom %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", type:"text", placeholder:"Nom",id: "newpb" ,class:'form-control'%><br>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", type:"text", placeholder:"Nom",id: "test" ,class:'form-control'%><br>
 
     <%= f.label :age %><br />
     <%= f.text_field :age, autofocus: true, autocomplete: "age", type:"text", placeholder:"Age" ,class:'form-control'%><br>
 
     <%= f.label :ville %><br />
-    <%= f.text_field :ville, autofocus: true, autocomplete: "ville",type:"text", placeholder:"City",id: "newpb", required: true,class:'form-control' %><br>
+    <%= f.text_field :ville, autofocus: true, autocomplete: "ville",type:"text", placeholder:"City",id: "test", required: true,class:'form-control' %><br>
 
     <%= f.label :description %><br />
     <%= f.text_area :description, autofocus: true, autocomplete: "description" ,class:'form-control'%><br>
 
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",id: "newpb", required: true,class:'form-control'%><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,type:"text", placeholder:"Your Email",id: "test", required: true,class:'form-control'%><br>
 
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",id: "newpb", required: true ,class:'form-control'%><br>
+    <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",id: "test", required: true ,class:'form-control'%><br>
 
      <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",type:"password", placeholder:"Confirme Password",id: "newpb", required: true ,class:'form-control'%><br>    
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",type:"password", placeholder:"Confirme Password",id: "test", required: true ,class:'form-control'%><br>    
 
     <button type="submit" class="btn-sig">Sign-in</button>
 
