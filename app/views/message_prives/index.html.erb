@@ -1,21 +1,24 @@
 
-<div class="ground editventeground ">
-<h1>Messages</h1>
-
-<%@id_sender_recipient.each do |id|%>
-  <%m = MessagePrive.where('sender_id = :u AND recipient_id = :cu OR sender_id = :cu AND recipient_id = :u', cu:current_user.id, u:id).last%>
-  <%if current_user == m.sender %>
-     <h4><%=link_to "#{m.recipient.first_name} (#{MessagePrive.where('sender_id =:r AND recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , r: m.recipient.id ,a:false).count})",new_user_message_prife_path(id), method:'get'%></h4>
-      <%if m.recipient.profil.attached?%>
-        <%= link_to image_tag(m.recipient.profil, :alt => "Profil", :height=> "50px", :width => "50px"), user_path(m.sender.id),action: 'show', method:'get' %>
-     <%end%>
-  <%else%>
- 
-      <h4> <%=link_to "#{User.find(id).first_name} (#{MessagePrive.where('recipient_id =:current_user_id AND sender_id= :s AND is_read =:a',current_user_id:current_user.id,s: m.sender.id, a:false).count})", new_user_message_prife_path(id), method:'get'%></h4>
-     <%if m.sender.profil.attached?%>
-        <%= link_to image_tag(m.sender.profil, :alt => "Profil", :height=> "50px", :width => "50px"), user_path(m.sender.id),action: 'show', method:'get' %>
-     <%end%>
-     <%end%>
-
-<%end%>
+<div class="ground first">
+  <h1 class= "center"><strong>Messages</strong></h1>
+  <div>
+    <%@id_sender_recipient.each do |id|%>
+      <%m = MessagePrive.where('sender_id = :u AND recipient_id = :cu OR sender_id = :cu AND recipient_id = :u', cu:current_user.id, u:id).last%>
+      <%if current_user == m.sender %>
+        <h4><%=link_to "#{m.recipient.first_name} (#{MessagePrive.where('sender_id =:r AND recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , r: m.recipient.id ,a:false).count})",new_user_message_prife_path(id), method:'get'%><h1>
+          <%if m.recipient.profil.attached?%>
+            <%= link_to image_tag(m.recipient.profil, :alt => "Profil", :height=> "50px", :width => "50px"), user_path(m.sender.id),action: 'show', method:'get' %>
+        
+         <%end%>
+     <br>
+      <%else%>
+    
+           <h4><%=link_to "#{User.find(id).first_name} (#{MessagePrive.where('recipient_id =:current_user_id AND sender_id= :s AND is_read =:a',current_user_id:current_user.id,s: m.sender.id, a:false).count})", new_user_message_prife_path(id), method:'get'%></h4>
+         <%if m.sender.profil.attached?%>
+            <%= link_to image_tag(m.sender.profil, :alt => "Profil", :height=> "50px", :width => "50px"), user_path(m.sender.id),action: 'show', method:'get' %>
+         <%end%>
+         <%end%>
+      
+    <%end%>
+  </div>
 </div>

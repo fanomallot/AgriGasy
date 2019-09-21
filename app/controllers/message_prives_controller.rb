@@ -34,13 +34,21 @@ class MessagePrivesController < ApplicationController
 	end
 
 	def sendingmessage
-		MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:users_id], is_read:false)
+		@message = MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:users_id], is_read:false)
 		redirect_to new_user_message_prife_path(params[:users_id])
+		# respond_to do |format|
+	 #      format.html {redirect_to(new_user_message_prife_path(params[:user_id]))}
+	 #      format.js { }
+	 #    end
 	end
 	def create
 		 	puts params[:users_id]
-				MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
-				redirect_to new_user_message_prife_path(params[:user_id])
+				@message = MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
+				 redirect_to new_user_message_prife_path(params[:user_id])
+		# respond_to do |format|
+	 #      format.html {redirect_to(new_user_message_prife_path(params[:user_id]))}
+	 #      format.js { }
+	 #    end
 	end
 
 	def show
@@ -60,6 +68,10 @@ class MessagePrivesController < ApplicationController
 	def destroy
 		MessagePrive.find(params[:id]).destroy
 		redirect_to  new_user_message_prife_path(params[:user_id])
+		# respond_to do |format|
+	 #      format.html {redirect_to(new_user_message_prife_path(params[:user_id]))}
+	 #      format.js { }
+	 #    end
 	end
 
 	def sendmessage
@@ -68,4 +80,9 @@ class MessagePrivesController < ApplicationController
 		@users = User.all
 		 
 	end
+	private
+
+def message_params
+  params.permit(:content)
+end
 end
