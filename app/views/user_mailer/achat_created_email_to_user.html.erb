@@ -1,8 +1,14 @@
-<div class="center">
-	<h1>Salut <%= @achat.user.first_name %> !</h1>
-	<p>
-		La création de votre publication d'achat sur <strong><i>AgriGasy</i></strong> a été bien reussi !<br>
-		Elle sera publié après avoir authentifiée par un administrateur de notre site.
-	</p>
+<div class="ground">
+	<div class="mailenvoi center">
+		
+		<h1>Salut <i style="color: #03f2ff;"><%= @achat.user.first_name %></i> !</h1>
+		<p>
+			La création de votre publication d'achat sur <strong><i style="color: #03f2ff;">AgriGasy</i></strong> a été bien reussi !<br>
+			Elle sera publié après authentification par l'administrateur du site.
+		</p>
+		<img src="http://techstory.in/wp-content/uploads/2018/04/Is-India-Ready-for-Full-Scale-Agri-Entrepreneurship.jpg" class="photomail"><br>
+		<i class="bleu"> AgriGasy </i> vous souhaite une excéllante journée
+		<p>Retourner au site <a href="<%=@url%>" class="btn btn-warning">
+		<i class="fab fa-fly"></i>Agrigasy</a> </p>
+	</div>
 </div>
-    

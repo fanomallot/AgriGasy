@@ -1,25 +1,25 @@
-<div class="ground editachatground ">
+<div class="ground editachatground">
+	<div class="ground result  blanche center">
 	<%if @produit.length != 0%>
-		<h1>Résultat de produit sur <%=@params%> : </h1>
-		<h4>Vente</h4><br>
+		<h1 >Résultat de produit sur <%=@params%> : </h1>
+		<div class="vente"><h4 >Vente</h4></div>			
 		<%if @vente.length != 0 %>
 			<%@vente.each do |vente|%>
 				<%if vente != nil%>
-					<%=link_to vente.produit.name, vente_path(vente.id)%><br>
-					<%=link_to vente.region.place, region_path(vente.region.id)%><br>
+					<h3><%=link_to vente.produit.name, vente_path(vente.id)%></h3>
+					<%=link_to vente.region.place, region_path(vente.region.id)%>
 				<%end%>
 
 			<%end%>
 		<%else%>
 			Pas de resultat sur <%=@params%><br>	
 		<%end%>
-
-		<h4>Achat</h4> <br>
+		<div class="vente"><h4>Achat</h4></div>
 		<%if @achat.length != 0 %>
 			<%@achat.each do |achat|%>
 				<%if achat != nil%>
-					<%= link_to achat.produit.name,achat_path(achat.id)%><br>
-					<%=link_to achat.region.place,region_path(achat.region.id)%><br>
+					<h3><%= link_to achat.produit.name,achat_path(achat.id)%></h3>
+					<h3><%=link_to achat.region.place,region_path(achat.region.id)%></h3>
 				<%end%>
 			<%end%>
 		<%else%>
@@ -29,25 +29,23 @@
 
 	<%if @region.length != 0%>
 		<h1>Résultat dans la région sur <%=@params%> </h1>
-		<h4>vente</h4><br>
+		<div class="vente blanche"><h4 >Vente</h4></div>
 		<%if @vente2.length != 0 %>
 			<%@vente2.each do |vente|%>
 				<%if vente != nil%>
-					<%=link_to vente.produit.name, vente_path(vente.id)%><br>
-					<%=link_to vente.region.place, region_path(vente.region.id)%>
+					<h3><%=link_to vente.produit.name, vente_path(vente.id)%></h3>
+					<h3><%=link_to vente.region.place, region_path(vente.region.id)%></h3>
 				<%end%>
 			<%end%>
 		<%else%>
 			Pas de resultat sur <%=@params%><br>	
 		<%end%>
-
-
-		<h4>Achat</h4> <br>
+		<div class="vente"><h4>Achat</h4></div>
 		<%if @achat2.length != 0 %>
 			<%@achat2.each do |achat|%>
 				<%if achat != nil%>
-					<%=link_to achat.produit.name,achat_path(achat.id)%><br>
-					<%=link_to achat.region.place, region_path(achat.region.id)%><br>
+					<h3><%=link_to achat.produit.name,achat_path(achat.id)%></h3>
+					<h3><%=link_to achat.region.place, region_path(achat.region.id)%></h3>
 				<%end%>
 			<%end%>
 		<%else%>
@@ -58,4 +56,5 @@
 	<%if @region.length == 0 && @produit.length == 0 %>
 		<p>Pas de résultat sur <%=@params%></p>
 	<%end%>
+	</div>
 </div>

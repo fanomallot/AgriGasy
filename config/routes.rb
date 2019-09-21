@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'bienvenues/index'
   get "/accueils",to: 'accueils#accueil'
   get "/user/:id/mes_ventes",to: 'users#uservente', as: 'mes_ventes'
   get "/user/:id/mes_achats",to: 'users#userachat', as: 'mes_achats'
@@ -23,14 +22,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, path: '/mon_profil' do
     resources :profils, only: [:create]
-    resources :message_prives, path: '/sms_ventes' 
+    resources :message_prives, path: '/Messages' 
     resources :ventes, path: '/mes_ventes' do 
       resources :signalls,only:[:index,:create]
       
     end
     resources :achats, path: '/mes_besoins' do 
       resources :signal_achats, only:[:index,:create]
-      resources :messagepriveachats, path: '/sms_achats'
+      resources :messagepriveachats, path: '/Messages'
     end
   end
   resources :regions, path: '/regions'
