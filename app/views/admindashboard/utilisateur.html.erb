@@ -1,34 +1,36 @@
-<br><br><br><br>
-<div class="center">
-	<h3 style="font-family: verdana;font-size: 30px;">Voici la liste de tous les utilisateurs, y compris les administrateurs :-)</h3>
-	<table class="tab">
-	  <tr class="tr1">
-	    <th class="tdh">First name</th>
-	    <th class="tdh">Last name</th>
-	    <th class="tdh">Admin</th>
-	  </tr>
-
-	  <!-- liste des user et admin avec un check box pour definir un user comme admin (l'invers aussi  sera possible) -->
-	  <%@user.each do |user| %>
-		  <tr class="tr1">
-		    <td class="tdh"><%= link_to user.first_name, user_path(user) %></td>
-		    <td class="tdh"><%= link_to user.last_name, user_path(user) %></td>
-		    <% if user.is_admin %>
-		    <td><label class="switch">
-		    	<a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
-		    		<input type="checkbox" checked id='checkbox'>
-				  	<span class="slider round"></span>
-				</a>
-				</label>
-				</td>
-			<%else%>
-				<td><label class="switch">
-		    <a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
-				  <input type="checkbox" id='checkbox'>
-				  <span class="slider round"></span></a></label>
-				</td>
-			<%end%>
-			</tr>
-		<%end%>
-	</table>
+<div class="ground dasbor">
+	<div class="showpb2">
+		<div class="center">
+			<h3 style="font-family: verdana;font-size: 30px;">Voici la liste de tous les utilisateurs, y compris les administrateurs :-)</h3>
+			<table class="tab">
+			  <tr class="tr1">
+			    <th class="tdh">First name</th>
+			    <th class="tdh">Last name</th>
+			    <th class="tdh">Admin</th>
+			  </tr>
+			  <!-- liste des user et admin avec un check box pour definir un user comme admin (l'invers aussi  sera possible) -->
+			  	<%@user.each do |user| %>
+				  <tr class="tr1">
+				    <td class="tdh"><%= link_to user.first_name, user_path(user) %></td>
+				    <td class="tdh"><%= link_to user.last_name, user_path(user) %></td>
+				    <% if user.is_admin %>
+				    <td><label class="switch">
+				    	<a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
+				    		<input type="checkbox" checked id='checkbox'>
+						  	<span class="slider round"></span>
+						</a>
+						</label>
+						</td>
+					<%else%>
+						<td><label class="switch">
+				    <a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
+						  <input type="checkbox" id='checkbox'>
+						  <span class="slider round"></span></a></label>
+						</td>
+					<%end%>
+					</tr>
+				<%end%>
+			</table>
+		</div>
+	</div>
 </div>

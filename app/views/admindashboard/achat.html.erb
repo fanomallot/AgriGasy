@@ -1,102 +1,104 @@
 
-<div class="ground">
-	<section class="section banner pb-lg-0">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-8 text-center">
-				<h2>En tant qu' <span class="text-color">Administrateur</span> <br>vous avez comme tâche d'authetifier les publications des utilisateurs</h2>
+<div class="ground dasbor">
+	<div class="showpb2">
+		<section class="section banner pb-lg-0">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 text-center">
+					<h2>En tant qu' <span class="text-color">Administrateur</span> <br>vous avez comme tâche d'authetifier les publications des utilisateurs</h2>
+				</div>
 			</div>
 		</div>
-	</div>
-	</section>
-	<section class=" portfolio ">
-		<div class="container">
-			<!-- affiche la liste d achat/vent  à authentifier -->
-			<% @authenticateachat.each do |achat| %>
-				<% if achat.is_authenticate != true %>
-				    <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
-				    	<table class="tableau">
-		                  <tr>
-			                <td><%= achat.produit.name %></td>
-			                <td class="tabletd"> <%= achat.region.place %></td>
-			              </tr>
-			            </table>
-				        <div class="position-relative inner-box">
-				            <div class="image position-relative ">
-				              	<%if achat.avatarachat.attached?%>
-					                  <div class="img-comp-container">
-					                    <div class="img-comp-img pblink">
-					                    	<!-- image sous form de lien qui ramenne ver le show de la achat -->
-					                      <a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',class:"img-fluid w-100 d-block" ,style: "height:300px; width: 300px;"%>
-					                      </a>
-					                    </div>
-					                    <div class="img-comp-img img-comp-overlay">
-					                      <a href="<%=user_path(achat.user.id)%>">
-					                        <%if achat.user.profil.attached?%>
-					                        <!-- affiche l'image profil de l'user  -->
-					                          <%= image_tag achat.user.profil, alt: 'photo_achat',style: "height:60px; width: 60px;"  %>
-					                        <%else%>
-					                          <i class="menu-item fa fa-user"></i>
-					                        <%end%>
-					                      </a>
-					                    </div>
-					                  </div>
-									<%else%>
-									   <div class="img-comp-container">
-					                    <div class="img-comp-img pblink">
-											<%=image_tag 'no-photo.png',class:"img-fluid w-100 d-block" ,style: "height:250px; width: 200px;"%>
-					                    </div>
-					                    <div class="img-comp-img img-comp-overlay">
-					                      <a href="<%=user_path(achat.user.id)%>">
-					                        <%if achat.user.profil.attached?%>
-					                        <!-- affiche l'image profil de l'user  -->
-					                          <%= image_tag achat.user.profil, alt: 'photo_achat',style: "height:60px; width: 60px;"  %>
-					                        <%else%>
-					                          <i class="menu-item fa fa-user"></i>
-					                        <%end%>
-					                      </a>
-					                    </div>
-					                  </div>
-									<%end%>
-							
-	      						<div class="overlay-box">
-				                  <div class="overlay-inner">
-			                    		<a class="overlay-content" href="<%=achat_path(achat.id)%>">
-											<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
-			                    		</a>
-			                    		<% if user_signed_in? %>
-			                    			<h3 class="mb-0">
-				                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
-				                    				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
-														<i class="fa fa-user rouge"></i> Signaler
-				                    				</a>
-							                 	<%else%>
-													<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
-														<i class="fa fa-user rouge"></i> Ne pas signaler
-				                    				</a>
-							                 	<%end%>
-							                 	<!-- affiche si admin et cache, si l'user n'est pass admin, le nbr de signall et un lien qui affiche l nbr d signal -->
-							                 	<% if current_user.is_admin %>
-								                    <%if achat.signal_achats.length != 0%>
-								                      <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
-								                    <%end%>
-								                <%else%>
-								                	<%if achat.signal_achats.length != 0%>
-								                      <%=achat.signal_achats.length%>
-								                    <%end%>
-								                <%end%>
-								            </h3>
-							            <%end%><br>
-							            <p><i class='fa fa-thumbs-up'></i><%= link_to "Authentifier la publication", authentificate_achat_path(achat.id),class:"overlay-content blanche" %></p>
-				                	</div> 
+		</section>
+		<section class=" portfolio ">
+			<div class="container">
+				<!-- affiche la liste d achat/vent  à authentifier -->
+				<% @authenticateachat.each do |achat| %>
+					<% if achat.is_authenticate != true %>
+					    <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
+					    	<table class="tableau">
+			                  <tr>
+				                <td><%= achat.produit.name %></td>
+				                <td class="tabletd"> <%= achat.region.place %></td>
+				              </tr>
+				            </table>
+					        <div class="position-relative inner-box">
+					            <div class="image position-relative ">
+					              	<%if achat.avatarachat.attached?%>
+						                  <div class="img-comp-container">
+						                    <div class="img-comp-img pblink">
+						                    	<!-- image sous form de lien qui ramenne ver le show de la achat -->
+						                      <a href="<%=achat_path(achat.id)%>"><%= image_tag achat.avatarachat, alt: 'photo_achat',class:"img-fluid w-100 d-block" ,style: "height:300px; width: 300px;"%>
+						                      </a>
+						                    </div>
+						                    <div class="img-comp-img img-comp-overlay">
+						                      <a href="<%=user_path(achat.user.id)%>">
+						                        <%if achat.user.profil.attached?%>
+						                        <!-- affiche l'image profil de l'user  -->
+						                          <%= image_tag achat.user.profil, alt: 'photo_achat',style: "height:60px; width: 60px;"  %>
+						                        <%else%>
+						                          <i class="menu-item fa fa-user"></i>
+						                        <%end%>
+						                      </a>
+						                    </div>
+						                  </div>
+										<%else%>
+										   <div class="img-comp-container">
+						                    <div class="img-comp-img pblink">
+												<%=image_tag 'no-photo.png',class:"img-fluid w-100 d-block" ,style: "height:250px; width: 200px;"%>
+						                    </div>
+						                    <div class="img-comp-img img-comp-overlay">
+						                      <a href="<%=user_path(achat.user.id)%>">
+						                        <%if achat.user.profil.attached?%>
+						                        <!-- affiche l'image profil de l'user  -->
+						                          <%= image_tag achat.user.profil, alt: 'photo_achat',style: "height:60px; width: 60px;"  %>
+						                        <%else%>
+						                          <i class="menu-item fa fa-user"></i>
+						                        <%end%>
+						                      </a>
+						                    </div>
+						                  </div>
+										<%end%>
+								
+		      						<div class="overlay-box">
+					                  <div class="overlay-inner">
+				                    		<a class="overlay-content" href="<%=achat_path(achat.id)%>">
+												<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
+				                    		</a>
+				                    		<% if user_signed_in? %>
+				                    			<h3 class="mb-0">
+					                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>
+					                    				<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
+															<i class="fa fa-user rouge"></i> Signaler
+					                    				</a>
+								                 	<%else%>
+														<a class="overlay-content" href="<%=user_achat_signal_achats_path(current_user.id,achat.id)%>" data-method= 'post'>
+															<i class="fa fa-user rouge"></i> Ne pas signaler
+					                    				</a>
+								                 	<%end%>
+								                 	<!-- affiche si admin et cache, si l'user n'est pass admin, le nbr de signall et un lien qui affiche l nbr d signal -->
+								                 	<% if current_user.is_admin %>
+									                    <%if achat.signal_achats.length != 0%>
+									                      <%=link_to "(#{achat.signal_achats.length})", user_achat_signal_achats_path(current_user.id,achat.id)%>
+									                    <%end%>
+									                <%else%>
+									                	<%if achat.signal_achats.length != 0%>
+									                      <%=achat.signal_achats.length%>
+									                    <%end%>
+									                <%end%>
+									            </h3>
+								            <%end%><br>
+								            <p><i class='fa fa-thumbs-up'></i><%= link_to "Authentifier la publication", authentificate_achat_path(achat.id),class:"overlay-content blanche" %></p>
+					                	</div> 
+						            </div>
 					            </div>
-				            </div>
-				        </div>
-		      		</div>
+					        </div>
+			      		</div>
+			      	<% end %>
 		      	<% end %>
-	      	<% end %>
-		    
-		    </div>
-		</div>
-	</section>	
+			    
+			    </div>
+			</div>
+		</section>	
+	</div>
 </div>

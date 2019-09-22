@@ -1,82 +1,83 @@
 <div class="ground adminindexbody">
-	<div class="center adminindex blanche">
-		<h1><strong>BIENVENUE DANS NOTRE SITE</strong></h1>
+	<div class="showpb2">
+		<div class="center adminindex blanche">
+			<h1><strong>BIENVENUE DANS NOTRE SITE</strong></h1>
 
-		<p>
-			<h3>Vous êtes administrateur dans notre site <strong><i>AgriGasy</i></strong>.<br/></h3>
-		</p>
-	</div>
-	<section class=" banner blanche">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10">
-					 <h2 class="cd-headline clip is-full-width mb-4 ">
-					 	Le tâche est de<br>
-	                    <span class="cd-words-wrapper text-color">
-	                        <b class="is-visible">bien gerer le site</b>
-	                        <b>faire avancé le site</b>
-	                        <b>Faire de mieux enkl mieux pour<br> aider les autres</b>
-	                        <b>faire de notre mieu pour nous même</b>
-	                        <b>Créer un monde meilleur et modern ....</b>
-	                    </span>
-	                </h2>
+			<p>
+				<h3>Vous êtes administrateur dans notre site <strong><i>AgriGasy</i></strong>.<br/></h3>
+			</p>
+		</div>
+		<section class=" banner blanche">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10">
+						 <h2 class="cd-headline clip is-full-width mb-4 ">
+						 	Le tâche est de<br>
+		                    <span class="cd-words-wrapper text-color">
+		                        <b class="is-visible">bien gerer le site</b>
+		                        <b>faire avancé le site</b>
+		                        <b>Faire de mieux enkl mieux pour<br> aider les autres</b>
+		                        <b>faire de notre mieu pour nous même</b>
+		                        <b>Créer un monde meilleur et modern ....</b>
+		                    </span>
+		                </h2>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="main">
-		    <div class="container tim-container">
-		        <div id="extras">
-		            <div class="space"></div>
-		            <div class="row">
-		                <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
-		                    <div class="text-center">
-		                        <%=image_tag '01.jpg',class:"img-rounded img-responsive img-dog" %>
-		                    </div>
-		                </div>
-		                <div class="col-md-5 col-sm-12">
-		                    <h1 class="text-center">Voir la vie en vous en aidant les autres.</h1>
-		                    
-		                    <p class="contentslogang ">
-		                   N'essayez pas de devenir un homme qui a du succès. Essayez de devenir un homme qui a de la valeur.Le monde ne sera pas détruit par ceux qui font le mal, mais par ceux qui les regardent sans rien faire.La connaissance s'acquiert par l'expérience, tout le reste n'est que de l'information. 
-		                    </p>
-		                             
+			<div class="main">
+			    <div class="container tim-container">
+			        <div id="extras">
+			            <div class="space"></div>
+			            <div class="row">
+			                <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
+			                    <div class="text-center">
+			                        <%=image_tag '01.jpg',class:"img-rounded img-responsive img-dog" %>
+			                    </div>
+			                </div>
+			                <div class="col-md-5 col-sm-12">
+			                    <h1 class="text-center">Voir la vie en vous en aidant les autres.</h1>
+			                    
+			                    <p class="contentslogang ">
+			                   N'essayez pas de devenir un homme qui a du succès. Essayez de devenir un homme qui a de la valeur.Le monde ne sera pas détruit par ceux qui font le mal, mais par ceux qui les regardent sans rien faire.La connaissance s'acquiert par l'expérience, tout le reste n'est que de l'information. 
+			                    </p>
+			                             
 
-		                </div>
-		            </div>
-		        </div>
-		    <!--     end extras -->    
-		    </div>
-	<!-- end container -->
-		</div>
-	</section>
-	<div class="indexadmin contentslogang">
-		<h3>Liste de tout(s) le(s) administrateur(s)</h3>
-		<table>
-			  <tr>
-			    <th>Nom</th>
-			   
-			  </tr>
-
-			  <!-- liste de lien qui ammene vers le show profil de l'user -->
-				<% @admin.each do |admin| %>
+			                </div>
+			            </div>
+			        </div>
+			    <!--     end extras -->    
+			    </div>
+		<!-- end container -->
+			</div>
+		</section>
+		<div class="indexadmin contentslogang">
+			<h3>Liste de tout(s) le(s) administrateur(s)</h3>
+			<table>
 				  <tr>
-				    <td>
-				    	<a href="<%=user_path(admin.id)%>"><%=admin.first_name%>  <%=admin.last_name%></a>
-			  	 </tr>
-				<%end%>
-			</table>
-		<br>
-	</div>	
-<div class="center">
-	<p> 
-		<!-- lien vers les vente/achat a autentifier  -->
-		<%= link_to "Ventes à authentifier (#{@vente.length})", admincheckvente_path, class:'btn btn-secondary' %>
-		<%= link_to "Achats à authentifier (#{@achat.length})", admincheckachat_path, class:'btn btn-secondary' %>
-		<%= link_to "Liste des utilisateurs de votre Site", admincheckuser_path, class:'btn btn-secondary' %><br>
-	</p>
-	<p class="contentslogang">Essayer de bien gérer notre page</p>
-	
-</div>
+				    <th>Nom</th>
+				   
+				  </tr>
+
+				  <!-- liste de lien qui ammene vers le show profil de l'user -->
+					<% @admin.each do |admin| %>
+					  <tr>
+					    <td>
+					    	<a href="<%=user_path(admin.id)%>"><%=admin.first_name%>  <%=admin.last_name%></a>
+				  	 </tr>
+					<%end%>
+				</table>
+			<br>
+		</div>	
+		<div class="center">
+			<p> 
+				<!-- lien vers les vente/achat a autentifier  -->
+				<%= link_to "Ventes à authentifier (#{@vente.length})", admincheckvente_path, class:'btn btn-secondary' %>
+				<%= link_to "Achats à authentifier (#{@achat.length})", admincheckachat_path, class:'btn btn-secondary' %>
+				<%= link_to "Liste des utilisateurs de votre Site", admincheckuser_path, class:'btn btn-secondary' %><br>
+			</p>
+			<p class="contentslogang">Essayer de bien gérer notre page</p>	
+		</div>
+	</div>
 </div>
 
 

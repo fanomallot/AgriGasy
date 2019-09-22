@@ -32,7 +32,7 @@ input#logsign{
   border-bottom: 1.5px solid white;
   background-color: transparent;
   color:white;
-  width: 500px
+  width: 400px
 }
 
 
@@ -233,18 +233,226 @@ input#logsign{
   padding-bottom: 250px;
 
 }
+.showp{
+  background-color: rgba(250,250,250,0.8); /* Black w/opacity/see-through */
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+.searchindex{
+  background-image: url(computer-search.jpg);
+}
+.signup{
+  background-image: url(FLEUR.jpg);
+}
+.dasbor{
+  background-image: url(6.jpg);
+}
+.showpb1{
+  background-image: url(vanilele.jpg);
+}
+.showpb2{
+  background-color: rgba(0,0,0,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+.newpb1{
+  background-image: url(girofle-3.jpg);
+}
+.newpb2{
+  background-color: rgba(0,0,0,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+.achatshow{
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 800px;
+  background-image: url(coffee-beans-1650788_960_720.jpg);
+}
+.achatshow1{
+  background-color: rgba(0,0,0,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+}
+
+.editpb{
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 800px;
+  background-image: url(coffee-beans-1650788_960_720.jpg);
+}
+.editpb1{
+  
+  background-color: transparent; /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+.boxproduit{
+    border:none;
+  border-bottom: 1.5px solid #0056b3;
+  background-color: rgba(213, 223, 224,0.8);
+}
+.regionground{
+  filter: blur(8px);
+  -webkit-filter: blur(9px);
+  background-image: url(ground6.jpg);
+  height: 900px;
+}
+.oneregion{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: transparent; /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  margin-top: 25%;
+}
+
+.oneregionshow{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(10, 10, 10,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  margin-top: 10%
+  padding-top: 10%;
+}
+.oneregion1{
+  margin-left: 5%;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 200px) and (max-width: 480px) {
+.oneregion{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: transparent; /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  margin-top: 200%;
+}
+.oneregionshow{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(10, 10, 10,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50%
+  padding-top: 10%;
+}
+}
+.produitground{
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  background-image: url(1040898-france-organic-market-christmas.jpg);
+  height: 700px;
+}
+.oneprod{
+  background-color: transparent; /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  margin-left: 5%;
+
+}
+.oneprodshow{
+  background-color: rgba(10, 10, 10,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  padding-top: 13%;
+}
+@media screen and (min-width: 200px) and (max-width: 480px) {
+.oneprodshow{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(10, 10, 10,0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  padding-top: 60%;
+}
+}
 .adminindex{
   border:none;
   border-bottom: 1.5px solid #0056b3;
-  background-color: rgba(158, 176, 181,0.5);
+  background-color: #9eb0b5;
 }
 .adminindexbody{
   background-image: url(57997.jpg);
 }
 
 .first1{
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+ 
+  background-color: rgba(200,200,200,0.2); /* Black w/opacity/see-through */
   color: white;
   font-weight: bold;
   border: 3px solid #f1f1f1;
@@ -259,7 +467,7 @@ input#logsign{
 }
 .contentslogang{
  color: black;
- background-color: rgba(247, 249, 250,0.6);
+ background-color: #f7f9fa;
 }
 .first {
   font-family: Arial, Helvetica, sans-serif;
@@ -471,6 +679,9 @@ ul{
 .tabletd{
   float: right;
 }
+.tabletd1{
+  float: left;
+}
 /*achat
 /**************************/
 .editachat1 {
@@ -541,7 +752,7 @@ span.psw {
   font-size: 10px;
   text-align: center;
   border-radius: 15px;
-  width: 700px;
+  width: 500px;
 }
 .grid-cono {
   display: grid;
@@ -551,7 +762,7 @@ span.psw {
   grid-column-gap: 10px;
 }
 .grid-ito {
-  background-color: rgba(10, 255, 10, 0.1);
+  background-color: #0aff0a;
   padding: 50px;
   font-size: 10px;
   text-align: center;
@@ -653,7 +864,7 @@ span.psw {
   z-index:1500;
 }
 .img-comp-overlay:hover{
-  border:1px solid rgba(52, 172, 220, 0.98);
+  border:1px solid #34acdc;
   opacity: 0.8;
 
 }
@@ -666,7 +877,7 @@ span.psw {
   background-color: white;
 }
 .card{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 #00000;
   max-width: 300px;
   margin: auto;
   text-align: center;
@@ -706,8 +917,8 @@ span.psw {
 
 .grid-item {
   color: black;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #fafafa;
+  border: 1px solid black;
   padding: 20px;
   font-size: 30px;
   text-align: center;
@@ -715,7 +926,7 @@ span.psw {
 .grid-sous-item{
   display: inline-grid;
   grid-template-columns: auto auto;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid #000000;
 }
 .grid-sous-items{
   display: inline-grid;
@@ -840,7 +1051,7 @@ input{
   }
 }
 .userprofil{
-  background-image: url('var.jpg');
+  background-image: url('cover_4_blur.jpg');
 }
 /********Photo show user achat et vente****************************************************/
 .img-respons{
@@ -865,8 +1076,11 @@ input{
 /*====================page acceuil=================*/
 .agri{
  opacity: 0.8;
-  font-size: 15em;
+  font-size: 13em;
   font-weight: bold;
+}
+.message{
+  background-image: url('ground2.jpg');
 }
 
 @media screen and (min-width: 200px) and (max-width: 480px) {
@@ -937,6 +1151,7 @@ input{
   border:none;
   border-bottom: 1.5px solid #0056b3;
   background-color: transparent;
+  color: white;
 }
 /*================show pb ==================*/
 .showpb{
@@ -994,22 +1209,13 @@ input{
 }
 /*==================sign up ===============*/
 .boxsignup{
-  border: 2px solid rgba(116, 199, 204,0.1);
+  border: 2px solid #74c7cc;
   width: 500px;
   padding: 30px;
-  color: #23527c;
-  background-color: rgba(235, 245, 235,0.2);
+  color: white;
+  background-color: rgba(0,0,0,0.5);
   border-radius: 5px;
-  display: inline-block;
-}
-.boxsignup0{
-  width: 700px;
-  display: inline-block;
-  vertical-align: top;
-  padding: 10px;
-  background-image: url(04.jpg) ;
-  margin-left: 50px;
-  border-radius: 5px;
+  margin: 0 auto;
 }
 @media screen and (min-width: 200px) and (max-width: 480px) {
   .boxsignup{
@@ -1022,6 +1228,7 @@ input{
 .col-lg-8{
   width: 300px;
 }
+
 .boxsignup0{
   border-radius: 5px;
   width: 300px;
@@ -1074,7 +1281,7 @@ input{
 .gridsignin1{
   margin-left: 50px;
  padding-top: 100px;
-  border: 2px solid rgba(116, 199, 204,0.2);
+  border: 2px solid #74c7cc;
   height: 500px;
 display: inline-block;
 border-radius: 2px;
@@ -1082,7 +1289,7 @@ border-radius: 2px;
 @media screen and (min-width: 200px) and (max-width: 480px) {
 .gridsignin1{
  padding-top: 100px;
-  border: 2px solid rgba(116, 199, 204,0.2);
+  border: 2px solid #7477cc;
   width: 300px;
 display: inline-block;
 border-radius: 2px;
@@ -1149,7 +1356,7 @@ border-radius: 2px;
   width: 200px;
 }
 .result{
-background-color: rgba(216, 237, 216,0.1);
+background-color: #d8edd8;
 width: 80%;
 margin:0 auto;
 border-radius: 5px;
@@ -1158,7 +1365,7 @@ border-radius: 5px;
 .vente{
   width:150px;
   padding: 5px;
-  background-color: rgba(2, 242, 210,0.5);
+  background-color:gray;
   margin: 0 auto;
 }
 .region{
@@ -1171,13 +1378,13 @@ border-radius: 5px;
   padding: 50px;
   font-size: 10px;
   position: relative;
-  left: 55%;
+  left: 10%;
   border-radius: 15px;
   width: 700px;
 
 }
 .down{
-  background-color: rgba(2, 242, 210,0.5);
+  background-color: #02f2d2;
   margin-top: 100px;
 }
 .signalphoto{
@@ -1186,21 +1393,21 @@ height: 100px;
 border-radius: 50%;
 }
 .signalcommande{
-  border: 1px solid rgba(85, 89, 94,0.5);
+  border: 1px solid #55595e;
   margin-left: 10%;
   max-width: 80%;
 }
 /*messageprive*/
 .bigboxmp{
-  background-color: rgba(237, 239, 242);
-  border: 4px solid rgba(85, 89, 94,0.5);
+  background-color: #edeff2;
+  border: 4px solid #55595e;
   width: 70%;
   margin:0 auto;
   margin-top: 10px;
 }
 .boxmp{
   
-  border: 4px solid rgba(85, 89, 94,0.5);
+  border: 4px solid #55595e;
 
 }
 .messageprofil{
@@ -1226,6 +1433,6 @@ border-radius: 50%;
 }
 /*ground*/
 .slide{
-  border:2px solid black;
+  border:2px ;
   width: 50px;
 }
