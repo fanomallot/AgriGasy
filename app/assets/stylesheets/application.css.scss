@@ -69,7 +69,7 @@ input#logsign{
   position: fixed;
   right: 1em;
   margin-top: 0;
-  top:35em;
+  top:30em;
   z-index: 1500;
 }
 
@@ -331,13 +331,12 @@ input#logsign{
   transform: translate(-50%, -50%);
   z-index: 2;
   width: 100%;
-  padding: 20px;
   text-align: center;
-  margin-top: 25%;
+  padding: 10%;
+  margin-top: 50%;
 }
 
 .oneregionshow{
-  background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(10, 10, 10,0.5); /* Black w/opacity/see-through */
   color: white;
   font-weight: bold;
@@ -349,8 +348,8 @@ input#logsign{
   width: 80%;
   padding: 20px;
   text-align: center;
-  margin-top: 10%
-  padding-top: 10%;
+  margin-top: 10%;
+  padding-top: 50px;
 }
 .oneregion1{
   margin-left: 5%;
@@ -371,7 +370,7 @@ input#logsign{
   padding: 20px;
   text-align: center;
   margin-top: 200%;
-}
+  }
 .oneregionshow{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(10, 10, 10,0.5); /* Black w/opacity/see-through */
@@ -385,9 +384,9 @@ input#logsign{
   width: 80%;
   padding: 20px;
   text-align: center;
-  margin-top: 50%
+  margin-top: 50%;
   padding-top: 10%;
-}
+  }
 }
 .produitground{
   filter: blur(8px);

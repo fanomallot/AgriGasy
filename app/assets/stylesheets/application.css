@@ -332,8 +332,8 @@ input#logsign{
   z-index: 2;
   width: 100%;
   text-align: center;
-  padding: 20px;
-  margin-top: 25%;
+  padding: 10%;
+  margin-top: 50%;
 }
 
 .oneregionshow{
@@ -349,7 +349,7 @@ input#logsign{
   padding: 20px;
   text-align: center;
   margin-top: 10%;
-  padding-top: 10%;
+  padding-top: 50px;
 }
 .oneregion1{
   margin-left: 5%;
@@ -384,7 +384,7 @@ input#logsign{
   width: 80%;
   padding: 20px;
   text-align: center;
-  margin-top: 50%
+  margin-top: 50%;
   padding-top: 10%;
   }
 }
