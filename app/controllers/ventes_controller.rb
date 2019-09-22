@@ -68,7 +68,7 @@ class VentesController < ApplicationController
     # test de sauvegarde des donnés
     if @vente.save
       flash[:success] = "La publication a été créée avec success, en attente d'authentification"
-      redirect_to root_path
+      redirect_to user_vente_path(current_user.id,@vente.id)
     else
       flash[:danger] = "Echec de la création"
       render "new"

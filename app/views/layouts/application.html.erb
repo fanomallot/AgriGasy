@@ -90,7 +90,7 @@
       <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
         class="menu-item fa fa-user"<%end%>>
         <%if current_user.profil.attached?%>
-          <%= image_tag current_user.profil, alt: 'P',style: "height:45px; width: 45px;",class:'round profilphoto' %>
+          <%= image_tag current_user.profil, alt: 'P',style: "height:43px; width: 43px;",class:'round profilphoto' %>
         <%end%>
       </a>
       <%if current_user.is_admin%>
@@ -118,8 +118,21 @@
           </menu>
         </div>
     <%= yield %>
-    <footer>
-    </footer>
+  <footer>
+    <div class="container fixed-bottom">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center ">
+            <a href="<%=root_path%>">
+            <%=image_tag 'Tree.webp',style: "height:60px; width: 60px;",class:'round profilphoto' %></a>
+            <p class="mb-0">Copyrights © 2019. Designed & Developed by <a href="https://agrigasy.herokuapp.com" class="text-secondary">AgriGasy</a>, @ <a href="<%=conditions_path%>">Condition</a></p>;@ <a href="https://www.freeprivacypolicy.com/privacy/view/2c2b12b5191a3fd3edfc914c36d2e594">Règle de confidentialité</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   </body>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script> 
 </html>
