@@ -1,6 +1,6 @@
 <div class="ground showpb1">
-	<!-- affichage allert -->
 	<div class="showpb2">
+	<!-- affichage allert -->
 		<% if flash[:success] %>
 			<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
 		<% else  %>
@@ -34,22 +34,22 @@
 		                    <strong>Description : </strong> <%= @achat.description %><br/>
 		                    </p>
 		                    <p class="blanche">
-		                       <strong>Quantite : </strong> <%= @achat.quantite %><br/>
+		                       <strong><i class="fas fa-weight"> </i> Quantite :  </strong> <%= @achat.quantite %><br/>
 		                    </p>
 		                    <p class="blanche">
-		               			<%if @achat.prix != nil %>
-									<strong>Prix : </strong> <%= @achat.prix %><br/>
+		               			<%if @achat.prix != "" %>
+									<strong><i class="fas fa-dollar-sign"> </i> Prix : </strong> <%= @achat.prix %><br/>
 								<%end%>                                 
 		                    </p>
 		                    <p class="blanche">
-		                    	<strong>Region : </strong> <%= @achat.region.place %><br/>
+		                    	<strong><i class="fas fa-map-marker-alt"></i> Region : </strong> <%= @achat.region.place %><br/>
 		                    	<%if @achat.lieu != "" %><br>
-							      <strong>Local : </strong> <%= @achat.lieu %><br>
+							      <strong><i class="fas fa-map-marker-alt"> </i> Local : </strong> <%= @achat.lieu %><br>
 							    <%end%>
 		                    </p>
 		                    <p class="blanche">
 		                    	<%if @achat.date != nil %>
-							      <strong>Date : </strong> <%= @achat.date.to_date %><br>
+							      <strong><i class="fas fa-calendar"></i> <i class="fas fa-clock"> Date : </strong> <%= @achat.date.to_date %><br>
 							    <%end%>
 		                    </p>
 		                </div>
@@ -111,3 +111,4 @@
 		
 	</div>
 </div>				         
+

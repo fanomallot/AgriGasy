@@ -1,4 +1,6 @@
-<div class="ground">
+<div class="ground editpb">
+</div>
+<div class="editpb1">
 <!-- affichage allert -->
   <% if flash[:success] %>
     <div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
@@ -22,7 +24,7 @@
      <div class="checkout shopping">
         <div class="container">
            <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-6">
                  <div class="block billing-details">
                     <h4 class="widget-title">changer les détails</h4>
                      <%= form_tag url_for(action: 'update'), method:'patch' do%>
