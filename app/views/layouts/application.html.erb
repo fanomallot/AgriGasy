@@ -90,7 +90,7 @@
       <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
         class="menu-item fa fa-user"<%end%>>
         <%if current_user.profil.attached?%>
-          <%= image_tag current_user.profil, alt: 'P',style: "height:40px; width: 40px;",class:'round profilphoto' %>
+          <%= image_tag current_user.profil, alt: 'P',style: "height:45px; width: 45px;",class:'round profilphoto' %>
         <%end%>
       </a>
       <%if current_user.is_admin%>

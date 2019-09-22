@@ -1,8 +1,8 @@
-if ($("#checkbox").is(":checked")) {  
+
+if ($("#<%=@user.id%>").is(":checked")) {  
     // checkbox is checked 
-    alert('dcfwxc');
-    $('.switch').hide()
+    $('#<%=@user.id%>').removeAttr('checked');
 } else {
-    alert("ddr3")
     // checkbox is not checked 
+    $('#<%=@user.id%>').attr('checked',true);
 }
