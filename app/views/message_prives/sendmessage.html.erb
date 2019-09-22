@@ -1,21 +1,23 @@
 
-<div class="ground first">
-<h1 style="text-align: center"> <strong>Nouveau message</strong></h1>
-<h2>Destinataire</h2>
+<div class="ground message center">
+<div class="showpb2">	
+	<h1> <strong>Nouveau message</strong></h1>
+	<h2>Destinataire</h2>
 
-<!-- form tag qui recupere le contenant du msg à envoyer et le nom du destinataire -->
-<%= form_tag sending_messages_path, action: "sendingmessage", method: "get" do %>
+	<!-- form tag qui recupere le contenant du msg à envoyer et le nom du destinataire -->
+	<%= form_tag sending_messages_path, action: "sendingmessage", method: "get" do %>
 
-   	<select id="monselect" name="users_id">
-  		<%@users.each do |users|%>
-  			<%if users != current_user%>
-  		 		<option value="<%=users.id%>"><%=users.first_name%> <%=users.last_name%></option>
-		 	<%end%> 
-		 <%end%>
-	</select><br>
-	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-	<%=text_area_tag :content%>
- 	<%=submit_tag :envoyer%>
-<%end%>
-<div class="ground first center">
+	   	<select id="monselect" name="users_id">
+	  		<%@users.each do |users|%>
+	  			<%if users != current_user%>
+	  		 		<option value="<%=users.id%>"><%=users.first_name%> <%=users.last_name%></option>
+			 	<%end%> 
+			 <%end%>
+		</select><br>
+		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+		<%=text_area_tag :content%><br>
+ 		<input type="submit" value="Envoyer" class="btn btn-primary">
+	<%end%>
+</div>
+</div>
 

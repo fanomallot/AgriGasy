@@ -1,5 +1,8 @@
 <!-- page qui affiche la  formulaire pour modifier les information concerant l'achat -->
-<div class="ground">
+<div class="ground editpb">
+</div>
+<div class="editpb1">
+    
 <!-- affichage allert -->
   <% if flash[:success] %>
     <div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
@@ -23,7 +26,7 @@
      <div class="checkout shopping">
         <div class="container">
            <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-7">
                  <div class="block billing-details">
                     <h4 class="widget-title">changer les détails</h4>
                     <!-- recuperation des infos concernants l'achat telles que le nom, quantité, place, lieu, etc.. afin d'etre renvoyées dans le controller vente -->
