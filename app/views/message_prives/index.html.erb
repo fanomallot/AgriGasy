@@ -1,5 +1,5 @@
 
-<div class="ground ">
+<div class="ground boiterecep">
   <div class='bigboxmp'>
     <h1 class= "center"><strong>Messages</strong></h1>
     <div class='boxmp'>
@@ -10,10 +10,10 @@
         <%if current_user == m.sender %>
         <!-- lien vers l'affichage du msgs -->
             <%if m.recipient.profil.attached?%>
-              <a href="<%=user_path(m.sender.id)%>"><%=image_tag m.recipient.profil,class:'messageprofil'%></a>
+              <a href="<%=user_path(m.recipient.id)%>"><%=image_tag m.recipient.profil,class:'messageprofil'%></a>
           
            <%else%>
-              <a href="<%=user_path(m.sender.id)%>"><%=image_tag 'profil.png',class:'messageprofil'%></a>
+              <a href="<%=user_path(m.recipient.id)%>"><%=image_tag 'profil.png',class:'messageprofil'%></a>
            <%end%>
            <%=link_to "#{m.recipient.first_name} (#{MessagePrive.where('sender_id =:r AND recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , r: m.recipient.id ,a:false).count})",new_user_message_prife_path(id), method:'get'%>
          </h4><br>
@@ -21,7 +21,7 @@
         <!-- lien vers l'affichage du msgs -->
           <h4>
             <%if m.sender.profil.attached?%>
-              <a href="<%=user_path(m.sender.id)%>"><%=image_tag m.recipient.profil,class:'messageprofil'%></a> 
+              <a href="<%=user_path(m.sender.id)%>"><%=image_tag m.sender.profil,class:'messageprofil'%></a> 
             <%else%>
               <a href="<%=user_path(m.sender.id)%>"><%=image_tag 'profil.png',class:'messageprofil'%></a>
             <%end%>

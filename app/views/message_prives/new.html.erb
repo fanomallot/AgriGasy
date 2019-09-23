@@ -1,4 +1,4 @@
-<div class="ground">
+<div class="ground message1">
 	<div class="bigboxmp">
 		<div class="boxmp">
 			
@@ -22,7 +22,7 @@
 				<%comptage_length = 0 %>
 				<%@messages.each do |message|%>
 					<%if current_user == message.sender%>
-						<div class="usermessage" >
+					  <div class="usermessage" >
 						<% if message.sender.profil.attached? %>
 							<p>
 							 	<a href="<%=user_path(current_user.id)%>"><%= image_tag message.sender.profil, alt: 'photo_achat',class:'sipmlephoto'%></a>
@@ -45,34 +45,36 @@
 						    <%end%>
 						<%end%>
 						<%=link_to 'Editer' ,edit_user_message_prife_path(params[:user_id],message.id),class:'btn btn-success'%>
-						<%=link_to 'supprimer',user_message_prife_path(params[:user_id],message.id),method:'delete',data:{confirm: "voulez vraiment supprimer cette message"},class:'btn btn-danger'%><br>
+						<a href="<%=user_message_prife_path(params[:user_id],message.id)%>" data-method='delete' data-confirm='voulez vous vraiment supprimer ce message ?' class='btn btn-danger'><i class="fas fa-trash" title="supprimer"></i></a><br>
 				        <%if message.is_read %>
 				        	<small><i>Vu le <%=message.updated_at.day%>/<%=message.updated_at.month%>/<%=message.updated_at.year%> à <%=message.updated_at.hour%>:<%=message.updated_at.min%></i></small>
 				        <%end%>
 				        <%comptage_length += 1 %>
 					  </div>
 					<%else%>
-						<% if message.sender.profil.attached?%>
-							<p>
-								<a href="<%=user_path(message.sender.id)%>"> <%= image_tag message.sender.profil, alt: 'photo_achat',class:'sipmlephoto'%></a>
-								<i class="messageshow"><%=message.content%></i><br>
-								
-							</p>
-						<%else%>
-							<p>
-								<a href="<%= user_path(message.sender.id)%>"><%=image_tag 'profil.png',class:'sipmlephoto'%></a>
-								<i class="messageshow"><%=message.content%></i>	
-							</p>
-							<br>
-						<%end%>
-						<%comptage_length += 1 %>
-						<% if @messages.length == comptage_length && message.recipient == current_user%>
-							<%= form_tag  user_message_prife_path(params[:user_id],message.id),action:'update',method:'patch' do %>
-					        	<%=hidden_field_tag :content, message.content%>
-					        	<%=hidden_field_tag :read?, false%>
-					        	<%=submit_tag 'Marquer comme non lu'%>
-					        <%end%>
-					    <%end%>
+						<div class="usermessage1">
+							<% if message.sender.profil.attached?%>
+								<p>
+									<a href="<%=user_path(message.sender.id)%>"> <%= image_tag message.sender.profil, alt: 'photo_achat',class:'sipmlephoto'%></a>
+									<i class="messageshow"><%=message.content%></i><br>
+									
+								</p>
+							<%else%>
+								<p>
+									<a href="<%= user_path(message.sender.id)%>"><%=image_tag 'profil.png',class:'sipmlephoto'%></a>
+									<i class="messageshow"><%=message.content%></i>	
+								</p>
+								<br>
+							<%end%>
+							<%comptage_length += 1 %>
+							<% if @messages.length == comptage_length && message.recipient == current_user%>
+								<%= form_tag  user_message_prife_path(params[:user_id],message.id),action:'update',method:'patch' do %>
+						        	<%=hidden_field_tag :content, message.content%>
+						        	<%=hidden_field_tag :read?, false%>
+						        	<%=submit_tag 'Marquer comme non lu',class:'btn btn-primary'%>
+						        <%end%>
+						    <%end%>
+						</div>
 					<%end%>
 				<%end%>
 			</div>
