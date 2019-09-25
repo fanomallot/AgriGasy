@@ -10,6 +10,7 @@ before_action :is_admins,only: [:destroy]
   end
 
   def destroy
+    # suppresion du produit achat/vent
   	@produit = Produit.find(params[:id])
   	@vente = Vente.where(produit_id: @produit)
   	@vente.destroy_all

@@ -1,0 +1,8 @@
+
+if ($("#<%=@user.id%>").is(":checked")) {  
+    // checkbox is checked 
+    $('#<%=@user.id%>').removeAttr('checked');
+} else {
+    // checkbox is not checked 
+    $('#<%=@user.id%>').attr('checked',true);
+}

@@ -1,111 +1,113 @@
-<div class="ground">
-	<!-- affichage allert -->
+<div class="ground showpb1 blanche">
+	<div class="showpb2">
+		<!-- affichage allert -->
 
-	<% if flash[:success] %>
-		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
-	<% else  %>
-	  	<%if flash[:danger]%>
-			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
-		<% end %>
-	<% end %>
-
-	<h1 class="center" style="font-family: Time New Roman;font-size: 30px;">Voici le contenu de cet article</h1>
-	<!-- ------------------- -->
-	<div class="main">
-	    <div class="container tim-container">
-	        <div id="extras">
-	            <div class="space"></div>
-	            <div class="row">
-	                <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
-	                    <div class="text-center">
-	                    	<h3>Photo du produit en vente</h3>
-							<%if @vente.avatarvente.attached?%>
-								<%= image_tag @vente.avatarvente, alt: 'photo_vente',class:"img-rounded img-responsive"%>
-							<%else%>
-			  					<%=image_tag '01.jpg',class:"img-rounded img-responsive" %>
-			  				<%end%>
-	                    </div>
-	                </div>
-	                <div class="col-md-5 col-sm-12">
-	                    <h1 class="text-center"><%=@vente.produit.name%><br>
-	                    <small class="subtitle">A propos</small></h1>
-	                    <hr>
-	                    <p>
-	                    <strong>Description : </strong> <%= @vente.description %><br/>
-	                    </p>
-	                    <p>
-	                       <strong>Quantite : </strong> <%= @vente.quantite %><br/>
-	                    </p>
-	                    <p>
-	               			<%if @vente.prix != "" %>
-								<strong>Prix : </strong> <%= @vente.prix %><br/>
-							<%end%>                                 
-	                    </p>
-	                    <p>
-	                    	<strong>Region : </strong> <%= @vente.region.place %><br/>
-	                    	<%if @vente.lieu != "" %><br>
-						      <strong>Local : </strong> <%= @vente.lieu %><br>
-						    <%end%>
-	                    </p>
-	                    <p>
-	                    	<%if @vente.date != nil %>
-						      <strong>Date : </strong> <%= @vente.date.to_date %><br>
-						    <%end%>
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	    <!--     end extras -->    
-	    </div>
-	<!-- end container -->
-	</div>
-	<div class="showpbbow">
-		<div class="showpbbow1">
-			<%if @vente.user != current_user || current_user.is_admin %>	
-				<%= form_tag new_user_message_prife_path(@vente.user.id) ,action: 'new',method:'get' do %>
-					<%= submit_tag "Envoyer message" ,class:'btn btn-primary' %>  
-				<% end %>
-			<%end%>
-		</div>
-		<div class="showpbbow2">
-			<h3 class="mb-0">
-				<%if (Signall.find_by(user: current_user, vente_id: @vente.id)== nil)%>
-					<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,@vente.id)%>" data-method= 'post'>
-						<i class="mb-0 "><i class="fa fa-user rouge"></i> Signaler</i>
-					</a>
-			 	<%else%>
-					<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,@vente.id)%>" data-method= 'post'>
-						<i class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</i>
-					</a>
-			 	<%end%>
-			 	<% if current_user.is_admin %>
-			        <%if @vente.signalls.length != 0%>
-			          <%=link_to "(#{@vente.signalls.length})", user_vente_signalls_path(current_user.id,@vente.id)%>
-			        <%end%>
-			    <%else%>
-			    	<%if @vente.signalls.length != 0%>
-			          <%=@vente.signalls.length%>
-			        <%end%>
-			    <%end%>	
-			</h3>
-		</div>
-	</div>
-
-	<div class="showpb">
-		<div class="showpbbow1">
-			<%if @vente.user == current_user || current_user.is_admin%>
-
-				<%= link_to "Editer", edit_vente_path(@vente.id), class:'btn btn-primary' %>	
-
-				<%= link_to "Supprimer", vente_path(@vente.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger' %>
-			<%end%>		
-		</div>
-		<div class="showpbbow2">	
-			<% if current_user.is_admin %>
-				<% if @vente.is_authenticate != true %>
-					<%= link_to "Authentifier la publication", authentificate_vente_path(@vente.id),class:'btn btn-secondary'%><br>
-				<% end %>
+		<% if flash[:success] %>
+			<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+		<% else  %>
+		  	<%if flash[:danger]%>
+				<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
 			<% end %>
+		<% end %>
+
+		<h1 class="center" style="font-family: Time New Roman;font-size: 30px;">Voici le contenu de cet article</h1>
+		<!-- ------------------- -->
+		<div class="main">
+		    <div class="container tim-container">
+		        <div id="extras">
+		            <div class="space"></div>
+		            <div class="row">
+		                <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
+		                    <div class="text-center">
+		                    	<h3>Photo du produit en vente</h3>
+								<%if @vente.avatarvente.attached?%>
+									<%= image_tag @vente.avatarvente, alt: 'photo_vente',class:"img-rounded img-responsive"%>
+								<%else%>
+				  					<%=image_tag '01.jpg',class:"img-rounded img-responsive" %>
+				  				<%end%>
+		                    </div>
+		                </div>
+		                <div class="col-md-5 col-sm-12">
+		                    <h1 class="text-center"><%=@vente.produit.name%><br>
+		                    <small class="blanche">A propos</small></h1>
+		                    <hr>
+		                    <p class="blanche">
+		                    <strong>Description : </strong> <%= @vente.description %><br/>
+		                    </p>
+		                    <p class="blanche">
+		                       <strong><i class="fas fa-weight"> </i> Quantite : </strong> <%= @vente.quantite %><br/>
+		                    </p>
+		                    <p class="blanche">
+		               			<%if @vente.prix != "" %>
+									<strong><i class="fas fa-dollar-sign"> </i> Prix : </strong> <%= @vente.prix %><br/>
+								<%end%>                                 
+		                    </p>
+		                    <p class="blanche">
+		                    	<strong><i class="fas fa-map-marker-alt"></i> Region : </strong> <%= @vente.region.place %><br/>
+		                    	<%if @vente.lieu != "" %><br>
+							      <strong><i class="fas fa-map-marker-alt"> </i> Local : </strong> <%= @vente.lieu %><br>
+							    <%end%>
+		                    </p>
+		                    <p class="blanche">
+		                    	<%if @vente.date != nil %>
+							      <strong> <i class="fas fa-calendar"></i> <i class="fas fa-clock"></i> Date : </strong> <%= @vente.date.to_date %><br>
+							    <%end%>
+		                    </p>
+		                </div>
+		            </div>
+		        </div>
+		    <!--     end extras -->    
+		    </div>
+		<!-- end container -->
+		</div>
+		<div class="showpbbow">
+			<div class="showpbbow1">
+				<%if @vente.user != current_user || current_user.is_admin %>	
+					<%= form_tag new_user_message_prife_path(@vente.user.id) ,action: 'new',method:'get' do %>
+						<%= submit_tag "Envoyer message" ,class:'btn btn-primary' %>  
+					<% end %>
+				<%end%>
+			</div>
+			<div class="showpbbow2">
+				<h3 class="mb-0">
+					<%if (Signall.find_by(user: current_user, vente_id: @vente.id)== nil)%>
+						<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,@vente.id)%>" data-method= 'post'>
+							<i class="mb-0 "><i class="fa fa-user rouge"></i> Signaler</i>
+						</a>
+				 	<%else%>
+						<a class="overlay-content" href="<%=user_vente_signalls_path(current_user.id,@vente.id)%>" data-method= 'post'>
+							<i class="mb-0"><i class="fa fa-user rouge"></i> Ne pas signaler</i>
+						</a>
+				 	<%end%>
+				 	<% if current_user.is_admin %>
+				        <%if @vente.signalls.length != 0%>
+				          <%=link_to "(#{@vente.signalls.length})", user_vente_signalls_path(current_user.id,@vente.id)%>
+				        <%end%>
+				    <%else%>
+				    	<%if @vente.signalls.length != 0%>
+				          <%=@vente.signalls.length%>
+				        <%end%>
+				    <%end%>	
+				</h3>
+			</div>
+		</div>
+
+		<div class="showpb">
+			<div class="showpbbow1">
+				<%if @vente.user == current_user || current_user.is_admin%>
+
+					<%= link_to "Editer", edit_vente_path(@vente.id), class:'btn btn-primary' %>	
+
+					<%= link_to "Supprimer", vente_path(@vente.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'}, class:'btn btn-danger' %>
+				<%end%>		
+			</div>
+			<div class="showpbbow2">	
+				<% if current_user.is_admin %>
+					<% if @vente.is_authenticate != true %>
+						<%= link_to "Authentifier la publication", authentificate_vente_path(@vente.id),class:'btn btn-secondary'%><br>
+					<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

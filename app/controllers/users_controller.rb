@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	before_action :is_admis_or_current_user?,except:[:show]
 	before_action :is_admis,only: [:destroy]
 	def userachat
+		# recupere l'achat de l'user autentifier et non authentifier dans les  tab @achat_authentifie/@achat_unauthentifie 
 		@achat_authentifie = []
 		@achat_unauthentifie = []
 		@user = User.find(params[:id])
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
 		end
 	end
 	def uservente
+		# recupere l'vente de l'user autentifier et non authentifier dans les  tab @vente_authentifie/@vente_unauthentifie
 		@vente_authentifie = []
 		@vente_unauthentifie = []
 		@user = User.find(params[:id])
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
     	@user = User.find(params[:id])
 	end 
 	def update
+		# met à jour les info concernant l'current_user
         @user = User.find(params[:id])
         if current_user == User.first
         	@user.is_admin = true
@@ -52,6 +55,8 @@ class UsersController < ApplicationController
 		end
 	end
 	def destroy
+
+		# supprime tous les ventes et achats de l'user puis l'user
 		@user = User.find(params[:id])
 		vente = Vente.where(user: @user)
 		vente.destroy_all

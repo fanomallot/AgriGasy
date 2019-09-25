@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
 	before_action :is_admins
 	def index
+		# recupere les listes  d'user qui sont admiins/ qui ne sont pas admins et liste de vente/achat non authentifier 
 		@admin = User.where(is_admin: true)
 		@vente = Vente.where(is_authenticate: false)
 		@achat = Achat.where(is_authenticate: false)
@@ -13,10 +14,16 @@ class AdminsController < ApplicationController
 
 		if @user.is_admin
 			@user.update(is_admin: false)
-			redirect_to user_path(@user.id)
+			respond_to do |format|
+	      		format.html{redirect_back fallback_location: '/' ,allow_other_host: false}
+	      		format.js { }
+	      	end
 		else
 			@user.update(is_admin: true)
-			redirect_to user_path(@user.id)
+			espond_to do |format|
+	      		format.html{redirect_back fallback_location: '/' ,allow_other_host: false}
+	      		format.js { }
+	      	end
 		end
 	end
 	private

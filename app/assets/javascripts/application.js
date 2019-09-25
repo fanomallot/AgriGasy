@@ -28,4 +28,5 @@ $(document).ready(function() {
       check = true;
     }
   });
+  $('.search').hide();
 });

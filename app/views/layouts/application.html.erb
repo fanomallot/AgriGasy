@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
@@ -20,6 +20,10 @@
         </a>
         <%if user_signed_in?%>
           <h3><li class="online"></l></h3>
+        <%else%>
+          <ul> 
+            <li></l>
+          </ul>
         <%end%>
 
         <button class="navbar-toggler collapsed toptop" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,8 +44,6 @@
               <ul class="dropdown-menu" aria-labelledby="dropdown02">
                 <li><a class="dropdown-item" href="<%=new_vente_path%>">Vente</a></li>
                 <li><a class="dropdown-item" href="<%=new_achat_path%>">Achat</a></li>
-<!--                 <li><a class="dropdown-item" href="portfolio-3.html">Portfolio 2 column</a></li>
-                <li><a class="dropdown-item" href="portfolio-single.html">Portfolio Details</a></li> -->
               </ul>
             </li>
             <li class="nav-item dropdown active">
@@ -92,7 +94,7 @@
       <a href="<%=user_path(current_user.id)%>" title="Profil" <%if current_user.profil.attached?%>class="menu-item"<%else%>
         class="menu-item fa fa-user"<%end%>>
         <%if current_user.profil.attached?%>
-          <%= image_tag current_user.profil, alt: 'P',style: "height:40px; width: 40px;",class:'round profilphoto' %>
+          <%= image_tag current_user.profil, alt: 'P',style: "height:43px; width: 43px;",class:'round profilphoto' %>
         <%end%>
       </a>
       <%if current_user.is_admin%>
@@ -120,8 +122,16 @@
           </menu>
         </div>
     <%= yield %>
-    <footer>
-    </footer>
+  <footer>
+    <div class="container footback">
+          <div class="text-center ">
+            <a href="<%=root_path%>">
+            <%=image_tag 'Tree.webp',style: "height:60px; width: 60px;",class:'round profilphoto' %></a>
+            <p class="mb-0">Copyrights © 2019. Designed & Developed by <a href="https://agrigasy.herokuapp.com" class="text-secondary">AgriGasy</a>, <a href="<%=conditions_path%>">Condition</a></p> <a href="https://www.freeprivacypolicy.com/privacy/view/2c2b12b5191a3fd3edfc914c36d2e594">Règle de confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
   </body>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script> 
 </html>
