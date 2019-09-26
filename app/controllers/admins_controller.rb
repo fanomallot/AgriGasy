@@ -20,7 +20,7 @@ class AdminsController < ApplicationController
 	      	end
 		else
 			@user.update(is_admin: true)
-			espond_to do |format|
+			respond_to do |format|
 	      		format.html{redirect_back fallback_location: '/' ,allow_other_host: false}
 	      		format.js { }
 	      	end

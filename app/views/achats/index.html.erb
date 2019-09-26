@@ -1,17 +1,11 @@
-<div class="ground achatshow">
+<div class="achatshow">
 	<div class="achatshow1">	
-		<section class="portfolio ">
+		<section class="boxbox">
 			<div class="container">
-				<div class="row mb-5">
-			      	<div class="col-10">
-				        <div class="btn-group btn-group-toggle " data-toggle="buttons">
-				           <label class="btn">
-				            <input type="radio" name="shuffle-filter" value="photo" />Liste des achats
-				          </label><br><br>
-		    				<p class="blanche">Voici les publications d'achats disponibles,cliquer pour voir plus de détails</p>
-				        </div>
-			      	</div>
-		    	</div>	
+				<label class="liste bleuclaire">
+				    Liste des achats
+				</label><br>
+		    	<p>Voici les publications d'achats disponibles,cliquer pour voir plus de détails</p>	
 				<div class="row shuffle-wrapper portfolio-gallery">
 				  	<%@achat.each do |achat|%>
 				  		<%if achat.is_authenticate%>
@@ -61,6 +55,7 @@
 				                    		<a class="overlay-content" href="<%=achat_path(achat.id)%>">
 												<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
 				                    		</a>
+				                    		</br>
 				                    		<% if user_signed_in? %>
 				                    			<h3 class="mb-0">
 					                    			<%if (SignalAchat.find_by(user: current_user, achat_id: achat.id)== nil)%>

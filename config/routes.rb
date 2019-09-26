@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get "/admindashboard/liste_des_utilisateurs", to: 'admindashboard#utilisateur', as:'admincheckuser'
   get "/admindashboard/authentificate_vente/:id", to: 'admindashboard#updatevente', as:'authentificate_vente'
   get "/admindashboard/authentificate_achat/:id", to: 'admindashboard#updateachat', as:'authentificate_achat'
-  get "/send_messages", to: 'message_prives#sendmessage', as: 'send_messages' 
-  get "/sending_messages", to: 'message_prives#sendingmessage', as: 'sending_messages'
+  get "/recherche", to: 'message_prives#search_user', as: 'find_user'
+  delete "/suppression_des_messages/:id ",to: 'message_prives#destroy_all',as:'supprimer_discu'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'admins#index'
   resources :ventes, path: '/ventes' do
@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     end
     resources :achats, path: '/mes_besoins' do 
       resources :signal_achats, only:[:index,:create]
-      resources :messagepriveachats, path: '/Messages'
     end
   end
   resources :regions, path: '/regions'

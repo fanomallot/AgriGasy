@@ -1,14 +1,12 @@
-<div class="ground message1">
-	<div class="bigboxmp">
-		<div class="boxmp">
+<div class="Messagesground">
+	<div class="boxmpview">
 			
-		</div>
 		<%if @messages.length == 0%>
-			<h1 style="text-align:center;"><strong>Ecrire un message à <%=User.find(@id).first_name%>  <%=User.find(@id).last_name%></strong></h1>
+			<h1 style="text-align:center;"><strong>Ecrire un message à <a href="<%= user_path(@id)%>"><%=User.find(@id).first_name%>  <%=User.find(@id).last_name%></a> </strong></h1>
 		<%else%>
 			<div id="message">
-				<h1 >
-					<strong>
+				<h1 class="center">
+					<strong >
 					<a href="<%= user_path(@id)%>">
 					  <% if User.find(@id).profil.attached?%>
 						<%= image_tag User.find(@id).profil, alt: 'photo_achat',class:'messageprofil' %>
@@ -17,12 +15,13 @@
 					<%end%>
 						<%=User.find(@id).first_name%>  <%=User.find(@id).last_name%>
 					</a>
+					<a href="<%=supprimer_discu_path(@id)%>" class='btn btn-danger' data-method='delete' data-confirm='Etes-vous sure?'><i class="fas fa-trash" title="supprimer la discussion"></i></a>
 					</strong>
 				</h1><br>
 				<%comptage_length = 0 %>
 				<%@messages.each do |message|%>
 					<%if current_user == message.sender%>
-					  <div class="usermessage" >
+						<div class="usermessage" >
 						<% if message.sender.profil.attached? %>
 							<p>
 							 	<a href="<%=user_path(current_user.id)%>"><%= image_tag message.sender.profil, alt: 'photo_achat',class:'sipmlephoto'%></a>
@@ -71,7 +70,7 @@
 								<%= form_tag  user_message_prife_path(params[:user_id],message.id),action:'update',method:'patch' do %>
 						        	<%=hidden_field_tag :content, message.content%>
 						        	<%=hidden_field_tag :read?, false%>
-						        	<%=submit_tag 'Marquer comme non lu',class:'btn btn-primary'%>
+						        	<%=submit_tag 'Marquer comme non lu'%>
 						        <%end%>
 						    <%end%>
 						</div>
@@ -81,8 +80,8 @@
 		<%end%><br>
 		<div class="center">
 			<%= form_tag(user_message_prives_path(), :id => 'form_tag_with_remote_true', remote: true,method:'post')do%>
-			   	<textarea type='text' name="content" placeholder="Ecrire une message" class="form-control"></textarea><br>
-			  	<%=submit_tag :envoyer, remote: true%>
+			   	<textarea type='text' name="content" placeholder="Ecrire un message" class="form-control"></textarea><br>
+			  	<%=submit_tag :envoyer,class:'btn btn-primary'%>
 			<%end%>	
 		</div>
 	</div>

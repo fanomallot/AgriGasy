@@ -18,14 +18,14 @@
 								<% if current_user.is_admin %>
 									<% if @user.is_admin %>
 										<li>
-											<%=link_to 'Supprimer',users_path(@user.id),method:'delete',data: {confirm:'Etes-vous sûr ?'}%>
+											<%=link_to 'Supprimer',user_path(@user.id),method:'delete',data: {confirm:'Etes-vous sûr ?'}%>
 										</li>
 										<li>
 											<%= link_to "Enlever dans l'admin", admin_path(@user.id), method:'put' %>
 										</li>
 									<% else %>
 										<li>
-										<%=link_to 'Supprimer',users_path(@user.id),method:'delete',data: {confirm:'Etes-vous sûr ?'}%>	
+										<%=link_to 'Supprimer',user_path(@user.id),method:'delete',data: {confirm:'Etes-vous sûr ?'}%>	
 										</li>									
 										<li>
 										<%= link_to "Ajouter dans l'admin", admin_path(@user.id), method:'put' %>
@@ -77,6 +77,7 @@
 	            <div class="firstbox center">
 	            	<%if @user.profil.attached?%>
 					  <%= image_tag @user.profil, alt: 'profil_picture',class:'profilshow' %>
+					   <h6>Changer la photo de profil ?</h6>
 					<%else%>
 						<%if current_user.is_admin || current_user == @user%>
 						  <p>=== Vous n'avez pas encore une photo de profil ===</p>
@@ -87,7 +88,6 @@
 	            		<%end%>
 					<%end%>
 					<%if current_user.is_admin || current_user == @user%>
-					 	<h6>Changer la photo de profil ?</h6>
 						<%= form_tag user_profils_path(@user), multipart: true do %>
 						  <%= file_field_tag :profil%>
 						  <input type="submit" class="btn btn-primary" value="Change Image">

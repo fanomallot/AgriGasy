@@ -13,17 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg  main-nav transparent navbar-fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg  main-nav fixed-top" id="navbar">
       <div class="container">
         <a class="navbar-brand " href="/accueils">
           <i class="gras">AgriGasy</i>
         </a>
         <%if user_signed_in?%>
           <h3><li class="online"></l></h3>
-        <%else%>
-          <ul> 
-            <li></l>
-          </ul>
         <%end%>
 
         <button class="navbar-toggler collapsed toptop" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +54,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Messages</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown02">
                   <li><a class="dropdown-item" href="<%=user_message_prives_path(current_user.id)%>">Boite de reception (<%=MessagePrive.where('recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , a:false).count%>)</a></li>
-                  <li><a class="dropdown-item" href="<%=send_messages_path%>">Nouveau message</a></li>
+                  <li><a class="dropdown-item" href="<%=find_user_path%>">Nouveau message</a></li>
                   <%finalmessages =[]
                   MessagePrive.where('recipient_id =:current_user_id  AND is_read =:a',current_user_id:current_user.id , a:false).each do |test1|
                         if !finalmessages.include?(MessagePrive.find_by(recipient:current_user,sender:test1.sender, is_read: false))
@@ -125,14 +121,15 @@
   <footer>
     <div class="container footback">
           <div class="text-center ">
-            <a href="<%=root_path%>">
-            <%=image_tag 'Tree.webp',style: "height:60px; width: 60px;",class:'round profilphoto' %></a>
+            <%=image_tag 'Tree.png',style: "height:60px; width: 60px;",class:'round profilphoto' %>
             <p class="mb-0">Copyrights © 2019. Designed & Developed by <a href="https://agrigasy.herokuapp.com" class="text-secondary">AgriGasy</a>, <a href="<%=conditions_path%>">Condition</a></p> <a href="https://www.freeprivacypolicy.com/privacy/view/2c2b12b5191a3fd3edfc914c36d2e594">Règle de confidentialité</a>
       </div>
     </div>
   </footer>
 
   </body>
+  <!-- jQuery -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script> 
+  <script type="assets/javascript/application.js"></script>
 </html>
 

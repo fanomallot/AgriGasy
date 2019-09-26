@@ -38,20 +38,28 @@ class MessagePrivesController < ApplicationController
 		# creation d'un message avec l'id du recipient (envoie du message a un utilisateur specifié ) 
 		@message = MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:users_id], is_read:false)
 		redirect_to new_user_message_prife_path(params[:users_id])
-		# respond_to do |format|
-	 #      format.html {redirect_to(new_user_message_prife_path(params[:user_id]))}
-	 #      format.js { }
-	 #    end
 	end
+	def search_user
+
+		if params[:user1] != nil
+			if params[:user1] == ""
+				@user =[]
+			else
+				@user = User.where(['first_name LIKE ?',"%#{params[:user1]}%"]) + User.where(['last_name LIKE ?',"%#{params[:user1]}%"])
+				@user = @user.uniq
+				@user.each do |user|
+					if current_user == user
+						@user.delete(user)
+					end
+				end
+			end
+		end
+
+	end 
 	def create
 		# creation d'un message avec un id du recepteur ( le current_user étant deja dans la page new message)
 		@message = MessagePrive.create(sender_id:current_user.id, content:params[:content], recipient_id:params[:user_id], is_read:false)
-				 redirect_to new_user_message_prife_path(params[:user_id])
-	 # code ajax
-	 # respond_to do |format|
-	 #      format.html {redirect_to(new_user_message_prife_path(params[:user_id]))}
-	 #      format.js { }
-	 #    end
+		redirect_to new_user_message_prife_path(params[:user_id])
 	end
 
 	def show
@@ -73,16 +81,15 @@ class MessagePrivesController < ApplicationController
 		# suppression deu msg d l'utilisateur
 		MessagePrive.find(params[:id]).destroy
 		redirect_to  new_user_message_prife_path(params[:user_id])
-		# respond_to do |format|
-	 #      format.html {redirect_to(new_user_message_prife_path(params[:user_id]))}
-	 #      format.js { }
-	 #    end
+	end
+	def destroy_all
+    message = MessagePrive.where('sender_id= :user AND recipient_id= :current OR sender_id= :current AND recipient_id= :user',user:params[:id], current:current_user.id )
+    message.destroy_all
+    redirect_to user_message_prives_path(current_user.id)
 	end
 
 	def sendmessage
 		# recupère les utilisateurs dont le current user peut envoyer un msg
-		@users=[]
-		@users = User.all 
 	end
 
 end

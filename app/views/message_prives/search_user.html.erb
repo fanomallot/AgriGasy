@@ -1,0 +1,22 @@
+
+<div class="ground message center">
+<div class="showpb2">	
+
+<%=form_tag find_user_path ,method:'get' do%>
+	<input type="text" class="" name="user1" placeholder="Search...">
+	<input type="submit" value="rechercher">
+<%end%>
+
+<%if @user != nil%>
+	<%if @user.length == 0%>
+		pas de resultat
+		<%else%>
+		<%@user.each do |user|%>
+			<a href="<%=new_user_message_prife_path(user.id)%>"><%=user.first_name %>
+			<%=user.last_name %></a> <br>
+		<%end%>
+	<%end%>
+<%end%>               
+</div>
+</div>
+

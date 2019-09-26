@@ -13,7 +13,11 @@
  *= require_tree .
  *= require_self
  */
-
+.navbar{
+  background-color: white;
+  z-index: 1400;
+  height: 90px;
+}
 .show {display: block;}*
 /*search bar manipulation */
 input[name=find]{
@@ -219,7 +223,7 @@ input#logsign{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 50px;
+  padding-top: 60px;
 
 }
 .ground{
@@ -254,7 +258,6 @@ input#logsign{
 }
 .signup{
   background-image: url(FLEUR.jpg);
-  padding-left: 6%;
   padding-top: 13%;
 }
 .dasbor{
@@ -265,6 +268,7 @@ input#logsign{
 }
 .showpb2{
   background-color: rgba(0,0,0,0.5); /* Black w/opacity/see-through */
+  color: white;
   font-weight: bold;
   text-align: center;
   padding: 20px;
@@ -443,12 +447,12 @@ input#logsign{
   padding-bottom: 25px;
   
 }
-.acceuil4{
+/*.acceuil4{
  background-image: url(thumb-1920-79214.jpg);
 
   
 }
-
+*/
 .editachatground{
   background-image: url("reunion13_0.jpg"); 
 }
@@ -768,9 +772,6 @@ span.psw {
     left: -400%;
   }
 }
-.navbar{
-  height: 90px;
-}
 .online{
   margin-top: 32px;
 }
@@ -812,7 +813,7 @@ span.psw {
   border-radius: 50%;
   margin-left: 290px;
   margin-top: 160px;
-  z-index:1500;
+  z-index:1000;
 }
 .img-comp-overlay:hover{
   border:1px solid #34acdc;
@@ -1032,16 +1033,16 @@ input{
   width: 500px;
 }
 /*==================sign up ===============*/
-.boxsignup{
-  border: 2px solid #74c7cc;
-  width: 500px;
-  padding: 30px;
-  color: white;
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 5px;
-  margin: 0 auto;
+.boxsignup {
+    border: 2px solid #74c7cc;
+    width: 35%;
+    padding: 30px;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    margin: 0 auto;
+    font-weight: bold;
 }
-
 /*========liste des users========== */
 .tab {
   font-family: arial, sans-serif;
@@ -1067,14 +1068,16 @@ input{
   width: 500px;
 }
 .gridsignin1{
-  margin-left: 10%;
- padding-top: 100px;
+  padding-top: 100px;
   border: 2px solid #74c7cc;
   height: 500px;
-display: inline-block;
-border-radius: 2px;
+  display: inline-block;
+  border-radius: 2px;
+  width: 30%;
+  background-color: rgba(0,0,0,0.5);
+  font-weight: bold;
+  padding-bottom: 25%;
 }
-
 .grid-con1 {
  /* background-color: rgba(10, 255, 10, 0.1);*/
   display: inline-block;
@@ -1137,7 +1140,7 @@ border-radius: 50%;
 }
 /*messageprive*/
 .bigboxmp{
-  background-color: rgba(250,250,250,0.8);
+  background-color: #edeff2;
   border: 4px solid #55595e;
   width: 70%;
   margin:0 auto;
@@ -1162,7 +1165,7 @@ border-radius: 50%;
   font-size: 15px;
 }
 .usermessage{
-  margin-left: 80%;
+  margin-left: 70%
 }
 .usermessage1{
   margin-left: 5%;
@@ -1218,7 +1221,16 @@ border-radius: 50%;
     filter: blur(8px);
     -webkit-filter: blur(0.5px);
   }
-
+  .gridsignin1{
+  padding-top: 100px;
+  border: 2px solid #7477cc;
+    width: 30%;
+    display: inline-block;
+    border-radius: 2px;
+    font-weight: bold;
+  background-color: rgba(0,0,0,0.5);
+  padding-bottom: 25%;
+  }
   .newpb{
     width: 260px;
     margin: 0 auto;

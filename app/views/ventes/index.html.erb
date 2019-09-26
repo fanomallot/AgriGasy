@@ -1,17 +1,11 @@
-<div class="ground achatshow">
+<div class=" ">
 	<div class="achatshow1">
-		<section class="portfolio ">
+		<section class="boxbox">
 			<div class="container">
-				<div class="row mb-5">
-			      	<div class="col-10">
-				        <div class="btn-group btn-group-toggle " data-toggle="buttons">
-				           <label class="btn">
-				            <input type="radio" name="shuffle-filter" value="photo" />Liste des ventes
-				          </label><br><br>
-		    				<p class="blanche">Listes des publications de ventes disponibles</p>
-				        </div>
-			      	</div>
-		    	</div>	
+	           	<label class="liste bleuclaire">
+	            	Liste des ventes
+	          	</label><br>
+				<p>Voici les publications de ventes disponibles,cliquer pour voir plus de détails</p>
 				<div class="row shuffle-wrapper portfolio-gallery">
 				  	<%@vente.each do |vente|%>
 				  		<%if vente.is_authenticate%>
@@ -57,18 +51,12 @@
 					                    </div>
 					                  </div>
 									<%end%>
-																	<table class="tableau">
-					                  <tr>
-						                <td><%= vente.produit.name %></td>
-						                <td> <%= vente.region.place %></td>
-						              </tr>
-						            </table>
-
 					                <div class="overlay-box">
 					                  <div class="overlay-inner">
 				                    		<a class="overlay-content" href="<%=vente_path(vente.id)%>">
 												<h3 class="mb-0"><i class="fa fa-info bleu"></i> Détails</h3>
 				                    		</a>
+				                    		</br>
 				                    		<% if user_signed_in? %>
 												<h3 class="mb-0">
 					                    			<%if (Signall.find_by(user: current_user, vente_id: vente.id)== nil)%>
