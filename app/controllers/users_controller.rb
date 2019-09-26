@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :is_admis_or_current_user?,except:[:show]
-	before_action :is_admis,only: [:destroy]
+	before_action :is_admin_or_current_user?,except:[:show]
+	before_action :is_admin,only: [:destroy]
 	def userachat
 		# recupere l'achat de l'user autentifier et non authentifier dans les  tab @achat_authentifie/@achat_unauthentifie 
 		@achat_authentifie = []
@@ -62,15 +62,19 @@ class UsersController < ApplicationController
 		vente.destroy_all
 		achat = Achat.where(user: @user)
 		achat.destroy_all
-		mp = MessagePrive.where(user: @user)
+		mp = MessagePrive.where(sender: @user )
 		mp.destroy_all
-		signal = Signal.where(user: @user)
+		mp = MessagePrive.where(recipient: @user )
+		mp.destroy_all
+		signal = Signall.where(user: @user)
+		signal.destroy_all
+		signal = SignalAchat.where(user: @user)
 		signal.destroy_all
 		@user.destroy
 		redirect_to root_path
 	end
 	private
-	def is_admis_or_current_user?
+	def is_admin_or_current_user?
 		@user = User.find(params[:id])
 		if current_user == @user || current_user.is_admin
 			return true
@@ -78,7 +82,7 @@ class UsersController < ApplicationController
 			redirect_back fallback_location: '/' ,allow_other_host: false
 		end
 	end
-	def is_admins
+	def is_admin
       if current_user.is_admin
         return true
       else 

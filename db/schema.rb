@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_123116) do
   enable_extension "plpgsql"
 
   create_table "achats", force: :cascade do |t|
+    t.string "nom"
     t.text "description"
     t.string "quantite"
     t.string "prix"
@@ -53,25 +54,12 @@ ActiveRecord::Schema.define(version: 2019_09_19_123116) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "add_isauthenticate_to_achats", force: :cascade do |t|
-    t.boolean "is_authenticate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "add_isauthenticate_to_ventes", force: :cascade do |t|
-    t.boolean "is_authenticate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "message_prives", force: :cascade do |t|
     t.text "content"
     t.bigint "recipient_id"
     t.bigint "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
     t.boolean "is_read"
     t.index ["recipient_id"], name: "index_message_prives_on_recipient_id"
     t.index ["sender_id"], name: "index_message_prives_on_sender_id"
@@ -138,6 +126,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_123116) do
   end
 
   create_table "ventes", force: :cascade do |t|
+    t.string "nom"
     t.text "description"
     t.string "quantite"
     t.string "prix"

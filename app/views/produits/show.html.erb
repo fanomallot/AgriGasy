@@ -1,6 +1,4 @@
-<div class="produitground ground ">
-</div>
-<div class="oneprodshow">
+<div class="classground ">
 	<!-- affichage allert -->
 	<% if flash[:success] %>
 		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
@@ -9,13 +7,15 @@
 			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
 		<% end %>
 	<% end %>
-	<div class="center" style="color: white;">
-		<h2 style="font-family: verdana;font-size: 30px;">Voici la liste de tous les produits ayant le nom : <i><%=@produit.name%></i></h2>
+	<div class="center">
+		<div class="tops">
+			<h2 style="font-family: verdana;font-size: 30px;">Voici la liste de tous les produits ayant le nom : <i><%=@produit.name%></i></h2>	
+		</div>
 		<%if @produit.ventes.length == 0%>
-			<h4>Aucune publication de vente du produit <%=@produit.name%> </h4>
+			<h4 class="bleu">Aucune publication de vente du produit <%=@produit.name%> </h4>
 			</br>
 		<%else%>
-			<h4>Liste des ventes de ce produit :</h4>
+			<h4 class="bleuclaire">Liste des ventes de ce produit :</h4>
 			<%@produit.ventes.each do |vente|%>
 				<%if user_signed_in?%>
 				 	<%if vente.is_authenticate || current_user.is_admin%>
@@ -33,10 +33,10 @@
 			<%end%>
 		<%end%>
 		<%if @produit.achats.length == 0%>
-			<h4>Aucune publication d'achat du produit <%=@produit.name%> </h4>
+			<h4 class="bleu">Aucune publication d'achat du produit <%=@produit.name%> </h4>
 			</br>
 		<%else%>
-			<h4>Liste des achats de ce produit :</h4>
+			<h4 class="bleuclaire">Liste des achats de ce produit :</h4>
 			<%@produit.achats.each do |achat|%>
 				<%if user_signed_in?%>
 					<%if achat.is_authenticate || current_user.is_admin%>
@@ -58,6 +58,5 @@
 				<%=link_to 'Supprimer ce produit',produit_path, class:'btn btn-danger',method: 'delete',data:{confirm: "Etes-vous sûr ?"}  %>
 			<%end%>
 		<%end%>
-		
 	</div>
 </div>

@@ -1,80 +1,80 @@
-<div class="produitground ">
-</div>
-<div class="oneprod">
-		
-	<!-- affichage allert -->
-	<% if flash[:success] %>
-		<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
-	<% else  %>
-		<%if flash[:danger]%>
-			<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+<div class="regionground ">
+	<div class="oneregion1">		
+		<!-- affichage allert -->
+		<% if flash[:success] %>
+			<div class="alert alert-success" style="text-align: center;"><%= flash[:success]%></div>
+		<% else  %>
+			<%if flash[:danger]%>
+				<div class="alert alert-danger" style="text-align: center;"><%= flash[:danger]%></div>
+			<% end %>
 		<% end %>
-	<% end %>
-	<div style="color: white;">
-		<h1 class="center" style="font-family: verdana;font-size: 30px;">Liste de tous les produits disponibles </h1>
-	</div>
-	<div class="row align-items-center">
-		<div class="boxproduit">
-			<h1 class="center" style="font-family: Time New Roman;font-size: 25px;">PRODUITS
-			</h1>
-			<div class="text-center">
-			<% @produit.each do |produit| %>
-				<%vente_authentification = false
-				achat_authentification = false%>
-				<%produit.ventes.each do |vente|
-					if vente.is_authenticate
-						vente_authentification = true
-						break
-					else
-						vente_authentification = false
-					end
-				end%>
-				<%produit.achats.each do |achat|
-					if achat.is_authenticate
-						achat_authentification = true
-						break
-					else
-						achat_authentification = false
-					end
-				end%>
-				<%if user_signed_in?%>
-					<%if achat_authentification || vente_authentification || current_user.is_admin%>
-						<table class="tab1">
-							<tr>
-								<td>
-									<h4><i><%=link_to produit.name , produit_path(produit.id)%></i></h4>
-								</td>
-								<%if current_user.is_admin%>
-									<td><h4><i><%= link_to " Supprimer", produit_path(produit.id), method: 'delete', data: {confirm: 'Etes-vous sûr ?'} %></i></h4></td>
-								<%end%>
-							</tr>
-						</table>
-					<%end%>
-				<%else%>
-					<%if achat_authentification || vente_authentification%>
-						<table class="tab1">
-							<tr>
-								<td>
-									<h4>
-									<i><%=link_to produit.name , produit_path(produit.id)%></i>
-									</h4>
-								</td>
-							</tr>
-						</table>
-					<%end%>
-				<%end%>
-			<%end%>
-			</div>
+		<div style="color: black;">
+			<h1 class="center" style="font-family: verdana;font-size: 30px;">Liste de tous les produits disponibles </h1>
 		</div>
-		<div>
-			<div class="grid-con">
+		<div class="align-items-center">
+			<div class="region">
+				<table class="tab">
+				  <tr class="tr1">
+						<th class="tdh">
+							<h1 class="center" style="font-family: Time New Roman;font-size: 25px;">PRODUITS
+							</h1>
+						</th>
+				  </tr>
+				  <div class="text-center">
+						<% @produit.each do |produit| %>
+							<%vente_authentification = false
+							achat_authentification = false%>
+							<%produit.ventes.each do |vente|
+								if vente.is_authenticate
+									vente_authentification = true
+									break
+								else
+									vente_authentification = false
+								end
+							end%>
+							<%produit.achats.each do |achat|
+								if achat.is_authenticate
+									achat_authentification = true
+									break
+								else
+									achat_authentification = false
+								end
+							end%>
+							<%if user_signed_in?%>
+								<%if achat_authentification || vente_authentification || current_user.is_admin%>
+									<tr class="tr1">
+										<td class="tdh">
+											<%=link_to produit.name , produit_path(produit.id)%>
+										</td>
+										<%if current_user.is_admin%>
+											<td class="tdh">
+												<a href="<%= produit_path(produit.id)%>" data-method='delete' data-confirm='voulez vous vraiment supprimer ce message ?' class='btn btn-danger'><i class="fas fa-trash" title="supprimer"></i></a>
+											</td>
+										<%end%>
+									</tr>
+								<%end%>
+							<%else%>
+								<%if achat_authentification || vente_authentification%>
+									<tr class="tr1">
+										<td class="tdh">
+											<%=link_to produit.name , produit_path(produit.id)%>
+										</td>
+									</tr>
+								<%end%>
+							<%end%>
+						<%end%>
+					</div>
+				</table>
+			</div>
+			<div class="region2">
 				<div class="grid-it">
 					<div id="slider">
 						<figure>
-							<%= image_tag("image1.jpg")%>
-							<%= image_tag("image2.jpg")%>
-							<%= image_tag("image3.jpg")%>
-							<%= image_tag("01.jpg")%>
+							<%= image_tag("vanilfleur.jpg")%>
+							<%= image_tag("poivree.jpg")%>
+							<%= image_tag("cacaovente.jpg")%>
+							<%= image_tag("girofle.jpg")%>
+							<%= image_tag("coffee-beans-1650788_960_720.jpg")%>
 						</figure>
 					</div>
 				</div>
@@ -82,3 +82,5 @@
 		</div>
 	</div>
 </div>
+
+

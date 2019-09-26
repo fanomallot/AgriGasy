@@ -1,4 +1,4 @@
-<div class="ground dasbor">
+<div class="dasbor">
 	<div class="showpb2">
 		<div class="center">
 			<h3 style="font-family: verdana;font-size: 30px;">Voici la liste de tous les utilisateurs, y compris les administrateurs :-)</h3>
@@ -14,24 +14,24 @@
 				    <td class="tdh"><%= link_to user.first_name, user_path(user) %></td>
 				    <td class="tdh"><%= link_to user.last_name, user_path(user) %></td>
 				    <% if user.is_admin %>
-				    	<a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
-				    	<td>
-					    	<label class="switch">
-					    	
-					    		<input type="checkbox" checked id='<%=user.id%>'>
-							  	<span class="slider round"></span>
-							</label>
+					    <td>
+					    	<a href="<%= admin_path(user.id)%>" data-method='put' data-remote='true' >
+						    	<label class="switch">
+						    	
+						    		<input type="checkbox" checked id='<%=user.id%>'>
+								  	<span class="slider round"></span>
+								</label>
+							</a>
 						</td>
-						</a>
 					<%else%>
-				    	<a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
 						<td>
-							<label class="switch">
-							  <input type="checkbox" id='<%=user.id%>'>
-							  <span class="slider round"></span>
-							</label>
+					    	<a href="<%= admin_path(user.id)%>" class="switch" data-method='put' data-remote='true'>
+								<label class="switch">
+								  <input type="checkbox" id='<%=user.id%>'>
+								  <span class="slider round"></span>
+								</label>
+							</a>
 						</td>
-						</a>
 					<%end%>
 					</tr>
 				<%end%>
